@@ -27,7 +27,7 @@ label {
   margin-right: 10px;
 }
 
-#position-input {
+input[type="range"] {
   display: block;
    -webkit-appearance:none !important;
   width: 90%;
@@ -36,7 +36,7 @@ label {
   background: rgb(13, 168, 97);
 }
 
-#position-input::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance:none !important;
   width: 30px;
   height: 30px;

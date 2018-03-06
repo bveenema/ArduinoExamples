@@ -1,9 +1,10 @@
 {
-  "name": "My Chrome Arduino Blink",
+  "name": "Mix Controller",
   "version": "1.0",
   "manifest_version": 2,
   "minimum_chrome_version": "23",
-  "description": "Show off serial functionality connecting to Arduino.",
+  "description": "Connect to pumps to control mix ratio and output speed",
+  "author": "Ben Veenema - Veenema Design Works",
 
   "app": {
     "background": {

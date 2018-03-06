@@ -17,8 +17,31 @@
     </label>
 
     <label>
-      Input:
-      <input id="position-input" type="range" min="0" max="9" value="0">
+      Flow Rate (ml/min):
+      <input for="amount" oninput="amount.value=rangeInput.value" id="slider" type="range" min="0" max="200" name="rangeInput" />
+      <input oninput="rangeInput.value=amount.value" id="box" type="text" value="0" name="amount" for="rangeInput" oninput="rangeInput.value=amount.value" />
+    </label>
+
+    <label>
+      Flow Rate (ml/min):
+      <input id="flow-rate-slider" name="A" type="range" min="0" max="500" value="0" oninput="A.value=B.value">
+      <input id="flow-rate-textbox" name="B" type="number" min="0" max="500" step="10" value="0">
+    </label>
+
+    <label>
+      Ratio - A:
+      <input id="ratio-a" type="number" min="0" value="2" step="0.1">
+    </label>
+
+    <label>
+      Ratio - B:
+      <input id="ratio-b" type="number" min="0" value="1" step="0.1">
+      Current
+    </label>
+
+    <label>
+      Auto Reverse:
+      <input id="position-input" type="range" min="0" max="10000" value="0">
     </label>
 
     <label>
