@@ -8,6 +8,7 @@ body {
 label {
   display: block;
   padding: 20px;
+  padding-bottom: 10px;
   border-bottom: solid 1px #ddd;
   border-right: solid 1px #ddd;
   width: 300px;
@@ -27,21 +28,36 @@ label {
   margin-right: 10px;
 }
 
-input[type="range"] {
+.slide-box input[type="number"] {
+  display: block;
+  text-align: right;
+  width: 20%;
+  margin: 10px auto;
+  height: 20px;
+  font-size: 16px;
+}
+
+.slide-box input[type="range"] {
   display: block;
    -webkit-appearance:none !important;
   width: 90%;
-  margin: 20px auto;
-  height: 6px;
+  margin: 15px auto;
+  height: 4px;
   background: rgb(13, 168, 97);
 }
 
-input[type="range"]::-webkit-slider-thumb {
+.slide-box input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance:none !important;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border-radius: 15px;
   background: rgb(67, 135, 253);
+}
+
+.slide-box .current-value {
+  display: block;
+  text-align: center;
+
 }
 
 #image {
