@@ -98,3 +98,17 @@ label {
 #tv.broken img {
   display: block;
 }
+
+#advanced div {
+  line-height: 24px;
+}
+
+#advanced div img {
+  vertical-align: middle;
+  height: 24px;
+}
+
+#advanced span {
+  padding: 5px 0 0 10px;
+  text-decoration: underline;
+}

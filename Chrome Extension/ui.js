@@ -1,7 +1,9 @@
+let isAdvanced = false;
+
 onload = function(){
 
+  // Attach listeners to slide boxes
   let slideBoxes = document.getElementsByClassName('slide-box');
-
   for(let i=0; i<slideBoxes.length; i++){
     let sliderElement = slideBoxes[i].getElementsByClassName('slider')[0];
     let textboxElement = slideBoxes[i].getElementsByClassName('textbox')[0];
@@ -15,6 +17,18 @@ onload = function(){
     textboxElement.onchange = function(){
       updateSibling(sliderElement, parseInt(this.value, 10));
       updateController(this.parentNode.getAttribute('name'), parseFloat(this.value, 10));
+    }
+  }
+
+  // Attach listener to Advanced Expander
+  let advancedExpander = document.getElementById('expander');
+  advancedExpander.onclick = function(){
+    console.log("Clicked Expander");
+    isAdvanced = !isAdvanced;
+    if(isAdvanced){
+      advancedExpander.getElementsByTagName('img')[0].src = "assets/plus-box.svg";
+    } else {
+      advancedExpander.getElementsByTagName('img')[0].src = "assets/plus.svg";
     }
   }
 }
