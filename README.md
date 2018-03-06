@@ -14,4 +14,4 @@ To install the user interface:
 
 
 
-[JPG_downloadZIP]:
+[JPG_downloadZIP]:https://github.com/bveenema/MixController/blob/development/ReadmeAssets/DownloadZip.jpg "How to download ZIP"
