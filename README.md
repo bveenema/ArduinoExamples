@@ -39,9 +39,9 @@ To update the settings on the firmware
 
 [JPG_downloadZIP]: ReadmeAssets/DownloadZip.jpg "How to download ZIP"
 
-[JPG_GoToExtensions]: ReadmeAssets/GoToExtensions.jpg "Or type "chrome://extensions" in the address bar"
+[JPG_GoToExtensions]: ReadmeAssets/GoToExtensions.jpg "Or type \"chrome://extensions\" in the address bar"
 
-[JPG_LoadUnpackedExtension]: ReadmeAssets/LoadUnpackedExtension.jpg "Check the box next to "Developer Mode" and then click "Load unpacked extension""
+[JPG_LoadUnpackedExtension]: ReadmeAssets/LoadUnpackedExtension.jpg "Check the box next to \"Developer Mode\" and then click \"Load unpacked extension\""
 
 [JPG_MixControllerExtension]: ReadmeAssets/MixControllerExtension.jpg "Mix Controller Extension"
 
