@@ -22,15 +22,9 @@ function uiOnLoad(){
   }
 
   // Attach listener to Advanced Expander
-  let advancedExpander = document.getElementById('expander');
+  let advancedExpander = document.getElementById('advanced-expander');
   advancedExpander.onclick = function(){
-    console.log("Clicked Expander");
-    isAdvanced = !isAdvanced;
-    if(isAdvanced){
-      advancedExpander.getElementsByTagName('img')[0].src = "assets/plus-box.svg";
-    } else {
-      advancedExpander.getElementsByTagName('img')[0].src = "assets/plus.svg";
-    }
+    advancedOptionsManager(this);
   }
 
   // Initialize Connection manager
@@ -56,6 +50,19 @@ function mock_onRead(variable, value){
       console.log(element)
       element[0].innerHTML = value.toString(10);
     }
+  }
+}
+
+function advancedOptionsManager(advancedExpander){
+  //Toggle Advanced Options
+  isAdvanced = !isAdvanced;
+  if(isAdvanced){
+    advancedExpander.getElementsByTagName('img')[0].src = "assets/plus-box.svg";
+    //inject advanced template
+    document.getElementById('advanced-input').style = "display: inline-block";
+  } else {
+    advancedExpander.getElementsByTagName('img')[0].src = "assets/plus.svg";
+    document.getElementById('advanced-input').style = "display: none";
   }
 }
 

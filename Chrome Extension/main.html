@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="overflow-y: visible">
 <head>
   <script src="js/ui.js"></script>
   <script src="js/serial.js"></script>
@@ -55,7 +55,21 @@
     </label>
 
     <label id="advanced">
-      <div id="expander"><img src="assets/plus.svg" alt="+"><span>Advanced</span></div>
+      <div id="advanced-expander"><img src="assets/plus.svg" alt="+">Advanced</div>
+      <div id="advanced-input" style="display: none;">
+        <ul>
+          <li>
+            Steps/ml - A:
+            <input class="textbox" type="number" min="0" max="1000" step="10" value="0" disabled>
+            Current: <span>0</span>
+          </li>
+          <li>
+            Steps/ml - B:
+            <input class="textbox" type="number" min="0" max="1000" step="10" value="0" disabled>
+            Current: <span>0</span>
+          </li>
+        </ul>
+      </div>
     </label>
 
     <div id="image"></div>
