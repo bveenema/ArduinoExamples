@@ -35,6 +35,12 @@ label {
   margin: 10px auto;
   height: 20px;
   font-size: 16px;
+  border-width: 2px;
+}
+
+.slide-box input[type="number"]:disabled {
+  background: rgb(211,211,211);
+  border:2px solid #cccccc
 }
 
 .slide-box input[type="range"] {
@@ -52,6 +58,14 @@ label {
   height: 20px;
   border-radius: 15px;
   background: rgb(67, 135, 253);
+}
+
+.slide-box input[type="range"]:disabled {
+  background: rgb(112,128,144);
+}
+
+.slide-box input[type="range"]:disabled::-webkit-slider-thumb {
+  background: rgb(47,79,79);
 }
 
 .slide-box .current-value {

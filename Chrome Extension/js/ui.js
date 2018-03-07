@@ -1,6 +1,7 @@
 let isAdvanced = false;
+let isConnected = false;
 
-onload = function(){
+function uiOnLoad(){
 
   // Attach listeners to slide boxes
   let slideBoxes = document.getElementsByClassName('slide-box');
@@ -31,6 +32,9 @@ onload = function(){
       advancedExpander.getElementsByTagName('img')[0].src = "assets/plus.svg";
     }
   }
+
+  // Initialize Connection manager
+  connectionManager();
 }
 
 function updateSibling(sibling,value){
@@ -39,10 +43,10 @@ function updateSibling(sibling,value){
 
 function updateController(variable, value){
   console.log("Updating variable: " + variable + " to " + value);
-  setTimeout(onRead(String(variable), value), 2000);
+  setTimeout(function(){mock_onRead(variable, value)}, 1000);
 }
 
-function onRead(variable, value){
+function mock_onRead(variable, value){
   let elements = document.getElementsByClassName('slide-box');
   for(let i=0; i<elements.length; i++){
     let name = elements[i].getAttribute('name');
@@ -53,4 +57,19 @@ function onRead(variable, value){
       element[0].innerHTML = value.toString(10);
     }
   }
+}
+
+function connectionManager(){
+  if(isConnected) { // Enable all inputs
+    let inputs = document.getElementsByTagName('input');
+    for(let i=0; i<inputs.length; i++){
+      inputs[i].disabled = false;
+    }
+  } else {  // Disable all inputs
+    let inputs = document.getElementsByTagName('input');
+    for(let i=0; i<inputs.length; i++){
+      inputs[i].disabled = true;
+    }
+  }
+  setTimeout(function(){connectionManager()}, 500);
 }

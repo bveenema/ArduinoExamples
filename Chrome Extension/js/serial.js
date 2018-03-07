@@ -54,6 +54,7 @@ function onOpen(openInfo) {
 
 function setStatus(status) {
   document.getElementById('status').innerText = status;
+  if(status === 'Connected') isConnected = 1;
 }
 
 function buildPortPicker(ports) {
@@ -83,14 +84,13 @@ function openSelectedPort() {
   chrome.serial.open(selectedPort, onOpen);
 }
 
-onload = function() {
-
-  document.getElementById('position-input').onchange = function() {
-    setPosition(parseInt(this.value, 10));
-  };
+function beginSerial() {
+  setTimeout(function(){setStatus('Connected')}, 5000);
 
   chrome.serial.getPorts(function(ports) {
     buildPortPicker(ports)
     openSelectedPort();
   });
+  
+  
 };
