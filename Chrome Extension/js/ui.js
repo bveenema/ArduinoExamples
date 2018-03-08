@@ -13,11 +13,11 @@ function uiOnLoad(){
       updateSibling(textboxElement, parseFloat(this.value, 10));
     }
     sliderElement.onchange = function(){
-      updateController(this.parentNode.getAttribute('name'), parseFloat(this.value, 10));
+      updateMicro(this.parentNode.getAttribute('name'), parseFloat(this.value, 10), this.getAttribute('step'));
     }
     textboxElement.onchange = function(){
       updateSibling(sliderElement, parseInt(this.value, 10));
-      updateController(this.parentNode.getAttribute('name'), parseFloat(this.value, 10));
+      updateMicro(this.parentNode.getAttribute('name'), parseFloat(this.value, 10), this.getAttribute('step'));
     }
   }
 
@@ -41,25 +41,14 @@ function updateSibling(sibling,value){
   sibling.value = value;
 }
 
-function updateController(variable, value){
-  console.log("Updating variable: " + variable + " to " + value);
-
-  //format variable and value as machine readable message
-  let message = variable + ':' + value;
-
-  sendMessage(message);
-
-
-
-  
-  setTimeout(function(){mock_onRead(variable, value)}, 1000);
-}
-
-function mock_onRead(variable, value){
+function updateCurrentValue(variable, value){
   let elements = document.getElementsByClassName('slide-box');
   for(let i=0; i<elements.length; i++){
     let name = elements[i].getAttribute('name');
     if(name === variable){
+      let stepSize = parseFloat(elements[i].getElementsByClassName('slider')[0].getAttribute('step'));
+      if(stepSize < 1)
+        value /= 100;
       let element = elements[i].getElementsByTagName('span');
       element[0].innerHTML = value.toString(10);
     }

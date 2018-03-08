@@ -3,39 +3,22 @@ var readBuffer = "";
 
 function sendMessage(message) {
   let encoder = new TextEncoder();
-  let buffer = encoder.encode(message);
-  chrome.serial.send(connectionId, buffer, function(sendInfo){
-    console.log('message sent:');
-    console.log(sendInfo);
-  });
+  let buffer = encoder.encode(message + '\n'); // add newline and encode message for transmission
+  chrome.serial.send(connectionId, buffer, function(sendInfo){});
 };
 
 function recieveData(readInfo) {
-  var uint8View = new Uint8Array(readInfo.data);
-  var value = String.fromCharCode(uint8View[0]);
+  let decoder = new TextDecoder();
+  let message = {};
+  message.data = decoder.decode(readInfo.data);
 
-  if (value == "a") // Light on and off
-  {
-      console.log("CMD[a]: " + readBuffer);
-      var opat = isNaN(parseInt(readBuffer)) ? 0 : parseInt(readBuffer);
+  message.strings = message.data.split(':');
+  message.variable = message.strings[0];
+  message.value = message.strings[1];
 
-      document.getElementById('image').style.opacity = (opat* 0.7) + 0.3;
-      readBuffer = "";
-  }
-  else if (value == "b") // Return blink length value
-  {
-      readBuffer = "";
-  }
-  else if (value == "c") // Blink Count
-  {
-      console.log("CMD[c]: " + readBuffer);
-      document.getElementById('blinkCount').innerText = readBuffer;
-      readBuffer = "";
-  }
-  else
-  {
-    readBuffer += value;
-  }
+  console.log('Variable: ' + message.variable + ' is ' + message.value);
+
+  updateCurrentValue(message.variable, message.value);
 };
 
 function onOpen(connectionInfo) {
@@ -47,6 +30,8 @@ function onOpen(connectionInfo) {
     return;
   }
   setStatus('Connected');
+
+  getInitialValues();
 
   chrome.serial.onReceive.addListener(recieveData);
 };
@@ -63,6 +48,7 @@ function buildDevicePicker(devices) {
   console.log("Eligible Devices: ");
   console.log(eligibleDevices);
   var devicePicker = document.getElementById('device-picker');
+  devicePicker.innerHTML = "";
   eligibleDevices.forEach(function(device) {
     var deviceOption = document.createElement('option');
     let deviceName = device.displayName + ' (' + device.path + ')';
@@ -83,7 +69,7 @@ function buildDevicePicker(devices) {
 function openSelectedPort() {
   var devicePicker = document.getElementById('device-picker');
   var selectedPort = devicePicker.options[devicePicker.selectedIndex].id;
-  chrome.serial.connect(selectedPort, onOpen);
+  chrome.serial.connect(selectedPort, {bitrate: 57600}, onOpen);
 }
 
 function beginSerial() {
