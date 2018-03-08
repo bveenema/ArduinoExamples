@@ -62,6 +62,8 @@ If you get a message about installing dfu-util for your OS, make sure you have [
 ---
 Download the [Windows CLI Installer](https://binaries.particle.io/cli/installer/windows/ParticleCLISetup.exe) and run it to install the Particle CLI, the device drivers and the dependencies that the CLI needs.
 
+*Optional*: On the **Choose Components** Un-Select "CLI" and "OpenSSL (keys tools)" to install only the USB drivers.
+
 
 
 
