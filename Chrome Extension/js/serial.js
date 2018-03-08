@@ -1,14 +1,16 @@
 var connectionId = -1;
 var readBuffer = "";
 
-function setPosition(position) {
-  var buffer = new ArrayBuffer(1);
-  var uint8View = new Uint8Array(buffer);
-  uint8View[0] = position;
-  chrome.serial.write(connectionId, buffer, function() {});
+function sendMessage(message) {
+  let encoder = new TextEncoder();
+  let buffer = encoder.encode(message);
+  chrome.serial.send(connectionId, buffer, function(sendInfo){
+    console.log('message sent:');
+    console.log(sendInfo);
+  });
 };
 
-function onRead(readInfo) {
+function recieveData(readInfo) {
   var uint8View = new Uint8Array(readInfo.data);
   var value = String.fromCharCode(uint8View[0]);
 
@@ -32,24 +34,21 @@ function onRead(readInfo) {
   }
   else
   {
-
     readBuffer += value;
   }
-  // Keep on reading.
-  chrome.serial.read(connectionId, 1, onRead);
 };
 
-function onOpen(openInfo) {
-  connectionId = openInfo.connectionId;
-  console.log("connectionId: " + connectionId);
+function onOpen(connectionInfo) {
+  console.log('Connection Info:');
+  console.log(connectionInfo);
+  connectionId = connectionInfo.connectionId;
   if (connectionId == -1) {
     setStatus('Could not open');
     return;
   }
   setStatus('Connected');
 
-  setPosition(0);
-  chrome.serial.read(connectionId, 1, onRead);
+  chrome.serial.onReceive.addListener(recieveData);
 };
 
 function setStatus(status) {
@@ -68,6 +67,7 @@ function buildDevicePicker(devices) {
     var deviceOption = document.createElement('option');
     let deviceName = device.displayName + ' (' + device.path + ')';
     deviceOption.value = deviceOption.innerText = deviceName;
+    deviceOption.id = device.path;
     devicePicker.appendChild(deviceOption);
   });
 
@@ -81,13 +81,17 @@ function buildDevicePicker(devices) {
 }
 
 function openSelectedPort() {
-  var devicePicker = document.getElementById('port-picker');
-  var selectedPort = devicePicker.options[devicePicker.selectedIndex].value;
-  chrome.serial.open(selectedPort, onOpen);
+  var devicePicker = document.getElementById('device-picker');
+  var selectedPort = devicePicker.options[devicePicker.selectedIndex].id;
+  chrome.serial.connect(selectedPort, onOpen);
 }
 
 function beginSerial() {
-  setTimeout(function(){setStatus('Connected')}, 5000);
+  if (connectionId != -1) {
+    chrome.serial.disconnect(connectionId, function(){
+      console.log('disconnected!');
+    });
+  }
 
   chrome.serial.getDevices(function(ports) {
     buildDevicePicker(ports)

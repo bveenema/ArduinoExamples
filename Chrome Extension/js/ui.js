@@ -27,6 +27,12 @@ function uiOnLoad(){
     advancedOptionsManager(this);
   }
 
+  // Attach listener to Refresh Devices button
+  let refreshButton = document.getElementById('refresh-devices');
+  refreshButton.onclick = function(){
+    beginSerial();
+  }
+
   // Initialize Connection manager
   connectionManager();
 }
@@ -37,6 +43,15 @@ function updateSibling(sibling,value){
 
 function updateController(variable, value){
   console.log("Updating variable: " + variable + " to " + value);
+
+  //format variable and value as machine readable message
+  let message = variable + ':' + value;
+
+  sendMessage(message);
+
+
+
+  
   setTimeout(function(){mock_onRead(variable, value)}, 1000);
 }
 
@@ -45,9 +60,7 @@ function mock_onRead(variable, value){
   for(let i=0; i<elements.length; i++){
     let name = elements[i].getAttribute('name');
     if(name === variable){
-      console.log(name);
       let element = elements[i].getElementsByTagName('span');
-      console.log(element)
       element[0].innerHTML = value.toString(10);
     }
   }
