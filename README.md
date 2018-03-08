@@ -1,6 +1,14 @@
 # Mix Controller
 A chrome extension user interface and embedded firmware for controlling mixing pumps.
 
+#### Index
+1. [User Interface (Chrome Extension)](#user-interface)
+  * [Installation](#installation)
+  * [Create Shortcuts](#create-shortcuts)
+  * [How to Use](#how-to-use)
+* [Firmware (Mixer Software)](#firmware)
+  * [Driver Installation](#driver-installation)
+
 ## User Interface (Chrome Extension)
 ### Installation
 To install the user interface:
@@ -32,6 +40,9 @@ To update the settings on the firmware
   * Exact numbers can be typed in the box
   * **Current** displays the value the actual controller recognizes and has stored
 
+
+## Firmware (Mixer Software)
+### Driver Installation
 
 
 
