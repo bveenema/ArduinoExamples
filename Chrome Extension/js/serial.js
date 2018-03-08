@@ -11,12 +11,12 @@ function setPosition(position) {
 function onRead(readInfo) {
   var uint8View = new Uint8Array(readInfo.data);
   var value = String.fromCharCode(uint8View[0]);
-    
+
   if (value == "a") // Light on and off
   {
       console.log("CMD[a]: " + readBuffer);
       var opat = isNaN(parseInt(readBuffer)) ? 0 : parseInt(readBuffer);
-      
+
       document.getElementById('image').style.opacity = (opat* 0.7) + 0.3;
       readBuffer = "";
   }
@@ -32,7 +32,7 @@ function onRead(readInfo) {
   }
   else
   {
-    
+
     readBuffer += value;
   }
   // Keep on reading.
@@ -57,19 +57,21 @@ function setStatus(status) {
   if(status === 'Connected') isConnected = 1;
 }
 
-function buildPortPicker(ports) {
-  var eligiblePorts = ports.filter(function(port) {
-    return !port.match(/[Bb]luetooth/) && port.match(/\/dev\/tty/);
+function buildDevicePicker(devices) {
+  var eligibleDevices = devices.filter(function(device) {
+    return device.productId === 49158 && device.vendorId === 11012;
+  });
+  console.log("Eligible Devices: ");
+  console.log(eligibleDevices);
+  var devicePicker = document.getElementById('device-picker');
+  eligibleDevices.forEach(function(device) {
+    var deviceOption = document.createElement('option');
+    let deviceName = device.displayName + ' (' + device.path + ')';
+    deviceOption.value = deviceOption.innerText = deviceName;
+    devicePicker.appendChild(deviceOption);
   });
 
-  var portPicker = document.getElementById('port-picker');
-  eligiblePorts.forEach(function(port) {
-    var portOption = document.createElement('option');
-    portOption.value = portOption.innerText = port;
-    portPicker.appendChild(portOption);
-  });
-
-  portPicker.onchange = function() {
+  devicePicker.onchange = function() {
     if (connectionId != -1) {
       chrome.serial.close(connectionId, openSelectedPort);
       return;
@@ -79,18 +81,18 @@ function buildPortPicker(ports) {
 }
 
 function openSelectedPort() {
-  var portPicker = document.getElementById('port-picker');
-  var selectedPort = portPicker.options[portPicker.selectedIndex].value;
+  var devicePicker = document.getElementById('port-picker');
+  var selectedPort = devicePicker.options[devicePicker.selectedIndex].value;
   chrome.serial.open(selectedPort, onOpen);
 }
 
 function beginSerial() {
   setTimeout(function(){setStatus('Connected')}, 5000);
 
-  chrome.serial.getPorts(function(ports) {
-    buildPortPicker(ports)
+  chrome.serial.getDevices(function(ports) {
+    buildDevicePicker(ports)
     openSelectedPort();
   });
-  
-  
+
+
 };
