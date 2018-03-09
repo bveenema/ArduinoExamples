@@ -10,15 +10,20 @@ function sendMessage(message) {
 function recieveData(readInfo) {
   let decoder = new TextDecoder();
   let message = {};
-  message.data = decoder.decode(readInfo.data);
+  readBuffer += decoder.decode(readInfo.data);
 
-  message.strings = message.data.split(':');
-  message.variable = message.strings[0];
-  message.value = message.strings[1];
+  if(readBuffer.endsWith('\n')){ //wait for newline character to signal end of transmission
+    message.data = readBuffer;
+    readBuffer = "";
 
-  console.log('Variable: ' + message.variable + ' is ' + message.value);
+    message.strings = message.data.split(':');
+    message.variable = message.strings[0];
+    message.value = parseInt(message.strings[1]);
 
-  updateCurrentValue(message.variable, message.value);
+    console.log('Variable: ' + message.variable + ' is ' + message.value);
+
+    updateCurrentValue(message.variable, message.value);
+  }
 };
 
 function onOpen(connectionInfo) {

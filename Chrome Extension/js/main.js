@@ -16,5 +16,15 @@ function updateMicro(variable, value, stepSize){
 }
 
 function getInitialValues() {
-  sendMessage("flowRate");
+  let variables = ["flowRate", "ratioA", "ratioB", "autoReverse"];
+
+  if(this.index === undefined){
+    this.index = 0;
+  }else{
+    ++this.index;
+  }
+
+  sendMessage(variables[this.index]);
+
+  if(this.index < variables.length-1) setTimeout(function(){getInitialValues()},100);
 }

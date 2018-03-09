@@ -47,10 +47,15 @@ function updateCurrentValue(variable, value){
     let name = elements[i].getAttribute('name');
     if(name === variable){
       let stepSize = parseFloat(elements[i].getElementsByClassName('slider')[0].getAttribute('step'));
-      if(stepSize < 1)
-        value /= 100;
-      let element = elements[i].getElementsByTagName('span');
-      element[0].innerHTML = value.toString(10);
+      if(stepSize < 1) value /= 100;
+
+      let slider = elements[i].getElementsByClassName('slider')[0];
+      let textbox = elements[i].getElementsByClassName('textbox')[0];
+      let current = elements[i].getElementsByTagName('span')[0];
+      slider.value = value;
+      textbox.value =value;
+      current.innerHTML = value.toString(10);
+
     }
   }
 }
