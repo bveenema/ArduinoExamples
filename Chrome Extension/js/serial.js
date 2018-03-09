@@ -17,16 +17,28 @@ function recieveData(readInfo) {
     readBuffer = "";
 
     message.strings = message.data.split(':');
-    message.variable = message.strings[0];
+    message.variableName = message.strings[0];
     message.value = parseInt(message.strings[1]);
+    if(isNaN(message.value)) message.value = message.strings[1];
 
-    console.log('Variable: ' + message.variable + ' is ' + message.value);
+    message.variableType = allVariables.filter(function(variable){
+      return variable.name === message.variableName;
+    })[0].type;
 
-    updateCurrentValue(message.variable, message.value);
+    console.log(message);
+
+    if(message.variableType === 'slide-box')
+      updateSlideBoxValue(message.variableName, message.value);
+    else if(message.variableType === 'advanced')
+      updateAdvancedValue(message.variableName, message.value);
+    else if(message.variableType === 'controller-state')
+      updateControllerStateValue(message.variableName, message.value);
   }
 };
 
 function onOpen(connectionInfo) {
+  if(!chrome.serial.onReceive.hasListeners())
+    chrome.serial.onReceive.addListener(recieveData);
   console.log('Connection Info:');
   console.log(connectionInfo);
   connectionId = connectionInfo.connectionId;
@@ -37,8 +49,6 @@ function onOpen(connectionInfo) {
   setStatus('Connected');
 
   getInitialValues();
-
-  chrome.serial.onReceive.addListener(recieveData);
 };
 
 function setStatus(status) {
@@ -78,16 +88,23 @@ function openSelectedPort() {
 }
 
 function beginSerial() {
-  if (connectionId != -1) {
-    chrome.serial.disconnect(connectionId, function(){
-      console.log('disconnected!');
-    });
-  }
+  chrome.serial.getConnections(function(ConnectionInfo){
+    console.log("Connections: ");
+    console.log(ConnectionInfo);
 
-  chrome.serial.getDevices(function(ports) {
-    buildDevicePicker(ports)
-    openSelectedPort();
+    if (connectionId != -1) {
+      chrome.serial.disconnect(connectionId, function(){
+        console.log('disconnected!');
+        chrome.serial.getDevices(function(ports) {
+          buildDevicePicker(ports)
+          openSelectedPort();
+        });
+      });
+    }else {
+      chrome.serial.getDevices(function(ports) {
+        buildDevicePicker(ports)
+        openSelectedPort();
+      });
+    }
   });
-
-
 };

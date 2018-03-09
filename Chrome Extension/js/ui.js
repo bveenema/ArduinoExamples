@@ -41,7 +41,7 @@ function updateSibling(sibling,value){
   sibling.value = value;
 }
 
-function updateCurrentValue(variable, value){
+function updateSlideBoxValue(variable, value){
   let elements = document.getElementsByClassName('slide-box');
   for(let i=0; i<elements.length; i++){
     let name = elements[i].getAttribute('name');
@@ -55,7 +55,30 @@ function updateCurrentValue(variable, value){
       slider.value = value;
       textbox.value =value;
       current.innerHTML = value.toString(10);
+    }
+  }
+}
 
+function updateAdvancedValue(variable, value){
+  let elements = document.getElementsByClassName('advanced');
+  for(let i=0; i<elements.length; i++){
+    let name = elements[i].getAttribute('name');
+    if(name === variable){
+      let textbox = elements[i].getElementsByClassName('textbox')[0];
+      let current = elements[i].getElementsByTagName('span')[0];
+      textbox.value =value;
+      current.innerHTML = value.toString(10);
+    }
+  }
+}
+
+function updateControllerStateValue(variable, value){
+  let elements = document.getElementsByClassName('controller-state');
+  for(let i=0; i<elements.length; i++){
+    let name = elements[i].getAttribute('name');
+    if(name === variable){
+      let current = elements[i].getElementsByTagName('span')[0];
+      current.innerHTML = value.toString(10);
     }
   }
 }

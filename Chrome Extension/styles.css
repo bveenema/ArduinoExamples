@@ -91,43 +91,11 @@ input[type="number"]:disabled {
 
 }
 
-#image {
-  position: absolute;
-  right: 10px;
-  top: -10px;
-  background-image: url(chrome-logo.svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 256px;
-  height: 256px;
-  -webkit-transition: all .2s linear;
-}
-
 #container {
   position: absolute;
   top: 0;
   left: 0;
   width: 640px;
-}
-
-#tv {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 640px;
-  height: 480px;
-  border-left: solid 1px #ddd;
-}
-
-#tv video,
-#tv img {
-  display: none;
-}
-
-#tv.working video,
-#tv.broken img {
-  display: block;
 }
 
 #advanced-input ul {
@@ -137,4 +105,32 @@ input[type="number"]:disabled {
 
 #advanced li {
   margin-top: 15px;
+}
+
+#controller-state {
+  position: absolute;
+  right: 35px;
+  top: -10px;
+  width: 256px;
+  height: 256px;
+}
+#controller-state h3 {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+
+#controller-state ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  padding: 5px 0;
+  border-bottom: 1px solid #ccc
+}
+
+#controller-state li {
+  padding: 3px 0;
+}
+
+#controller-state span {
+  color: #888;
 }

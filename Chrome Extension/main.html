@@ -59,12 +59,12 @@
       <div id="advanced-expander"><img src="assets/plus.svg" alt="+">Advanced</div>
       <div id="advanced-input" style="display: none;">
         <ul>
-          <li>
+          <li class="advanced" name="stepsPerMlA">
             Steps/ml - A:
             <input class="textbox" type="number" min="0" max="1000" step="10" value="0" disabled>
             Current: <span>0</span>
           </li>
-          <li>
+          <li class="advanced" name="stepsPerMlB">
             Steps/ml - B:
             <input class="textbox" type="number" min="0" max="1000" step="10" value="0" disabled>
             Current: <span>0</span>
@@ -73,7 +73,34 @@
       </div>
     </label>
 
-    <div id="image"></div>
+    <div id="controller-state">
+      <h3>Controller State</h3>
+      <ul>
+        <li class="controller-state" name="name">
+          Name: <span>No Internet Connection</span>
+        </li>
+        <li class="controller-state" name="firmwareID">
+          Firmware ID: <span>0</span>
+        </li>
+        <li class="controller-state" name="version">
+          Version: <span>0</span>
+        </li>
+        <li class="controller-state" name="cloudStatus">
+          Cloud Status: <span>Not Connected</span>
+        </li>
+      </ul>
+      <ul>
+        <li class="controller-state" name="motorSpeedA">
+          Motor A Speed: <span>0</span>
+        </li>
+        <li class="controller-state" name="motorSpeedB">
+          Motor B Speed: <span>0</span>
+        </li>
+        <li class="controller-state" name="action">
+          Action: <span>none</span>
+        </li>
+      </ul>
+    </div>
   </div>
 
 </body>

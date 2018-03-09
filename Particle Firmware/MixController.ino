@@ -7,6 +7,9 @@
 
 #include "Particle.h"
 
+
+#define THIS_PRODUCT_ID 1111
+#define THIS_PRODUCT_VERSION 1
 // PRODUCT_ID(5864);
 // PRODUCT_VERSION(1);
 
@@ -47,6 +50,8 @@ void setup() {
     settings = temp;
   }
 
+  Particle.subscribe("particle/device/name", handler);
+
 }
 
 void loop() {
@@ -68,10 +73,26 @@ void loop() {
     }else if(strcmp("autoReverse", variableNameBuffer) == 0){
       if(FLAG_isWrite) settings.autoReverse = atoi(valueBuffer);
       Serial.print(settings.autoReverse);
-    } else {
+    }else if(strcmp("firmwareID", variableNameBuffer) == 0){
+      Serial.print(THIS_PRODUCT_ID);
+    }else if(strcmp("version", variableNameBuffer) == 0){
+      Serial.print(THIS_PRODUCT_VERSION);
+    }else if(strcmp("name", variableNameBuffer) == 0){
+      Serial.print("Unknown");
+      Particle.publish("particle/device/name");
+    }else if(strcmp("cloudStatus", variableNameBuffer) == 0){
+      if(Particle.connected()){
+        Serial.print("Connected");
+      }else {
+        Serial.print("Not Available");
+      }
+    }
+    else {
       Serial.print(valueBuffer);
     }
     Serial.print('\n');
+
+    valueBuffer[0] = 0;
 
     if(FLAG_isWrite){
       FLAG_isWrite = false;
@@ -115,4 +136,10 @@ void serialEvent(){
   }else {
     messageIndex = 0;
   }
+}
+
+
+void handler(const char *topic, const char *data) {
+    Serial.print("name:" + String(data));
+    Serial.print('\n');
 }
