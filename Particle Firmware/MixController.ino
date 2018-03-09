@@ -22,35 +22,52 @@ char variableNameBuffer[32];
 char valueBuffer[32];
 uint8_t messageIndex = 0;
 
-uint16_t flowRate = 400;
-uint16_t ratioA = 200;
-uint16_t ratioB = 100;
-uint32_t autoReverse = 10000;
+struct prom {
+  bool version;
+  uint16_t flowRate;
+  uint16_t ratioA;
+  uint16_t ratioB;
+  uint32_t autoReverse;
+} settings;
+
+uint32_t settingsAddr = 0;
+
+const uint16_t default_flowRate = 400;
+const uint16_t default_ratioA = 200;
+const uint16_t default_ratioB = 100;
+const uint32_t default_autoReverse = 10000;
 
 void setup() {
   Serial.begin(57600);
 
-  delay(500);
+  EEPROM.get(settingsAddr, settings);
+  if(settings.version != 0) {
+    // Memory was not previously set, initialize
+    prom temp = {0, default_flowRate, default_ratioA, default_ratioB, default_autoReverse};
+    settings = temp;
+  }
 
 }
 
 void loop() {
   if(FLAG_messageReceived){
     FLAG_messageReceived = false;
+
     Serial.print(variableNameBuffer);
     Serial.print(':');
+
     if(strcmp("flowRate", variableNameBuffer) == 0){
-      if(FLAG_isWrite) flowRate = atoi(valueBuffer);
-      Serial.print(flowRate);
+      if(FLAG_isWrite) settings.flowRate = atoi(valueBuffer);
+      Serial.print(settings.flowRate);
     }else if(strcmp("ratioA", variableNameBuffer) == 0){
-      if(FLAG_isWrite) ratioA = atoi(valueBuffer);
-      Serial.print(ratioA);
+      if(FLAG_isWrite) settings.ratioA = atoi(valueBuffer);
+      Serial.print(settings.ratioA);
     }else if(strcmp("ratioB", variableNameBuffer) == 0){
-      if(FLAG_isWrite) ratioB = atoi(valueBuffer);
-      Serial.print(ratioB);
+      if(FLAG_isWrite) settings.ratioB = atoi(valueBuffer);
+      Serial.print(settings.ratioB);
     }else if(strcmp("autoReverse", variableNameBuffer) == 0){
-      if(FLAG_isWrite) autoReverse = atoi(valueBuffer);
-      Serial.print(autoReverse);
+      if(FLAG_isWrite) settings.autoReverse = atoi(valueBuffer);
+      Serial.print(settings.autoReverse);
     } else {
       Serial.print(valueBuffer);
     }
@@ -58,6 +75,7 @@ void loop() {
 
     if(FLAG_isWrite){
       FLAG_isWrite = false;
+      EEPROM.put(settingsAddr,settings);
     }
   }
 
