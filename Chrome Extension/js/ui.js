@@ -21,6 +21,17 @@ function uiOnLoad(){
     }
   }
 
+  // Attach listeners to Advanced settings
+  let advancedSettings = document.getElementsByClassName('advanced');
+  console.log(advancedSettings);
+  for(let i=0; i<advancedSettings.length; i++){
+    let advancedElement = advancedSettings[i].getElementsByClassName('textbox')[0];
+
+    advancedElement.onchange = function(){
+      updateMicro(this.parentNode.getAttribute('name'), parseFloat(this.value, 10), this.getAttribute('step'));
+    }
+  }
+
   // Attach listener to Advanced Expander
   let advancedExpander = document.getElementById('advanced-expander');
   advancedExpander.onclick = function(){

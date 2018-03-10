@@ -21,7 +21,7 @@ function updateMicro(variable, value, stepSize){
 
 // Initial values are values to be retrieved from the beginning but don't change often, such as settings
 function getInitialValues() {
-  let variables = ["flowRate", "ratioA", "ratioB", "autoReverse", "firmwareID", "version", "name"];
+  let variables = ["flowRate", "ratioA", "ratioB", "autoReverse", "firmwareID", "version", "name", "stepsPerMLA", "stepsPerMlB"];
 
   if(this.index === undefined){
     this.index = 0;
