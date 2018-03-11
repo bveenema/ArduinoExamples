@@ -18,7 +18,14 @@
 #define MOTORA_STEP_PIN D1
 #define MOTORA_DIR_PIN D2
 #define MOTORA_ASSERT_PIN D3
+
+#define MOTORB_ENABLE_PIN D4
+#define MOTORB_STEP_PIN D5
+#define MOTORB_DIR_PIN D6
+#define MOTORB_ASSERT_PIN D7
+
 #define BUTTON_PIN A0
+#define ERROR_LED_PIN A1
 
 //SYSTEM_MODE(SEMI_AUTOMATIC);
 SYSTEM_THREAD(ENABLED);
@@ -54,6 +61,7 @@ const uint16_t default_stepsPerMlB = 66;
 
 
 AccelStepper motorA(AccelStepper::DRIVER, MOTORA_STEP_PIN, MOTORA_DIR_PIN);
+AccelStepper motorB(AccelStepper::DRIVER, MOTORB_STEP_PIN, MOTORB_DIR_PIN);
 uint8_t STATE_mixer = 0; //0: Not Moving 1: Mixing 2: Start AutoReverse 3: AutoReversing
 uint32_t motorSpeedA = 0; //steps/s
 uint32_t motorSpeedB = 0; //steps/s
@@ -86,18 +94,29 @@ void setup() {
   pinMode(MOTORA_DIR_PIN, OUTPUT);
   pinMode(MOTORA_ASSERT_PIN, INPUT_PULLDOWN);
 
-  pinMode(BUTTON_PIN, INPUT_PULLDOWN);
+  pinMode(MOTORB_ENABLE_PIN, OUTPUT);
+  pinMode(MOTORB_STEP_PIN, OUTPUT);
+  pinMode(MOTORB_DIR_PIN, OUTPUT);
+  pinMode(MOTORB_ASSERT_PIN, INPUT_PULLDOWN);
 
-  pinMode(D7, OUTPUT);
+  pinMode(BUTTON_PIN, INPUT_PULLDOWN);
+  pinMode(ERROR_LED_PIN, OUTPUT);
 
   delay(100);
+
+  digitalWrite(ERROR_LED_PIN, LOW);
+
   digitalWrite(MOTORA_ENABLE_PIN, LOW);
+  digitalWrite(MOTORB_ENABLE_PIN, LOW);
 
   motorA.setAcceleration(100000);
-  //motorA.setEnablePin(MOTORA_ENABLE_PIN);
+  motorB.setAcceleration(100000);
+
   motorA.setPinsInverted(1,0,1);
+  motorB.setPinsInverted(1,0,1);
 
   motorA.setMaxSpeed(ultimateMaxSpeed);
+  motorB.setMaxSpeed(ultimateMaxSpeed);
 
   motorSpeedA = calculateMotorSpeed(settings.flowRate, settings.ratioA, settings.ratioB, settings.stepsPerMlA);
   motorSpeedB = calculateMotorSpeed(settings.flowRate, settings.ratioB, settings.ratioA, settings.stepsPerMlB);
@@ -109,11 +128,12 @@ void loop() {
   if(buttonPressed) STATE_mixer = 1; //Mixing
 
   bool motorAError = !digitalRead(MOTORA_ASSERT_PIN);
-  digitalWrite(D7, motorAError);
-  bool motorBError = false;
+  bool motorBError = !digitalRead(MOTORB_ASSERT_PIN);
   if((motorAError || motorBError) && !FLAG_justReset){
     STATE_mixer = 0; // Turn off mixer
     digitalWrite(MOTORA_ENABLE_PIN, HIGH); // Disable Motors
+    digitalWrite(MOTORB_ENABLE_PIN, HIGH);
+    digitalWrite(ERROR_LED_PIN, HIGH); // Turn on Error LED
     if(FLAG_wasError == false){
       resetAfterMotorError.start();
       FLAG_wasError = true;
@@ -128,19 +148,27 @@ void loop() {
 
   if(STATE_mixer == 0){ // Not Running
     motorA.setSpeed(0);
+    motorB.setSpeed(0);
   }else if(STATE_mixer == 1){ // Mixing
     motorA.setMaxSpeed(ultimateMaxSpeed);
+    motorB.setMaxSpeed(ultimateMaxSpeed);
     motorA.setSpeed(motorSpeedA);
+    motorB.setSpeed(motorSpeedB);
     motorA.runSpeed();
+    motorB.runSpeed();
     if(!buttonPressed) STATE_mixer = 2;
   }else if(STATE_mixer == 2){ // Start AutoReverse
     motorA.setMaxSpeed(autoReverseSpeed);
+    motorB.setMaxSpeed(autoReverseSpeed);
     motorA.setCurrentPosition(0);
+    motorB.setCurrentPosition(0);
     motorA.moveTo(-settings.autoReverse);
+    motorB.moveTo(-settings.autoReverse);
     STATE_mixer = 3;
   }else if(STATE_mixer == 3){ // AutoReversing
     motorA.run();
-    if(!motorA.isRunning()){
+    motorB.run();
+    if(!motorA.isRunning() && !motorB.isRunning()){
       STATE_mixer = 0;
     }
   }
@@ -225,6 +253,8 @@ void loop() {
 
 void resetMotors(){
   digitalWrite(MOTORA_ENABLE_PIN, LOW);
+  digitalWrite(MOTORB_ENABLE_PIN, LOW);
+  digitalWrite(ERROR_LED_PIN, LOW);
   allowErrors.start();
   FLAG_wasError = false;
   FLAG_justReset = true;
@@ -284,4 +314,5 @@ void nameHandler(const char *topic, const char *data) {
 
 void fwUpdateAndResetHandler(){
   pinSetFast(MOTORA_ENABLE_PIN);
+  pinSetFast(MOTORB_ENABLE_PIN);
 }
