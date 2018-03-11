@@ -134,3 +134,11 @@ input[type="number"]:disabled {
 #controller-state span {
   color: #888;
 }
+
+#error{
+  color: rgb(255,0,0);
+}
+
+#error span {
+  color: rgba(255,0,0,0.7);
+}

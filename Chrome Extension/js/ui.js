@@ -23,7 +23,6 @@ function uiOnLoad(){
 
   // Attach listeners to Advanced settings
   let advancedSettings = document.getElementsByClassName('advanced');
-  console.log(advancedSettings);
   for(let i=0; i<advancedSettings.length; i++){
     let advancedElement = advancedSettings[i].getElementsByClassName('textbox')[0];
 
@@ -84,12 +83,20 @@ function updateAdvancedValue(variable, value){
 }
 
 function updateControllerStateValue(variable, value){
-  let elements = document.getElementsByClassName('controller-state');
+  if(value === "wait") return;
+  let elements = document.querySelectorAll('.controller-state-frequent, .controller-state-infrequent, .controller-state-once');
   for(let i=0; i<elements.length; i++){
     let name = elements[i].getAttribute('name');
     if(name === variable){
       let current = elements[i].getElementsByTagName('span')[0];
       current.innerHTML = value.toString(10);
+      if(variable === "error"){
+        if(value === "none" || value === ""){
+          document.getElementById('error').style = "display: none";
+        }else{
+          document.getElementById('error').style = "display: block";
+        }
+      }
     }
   }
 }

@@ -9,30 +9,37 @@ function sendMessage(message) {
 
 function recieveData(readInfo) {
   let decoder = new TextDecoder();
-  let message = {};
   readBuffer += decoder.decode(readInfo.data);
 
-  if(readBuffer.endsWith('\n')){ //wait for newline character to signal end of transmission
-    message.data = readBuffer;
-    readBuffer = "";
+  if(readBuffer.includes('\n')){
+    let splitBuffer = readBuffer.split('\n');
+    let messages = [];
+    for(let i=0; i<splitBuffer.length-1; i++){
+      messages[i] = splitBuffer[i];
+    }
+    readBuffer = splitBuffer[splitBuffer.length-1];
 
-    message.strings = message.data.split(':');
-    message.variableName = message.strings[0];
-    message.value = parseInt(message.strings[1]);
-    if(isNaN(message.value)) message.value = message.strings[1];
+    messages.forEach(function(m){
+      let message = {data:m};
 
-    message.variableType = allVariables.filter(function(variable){
-      return variable.name === message.variableName;
-    })[0].type;
+      message.strings = message.data.split(':');
+      message.variableName = message.strings[0];
+      message.value = parseInt(message.strings[1]);
+      if(isNaN(message.value)) message.value = message.strings[1];
 
-    console.log(message);
+      message.variableType = allVariables.filter(function(variable){
+        return variable.name === message.variableName;
+      })[0].type;
 
-    if(message.variableType === 'slide-box')
-      updateSlideBoxValue(message.variableName, message.value);
-    else if(message.variableType === 'advanced')
-      updateAdvancedValue(message.variableName, message.value);
-    else if(message.variableType === 'controller-state')
-      updateControllerStateValue(message.variableName, message.value);
+      //console.log(message.variableName + ": " + message.value);
+
+      if(message.variableType === 'slide-box')
+        updateSlideBoxValue(message.variableName, message.value);
+      else if(message.variableType === 'advanced')
+        updateAdvancedValue(message.variableName, message.value);
+      else if(message.variableType.includes('controller-state'))
+        updateControllerStateValue(message.variableName, message.value);
+    });
   }
 };
 
@@ -89,9 +96,6 @@ function openSelectedPort() {
 
 function beginSerial() {
   chrome.serial.getConnections(function(ConnectionInfo){
-    console.log("Connections: ");
-    console.log(ConnectionInfo);
-
     if (connectionId != -1) {
       chrome.serial.disconnect(connectionId, function(){
         console.log('disconnected!');

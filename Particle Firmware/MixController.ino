@@ -14,9 +14,10 @@
 // PRODUCT_ID(5864);
 // PRODUCT_VERSION(1);
 
-#define ENABLE_PIN D0
-#define STEP_PIN D1
-#define DIR_PIN D2
+#define MOTORA_ENABLE_PIN D0
+#define MOTORA_STEP_PIN D1
+#define MOTORA_DIR_PIN D2
+#define MOTORA_ASSERT_PIN D3
 #define BUTTON_PIN A0
 
 //SYSTEM_MODE(SEMI_AUTOMATIC);
@@ -24,6 +25,7 @@ SYSTEM_THREAD(ENABLED);
 
 bool FLAG_messageReceived = false;
 bool FLAG_isWrite = false;
+
 
 const size_t messageBufferSize = 128;
 char messageBuffer[messageBufferSize];
@@ -51,10 +53,17 @@ const uint16_t default_stepsPerMlA = 66;
 const uint16_t default_stepsPerMlB = 66;
 
 
-AccelStepper motorA(AccelStepper::DRIVER, STEP_PIN, DIR_PIN);
+AccelStepper motorA(AccelStepper::DRIVER, MOTORA_STEP_PIN, MOTORA_DIR_PIN);
 uint8_t STATE_mixer = 0; //0: Not Moving 1: Mixing 2: Start AutoReverse 3: AutoReversing
 uint32_t motorSpeedA = 0; //steps/s
 uint32_t motorSpeedB = 0; //steps/s
+bool FLAG_wasError = 0;
+bool FLAG_justReset = 0;
+#define ultimateMaxSpeed 15000
+#define autoReverseSpeed 4000
+
+Timer resetAfterMotorError(2000, resetMotors, true);
+Timer allowErrors(500, clearJustResetFlag, true);
 
 
 void setup() {
@@ -72,18 +81,23 @@ void setup() {
   Particle.subscribe("particle/device/name", nameHandler);
   System.on(reset+firmware_update, fwUpdateAndResetHandler);
 
-  pinMode(ENABLE_PIN, OUTPUT);
-  pinMode(STEP_PIN, OUTPUT);
-  pinMode(DIR_PIN, OUTPUT);
+  pinMode(MOTORA_ENABLE_PIN, OUTPUT);
+  pinMode(MOTORA_STEP_PIN, OUTPUT);
+  pinMode(MOTORA_DIR_PIN, OUTPUT);
+  pinMode(MOTORA_ASSERT_PIN, INPUT_PULLDOWN);
+
   pinMode(BUTTON_PIN, INPUT_PULLDOWN);
+
+  pinMode(D7, OUTPUT);
+
   delay(100);
-  digitalWrite(ENABLE_PIN, LOW);
+  digitalWrite(MOTORA_ENABLE_PIN, LOW);
 
   motorA.setAcceleration(100000);
-  //motorA.setEnablePin(ENABLE_PIN);
+  //motorA.setEnablePin(MOTORA_ENABLE_PIN);
   motorA.setPinsInverted(1,0,1);
 
-  motorA.setMaxSpeed(4000);
+  motorA.setMaxSpeed(ultimateMaxSpeed);
 
   motorSpeedA = calculateMotorSpeed(settings.flowRate, settings.ratioA, settings.ratioB, settings.stepsPerMlA);
   motorSpeedB = calculateMotorSpeed(settings.flowRate, settings.ratioB, settings.ratioA, settings.stepsPerMlB);
@@ -94,13 +108,33 @@ void loop() {
   bool buttonPressed = digitalRead(BUTTON_PIN);
   if(buttonPressed) STATE_mixer = 1; //Mixing
 
+  bool motorAError = !digitalRead(MOTORA_ASSERT_PIN);
+  digitalWrite(D7, motorAError);
+  bool motorBError = false;
+  if((motorAError || motorBError) && !FLAG_justReset){
+    STATE_mixer = 0; // Turn off mixer
+    digitalWrite(MOTORA_ENABLE_PIN, HIGH); // Disable Motors
+    if(FLAG_wasError == false){
+      resetAfterMotorError.start();
+      FLAG_wasError = true;
+      Serial.print("error:");
+      if(motorAError){
+        Serial.print("Motor A\n");
+      }else{
+        Serial.print("Motor B\n");
+      }
+    }
+  }
+
   if(STATE_mixer == 0){ // Not Running
     motorA.setSpeed(0);
   }else if(STATE_mixer == 1){ // Mixing
+    motorA.setMaxSpeed(ultimateMaxSpeed);
     motorA.setSpeed(motorSpeedA);
     motorA.runSpeed();
     if(!buttonPressed) STATE_mixer = 2;
   }else if(STATE_mixer == 2){ // Start AutoReverse
+    motorA.setMaxSpeed(autoReverseSpeed);
     motorA.setCurrentPosition(0);
     motorA.moveTo(-settings.autoReverse);
     STATE_mixer = 3;
@@ -159,7 +193,7 @@ void loop() {
     }else if(strcmp("version", variableNameBuffer) == 0){
       Serial.print(THIS_PRODUCT_VERSION);
     }else if(strcmp("name", variableNameBuffer) == 0){
-      Serial.print("Unknown");
+      Serial.print("wait");
       Particle.publish("particle/device/name");
     }else if(strcmp("cloudStatus", variableNameBuffer) == 0){
       if(Particle.connected()){
@@ -187,6 +221,18 @@ void loop() {
     }
   }
 
+}
+
+void resetMotors(){
+  digitalWrite(MOTORA_ENABLE_PIN, LOW);
+  allowErrors.start();
+  FLAG_wasError = false;
+  FLAG_justReset = true;
+  Serial.print("error:none\n");
+}
+
+void clearJustResetFlag(){
+  FLAG_justReset = false;
 }
 
 void serialEvent(){
@@ -237,5 +283,5 @@ void nameHandler(const char *topic, const char *data) {
 }
 
 void fwUpdateAndResetHandler(){
-  pinSetFast(ENABLE_PIN);
+  pinSetFast(MOTORA_ENABLE_PIN);
 }

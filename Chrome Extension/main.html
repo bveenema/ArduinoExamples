@@ -19,14 +19,14 @@
       <span id="status">Loading</span>
     </label>
 
-    <label class="slide-box" name="flowRate">
+    <!-- <label class="slide-box" name="flowRate">
       Flow Rate (ml/min):
       <input class="textbox" type="number" min="0" max="3000" step="10" value="0" disabled>
       <input class="slider" type="range" min="0" max="3000" step="100" value="0" disabled>
       <div class="current-value">
         Current: <span>0</span>
       </div>
-    </label>
+    </label> -->
 
     <label class="slide-box" name="ratioA">
       Ratio - A:
@@ -46,19 +46,29 @@
       </div>
     </label>
 
-    <label class="slide-box" name="autoReverse">
+    <!-- <label class="slide-box" name="autoReverse">
       Auto Reverse:
       <input class="textbox" type="number" min="0" max="10000" step="1000" value="0" disabled>
       <input class="slider" type="range" min="0" max="10000" step="100" value="0" disabled>
       <div class="current-value">
         Current: <span>0</span>
       </div>
-    </label>
+    </label> -->
 
     <label id="advanced">
       <div id="advanced-expander"><img src="assets/plus.svg" alt="+">Advanced</div>
       <div id="advanced-input" style="display: none;">
         <ul>
+          <li class="advanced" name="flowRate">
+            Flow Rate (ml/min):
+            <input class="textbox" type="number" min="0" max="3000" step="10" value="0" disabled>
+            Current: <span>0</span>
+          </li>
+          <li class="advanced" name="autoReverse">
+            Auto Reverse:
+            <input class="textbox" type="number" min="0" max="10000" step="1000" value="0" disabled>
+            Current: <span>0</span>
+          </li>
           <li class="advanced" name="stepsPerMlA">
             Steps/ml - A:
             <input class="textbox" type="number" min="0" max="1000" step="10" value="0" disabled>
@@ -76,28 +86,33 @@
     <div id="controller-state">
       <h3>Controller State</h3>
       <ul>
-        <li class="controller-state" name="name">
-          Name: <span>No Internet Connection</span>
+        <li class="controller-state-infrequent" name="name">
+          Name: <span>Unknown</span>
         </li>
-        <li class="controller-state" name="firmwareID">
+        <li class="controller-state-infrequent" name="firmwareID">
           Firmware ID: <span>0</span>
         </li>
-        <li class="controller-state" name="version">
+        <li class="controller-state-infrequent" name="version">
           Version: <span>0</span>
         </li>
-        <li class="controller-state" name="cloudStatus">
+        <li class="controller-state-infrequent" name="cloudStatus">
           Cloud Status: <span>Not Connected</span>
         </li>
       </ul>
       <ul>
-        <li class="controller-state" name="motorSpeedA">
+        <li class="controller-state-frequent" name="motorSpeedA">
           Motor A Speed: <span>0</span>
         </li>
-        <li class="controller-state" name="motorSpeedB">
+        <li class="controller-state-frequent" name="motorSpeedB">
           Motor B Speed: <span>0</span>
         </li>
-        <li class="controller-state" name="action">
+        <li class="controller-state-frequent" name="action">
           Action: <span>none</span>
+        </li>
+      </ul>
+      <ul id="error" style="display:block">
+        <li class="controller-state-once" name="error">
+          Error: <span>none</span>
         </li>
       </ul>
     </div>
