@@ -99,7 +99,7 @@ void setup() {
   pinMode(MOTORB_DIR_PIN, OUTPUT);
   pinMode(MOTORB_ASSERT_PIN, INPUT_PULLDOWN);
 
-  pinMode(BUTTON_PIN, INPUT_PULLDOWN);
+  pinMode(BUTTON_PIN, INPUT);
   pinMode(ERROR_LED_PIN, OUTPUT);
 
   delay(100);
