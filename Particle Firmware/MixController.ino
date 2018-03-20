@@ -7,6 +7,7 @@
 
 #include "Particle.h"
 #include "AccelStepper.h"
+#include "Bounce.h"
 
 
 #define THIS_PRODUCT_ID 1111
@@ -70,6 +71,8 @@ bool FLAG_justReset = 0;
 #define ultimateMaxSpeed 15000
 #define autoReverseSpeed 4000
 
+Bounce debouncer = Bounce();
+
 Timer resetAfterMotorError(2000, resetMotors, true);
 Timer allowErrors(500, clearJustResetFlag, true);
 
@@ -104,6 +107,9 @@ void setup() {
 
   delay(100);
 
+  debouncer.attach(BUTTON_PIN);
+  debouncer.interval(30);
+
   digitalWrite(ERROR_LED_PIN, LOW);
 
   digitalWrite(MOTORA_ENABLE_PIN, LOW);
@@ -112,8 +118,8 @@ void setup() {
   motorA.setAcceleration(100000);
   motorB.setAcceleration(100000);
 
-  motorA.setPinsInverted(1,0,1);
-  motorB.setPinsInverted(1,0,1);
+  motorA.setPinsInverted(0,0,1);
+  motorB.setPinsInverted(0,0,1);
 
   motorA.setMaxSpeed(ultimateMaxSpeed);
   motorB.setMaxSpeed(ultimateMaxSpeed);
@@ -124,7 +130,9 @@ void setup() {
 
 void loop() {
 
-  bool buttonPressed = digitalRead(BUTTON_PIN);
+  debouncer.update();
+
+  bool buttonPressed = debouncer.read();
   if(buttonPressed) STATE_mixer = 1; //Mixing
 
   bool motorAError = !digitalRead(MOTORA_ASSERT_PIN);
