@@ -135,25 +135,6 @@ void loop() {
   bool buttonPressed = debouncer.read();
   if(buttonPressed) STATE_mixer = 1; //Mixing
 
-  bool motorAError = !digitalRead(MOTORA_ASSERT_PIN);
-  bool motorBError = !digitalRead(MOTORB_ASSERT_PIN);
-  if((motorAError || motorBError) && !FLAG_justReset){
-    STATE_mixer = 0; // Turn off mixer
-    digitalWrite(MOTORA_ENABLE_PIN, HIGH); // Disable Motors
-    digitalWrite(MOTORB_ENABLE_PIN, HIGH);
-    digitalWrite(ERROR_LED_PIN, HIGH); // Turn on Error LED
-    if(FLAG_wasError == false){
-      resetAfterMotorError.start();
-      FLAG_wasError = true;
-      Serial.print("error:");
-      if(motorAError){
-        Serial.print("Motor A\n");
-      }else{
-        Serial.print("Motor B\n");
-      }
-    }
-  }
-
   if(STATE_mixer == 0){ // Not Running
     motorA.setSpeed(0);
     motorB.setSpeed(0);
@@ -164,21 +145,7 @@ void loop() {
     motorB.setSpeed(motorSpeedB);
     motorA.runSpeed();
     motorB.runSpeed();
-    if(!buttonPressed) STATE_mixer = 2;
-  }else if(STATE_mixer == 2){ // Start AutoReverse
-    motorA.setMaxSpeed(autoReverseSpeed);
-    motorB.setMaxSpeed(autoReverseSpeed);
-    motorA.setCurrentPosition(0);
-    motorB.setCurrentPosition(0);
-    motorA.moveTo(-settings.autoReverse);
-    motorB.moveTo(-settings.autoReverse);
-    STATE_mixer = 3;
-  }else if(STATE_mixer == 3){ // AutoReversing
-    motorA.run();
-    motorB.run();
-    if(!motorA.isRunning() && !motorB.isRunning()){
-      STATE_mixer = 0;
-    }
+    if(!buttonPressed) STATE_mixer = 0;
   }
 
 
@@ -257,20 +224,6 @@ void loop() {
     }
   }
 
-}
-
-void resetMotors(){
-  digitalWrite(MOTORA_ENABLE_PIN, LOW);
-  digitalWrite(MOTORB_ENABLE_PIN, LOW);
-  digitalWrite(ERROR_LED_PIN, LOW);
-  allowErrors.start();
-  FLAG_wasError = false;
-  FLAG_justReset = true;
-  Serial.print("error:none\n");
-}
-
-void clearJustResetFlag(){
-  FLAG_justReset = false;
 }
 
 void serialEvent(){
