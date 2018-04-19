@@ -1,0 +1,502 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:switches
+LIBS:relays
+LIBS:motors
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:particle
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L PARTICLE_PHOTON U?
+U 1 1 5AD855AD
+P 5800 3600
+F 0 "U?" H 5800 3650 60  0000 C CNN
+F 1 "PARTICLE_PHOTON" H 5800 2850 60  0000 C CNN
+F 2 "" H 6300 3800 60  0000 C CNN
+F 3 "" H 6300 3800 60  0000 C CNN
+	1    5800 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5150 3050 4900 3050
+Wire Wire Line
+	4900 3050 4900 2600
+$Comp
+L +5V #PWR?
+U 1 1 5AD856E8
+P 4900 2600
+F 0 "#PWR?" H 4900 2450 50  0001 C CNN
+F 1 "+5V" H 4900 2740 50  0000 C CNN
+F 2 "" H 4900 2600 50  0001 C CNN
+F 3 "" H 4900 2600 50  0001 C CNN
+	1    4900 2600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5150 3150 4900 3150
+Wire Wire Line
+	4900 3150 4900 3350
+$Comp
+L GND #PWR?
+U 1 1 5AD8570C
+P 4900 3350
+F 0 "#PWR?" H 4900 3100 50  0001 C CNN
+F 1 "GND" H 4900 3200 50  0000 C CNN
+F 2 "" H 4900 3350 50  0001 C CNN
+F 3 "" H 4900 3350 50  0001 C CNN
+	1    4900 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x08_Male J?
+U 1 1 5AD8574E
+P 8200 4450
+F 0 "J?" H 8200 4850 50  0000 C CNN
+F 1 "JST-SM8-Female" V 8100 4400 50  0000 C CNN
+F 2 "" H 8200 4450 50  0001 C CNN
+F 3 "" H 8200 4450 50  0001 C CNN
+	1    8200 4450
+	-1   0    0    1   
+$EndComp
+$Comp
+L +5V #PWR?
+U 1 1 5AD857DB
+P 7650 3950
+F 0 "#PWR?" H 7650 3800 50  0001 C CNN
+F 1 "+5V" H 7650 4090 50  0000 C CNN
+F 2 "" H 7650 3950 50  0001 C CNN
+F 3 "" H 7650 3950 50  0001 C CNN
+	1    7650 3950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8000 4050 7650 4050
+Wire Wire Line
+	7650 3950 7650 4350
+Wire Wire Line
+	7650 4150 8000 4150
+Connection ~ 7650 4050
+Wire Wire Line
+	7650 4250 8000 4250
+Connection ~ 7650 4150
+Wire Wire Line
+	7650 4350 8000 4350
+Connection ~ 7650 4250
+$Comp
+L Conn_01x08_Male J?
+U 1 1 5AD8584C
+P 8700 4350
+F 0 "J?" H 8700 4750 50  0000 C CNN
+F 1 "JST-SM8-Male" V 8650 4300 50  0000 C CNN
+F 2 "" H 8700 4350 50  0001 C CNN
+F 3 "" H 8700 4350 50  0001 C CNN
+	1    8700 4350
+	1    0    0    -1  
+$EndComp
+Wire Notes Line
+	8850 4900 8850 3900
+Wire Notes Line
+	8850 3900 8050 3900
+Wire Notes Line
+	8050 3900 8050 4900
+Wire Notes Line
+	8050 4900 8850 4900
+Wire Wire Line
+	6450 4150 6700 4150
+Wire Wire Line
+	6700 4150 6700 4750
+Wire Wire Line
+	6700 4750 8000 4750
+Wire Wire Line
+	6450 4050 6800 4050
+Wire Wire Line
+	6800 4050 6800 4650
+Wire Wire Line
+	6800 4650 8000 4650
+Wire Wire Line
+	6450 3950 6900 3950
+Wire Wire Line
+	6900 3950 6900 4550
+Wire Wire Line
+	6900 4550 8000 4550
+Wire Wire Line
+	6450 3850 7000 3850
+Wire Wire Line
+	7000 3850 7000 4450
+Wire Wire Line
+	7000 4450 8000 4450
+$Comp
+L Conn_01x08_Male J?
+U 1 1 5AD85A40
+P 8200 3200
+F 0 "J?" H 8200 3600 50  0000 C CNN
+F 1 "JST-SM8-Female" V 8100 3150 50  0000 C CNN
+F 2 "" H 8200 3200 50  0001 C CNN
+F 3 "" H 8200 3200 50  0001 C CNN
+	1    8200 3200
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	8000 2800 7650 2800
+Wire Wire Line
+	7650 2900 8000 2900
+Wire Wire Line
+	7650 3000 8000 3000
+Wire Wire Line
+	7650 3100 8000 3100
+$Comp
+L Conn_01x08_Male J?
+U 1 1 5AD85A4A
+P 8700 3100
+F 0 "J?" H 8700 3500 50  0000 C CNN
+F 1 "JST-SM8-Male" V 8650 3050 50  0000 C CNN
+F 2 "" H 8700 3100 50  0001 C CNN
+F 3 "" H 8700 3100 50  0001 C CNN
+	1    8700 3100
+	1    0    0    -1  
+$EndComp
+Wire Notes Line
+	8850 3650 8850 2650
+Wire Notes Line
+	8850 2650 8050 2650
+Wire Notes Line
+	8050 2650 8050 3650
+Wire Notes Line
+	8050 3650 8850 3650
+$Comp
+L +5V #PWR?
+U 1 1 5AD85A85
+P 7650 2650
+F 0 "#PWR?" H 7650 2500 50  0001 C CNN
+F 1 "+5V" H 7650 2790 50  0000 C CNN
+F 2 "" H 7650 2650 50  0001 C CNN
+F 3 "" H 7650 2650 50  0001 C CNN
+	1    7650 2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7650 2650 7650 3100
+Connection ~ 7650 2800
+Connection ~ 7650 2900
+Connection ~ 7650 3000
+Wire Wire Line
+	6450 3750 7000 3750
+Wire Wire Line
+	7000 3750 7000 3500
+Wire Wire Line
+	7000 3500 8000 3500
+Wire Wire Line
+	8000 3400 6900 3400
+Wire Wire Line
+	6900 3400 6900 3650
+Wire Wire Line
+	6900 3650 6450 3650
+Wire Wire Line
+	6450 3550 6800 3550
+Wire Wire Line
+	6800 3550 6800 3300
+Wire Wire Line
+	6800 3300 8000 3300
+Wire Wire Line
+	8000 3200 6700 3200
+Wire Wire Line
+	6700 3200 6700 3450
+Wire Wire Line
+	6700 3450 6450 3450
+Wire Wire Line
+	8900 4750 9250 4750
+Wire Wire Line
+	8900 4650 9250 4650
+Wire Wire Line
+	8900 4550 9250 4550
+Wire Wire Line
+	8900 4450 9250 4450
+Wire Wire Line
+	8900 4350 9250 4350
+Wire Wire Line
+	8900 4250 9250 4250
+Wire Wire Line
+	8900 4150 9250 4150
+Wire Wire Line
+	8900 4050 9250 4050
+Text Label 8950 4250 0    60   ~ 0
+white
+Text Label 8950 4050 0    60   ~ 0
+grey?
+Text Label 8950 4150 0    60   ~ 0
+black?
+Text Label 8950 4350 0    60   ~ 0
+navy?
+Text Label 8950 4450 0    60   ~ 0
+red
+Text Label 8950 4550 0    60   ~ 0
+yellow
+Text Label 8950 4650 0    60   ~ 0
+brown
+Text Label 8950 4750 0    60   ~ 0
+orange
+Wire Wire Line
+	8900 3500 9250 3500
+Wire Wire Line
+	8900 3400 9250 3400
+Wire Wire Line
+	8900 3300 9250 3300
+Wire Wire Line
+	8900 3200 9250 3200
+Wire Wire Line
+	8900 3100 9250 3100
+Wire Wire Line
+	8900 3000 9250 3000
+Wire Wire Line
+	8900 2900 9250 2900
+Wire Wire Line
+	8900 2800 9250 2800
+Text Label 8950 3000 0    60   ~ 0
+white
+Text Label 8950 2800 0    60   ~ 0
+grey?
+Text Label 8950 2900 0    60   ~ 0
+black?
+Text Label 8950 3100 0    60   ~ 0
+navy?
+Text Label 8950 3200 0    60   ~ 0
+red
+Text Label 8950 3300 0    60   ~ 0
+yellow
+Text Label 8950 3400 0    60   ~ 0
+brown
+Text Label 8950 3500 0    60   ~ 0
+orange
+$Comp
+L +3V3 #PWR?
+U 1 1 5AD86030
+P 6550 2600
+F 0 "#PWR?" H 6550 2450 50  0001 C CNN
+F 1 "+3V3" H 6550 2740 50  0000 C CNN
+F 2 "" H 6550 2600 50  0001 C CNN
+F 3 "" H 6550 2600 50  0001 C CNN
+	1    6550 2600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6550 2600 6550 3050
+Wire Wire Line
+	6550 3050 6450 3050
+$Comp
+L GND #PWR?
+U 1 1 5AD8609C
+P 6900 2850
+F 0 "#PWR?" H 6900 2600 50  0001 C CNN
+F 1 "GND" H 6900 2700 50  0000 C CNN
+F 2 "" H 6900 2850 50  0001 C CNN
+F 3 "" H 6900 2850 50  0001 C CNN
+	1    6900 2850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6450 3350 6600 3350
+Wire Wire Line
+	6600 3350 6600 2750
+Wire Wire Line
+	6600 2750 6900 2750
+Wire Wire Line
+	6900 2750 6900 2850
+$Comp
+L LED D?
+U 1 1 5AD86215
+P 3750 4050
+F 0 "D?" H 3750 4150 50  0000 C CNN
+F 1 "LED" H 3750 3950 50  0000 C CNN
+F 2 "" H 3750 4050 50  0001 C CNN
+F 3 "" H 3750 4050 50  0001 C CNN
+	1    3750 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 5AD862D6
+P 4350 4050
+F 0 "R?" V 4430 4050 50  0000 C CNN
+F 1 "330" V 4350 4050 50  0000 C CNN
+F 2 "" V 4280 4050 50  0001 C CNN
+F 3 "" H 4350 4050 50  0001 C CNN
+	1    4350 4050
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5150 4050 4500 4050
+Wire Wire Line
+	4200 4050 3900 4050
+Wire Wire Line
+	3600 4050 3350 4050
+Wire Wire Line
+	3350 4050 3350 4200
+$Comp
+L GND #PWR?
+U 1 1 5AD86489
+P 3350 4200
+F 0 "#PWR?" H 3350 3950 50  0001 C CNN
+F 1 "GND" H 3350 4050 50  0000 C CNN
+F 2 "" H 3350 4200 50  0001 C CNN
+F 3 "" H 3350 4200 50  0001 C CNN
+	1    3350 4200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x02_Male J?
+U 1 1 5AD864E7
+P 4350 5200
+F 0 "J?" H 4350 5300 50  0000 C CNN
+F 1 "JST-SM2-FEMALE" V 4250 5150 50  0000 C CNN
+F 2 "" H 4350 5200 50  0001 C CNN
+F 3 "" H 4350 5200 50  0001 C CNN
+	1    4350 5200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x02_Male J?
+U 1 1 5AD8666A
+P 3900 5300
+F 0 "J?" H 3900 5400 50  0000 C CNN
+F 1 "JST-SM2-MALE" V 3800 5250 50  0000 C CNN
+F 2 "" H 3900 5300 50  0001 C CNN
+F 3 "" H 3900 5300 50  0001 C CNN
+	1    3900 5300
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5150 4150 4800 4150
+Wire Wire Line
+	4800 4150 4800 5200
+Wire Wire Line
+	4800 5200 4550 5200
+Wire Wire Line
+	4550 5300 5500 5300
+Wire Wire Line
+	5500 5300 5500 4950
+$Comp
+L +3V3 #PWR?
+U 1 1 5AD86963
+P 5500 4950
+F 0 "#PWR?" H 5500 4800 50  0001 C CNN
+F 1 "+3V3" H 5500 5090 50  0000 C CNN
+F 2 "" H 5500 4950 50  0001 C CNN
+F 3 "" H 5500 4950 50  0001 C CNN
+	1    5500 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 5AD869E3
+P 5150 4700
+F 0 "R?" V 5230 4700 50  0000 C CNN
+F 1 "10K" V 5150 4700 50  0000 C CNN
+F 2 "" V 5080 4700 50  0001 C CNN
+F 3 "" H 5150 4700 50  0001 C CNN
+	1    5150 4700
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5150 4550 5150 4450
+Wire Wire Line
+	5150 4450 4800 4450
+Connection ~ 4800 4450
+$Comp
+L GND #PWR?
+U 1 1 5AD86AA5
+P 5150 4950
+F 0 "#PWR?" H 5150 4700 50  0001 C CNN
+F 1 "GND" H 5150 4800 50  0000 C CNN
+F 2 "" H 5150 4950 50  0001 C CNN
+F 3 "" H 5150 4950 50  0001 C CNN
+	1    5150 4950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5150 4950 5150 4850
+$Comp
+L SW_Push SW?
+U 1 1 5AD86C2C
+P 2950 5200
+F 0 "SW?" H 3000 5300 50  0000 L CNN
+F 1 "SW_Push" H 2950 5140 50  0001 C CNN
+F 2 "" H 2950 5400 50  0001 C CNN
+F 3 "" H 2950 5400 50  0001 C CNN
+	1    2950 5200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 5200 3150 5200
+Wire Wire Line
+	2750 5200 2550 5200
+Wire Wire Line
+	2550 5200 2550 5300
+Wire Wire Line
+	2550 5300 3700 5300
+Wire Notes Line
+	4500 4900 4500 5600
+Wire Notes Line
+	4500 4900 3750 4900
+Wire Notes Line
+	3750 4900 3750 5600
+Wire Notes Line
+	3750 5600 4500 5600
+Wire Notes Line
+	4200 1100 5150 1100
+Wire Notes Line
+	5150 1100 5150 1800
+Wire Notes Line
+	5150 1800 4200 1800
+Wire Notes Line
+	4200 1800 4200 1100
+Text Notes 4250 1200 0    60   ~ 0
+Panel Mount USB
+Wire Notes Line
+	5750 2900 5750 1500
+Wire Notes Line
+	5750 1500 5150 1500
+Wire Notes Line
+	5850 2900 5850 1400
+Wire Notes Line
+	5850 1400 5150 1400
+$EndSCHEMATC
