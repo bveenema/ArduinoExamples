@@ -73,9 +73,6 @@ bool FLAG_justReset = 0;
 
 Bounce debouncer = Bounce();
 
-Timer resetAfterMotorError(2000, resetMotors, true);
-Timer allowErrors(500, clearJustResetFlag, true);
-
 
 void setup() {
   Serial.begin(57600);
