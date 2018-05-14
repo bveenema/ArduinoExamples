@@ -7,7 +7,7 @@
 
 #include "Particle.h"
 #include "AccelStepper.h"
-#include "Bounce.h"
+#include <clickButton.h>
 
 
 #define THIS_PRODUCT_ID 1111
@@ -71,7 +71,7 @@ bool FLAG_justReset = 0;
 #define ultimateMaxSpeed 15000
 #define autoReverseSpeed 4000
 
-Bounce debouncer = Bounce();
+ClickButton button(BUTTON_PIN, HIGH);
 
 
 void setup() {
@@ -104,9 +104,6 @@ void setup() {
 
   delay(100);
 
-  debouncer.attach(BUTTON_PIN);
-  debouncer.interval(30);
-
   digitalWrite(ERROR_LED_PIN, LOW);
 
   digitalWrite(MOTORA_ENABLE_PIN, LOW);
@@ -127,14 +124,15 @@ void setup() {
 
 void loop() {
 
-  debouncer.update();
+  button.Update();
 
-  bool buttonPressed = debouncer.read();
-  if(buttonPressed) STATE_mixer = 1; //Mixing
+  bool changeState = false;
+  if(button.clicks != 0) changeState = true;
 
   if(STATE_mixer == 0){ // Not Running
     motorA.setSpeed(0);
     motorB.setSpeed(0);
+    if(changeState == true) STATE_mixer = 1;
   }else if(STATE_mixer == 1){ // Mixing
     motorA.setMaxSpeed(ultimateMaxSpeed);
     motorB.setMaxSpeed(ultimateMaxSpeed);
@@ -142,7 +140,7 @@ void loop() {
     motorB.setSpeed(motorSpeedB);
     motorA.runSpeed();
     motorB.runSpeed();
-    if(!buttonPressed) STATE_mixer = 0;
+    if(changeState == false) STATE_mixer = 0;
   }
 
 
