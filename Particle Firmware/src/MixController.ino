@@ -6,59 +6,20 @@
  */
 
 #include "Particle.h"
+#include "config.h"
 #include "AccelStepper.h"
 #include <clickButton.h>
 
-
-#define THIS_PRODUCT_ID 1111
-#define THIS_PRODUCT_VERSION 1
-// PRODUCT_ID(5864);
-// PRODUCT_VERSION(1);
-
-#define MOTORA_ENABLE_PIN D0
-#define MOTORA_DIR_PIN D1
-#define MOTORA_STEP_PIN D2
-#define MOTORA_ASSERT_PIN D3
-
-#define MOTORB_ENABLE_PIN D4
-#define MOTORB_DIR_PIN D5
-#define MOTORB_STEP_PIN D6
-#define MOTORB_ASSERT_PIN D7
-
-#define BUTTON_PIN A0
-#define ERROR_LED_PIN A1
-
-//SYSTEM_MODE(SEMI_AUTOMATIC);
 SYSTEM_THREAD(ENABLED);
 
 bool FLAG_messageReceived = false;
 bool FLAG_isWrite = false;
-
 
 const size_t messageBufferSize = 128;
 char messageBuffer[messageBufferSize];
 char variableNameBuffer[32];
 char valueBuffer[32];
 uint8_t messageIndex = 0;
-
-struct prom {
-  bool version;
-  uint16_t flowRate;
-  uint16_t ratioA;
-  uint16_t ratioB;
-  uint32_t autoReverse;
-  uint16_t stepsPerMlA;
-  uint16_t stepsPerMlB;
-} settings;
-
-uint32_t settingsAddr = 0;
-
-const uint16_t default_flowRate = 3000;
-const uint16_t default_ratioA = 200;
-const uint16_t default_ratioB = 100;
-const uint32_t default_autoReverse = 1000;
-const uint16_t default_stepsPerMlA = 66;
-const uint16_t default_stepsPerMlB = 66;
 
 
 AccelStepper motorA(AccelStepper::DRIVER, MOTORA_STEP_PIN, MOTORA_DIR_PIN);
@@ -72,6 +33,7 @@ bool FLAG_justReset = 0;
 #define autoReverseSpeed 4000
 
 ClickButton button(BUTTON_PIN, HIGH);
+prom settings;
 
 
 void setup() {
@@ -80,10 +42,7 @@ void setup() {
   EEPROM.get(settingsAddr, settings);
   if(settings.version != 0) {
     // Memory was not previously set, initialize
-    prom temp = {0, default_flowRate, default_ratioA, default_ratioB,
-                  default_autoReverse, default_stepsPerMlA, default_stepsPerMlB
-                };
-    settings = temp;
+    settings = default_settings;
   }
 
   Particle.subscribe("particle/device/name", nameHandler);
