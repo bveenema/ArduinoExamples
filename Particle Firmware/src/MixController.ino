@@ -88,18 +88,29 @@ void loop() {
   bool changeState = false;
   if(button.clicks != 0) changeState = true;
 
+  // Not Running
+  // Do Mixing Calculations
+  // Mixing
+
+  static uint32_t timeToMix = 0;
+  static uint32_t timeStartedMixing = 0;
   if(STATE_mixer == 0){ // Not Running
     motorA.setSpeed(0);
     motorB.setSpeed(0);
     if(changeState == true) STATE_mixer = 1;
-  }else if(STATE_mixer == 1){ // Mixing
+  }else if(STATE_mixer == 1){ // Mixing Calculations
+    timeToMix = calculateTimeForVolume(settings.volume, settings.flowRate);
+    timeStartedMixing = millis();
+    STATE_mixer = 2;
+  }else if(STATE_mixer == 2){ // Mixing
     motorA.setMaxSpeed(ultimateMaxSpeed);
     motorB.setMaxSpeed(ultimateMaxSpeed);
     motorA.setSpeed(motorSpeedA);
     motorB.setSpeed(motorSpeedB);
     motorA.runSpeed();
     motorB.runSpeed();
-    if(changeState == false) STATE_mixer = 0;
+    if(changeState == true) STATE_mixer = 0;
+    if(millis() - timeStartedMixing > timeToMix) STATE_mixer = 0;
   }
 
 
@@ -142,6 +153,11 @@ void loop() {
         motorSpeedB = calculateMotorSpeed(settings.flowRate, settings.ratioB, settings.ratioA, settings.stepsPerMlB);
       }
       Serial.print(settings.stepsPerMlB);
+    }else if(strcmp("volume", variableNameBuffer) == 0){
+      if(FLAG_isWrite) {
+        settings.volume = atoi(valueBuffer);
+      }
+      Serial.print(settings.volume);
     }else if(strcmp("autoReverse", variableNameBuffer) == 0){
       if(FLAG_isWrite) settings.autoReverse = atoi(valueBuffer);
       Serial.print(settings.autoReverse);
@@ -221,6 +237,11 @@ uint32_t calculateMotorSpeed(uint16_t flowRate, uint16_t thisMotorRatio, uint16_
   return motorSpeed;
 }
 
+uint32_t calculateTimeForVolume(uint32_t volume, uint16_t flowRate){
+  if(volume > 7158278) return 0; // Largest value before variable overflow
+  uint32_t time = volume*600/flowRate;
+  return time * 100;
+}
 
 void nameHandler(const char *topic, const char *data) {
     Serial.print("name:" + String(data));

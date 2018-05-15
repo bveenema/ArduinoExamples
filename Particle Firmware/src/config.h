@@ -26,6 +26,7 @@ struct prom {
   uint32_t autoReverse;
   uint16_t stepsPerMlA;
   uint16_t stepsPerMlB;
+  uint32_t volume;
 };
 
 const uint32_t settingsAddr = 0;
@@ -37,5 +38,6 @@ const prom default_settings = {
   100,
   1000,
   138,
-  138
+  138,
+  1000
 };
