@@ -252,22 +252,6 @@ Wire Wire Line
 	8900 5100 9250 5100
 Wire Wire Line
 	8900 5000 9250 5000
-Wire Wire Line
-	8900 4900 9250 4900
-Wire Wire Line
-	8900 4800 9250 4800
-Wire Wire Line
-	8900 4700 9250 4700
-Wire Wire Line
-	8900 4600 9250 4600
-Text Label 8950 4800 0    60   ~ 0
-white
-Text Label 8950 4600 0    60   ~ 0
-grey?
-Text Label 8950 4700 0    60   ~ 0
-black?
-Text Label 8950 4900 0    60   ~ 0
-navy?
 Text Label 8950 5000 0    60   ~ 0
 red
 Text Label 8950 5100 0    60   ~ 0
@@ -295,11 +279,11 @@ Wire Wire Line
 Text Label 8950 3550 0    60   ~ 0
 white
 Text Label 8950 3350 0    60   ~ 0
-grey?
+green
 Text Label 8950 3450 0    60   ~ 0
-black?
+black
 Text Label 8950 3650 0    60   ~ 0
-navy?
+blue
 Text Label 8950 3750 0    60   ~ 0
 red
 Text Label 8950 3850 0    60   ~ 0
@@ -484,20 +468,16 @@ Wire Notes Line
 	3750 6150 4500 6150
 Text Label 7100 3750 0    60   ~ 0
 black
-Text Label 7100 3850 0    60   ~ 0
-yellow
 Text Label 7100 3950 0    60   ~ 0
 green
-Text Label 7100 4050 0    60   ~ 0
-blue
 Text Label 7150 5000 0    60   ~ 0
 black
 Text Label 7150 5100 0    60   ~ 0
-yellow
+yellow_or_red
 Text Label 7150 5200 0    60   ~ 0
 green
 Text Label 7150 5300 0    60   ~ 0
-blue
+blue_or_white
 Text Notes 800  1200 0    60   ~ 0
 NOTES:\nButton uses 3.3V source while motors use 5V source\nWire colors on motor side are best guess based on photos\nYou may want to use a 9 or 10 pin connector for Motor B to prevent them from being plugged incorrectly\nJST SM connectors picked for panel mount, swap with any connector available
 Text Notes 9500 3700 0    60   ~ 0
@@ -582,4 +562,26 @@ Text Label 1550 2350 0    60   ~ 0
 LINE
 Text Label 1550 2450 0    60   ~ 0
 NEUT
+Wire Wire Line
+	8900 4900 9250 4900
+Wire Wire Line
+	8900 4800 9250 4800
+Wire Wire Line
+	8900 4700 9250 4700
+Wire Wire Line
+	8900 4600 9250 4600
+Text Label 8950 4800 0    60   ~ 0
+white
+Text Label 8950 4600 0    60   ~ 0
+green
+Text Label 8950 4700 0    60   ~ 0
+black
+Text Label 8950 4900 0    60   ~ 0
+blue
+Text Notes 9600 5050 0    60   ~ 0
+"RED"
+Text Label 7100 4050 0    60   ~ 0
+blue_or_white
+Text Label 7100 3850 0    60   ~ 0
+yellow_or_red
 $EndSCHEMATC
