@@ -79,6 +79,7 @@ void setup() {
 
   motorSpeedA = calculateMotorSpeed(settings.flowRate, settings.ratioA, settings.ratioB, settings.stepsPerMlA);
   motorSpeedB = calculateMotorSpeed(settings.flowRate, settings.ratioB, settings.ratioA, settings.stepsPerMlB);
+  STATE_mixer = 1;
 }
 
 void loop() {
@@ -92,14 +93,15 @@ void loop() {
   // Do Mixing Calculations
   // Mixing
 
-  static uint32_t timeToMix = 0;
+  static uint32_t timeToMix = 60000; // 1 minute
+  static uint32_t timeToPause = 30000; // 30 seconds
   static uint32_t timeStartedMixing = 0;
+  static uint32_t timeStartedPause = 0;
   if(STATE_mixer == 0){ // Not Running
     motorA.setSpeed(0);
     motorB.setSpeed(0);
-    if(changeState == true) STATE_mixer = 1;
+    if(millis() - timeStartedPause > timeToPause) STATE_mixer = 1;
   }else if(STATE_mixer == 1){ // Mixing Calculations
-    timeToMix = calculateTimeForVolume(settings.volume, settings.flowRate);
     timeStartedMixing = millis();
     STATE_mixer = 2;
   }else if(STATE_mixer == 2){ // Mixing
@@ -109,8 +111,10 @@ void loop() {
     motorB.setSpeed(motorSpeedB);
     motorA.runSpeed();
     motorB.runSpeed();
-    if(changeState == true) STATE_mixer = 0;
-    if(millis() - timeStartedMixing > timeToMix) STATE_mixer = 0;
+    if(millis() - timeStartedMixing > timeToMix) STATE_mixer = 3;
+  }else if(STATE_mixer == 3){ // Pause Calculations
+    timeStartedPause = millis();
+    STATE_mixer = 0;
   }
 
 
