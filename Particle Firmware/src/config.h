@@ -17,6 +17,7 @@
 
 #define BUTTON_PIN A0
 #define ERROR_LED_PIN A1
+#define REMOTE_PIN A2
 
 struct prom {
   bool version;
@@ -37,7 +38,7 @@ const prom default_settings = {
   200,
   100,
   1000,
-  138,
-  138,
-  1000
+  128,
+  128,
+  3785
 };

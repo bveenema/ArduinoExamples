@@ -33,6 +33,7 @@ bool FLAG_justReset = 0;
 #define autoReverseSpeed 4000
 
 ClickButton button(BUTTON_PIN, HIGH);
+ClickButton remote(REMOTE_PIN, HIGH);
 prom settings;
 
 
@@ -60,6 +61,9 @@ void setup() {
 
   pinMode(BUTTON_PIN, INPUT);
   pinMode(ERROR_LED_PIN, OUTPUT);
+  pinMode(REMOTE_PIN, INPUT);
+
+  remote.debounceTime = 10;
 
   delay(100);
 
@@ -84,9 +88,10 @@ void setup() {
 void loop() {
 
   button.Update();
+  remote.Update();
 
   bool changeState = false;
-  if(button.clicks != 0) changeState = true;
+  if(button.clicks != 0 || remote.clicks !=0) changeState = true;
 
   // Not Running
   // Do Mixing Calculations

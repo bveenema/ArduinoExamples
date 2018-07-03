@@ -478,7 +478,7 @@ Text Label 7150 5200 0    60   ~ 0
 green
 Text Label 7150 5300 0    60   ~ 0
 blue_or_white
-Text Notes 800  1200 0    60   ~ 0
+Text Notes 5950 6300 0    60   ~ 0
 NOTES:\nButton uses 3.3V source while motors use 5V source\nWire colors on motor side are best guess based on photos\nYou may want to use a 9 or 10 pin connector for Motor B to prevent them from being plugged incorrectly\nJST SM connectors picked for panel mount, swap with any connector available
 Text Notes 9500 3700 0    60   ~ 0
 To Motor B
@@ -487,81 +487,75 @@ To Motor A
 $Comp
 L Conn_01x02 J?
 U 1 1 5AE82FD7
-P 2150 2350
-F 0 "J?" H 2150 2450 50  0000 C CNN
-F 1 "Conn_01x02" H 2150 2150 50  0001 C CNN
-F 2 "" H 2150 2350 50  0001 C CNN
-F 3 "" H 2150 2350 50  0001 C CNN
-	1    2150 2350
+P 3150 1100
+F 0 "J?" H 3150 1200 50  0000 C CNN
+F 1 "Conn_01x02" H 3150 900 50  0001 C CNN
+F 2 "" H 3150 1100 50  0001 C CNN
+F 3 "" H 3150 1100 50  0001 C CNN
+	1    3150 1100
 	1    0    0    -1  
 $EndComp
 $Comp
 L Conn_01x02 J?
 U 1 1 5AE8311E
-P 2750 2450
-F 0 "J?" H 2750 2550 50  0000 C CNN
-F 1 "Conn_01x02" H 2750 2250 50  0001 C CNN
-F 2 "" H 2750 2450 50  0001 C CNN
-F 3 "" H 2750 2450 50  0001 C CNN
-	1    2750 2450
+P 3750 1200
+F 0 "J?" H 3750 1300 50  0000 C CNN
+F 1 "Conn_01x02" H 3750 1000 50  0001 C CNN
+F 2 "" H 3750 1200 50  0001 C CNN
+F 3 "" H 3750 1200 50  0001 C CNN
+	1    3750 1200
 	-1   0    0    1   
 $EndComp
-Text Notes 2200 2400 0    60   ~ 0
-LINE
-Text Notes 2200 2500 0    60   ~ 0
-NEUT
-Text Notes 2700 2400 2    60   ~ 0
+Text Notes 3200 1150 0    60   ~ 0
+VIN+
+Text Notes 3200 1250 0    60   ~ 0
+VIN-
+Text Notes 3700 1150 2    60   ~ 0
 +5V
-Text Notes 2700 2500 2    60   ~ 0
+Text Notes 3700 1250 2    60   ~ 0
 GND
 Wire Notes Line
-	2000 2150 2000 2600
+	3000 900  3000 1350
 Wire Notes Line
-	2000 2600 2900 2600
+	3000 1350 3900 1350
 Wire Notes Line
-	2900 2600 2900 2150
+	3900 1350 3900 900 
 Wire Notes Line
-	2900 2150 2000 2150
-Text Notes 2100 2100 0    60   ~ 0
-AC/DC Converter
+	3900 900  3000 900 
+Text Notes 2900 850  0    60   ~ 0
+DC/DC Converter \n(36-72V to 5V @1000mA)
 Wire Wire Line
-	1950 2350 1550 2350
+	2550 1100 2950 1100
 Wire Wire Line
-	1950 2450 1550 2450
+	3950 1100 4250 1100
 Wire Wire Line
-	2950 2350 3150 2350
+	4250 1100 4250 900 
 Wire Wire Line
-	3150 2350 3150 2150
+	3950 1200 4250 1200
 Wire Wire Line
-	2950 2450 3150 2450
-Wire Wire Line
-	3150 2450 3150 2700
+	4250 1200 4250 1450
 $Comp
 L +5V #PWR?
 U 1 1 5AE8362F
-P 3150 2150
-F 0 "#PWR?" H 3150 2000 50  0001 C CNN
-F 1 "+5V" H 3150 2290 50  0000 C CNN
-F 2 "" H 3150 2150 50  0001 C CNN
-F 3 "" H 3150 2150 50  0001 C CNN
-	1    3150 2150
+P 4250 900
+F 0 "#PWR?" H 4250 750 50  0001 C CNN
+F 1 "+5V" H 4250 1040 50  0000 C CNN
+F 2 "" H 4250 900 50  0001 C CNN
+F 3 "" H 4250 900 50  0001 C CNN
+	1    4250 900 
 	1    0    0    -1  
 $EndComp
 $Comp
 L GND #PWR?
 U 1 1 5AE83748
-P 3150 2700
-F 0 "#PWR?" H 3150 2450 50  0001 C CNN
-F 1 "GND" H 3150 2550 50  0000 C CNN
-F 2 "" H 3150 2700 50  0001 C CNN
-F 3 "" H 3150 2700 50  0001 C CNN
-	1    3150 2700
+P 4250 1450
+F 0 "#PWR?" H 4250 1200 50  0001 C CNN
+F 1 "GND" H 4250 1300 50  0000 C CNN
+F 2 "" H 4250 1450 50  0001 C CNN
+F 3 "" H 4250 1450 50  0001 C CNN
+	1    4250 1450
 	1    0    0    -1  
 $EndComp
-Text Label 1550 2350 0    60   ~ 0
-LINE
-Text Label 1550 2450 0    60   ~ 0
-NEUT
 Wire Wire Line
 	8900 4900 9250 4900
 Wire Wire Line
@@ -584,4 +578,143 @@ Text Label 7100 4050 0    60   ~ 0
 blue_or_white
 Text Label 7100 3850 0    60   ~ 0
 yellow_or_red
+$Comp
+L +48V #PWR?
+U 1 1 5B0684B5
+P 1900 800
+F 0 "#PWR?" H 1900 650 50  0001 C CNN
+F 1 "+48V" H 1900 940 50  0000 C CNN
+F 2 "" H 1900 800 50  0001 C CNN
+F 3 "" H 1900 800 50  0001 C CNN
+	1    1900 800 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2550 1100 2550 2600
+$Comp
+L SANYOU_SRD_Form_A K?
+U 1 1 5B0686B1
+P 1700 1450
+F 0 "K?" H 2050 1600 50  0000 L CNN
+F 1 "Relay" H 2050 1500 50  0000 L CNN
+F 2 "Relays_THT:Relay_SPDT_SANYOU_SRD_Series_Form_A" H 2950 1400 50  0001 C CNN
+F 3 "" H 1700 1450 50  0001 C CNN
+	1    1700 1450
+	1    0    0    -1  
+$EndComp
+$Comp
+L SW_Push SW?
+U 1 1 5B0687B7
+P 1100 2100
+F 0 "SW?" H 1150 2200 50  0000 L CNN
+F 1 "SW_Push" H 1100 2040 50  0001 C CNN
+F 2 "" H 1100 2300 50  0001 C CNN
+F 3 "" H 1100 2300 50  0001 C CNN
+	1    1100 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5B068C6B
+P 750 2250
+F 0 "#PWR?" H 750 2000 50  0001 C CNN
+F 1 "GND" H 750 2100 50  0000 C CNN
+F 2 "" H 750 2250 50  0001 C CNN
+F 3 "" H 750 2250 50  0001 C CNN
+	1    750  2250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1300 2100 1500 2100
+Wire Wire Line
+	1500 2100 1500 1750
+Wire Wire Line
+	900  2100 750  2100
+Wire Wire Line
+	750  2100 750  2250
+$Comp
+L Conn_01x02 J?
+U 1 1 5B069086
+P 3150 1900
+F 0 "J?" H 3150 2000 50  0000 C CNN
+F 1 "Conn_01x02" H 3150 1700 50  0000 C CNN
+F 2 "" H 3150 1900 50  0001 C CNN
+F 3 "" H 3150 1900 50  0001 C CNN
+	1    3150 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x02 J?
+U 1 1 5B0690C9
+P 3150 2600
+F 0 "J?" H 3150 2700 50  0000 C CNN
+F 1 "Conn_01x02" H 3150 2400 50  0000 C CNN
+F 2 "" H 3150 2600 50  0001 C CNN
+F 3 "" H 3150 2600 50  0001 C CNN
+	1    3150 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5B069148
+P 2800 2850
+F 0 "#PWR?" H 2800 2600 50  0001 C CNN
+F 1 "GND" H 2800 2700 50  0000 C CNN
+F 2 "" H 2800 2850 50  0001 C CNN
+F 3 "" H 2800 2850 50  0001 C CNN
+	1    2800 2850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2950 2700 2800 2700
+Wire Wire Line
+	2800 2700 2800 2850
+$Comp
+L GND #PWR?
+U 1 1 5B069209
+P 2800 2150
+F 0 "#PWR?" H 2800 1900 50  0001 C CNN
+F 1 "GND" H 2800 2000 50  0000 C CNN
+F 2 "" H 2800 2150 50  0001 C CNN
+F 3 "" H 2800 2150 50  0001 C CNN
+	1    2800 2150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2950 2000 2800 2000
+Wire Wire Line
+	2800 2000 2800 2150
+Wire Wire Line
+	1900 800  1900 1150
+Wire Wire Line
+	1900 950  1500 950 
+Wire Wire Line
+	1500 950  1500 1150
+Connection ~ 1900 950 
+Wire Wire Line
+	2950 1200 2800 1200
+Wire Wire Line
+	2800 1200 2800 1450
+Wire Wire Line
+	1900 1900 2950 1900
+Wire Wire Line
+	2550 2600 2950 2600
+Connection ~ 2550 1900
+$Comp
+L GND #PWR?
+U 1 1 5B069C92
+P 2800 1450
+F 0 "#PWR?" H 2800 1200 50  0001 C CNN
+F 1 "GND" H 2800 1300 50  0000 C CNN
+F 2 "" H 2800 1450 50  0001 C CNN
+F 3 "" H 2800 1450 50  0001 C CNN
+	1    2800 1450
+	1    0    0    -1  
+$EndComp
+Text Notes 3250 2000 0    60   ~ 0
+MOTOR B POWER
+Text Notes 3250 2700 0    60   ~ 0
+MOTOR A POWER
+Wire Wire Line
+	1900 1750 1900 1900
 $EndSCHEMATC
