@@ -69,8 +69,8 @@ void setup() {
 
   digitalWrite(ERROR_LED_PIN, LOW);
 
-  digitalWrite(MOTORA_ENABLE_PIN, LOW);
-  digitalWrite(MOTORB_ENABLE_PIN, LOW);
+  digitalWrite(MOTORA_ENABLE_PIN, LOW); // Enable Motor A
+  digitalWrite(MOTORB_ENABLE_PIN, LOW); // Enable Motor B
 
   motorA.setAcceleration(100000);
   motorB.setAcceleration(100000);
@@ -102,10 +102,14 @@ void loop() {
   if(STATE_mixer == 0){ // Not Running
     motorA.setSpeed(0);
     motorB.setSpeed(0);
+    digitalWrite(MOTORA_ENABLE_PIN, HIGH); // Disable Motor A
+    digitalWrite(MOTORB_ENABLE_PIN, HIGH); // Disable Motor B
     if(changeState == true) STATE_mixer = 1;
   }else if(STATE_mixer == 1){ // Mixing Calculations
     timeToMix = calculateTimeForVolume(settings.volume, settings.flowRate);
     timeStartedMixing = millis();
+    digitalWrite(MOTORA_ENABLE_PIN, LOW); // Enable Motor A
+    digitalWrite(MOTORB_ENABLE_PIN, LOW); // Enable Motor B
     STATE_mixer = 2;
   }else if(STATE_mixer == 2){ // Mixing
     motorA.setMaxSpeed(ultimateMaxSpeed);
