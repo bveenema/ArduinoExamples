@@ -43,6 +43,12 @@ function uiOnLoad(){
     beginSerial();
   }
 
+  // Attach listener to Toggle Motor button
+  let toggleMotorButton = document.getElementById('toggle-motor');
+  toggleMotorButton.onclick = function(){
+    sendMessage("toggleMotor");
+  }
+
   // Initialize Connection manager
   connectionManager();
 }

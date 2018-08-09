@@ -90,8 +90,7 @@ void loop() {
   button.Update();
   remote.Update();
 
-  bool changeState = false;
-  if(button.clicks != 0 || remote.clicks !=0) changeState = true;
+  static bool changeState = false;
 
   // Not Running
   // Do Mixing Calculations
@@ -118,10 +117,28 @@ void loop() {
     motorB.setSpeed(motorSpeedB);
     motorA.runSpeed();
     motorB.runSpeed();
-    if(changeState == true) STATE_mixer = 0;
-    if(millis() - timeStartedMixing > timeToMix) STATE_mixer = 0;
+    if(changeState == true || (millis() - timeStartedMixing > timeToMix)){
+      if(settings.autoReverseA > 0 || settings.autoReverseB > 0) STATE_mixer = 3;
+      else STATE_mixer = 0;
+    }
+  }else if(STATE_mixer == 3){ // Start AutoReverse
+    motorA.setMaxSpeed(autoReverseSpeed);
+    motorB.setMaxSpeed(autoReverseSpeed);
+    motorA.setCurrentPosition(0);
+    motorB.setCurrentPosition(0);
+    motorA.moveTo(-settings.autoReverseA);
+    motorB.moveTo(-settings.autoReverseB);
+    STATE_mixer = 4;
+  }else if(STATE_mixer == 4){ // AutoReversing
+    motorA.run();
+    motorB.run();
+    if(!motorA.isRunning() && !motorB.isRunning()){
+      STATE_mixer = 0;
+    }
   }
 
+  changeState = false;
+  if(button.clicks != 0 || remote.clicks !=0) changeState = true;
 
   if(FLAG_messageReceived){
     FLAG_messageReceived = false;
@@ -167,9 +184,12 @@ void loop() {
         settings.volume = atoi(valueBuffer);
       }
       Serial.print(settings.volume);
-    }else if(strcmp("autoReverse", variableNameBuffer) == 0){
-      if(FLAG_isWrite) settings.autoReverse = atoi(valueBuffer);
-      Serial.print(settings.autoReverse);
+    }else if(strcmp("autoReverseA", variableNameBuffer) == 0){
+      if(FLAG_isWrite) settings.autoReverseA = atoi(valueBuffer);
+      Serial.print(settings.autoReverseA);
+    }else if(strcmp("autoReverseB", variableNameBuffer) == 0){
+        if(FLAG_isWrite) settings.autoReverseB = atoi(valueBuffer);
+        Serial.print(settings.autoReverseB);
     }else if(strcmp("firmwareID", variableNameBuffer) == 0){
       Serial.print(THIS_PRODUCT_ID);
     }else if(strcmp("version", variableNameBuffer) == 0){
@@ -189,6 +209,8 @@ void loop() {
       Serial.print(motorSpeedB);
     }else if(strcmp("action", variableNameBuffer) == 0){
       Serial.print(STATE_mixer);
+    }else if(strcmp("toggleMotor", variableNameBuffer) == 0){
+      changeState = true;
     }
     else {
       Serial.print(valueBuffer);

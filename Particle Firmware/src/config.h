@@ -1,7 +1,7 @@
 #pragma once
 
 #define THIS_PRODUCT_ID 1111
-#define THIS_PRODUCT_VERSION 1003
+#define THIS_PRODUCT_VERSION 1004
 // PRODUCT_ID(5864);
 // PRODUCT_VERSION(1);
 
@@ -24,7 +24,8 @@ struct prom {
   uint16_t flowRate;
   uint16_t ratioA;
   uint16_t ratioB;
-  uint32_t autoReverse;
+  uint32_t autoReverseA;
+  uint32_t autoReverseB;
   uint16_t stepsPerMlA;
   uint16_t stepsPerMlB;
   uint32_t volume;
@@ -37,7 +38,8 @@ const prom default_settings = {
   3000,
   200,
   100,
-  1000,
+  0,
+  0,
   128,
   128,
   3785

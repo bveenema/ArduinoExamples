@@ -27,18 +27,27 @@ function recieveData(readInfo) {
       message.value = parseInt(message.strings[1]);
       if(isNaN(message.value)) message.value = message.strings[1];
 
-      message.variableType = allVariables.filter(function(variable){
+      let variable = allVariables.filter(function(variable){
         return variable.name === message.variableName;
-      })[0].type;
+      })[0];
+
+      if(variable != null){
+        message.variableType = allVariables.filter(function(variable){
+          return variable.name === message.variableName;
+        })[0].type;
+        if(message.variableType === 'slide-box')
+          updateSlideBoxValue(message.variableName, message.value);
+        else if(message.variableType === 'advanced')
+          updateAdvancedValue(message.variableName, message.value);
+        else if(message.variableType.includes('controller-state'))
+          updateControllerStateValue(message.variableName, message.value);
+      } else {
+        console.log(message.variableName, message.value);
+      }
 
       //console.log(message.variableName + ": " + message.value);
 
-      if(message.variableType === 'slide-box')
-        updateSlideBoxValue(message.variableName, message.value);
-      else if(message.variableType === 'advanced')
-        updateAdvancedValue(message.variableName, message.value);
-      else if(message.variableType.includes('controller-state'))
-        updateControllerStateValue(message.variableName, message.value);
+
     });
   }
 };

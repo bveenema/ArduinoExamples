@@ -69,11 +69,16 @@
             <input class="textbox" type="number" min="0" max="150000" step="100" value="0" disabled>
             Current: <span>0</span>
           </li>
-          <!-- <li class="advanced" name="autoReverse">
-            Auto Reverse:
+          <li class="advanced" name="autoReverseA">
+            Auto Reverse A:
             <input class="textbox" type="number" min="0" max="10000" step="1000" value="0" disabled>
             Current: <span>0</span>
-          </li> -->
+          </li>
+          <li class="advanced" name="autoReverseB">
+            Auto Reverse B:
+            <input class="textbox" type="number" min="0" max="10000" step="1000" value="0" disabled>
+            Current: <span>0</span>
+          </li>
           <li class="advanced" name="stepsPerMlA">
             Steps/ml - A:
             <input class="textbox" type="number" min="0" max="1000" step="10" value="0" disabled>
@@ -114,7 +119,9 @@
         <li class="controller-state-frequent" name="action">
           Action: <span>none</span>
         </li>
+        <button id="toggle-motor" type="button">Toggle Pumps</button>
       </ul>
+
       <ul id="error" style="display:block">
         <li class="controller-state-once" name="error">
           Error: <span>none</span>
