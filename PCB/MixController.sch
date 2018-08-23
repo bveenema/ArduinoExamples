@@ -272,50 +272,6 @@ $EndComp
 Text Label 7050 5500 0    60   ~ 0
 red
 $Comp
-L +48V #PWR?
-U 1 1 5B0684B5
-P 1900 800
-F 0 "#PWR?" H 1900 650 50  0001 C CNN
-F 1 "+48V" H 1900 940 50  0000 C CNN
-F 2 "" H 1900 800 50  0001 C CNN
-F 3 "" H 1900 800 50  0001 C CNN
-	1    1900 800 
-	1    0    0    -1  
-$EndComp
-$Comp
-L SANYOU_SRD_Form_A K?
-U 1 1 5B0686B1
-P 1700 1450
-F 0 "K?" H 2050 1600 50  0000 L CNN
-F 1 "Relay" H 2050 1500 50  0000 L CNN
-F 2 "Relays_THT:Relay_SPDT_SANYOU_SRD_Series_Form_A" H 2950 1400 50  0001 C CNN
-F 3 "" H 1700 1450 50  0001 C CNN
-	1    1700 1450
-	1    0    0    -1  
-$EndComp
-$Comp
-L SW_Push SW?
-U 1 1 5B0687B7
-P 1100 2100
-F 0 "SW?" H 1150 2200 50  0000 L CNN
-F 1 "SW_Push" H 1100 2040 50  0001 C CNN
-F 2 "" H 1100 2300 50  0001 C CNN
-F 3 "" H 1100 2300 50  0001 C CNN
-	1    1100 2100
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR?
-U 1 1 5B068C6B
-P 750 2250
-F 0 "#PWR?" H 750 2000 50  0001 C CNN
-F 1 "GND" H 750 2100 50  0000 C CNN
-F 2 "" H 750 2250 50  0001 C CNN
-F 3 "" H 750 2250 50  0001 C CNN
-	1    750  2250
-	1    0    0    -1  
-$EndComp
-$Comp
 L Conn_01x02 J?
 U 1 1 5B069086
 P 3150 1900
@@ -499,7 +455,7 @@ Wire Notes Line
 Wire Notes Line
 	3900 900  3000 900 
 Wire Wire Line
-	2550 1100 2950 1100
+	1400 1100 2950 1100
 Wire Wire Line
 	3950 1100 4250 1100
 Wire Wire Line
@@ -511,14 +467,6 @@ Wire Wire Line
 Wire Wire Line
 	2550 1100 2550 2600
 Wire Wire Line
-	1300 2100 1500 2100
-Wire Wire Line
-	1500 2100 1500 1750
-Wire Wire Line
-	900  2100 750  2100
-Wire Wire Line
-	750  2100 750  2250
-Wire Wire Line
 	2950 2700 2800 2700
 Wire Wire Line
 	2800 2700 2800 2850
@@ -527,23 +475,12 @@ Wire Wire Line
 Wire Wire Line
 	2800 2000 2800 2150
 Wire Wire Line
-	1900 800  1900 1150
-Wire Wire Line
-	1900 950  1500 950 
-Wire Wire Line
-	1500 950  1500 1150
-Connection ~ 1900 950 
-Wire Wire Line
 	2950 1200 2800 1200
 Wire Wire Line
 	2800 1200 2800 1450
 Wire Wire Line
-	1900 1900 2950 1900
-Wire Wire Line
 	2550 2600 2950 2600
 Connection ~ 2550 1900
-Wire Wire Line
-	1900 1750 1900 1900
 Wire Notes Line
 	2700 3600 2700 5000
 Wire Notes Line
@@ -10530,4 +10467,49 @@ Wire Wire Line
 	9250 5700 9800 5700
 Text Notes 10600 5700 0    39   ~ 0
 Closest to Switch
+$Comp
+L Conn_01x02 J?
+U 1 1 5B7E7A55
+P 1200 1200
+F 0 "J?" H 1200 1300 50  0000 C CNN
+F 1 "Conn_01x02" H 1200 1000 50  0001 C CNN
+F 2 "" H 1200 1200 50  0001 C CNN
+F 3 "" H 1200 1200 50  0001 C CNN
+	1    1200 1200
+	-1   0    0    1   
+$EndComp
+Text Notes 900  1150 0    60   ~ 0
++VIN
+Text Notes 900  1250 0    60   ~ 0
+-VIN
+$Comp
+L GND #PWR?
+U 1 1 5B7E7C43
+P 1900 1300
+F 0 "#PWR?" H 1900 1050 50  0001 C CNN
+F 1 "GND" H 1900 1150 50  0000 C CNN
+F 2 "" H 1900 1300 50  0001 C CNN
+F 3 "" H 1900 1300 50  0001 C CNN
+	1    1900 1300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1900 1300 1900 1200
+Wire Wire Line
+	1900 1200 1400 1200
+Connection ~ 2550 1100
+Wire Wire Line
+	2950 1900 2550 1900
+Wire Notes Line
+	1350 1350 1350 1000
+Wire Notes Line
+	1350 1000 750  1000
+Wire Notes Line
+	750  1000 750  1350
+Wire Notes Line
+	750  1350 1350 1350
+Text Notes 700  900  0    60   ~ 0
+Battery Connector
+Text Notes 650  950  0    39   ~ 0
+AURELIO TECH - B00QI6S68S
 $EndSCHEMATC

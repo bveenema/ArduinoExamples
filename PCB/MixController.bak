@@ -38,12 +38,12 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title ""
-Date ""
-Rev ""
-Comp ""
-Comment1 ""
-Comment2 ""
+Title "Mix Controller"
+Date "2018-07-18"
+Rev "V0.0.3"
+Comp "Veenema Design Works"
+Comment1 "https://github.com/bveenema/MixController/releases"
+Comment2 "See Release V0.0.3 for additional files"
 Comment3 ""
 Comment4 ""
 $EndDescr
@@ -10528,4 +10528,6 @@ Wire Wire Line
 	7000 4050 7750 4050
 Wire Wire Line
 	9250 5700 9800 5700
+Text Notes 10600 5700 0    39   ~ 0
+Closest to Switch
 $EndSCHEMATC
