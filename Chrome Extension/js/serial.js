@@ -42,7 +42,7 @@ function recieveData(readInfo) {
         else if(message.variableType.includes('controller-state'))
           updateControllerStateValue(message.variableName, message.value);
       } else {
-        console.log(message.variableName, message.value);
+        console.log("Message: ", message.variableName, message.value);
       }
 
       //console.log(message.variableName + ": " + message.value);
