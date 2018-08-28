@@ -139,6 +139,8 @@ void loop() {
 
   changeState = false;
   if(button.clicks != 0 || remote.clicks !=0) changeState = true;
+  if(remote.clicks != 0) Serial.println("Remote Pressed");
+  if(button.clicks != 0) Serial.println("Button Pressed");
 
   if(FLAG_messageReceived){
     FLAG_messageReceived = false;
