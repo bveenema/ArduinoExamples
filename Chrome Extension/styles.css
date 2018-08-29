@@ -39,7 +39,7 @@ label {
 }
 
 #selector-picker {
-  max-width: 250px;
+  width: 110px;
   margin-right: 10px;
   text-align: right;
   height: 28px;

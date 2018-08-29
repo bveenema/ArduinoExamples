@@ -134,3 +134,23 @@ function connectionManager(){
   }
   setTimeout(function(){connectionManager()}, 500);
 }
+
+function buildSelectorPicker(numSelectors) {
+  console.log("Building Selectors: " + numSelectors)
+  let selectorDiv = document.getElementById('selector-div');
+  selectorDiv.removeAttribute("hidden");
+
+  let selector = document.getElementById('selector-picker');
+  selector.innerHTML = "";
+
+  for(i=0;i<numSelectors;i++){
+    let selectorOption = document.createElement('option');
+    selectorOption.value = i;
+    selectorOption.innerText = i;
+    selector.appendChild(selectorOption);
+  }
+  selector.onchange = function() {
+    getInitialValues();
+  }
+  getInitialValues();
+}

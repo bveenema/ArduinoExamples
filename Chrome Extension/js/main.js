@@ -1,6 +1,7 @@
 let allVariables = [];
 let timeouts = [];
-let version;
+let haveVersion = false;
+let serialType = 0; // 0: {variableName}:{value} , 1: {variableName}:{selector}:{value}
 
 let frequentInterval = 100;
 let infrequentInterval = 5000;
@@ -16,11 +17,35 @@ function updateMicro(variable, value, stepSize){
   if(stepSize < 1){
     value = Math.round(value*100);
   }
-  //format variable and value for controller
-  let message = variable + ':' + value;
-
   console.log("Updating variable: " + variable + " to " + value);
-  sendMessage(message);
+  sendMessage(formatMessage(variable, value));
+}
+
+function determineSerialType(version){
+  console.log("FW Version is: " + version);
+  if(version > 4 && version < 1000){
+    serialType = 1;
+    sendMessage(formatMessage("numSelectors"));
+  } else {
+    serialType = 0;
+  }
+  haveVersion = true;
+}
+
+function formatMessage(variableName, newValue = "null", selector = -1){
+  let message = variableName;
+  if(serialType === 1){
+    if(selector === -1){
+      let selectorPicker = document.getElementById("selector-picker");
+      message += ":" + selectorPicker.value;
+    } else {
+      message += ":" + selector;
+    }
+  }
+  if(newValue !== "null"){
+    message += ":" + newValue;
+  }
+  return message;
 }
 
 // Initial values are values to be retrieved from the beginning but don't change often, such as settings
@@ -37,8 +62,8 @@ function getInitialValues() {
   if(this.index > variables.length-1){
     this.index = 0;
   }
-  
-  sendMessage(variables[this.index]);
+
+  sendMessage(formatMessage(variables[this.index]));
   if(this.index < variables.length-1) timeouts.push(setTimeout(function(){getInitialValues()},10));
   else {
     timeouts.forEach(function(timeout){
@@ -67,7 +92,7 @@ function getFrequentStateValues(){
   }
 
   //console.log('frequent: ' + variables[this.frequentIndex]);
-  sendMessage(variables[this.frequentIndex]);
+  sendMessage(formatMessage(variables[this.frequentIndex]));
   if(this.frequentIndex < variables.length-1) timeouts.push(setTimeout(function(){getFrequentStateValues()},10));
 }
 
@@ -92,7 +117,7 @@ function getInfrequentStateValues(){
   }
 
   //console.log('infrequent: ' + variables[this.index]);
-  sendMessage(variables[this.index]);
+  sendMessage(formatMessage(variables[this.index]));
   if(this.index < variables.length-1) timeouts.push(setTimeout(function(){getInfrequentStateValues()},10));
   else {
     timeouts.push(setInterval(function(){getFrequentStateValues()},frequentInterval));

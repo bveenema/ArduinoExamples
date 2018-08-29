@@ -31,6 +31,13 @@ function recieveData(readInfo) {
         return variable.name === message.variableName;
       })[0];
 
+      if(message.variableName === "version" && haveVersion === false){
+        determineSerialType(message.value);
+      }
+      if(message.variableName === "numSelectors"){
+        buildSelectorPicker(message.value);
+      }
+
       if(variable != null){
         message.variableType = allVariables.filter(function(variable){
           return variable.name === message.variableName;
@@ -64,7 +71,11 @@ function onOpen(connectionInfo) {
   }
   setStatus('Connected');
 
-  getInitialValues();
+  // Get the Serial Version
+  console.log("Getting FW Version")
+  sendMessage("version");
+
+  //getInitialValues();
 };
 
 function setStatus(status) {
