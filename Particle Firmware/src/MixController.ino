@@ -14,11 +14,13 @@ SYSTEM_THREAD(ENABLED);
 
 bool FLAG_messageReceived = false;
 bool FLAG_isWrite = false;
+bool FLAG_isSelectorSetting = false;
 
 const size_t messageBufferSize = 128;
 char messageBuffer[messageBufferSize];
 char variableNameBuffer[32];
 char valueBuffer[32];
+uint32_t selectorBuffer;
 uint8_t messageIndex = 0;
 
 
@@ -34,16 +36,29 @@ bool FLAG_justReset = 0;
 
 ClickButton button(BUTTON_PIN, HIGH);
 ClickButton remote(REMOTE_PIN, HIGH);
-prom settings;
+prom_SelectorSettings settings[5];
+prom_MotorSettings motorSettings;
+prom_AllSettings AllSettings;
 
 
 void setup() {
   Serial.begin(57600);
 
-  EEPROM.get(settingsAddr, settings);
-  if(settings.version != 0) {
+  EEPROM.get(settingsAddr, AllSettings);
+  if(AllSettings.version != 0) {
     // Memory was not previously set, initialize
-    settings = default_settings;
+    prom_AllSettings tempAllSettings;
+    tempAllSettings.version = 0;
+    for(int i=0; i<NUM_SELECTORS; i++){
+      tempAllSettings.selectorSettings[i] = defaultSelectorSettings;
+    }
+    tempAllSettings.motorSettings=defaultMotorSettings;
+
+    AllSettings = tempAllSettings;
+    EEPROM.put(settingsAddr, AllSettings);
+  }
+  for(int i=0; i<NUM_SELECTORS; i++){
+    settings[i] = AllSettings.selectorSettings[i];
   }
 
   Particle.subscribe("particle/device/name", nameHandler);
@@ -63,6 +78,12 @@ void setup() {
   pinMode(ERROR_LED_PIN, OUTPUT);
   pinMode(REMOTE_PIN, INPUT);
 
+  pinMode(SELECTOR_SWITCH_1, INPUT_PULLDOWN);
+  pinMode(SELECTOR_SWITCH_2, INPUT_PULLDOWN);
+  pinMode(SELECTOR_SWITCH_3, INPUT_PULLDOWN);
+  pinMode(SELECTOR_SWITCH_4, INPUT_PULLDOWN);
+
+
   remote.debounceTime = 10;
 
   delay(100);
@@ -80,9 +101,6 @@ void setup() {
 
   motorA.setMaxSpeed(ultimateMaxSpeed);
   motorB.setMaxSpeed(ultimateMaxSpeed);
-
-  motorSpeedA = calculateMotorSpeed(settings.flowRate, settings.ratioA, settings.ratioB, settings.stepsPerMlA);
-  motorSpeedB = calculateMotorSpeed(settings.flowRate, settings.ratioB, settings.ratioA, settings.stepsPerMlB);
 }
 
 void loop() {
@@ -92,10 +110,14 @@ void loop() {
 
   static bool changeState = false;
 
-  // Not Running
-  // Do Mixing Calculations
-  // Mixing
+  // Check setting selector
+  static int currentSelector = 0;
+  int selector = checkSelectorSwitch();
+  if(selector >= 0 && selector != currentSelector){
+    currentSelector = selector;
+  }
 
+  // State Machine
   static uint32_t timeToMix = 0;
   static uint32_t timeStartedMixing = 0;
   if(STATE_mixer == 0){ // Not Running
@@ -105,7 +127,9 @@ void loop() {
     digitalWrite(MOTORB_ENABLE_PIN, HIGH); // Disable Motor B
     if(changeState == true) STATE_mixer = 1;
   }else if(STATE_mixer == 1){ // Mixing Calculations
-    timeToMix = calculateTimeForVolume(settings.volume, settings.flowRate);
+    motorSpeedA = calculateMotorSpeed(settings[selector].flowRate, settings[selector].ratioA, settings[selector].ratioB, motorSettings.stepsPerMlA);
+    motorSpeedB = calculateMotorSpeed(settings[selector].flowRate, settings[selector].ratioB, settings[selector].ratioA, motorSettings.stepsPerMlB);
+    timeToMix = calculateTimeForVolume(settings[selector].volume, settings[selector].flowRate);
     timeStartedMixing = millis();
     digitalWrite(MOTORA_ENABLE_PIN, LOW); // Enable Motor A
     digitalWrite(MOTORB_ENABLE_PIN, LOW); // Enable Motor B
@@ -118,7 +142,7 @@ void loop() {
     motorA.runSpeed();
     motorB.runSpeed();
     if(changeState == true || (millis() - timeStartedMixing > timeToMix)){
-      if(settings.autoReverseA > 0 || settings.autoReverseB > 0) STATE_mixer = 3;
+      if(settings[selector].autoReverseA > 0 || settings[selector].autoReverseB > 0) STATE_mixer = 3;
       else STATE_mixer = 0;
     }
   }else if(STATE_mixer == 3){ // Start AutoReverse
@@ -126,8 +150,8 @@ void loop() {
     motorB.setMaxSpeed(autoReverseSpeed);
     motorA.setCurrentPosition(0);
     motorB.setCurrentPosition(0);
-    motorA.moveTo(-settings.autoReverseA);
-    motorB.moveTo(-settings.autoReverseB);
+    motorA.moveTo(-settings[selector].autoReverseA);
+    motorB.moveTo(-settings[selector].autoReverseB);
     STATE_mixer = 4;
   }else if(STATE_mixer == 4){ // AutoReversing
     motorA.run();
@@ -137,6 +161,7 @@ void loop() {
     }
   }
 
+  // check buttons
   changeState = false;
   if(button.clicks != 0 || remote.clicks !=0) changeState = true;
   if(remote.clicks != 0) Serial.println("Remote Pressed");
@@ -150,48 +175,40 @@ void loop() {
 
     if(strcmp("flowRate", variableNameBuffer) == 0){
       if(FLAG_isWrite) {
-        settings.flowRate = atoi(valueBuffer);
-        motorSpeedA = calculateMotorSpeed(settings.flowRate, settings.ratioA, settings.ratioB, settings.stepsPerMlA);
-        motorSpeedB = calculateMotorSpeed(settings.flowRate, settings.ratioB, settings.ratioA, settings.stepsPerMlB);
+        settings[selectorBuffer].flowRate = atoi(valueBuffer);
       }
-      Serial.print(settings.flowRate);
+      Serial.print(settings[selectorBuffer].flowRate);
     }else if(strcmp("ratioA", variableNameBuffer) == 0){
       if(FLAG_isWrite) {
-        settings.ratioA = atoi(valueBuffer);
-        motorSpeedA = calculateMotorSpeed(settings.flowRate, settings.ratioA, settings.ratioB, settings.stepsPerMlA);
-        motorSpeedB = calculateMotorSpeed(settings.flowRate, settings.ratioB, settings.ratioA, settings.stepsPerMlB);
+        settings[selectorBuffer].ratioA = atoi(valueBuffer);
       }
-      Serial.print(settings.ratioA);
+      Serial.print(settings[selectorBuffer].ratioA);
     }else if(strcmp("ratioB", variableNameBuffer) == 0){
       if(FLAG_isWrite) {
-        settings.ratioB = atoi(valueBuffer);
-        motorSpeedA = calculateMotorSpeed(settings.flowRate, settings.ratioA, settings.ratioB, settings.stepsPerMlA);
-        motorSpeedB = calculateMotorSpeed(settings.flowRate, settings.ratioB, settings.ratioA, settings.stepsPerMlB);
+        settings[selectorBuffer].ratioB = atoi(valueBuffer);
       }
-      Serial.print(settings.ratioB);
+      Serial.print(settings[selectorBuffer].ratioB);
     }else if(strcmp("stepsPerMlA", variableNameBuffer) == 0){
       if(FLAG_isWrite) {
-        settings.stepsPerMlA = atoi(valueBuffer);
-        motorSpeedA = calculateMotorSpeed(settings.flowRate, settings.ratioA, settings.ratioB, settings.stepsPerMlA);
+        motorSettings.stepsPerMlA = atoi(valueBuffer);
       }
-      Serial.print(settings.stepsPerMlA);
+      Serial.print(motorSettings.stepsPerMlA);
     }else if(strcmp("stepsPerMlB", variableNameBuffer) == 0){
       if(FLAG_isWrite) {
-        settings.stepsPerMlB = atoi(valueBuffer);
-        motorSpeedB = calculateMotorSpeed(settings.flowRate, settings.ratioB, settings.ratioA, settings.stepsPerMlB);
+        motorSettings.stepsPerMlB = atoi(valueBuffer);
       }
-      Serial.print(settings.stepsPerMlB);
+      Serial.print(motorSettings.stepsPerMlB);
     }else if(strcmp("volume", variableNameBuffer) == 0){
       if(FLAG_isWrite) {
-        settings.volume = atoi(valueBuffer);
+        settings[selectorBuffer].volume = atoi(valueBuffer);
       }
-      Serial.print(settings.volume);
+      Serial.print(settings[selectorBuffer].volume);
     }else if(strcmp("autoReverseA", variableNameBuffer) == 0){
-      if(FLAG_isWrite) settings.autoReverseA = atoi(valueBuffer);
-      Serial.print(settings.autoReverseA);
+      if(FLAG_isWrite) settings[selectorBuffer].autoReverseA = atoi(valueBuffer);
+      Serial.print(settings[selectorBuffer].autoReverseA);
     }else if(strcmp("autoReverseB", variableNameBuffer) == 0){
-        if(FLAG_isWrite) settings.autoReverseB = atoi(valueBuffer);
-        Serial.print(settings.autoReverseB);
+        if(FLAG_isWrite) settings[selectorBuffer].autoReverseB = atoi(valueBuffer);
+        Serial.print(settings[selectorBuffer].autoReverseB);
     }else if(strcmp("firmwareID", variableNameBuffer) == 0){
       Serial.print(THIS_PRODUCT_ID);
     }else if(strcmp("version", variableNameBuffer) == 0){
@@ -213,6 +230,8 @@ void loop() {
       Serial.print(STATE_mixer);
     }else if(strcmp("toggleMotor", variableNameBuffer) == 0){
       changeState = true;
+    }else if(strcmp("selector", variableNameBuffer) == 0){
+      Serial.print(selector);
     }
     else {
       Serial.print(valueBuffer);
@@ -223,21 +242,51 @@ void loop() {
 
     if(FLAG_isWrite){
       FLAG_isWrite = false;
-      EEPROM.put(settingsAddr,settings);
+
+      prom_AllSettings tempAllSettings;
+      tempAllSettings.version = 0;
+      for(int i=0; i<NUM_SELECTORS; i++){
+        tempAllSettings.selectorSettings[i] = settings[i];
+      }
+      tempAllSettings.motorSettings=motorSettings;
+
+      EEPROM.put(settingsAddr, tempAllSettings);
     }
   }
 
 }
 
+int checkSelectorSwitch() {
+  static unsigned int oldSelector = 0;
+  unsigned int newSelector = 0;
+
+  if(pinReadFast(SELECTOR_SWITCH_1)){
+    newSelector = 1;
+  } else if(pinReadFast(SELECTOR_SWITCH_2)){
+    newSelector = 2;
+  } else if(pinReadFast(SELECTOR_SWITCH_3)){
+    newSelector = 3;
+  } else if(pinReadFast(SELECTOR_SWITCH_4)){
+    newSelector = 4;
+  } else {
+    newSelector = 0;
+  }
+
+  if(newSelector == oldSelector) return newSelector;
+  else return -1;
+}
+
 void serialEvent(){
   /*
   Serial data comes in form of:
-    {variableName}:{value} for a write, and
-    {variableName} (with no ":") for a read
+    {variableName}:{selector}:{value} for a write, and
+    {variableName}:{selector} (with no ":") for a read
   followed by a newline character.
+  **if a variable not requiring a selector (ex. stepsPerMlA), then {selector}
+    can be any value and is ignored by the interpreter
 
-  ex. WRITE --> flowRate:250\n
-      READ  --> flowRate\n
+  ex. WRITE --> flowRate:1:250
+      READ  --> flowRate:1
   */
 
 
@@ -246,16 +295,24 @@ void serialEvent(){
     if(c != '\n' && c != ':') {
       messageBuffer[messageIndex++] = c;
     }else if(c == ':'){
-      FLAG_isWrite = true;
       messageBuffer[messageIndex] = 0;
-      strcpy(variableNameBuffer, messageBuffer);
+      if(FLAG_isSelectorSetting) {
+        selectorBuffer = atoi(messageBuffer); // Data was Selector Number
+        FLAG_isWrite = true; // Next data is value to write
+      } else {
+        strcpy(variableNameBuffer, messageBuffer); // Data was variableName
+        FLAG_isSelectorSetting = true; // Next data is selector setting
+      }
       messageIndex = 0;
     }else {
       messageBuffer[messageIndex] = 0;
       if(FLAG_isWrite){
-        strcpy(valueBuffer, messageBuffer);
-      }else{
-        strcpy(variableNameBuffer, messageBuffer);
+        strcpy(valueBuffer, messageBuffer); // Data was new value
+      } else if(FLAG_isSelectorSetting){
+        selectorBuffer = atoi(messageBuffer); // Data was Selector Number
+      } else{
+        selectorBuffer = 0; // No Selector Setting was sent
+        strcpy(variableNameBuffer, messageBuffer); // Data was variable name
       }
       FLAG_messageReceived = true;
       messageIndex = 0;
