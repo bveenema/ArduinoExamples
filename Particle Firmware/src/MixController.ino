@@ -111,10 +111,10 @@ void loop() {
   static bool changeState = false;
 
   // Check setting selector
-  static int currentSelector = 0;
-  int selector = checkSelectorSwitch();
+  static int selector = 0;
+  int newSelector = checkSelectorSwitch();
   if(selector >= 0 && selector != currentSelector){
-    currentSelector = selector;
+    selector = newSelector;
   }
 
   // State Machine
