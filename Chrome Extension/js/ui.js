@@ -49,6 +49,23 @@ function uiOnLoad(){
     sendMessage("toggleMotor");
   }
 
+  // Attach listener to Wifi Button
+  let toggleWifiButton = document.getElementById('toggle-wifi');
+  toggleWifiButton.onclick = function(){
+    if(toggleWifiButton.innerText === "Enable Wifi"){
+      console.log("Enabling Wifi");
+      toggleWifiButton.innerText = "Disable Wifi"
+      toggleWifiButton.classList.toggle("enabled");
+      sendMessage(formatMessage("wifiStatus",1));
+    } else {
+      console.log("Disabling Wifi");
+      toggleWifiButton.innerText = "Enable Wifi"
+      toggleWifiButton.classList.toggle("enabled");
+      sendMessage(formatMessage("wifiStatus",0));
+    }
+
+  }
+
   // Initialize Connection manager
   connectionManager();
 }

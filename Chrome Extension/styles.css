@@ -56,13 +56,20 @@ label {
   margin-left: 20px;
 }
 
-#toggle-motor {
+#toggle-motor, #toggle-wifi {
   background: rgb(67, 135, 253);
   border: none;
   font-size: 16px;
   color: rgb(255,255,255);
   padding: 10px 15px;
   margin-bottom: 5px;
+}
+#toggle-wifi {
+  margin: 5px 0;
+  width: 100%;
+}
+.enabled{
+  background: red !important;
 }
 
 input[type="number"] {
@@ -128,6 +135,13 @@ input[type="number"]:disabled {
 
 #advanced li {
   margin-top: 15px;
+}
+
+#advanced span {
+  padding-bottom: 12px;
+  padding-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 #controller-state {

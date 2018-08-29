@@ -11,6 +11,8 @@
 #include <clickButton.h>
 
 SYSTEM_THREAD(ENABLED);
+SYSTEM_MODE(SEMI_AUTOMATIC);
+bool wifiStatus = 0;
 
 bool FLAG_messageReceived = false;
 bool FLAG_isWrite = false;
@@ -61,7 +63,6 @@ void setup() {
     settings[i] = AllSettings.selectorSettings[i];
   }
 
-  Particle.subscribe("particle/device/name", nameHandler);
   System.on(reset+firmware_update, fwUpdateAndResetHandler);
 
   pinMode(MOTORA_ENABLE_PIN, OUTPUT);
@@ -109,6 +110,18 @@ void loop() {
   remote.Update();
 
   static bool changeState = false;
+
+  // Check Wifi Status Setting
+  static int previousWifiStatus = 0;
+  if(wifiStatus != previousWifiStatus){
+    previousWifiStatus = wifiStatus;
+    if(wifiStatus){
+      Particle.connect();
+      Particle.subscribe("particle/device/name", nameHandler);
+    }else {
+      WiFi.off();
+    }
+  }
 
   // Check setting selector
   static int selector = 0;
@@ -234,6 +247,11 @@ void loop() {
       Serial.print(selector);
     }else if(strcmp("numSelectors", variableNameBuffer) == 0){
       Serial.print(NUM_SELECTORS);
+    }else if(strcmp("wifiStatus", variableNameBuffer) == 0){
+      if(FLAG_isWrite){
+        wifiStatus = (bool)atoi(valueBuffer);
+      }
+      Serial.print(wifiStatus);
     }else {
       Serial.print(valueBuffer);
     }
