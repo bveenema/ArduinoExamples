@@ -113,7 +113,7 @@ void loop() {
   // Check setting selector
   static int selector = 0;
   int newSelector = checkSelectorSwitch();
-  if(selector >= 0 && selector != currentSelector){
+  if(newSelector >= 0 && selector != newSelector){
     selector = newSelector;
   }
 
