@@ -315,6 +315,7 @@ void serialEvent(){
         selectorBuffer = 0; // No Selector Setting was sent
         strcpy(variableNameBuffer, messageBuffer); // Data was variable name
       }
+      FLAG_isSelectorSetting = false;
       FLAG_messageReceived = true;
       messageIndex = 0;
     }
