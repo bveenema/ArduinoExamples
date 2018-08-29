@@ -12,7 +12,7 @@ label {
   padding-bottom: 10px;
   border-bottom: solid 1px #ddd;
   border-right: solid 1px #ddd;
-  width: 300px;
+  width: 310px;
 }
 
 label {
@@ -25,6 +25,20 @@ label {
 }
 
 #device-picker {
+  max-width: 250px;
+  margin-right: 10px;
+  text-align: right;
+  height: 28px;
+  font-size: 16px;
+  border-width: 1px;
+}
+
+#selector-picker,
+#status {
+  color: #000;
+}
+
+#selector-picker {
   max-width: 250px;
   margin-right: 10px;
   text-align: right;
@@ -120,7 +134,7 @@ input[type="number"]:disabled {
   position: absolute;
   right: 35px;
   top: -10px;
-  width: 256px;
+  width: 246px;
   height: 256px;
 }
 #controller-state h3 {

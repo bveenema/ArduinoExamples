@@ -1,5 +1,6 @@
 let allVariables = [];
 let timeouts = [];
+let version;
 
 let frequentInterval = 100;
 let infrequentInterval = 5000;
@@ -36,8 +37,7 @@ function getInitialValues() {
   if(this.index > variables.length-1){
     this.index = 0;
   }
-
-  //console.log('initial: ' + variables[this.index]);
+  
   sendMessage(variables[this.index]);
   if(this.index < variables.length-1) timeouts.push(setTimeout(function(){getInitialValues()},10));
   else {

@@ -28,6 +28,17 @@
       </div>
     </label> -->
 
+    <label class="selector" name="selector">
+      Selector:
+      <select id="selector-picker">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+    </label>
+
     <label class="slide-box" name="ratioA">
       Ratio - A:
       <input class="textbox" type="number" min="0" max="10" step="0.1" value="0" disabled>
@@ -107,6 +118,9 @@
         </li>
         <li class="controller-state-infrequent" name="cloudStatus">
           Cloud Status: <span>Not Connected</span>
+        </li>
+        <li class="controller-state-infrequent" name="selector">
+          Selector: <span>-1</span>
         </li>
       </ul>
       <ul>
