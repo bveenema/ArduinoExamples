@@ -232,8 +232,9 @@ void loop() {
       changeState = true;
     }else if(strcmp("selector", variableNameBuffer) == 0){
       Serial.print(selector);
-    }
-    else {
+    }else if(strcmp("numSelectors", variableNameBuffer) == 0){
+      Serial.print(NUM_SELECTORS);
+    }else {
       Serial.print(valueBuffer);
     }
     Serial.print('\n');
