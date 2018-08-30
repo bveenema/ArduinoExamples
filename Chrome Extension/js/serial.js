@@ -36,6 +36,7 @@ function recieveData(readInfo) {
       }
       if(message.variableName === "numSelectors"){
         buildSelectorPicker(message.value);
+        showVersionedElements(document.getElementById("version").getElementsByTagName('span')[0].innerText);
       }
 
       if(variable != null){

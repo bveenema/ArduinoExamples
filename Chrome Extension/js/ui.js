@@ -152,10 +152,42 @@ function connectionManager(){
   setTimeout(function(){connectionManager()}, 500);
 }
 
+function showVersionedElements(ver){
+  let version = 0;
+  if(isNaN(Number(ver))) {
+    return;
+  }else{
+    version = Number(ver);
+  }
+  var potentials = document.querySelectorAll("[class*=showMinVersion-]");
+
+  // convert potentials (nodelist) to array
+  var potentialsArray = [];
+  for(var i = potentials.length; i--; potentialsArray.unshift(potentials[i]));
+
+  // make sure element has class name starting with "showMinVersion-", add version number to element
+  let elements = potentialsArray.filter(function(element){
+    let returnVal = false;
+    for(i=0;i<element.classList.length; i++){
+      if(element.classList[i].match(/^showMinVersion-/)){
+        element.version = Number(element.classList[i].split('-')[1]);
+        returnVal = true;
+        break;
+      }
+    }
+    return returnVal;
+  });
+
+  // display element if element.version is <= version
+  elements.forEach(function(element){
+    if((element.version <= version) && (version < 1000)){
+      document.getElementById(element.id).removeAttribute('hidden');
+    }
+  })
+}
+
 function buildSelectorPicker(numSelectors) {
   console.log("Building Selectors: " + numSelectors)
-  let selectorDiv = document.getElementById('selector-div');
-  selectorDiv.removeAttribute("hidden");
 
   let selector = document.getElementById('selector-picker');
   selector.innerHTML = "";

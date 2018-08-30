@@ -27,7 +27,7 @@
         Current: <span>0</span>
       </div>
     </label> -->
-    <div id="selector-div" hidden>
+    <div id="selector-div" class="showMinVersion-5" hidden>
       <label class="selector">
         Selector:
         <select id="selector-picker"></select>
@@ -108,7 +108,7 @@
         <li class="controller-state-infrequent" name="firmwareID">
           Firmware ID: <span>0</span>
         </li>
-        <li class="controller-state-infrequent" name="version">
+        <li class="controller-state-infrequent" name="version" id="version">
           Version: <span>0</span>
         </li>
         <li class="controller-state-infrequent" name="cloudStatus">
@@ -130,7 +130,7 @@
         </li>
         <button id="toggle-motor" type="button">Toggle Pumps</button>
       </ul>
-      <button id="toggle-wifi" type="button" name="wifiStatus">Enable Wifi</button>
+      <button id="toggle-wifi" type="button" name="wifiStatus" class="showMinVersion-5" hidden>Enable Wifi</button>
 
       <ul id="error" style="display:block">
         <li class="controller-state-once" name="error">
