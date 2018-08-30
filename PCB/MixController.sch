@@ -10512,4 +10512,14 @@ Text Notes 700  900  0    60   ~ 0
 Battery Connector
 Text Notes 650  950  0    39   ~ 0
 AURELIO TECH - B00QI6S68S
+Text Notes 10550 5850 0    39   ~ 0
+Same side as +VIN \n(RED)
+Text Notes 4100 2050 0    60   ~ 0
+18" Long\n5" Remove Sheath\nCut BLACK wire to 2"
+Text Notes 4100 2750 0    60   ~ 0
+18" Long\n5" Remove Sheath\nCut RED wire to 2"
+Text Notes 1500 1100 0    60   ~ 0
+15" RED 12 AWG
+Text Notes 1500 1200 0    60   ~ 0
+15" BLACK 12 AWG
 $EndSCHEMATC
