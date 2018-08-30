@@ -347,12 +347,14 @@ void serialEvent(){
 }
 
 uint32_t calculateMotorSpeed(uint16_t flowRate, uint16_t thisMotorRatio, uint16_t otherMotorRatio, uint16_t stepsPerMl){
+  if(thisMotorRatio == 0 && otherMotorRatio == 0) return 0; // prevent divide by 0 error
   uint32_t motorSpeed = flowRate*stepsPerMl*thisMotorRatio/(thisMotorRatio+otherMotorRatio)/60;
   return motorSpeed;
 }
 
 uint32_t calculateTimeForVolume(uint32_t volume, uint16_t flowRate){
   if(volume > 7158278) return 0; // Largest value before variable overflow
+  if(flowRate == 0) return 0; // prevent divide by 0 error
   uint32_t time = volume*600/flowRate;
   return time * 100;
 }
