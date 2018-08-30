@@ -62,6 +62,7 @@ void setup() {
   for(int i=0; i<NUM_SELECTORS; i++){
     settings[i] = AllSettings.selectorSettings[i];
   }
+  motorSettings = AllSettings.motorSettings;
 
   System.on(reset+firmware_update, fwUpdateAndResetHandler);
 
@@ -267,7 +268,7 @@ void loop() {
       for(int i=0; i<NUM_SELECTORS; i++){
         tempAllSettings.selectorSettings[i] = settings[i];
       }
-      tempAllSettings.motorSettings=motorSettings;
+      tempAllSettings.motorSettings = motorSettings;
 
       EEPROM.put(settingsAddr, tempAllSettings);
     }
