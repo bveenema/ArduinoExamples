@@ -292,7 +292,10 @@ int checkSelectorSwitch() {
   }
 
   if(newSelector == oldSelector) return newSelector;
-  else return -1;
+  else {
+    oldSelector = newSelector;
+    return -1;
+  }
 }
 
 void serialEvent(){
