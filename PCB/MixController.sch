@@ -72,12 +72,12 @@ $EndComp
 $Comp
 L GND #PWR?
 U 1 1 5AD8570C
-P 4900 3900
-F 0 "#PWR?" H 4900 3650 50  0001 C CNN
-F 1 "GND" H 4900 3750 50  0000 C CNN
-F 2 "" H 4900 3900 50  0001 C CNN
-F 3 "" H 4900 3900 50  0001 C CNN
-	1    4900 3900
+P 4900 3850
+F 0 "#PWR?" H 4900 3600 50  0001 C CNN
+F 1 "GND" H 4900 3700 50  0000 C CNN
+F 2 "" H 4900 3850 50  0001 C CNN
+F 3 "" H 4900 3850 50  0001 C CNN
+	1    4900 3850
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -106,7 +106,7 @@ $Comp
 L LED D?
 U 1 1 5AD86215
 P 3750 4600
-F 0 "D?" H 3750 4700 50  0000 C CNN
+F 0 "D?" H 3750 4700 50  0001 C CNN
 F 1 "LED" H 3750 4500 50  0000 C CNN
 F 2 "" H 3750 4600 50  0001 C CNN
 F 3 "" H 3750 4600 50  0001 C CNN
@@ -333,33 +333,33 @@ MOTOR A POWER
 $Comp
 L Conn_01x07 J?
 U 1 1 5B3B4200
-P 2550 4050
-F 0 "J?" H 2550 4450 50  0000 C CNN
-F 1 "Conn_01x07" H 2550 3650 50  0000 C CNN
-F 2 "" H 2550 4050 50  0001 C CNN
-F 3 "" H 2550 4050 50  0001 C CNN
-	1    2550 4050
+P 1950 4800
+F 0 "J?" H 1950 5200 50  0000 C CNN
+F 1 "Conn_01x07" H 1950 4400 50  0000 C CNN
+F 2 "" H 1950 4800 50  0001 C CNN
+F 3 "" H 1950 4800 50  0001 C CNN
+	1    1950 4800
 	-1   0    0    1   
 $EndComp
-Text Notes 2350 4400 0    60   ~ 0
+Text Notes 1750 5150 0    60   ~ 0
 VT
-Text Notes 2350 4300 0    60   ~ 0
+Text Notes 1750 5050 0    60   ~ 0
 D3
-Text Notes 2350 4200 0    60   ~ 0
+Text Notes 1750 4950 0    60   ~ 0
 D2
-Text Notes 2350 4100 0    60   ~ 0
+Text Notes 1750 4850 0    60   ~ 0
 D1
-Text Notes 2350 4000 0    60   ~ 0
+Text Notes 1750 4750 0    60   ~ 0
 D0
-Text Notes 2300 3900 0    60   ~ 0
+Text Notes 1700 4650 0    60   ~ 0
 +5V
-Text Notes 2300 3800 0    60   ~ 0
+Text Notes 1700 4550 0    60   ~ 0
 GND
-Text Notes 2050 4800 0    60   ~ 0
+Text Notes 1450 5550 0    60   ~ 0
 RF Reciever
-Text Notes 2050 4900 0    39   ~ 0
+Text Notes 1450 5650 0    39   ~ 0
 315Mhz Momentary
-Text Notes 2050 4950 0    20   ~ 0
+Text Notes 1450 5700 0    20   ~ 0
 https://www.adafruit.com/product/1096
 Wire Wire Line
 	5150 3600 4900 3600
@@ -368,7 +368,7 @@ Wire Wire Line
 Wire Wire Line
 	5150 3700 4900 3700
 Wire Wire Line
-	4900 3700 4900 3900
+	4900 3700 4900 3850
 Wire Wire Line
 	6450 4700 6700 4700
 Wire Wire Line
@@ -416,7 +416,9 @@ Wire Wire Line
 Wire Wire Line
 	5150 4700 4800 4700
 Wire Wire Line
-	4800 4700 4800 5750
+	4800 4700 4800 5000
+Wire Wire Line
+	4800 5000 4800 5750
 Wire Wire Line
 	4800 5750 4550 5750
 Wire Wire Line
@@ -455,7 +457,9 @@ Wire Notes Line
 Wire Notes Line
 	3900 900  3000 900 
 Wire Wire Line
-	1400 1100 2950 1100
+	1400 1100 2550 1100
+Wire Wire Line
+	2550 1100 2950 1100
 Wire Wire Line
 	3950 1100 4250 1100
 Wire Wire Line
@@ -465,7 +469,9 @@ Wire Wire Line
 Wire Wire Line
 	4250 1200 4250 1450
 Wire Wire Line
-	2550 1100 2550 2600
+	2550 1100 2550 1900
+Wire Wire Line
+	2550 1900 2550 2600
 Wire Wire Line
 	2950 2700 2800 2700
 Wire Wire Line
@@ -482,47 +488,43 @@ Wire Wire Line
 	2550 2600 2950 2600
 Connection ~ 2550 1900
 Wire Notes Line
-	2700 3600 2700 5000
+	2100 4350 2100 5750
 Wire Notes Line
-	2700 3600 2000 3600
+	2100 4350 1400 4350
 Wire Notes Line
-	2000 3600 2000 5000
+	1400 4350 1400 5750
 Wire Notes Line
-	2000 5000 2700 5000
+	1400 5750 2100 5750
 Wire Wire Line
-	2750 4350 4050 4350
+	2800 4500 5150 4500
 Wire Wire Line
-	4050 4350 4050 4500
+	2150 4600 2300 4600
 Wire Wire Line
-	4050 4500 5150 4500
+	2300 4600 2300 4150
 Wire Wire Line
-	2750 3850 2900 3850
+	2150 4500 2450 4500
 Wire Wire Line
-	2900 3850 2900 3400
-Wire Wire Line
-	2750 3750 3050 3750
-Wire Wire Line
-	3050 3750 3050 4000
+	2450 4500 2450 4750
 $Comp
 L GND #PWR?
 U 1 1 5B3B4E53
-P 3050 4000
-F 0 "#PWR?" H 3050 3750 50  0001 C CNN
-F 1 "GND" H 3050 3850 50  0000 C CNN
-F 2 "" H 3050 4000 50  0001 C CNN
-F 3 "" H 3050 4000 50  0001 C CNN
-	1    3050 4000
+P 2450 4750
+F 0 "#PWR?" H 2450 4500 50  0001 C CNN
+F 1 "GND" H 2450 4600 50  0000 C CNN
+F 2 "" H 2450 4750 50  0001 C CNN
+F 3 "" H 2450 4750 50  0001 C CNN
+	1    2450 4750
 	1    0    0    -1  
 $EndComp
 $Comp
 L +5V #PWR?
 U 1 1 5B3B4E94
-P 2900 3400
-F 0 "#PWR?" H 2900 3250 50  0001 C CNN
-F 1 "+5V" H 2900 3540 50  0000 C CNN
-F 2 "" H 2900 3400 50  0001 C CNN
-F 3 "" H 2900 3400 50  0001 C CNN
-	1    2900 3400
+P 2300 4150
+F 0 "#PWR?" H 2300 4000 50  0001 C CNN
+F 1 "+5V" H 2300 4290 50  0000 C CNN
+F 2 "" H 2300 4150 50  0001 C CNN
+F 3 "" H 2300 4150 50  0001 C CNN
+	1    2300 4150
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -10173,7 +10175,13 @@ F 3 "" H 9450 4900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9450 4900 9450 5400
+	9450 4900 9450 5100
+Wire Wire Line
+	9450 5100 9450 5200
+Wire Wire Line
+	9450 5200 9450 5300
+Wire Wire Line
+	9450 5300 9450 5400
 Connection ~ 9450 5300
 Connection ~ 9450 5200
 Connection ~ 9450 5100
@@ -10384,7 +10392,13 @@ F 3 "" H 9450 3050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9450 3050 9450 3550
+	9450 3050 9450 3250
+Wire Wire Line
+	9450 3250 9450 3350
+Wire Wire Line
+	9450 3350 9450 3450
+Wire Wire Line
+	9450 3450 9450 3550
 Connection ~ 9450 3450
 Connection ~ 9450 3350
 Connection ~ 9450 3250
@@ -10522,4 +10536,180 @@ Text Notes 1500 1100 0    60   ~ 0
 15" RED 12 AWG
 Text Notes 1500 1200 0    60   ~ 0
 15" BLACK 12 AWG
+$Comp
+L Conn_01x04 J?
+U 1 1 5B87A876
+P 1550 3550
+F 0 "J?" H 1550 3750 50  0001 C CNN
+F 1 "Conn_01x04" H 1550 3250 50  0001 C CNN
+F 2 "" H 1550 3550 50  0001 C CNN
+F 3 "" H 1550 3550 50  0001 C CNN
+	1    1550 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x04 J?
+U 1 1 5B87A8C7
+P 2350 3650
+F 0 "J?" H 2350 3850 50  0001 C CNN
+F 1 "Conn_01x04" H 2350 3350 50  0001 C CNN
+F 2 "" H 2350 3650 50  0001 C CNN
+F 3 "" H 2350 3650 50  0001 C CNN
+	1    2350 3650
+	-1   0    0    1   
+$EndComp
+Text Notes 1650 3500 0    60   ~ 0
+1
+Text Notes 1650 3600 0    60   ~ 0
+3
+Text Notes 1650 3700 0    60   ~ 0
+5
+Text Notes 1650 3800 0    60   ~ 0
+7
+Text Notes 2200 3500 0    60   ~ 0
+2
+Text Notes 2200 3600 0    60   ~ 0
+4
+Text Notes 2200 3700 0    60   ~ 0
+6
+Text Notes 2200 3800 0    60   ~ 0
+8
+$Comp
+L SW_SPST SW?
+U 1 1 5B87AC58
+P 1950 3450
+F 0 "SW?" H 1950 3575 50  0001 C CNN
+F 1 "SW_SPST" H 1950 3350 50  0001 C CNN
+F 2 "" H 1950 3450 50  0001 C CNN
+F 3 "" H 1950 3450 50  0001 C CNN
+	1    1950 3450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1200 3450 1350 3450
+Wire Wire Line
+	1350 3450 1750 3450
+Wire Wire Line
+	2150 3450 2550 3450
+Wire Wire Line
+	2550 3450 3000 3450
+$Comp
+L SW_SPST SW?
+U 1 1 5B87AE9A
+P 1950 3550
+F 0 "SW?" H 1950 3675 50  0001 C CNN
+F 1 "SW_SPST" H 1950 3450 50  0001 C CNN
+F 2 "" H 1950 3550 50  0001 C CNN
+F 3 "" H 1950 3550 50  0001 C CNN
+	1    1950 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L SW_SPST SW?
+U 1 1 5B87AECC
+P 1950 3650
+F 0 "SW?" H 1950 3775 50  0001 C CNN
+F 1 "SW_SPST" H 1950 3550 50  0001 C CNN
+F 2 "" H 1950 3650 50  0001 C CNN
+F 3 "" H 1950 3650 50  0001 C CNN
+	1    1950 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L SW_SPST SW?
+U 1 1 5B87AEFE
+P 1950 3750
+F 0 "SW?" H 1950 3875 50  0001 C CNN
+F 1 "SW_SPST" H 1950 3650 50  0001 C CNN
+F 2 "" H 1950 3750 50  0001 C CNN
+F 3 "" H 1950 3750 50  0001 C CNN
+	1    1950 3750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1200 3550 1350 3550
+Wire Wire Line
+	1350 3550 1750 3550
+Wire Wire Line
+	1200 3650 1350 3650
+Wire Wire Line
+	1350 3650 1750 3650
+Wire Wire Line
+	1200 3750 1350 3750
+Wire Wire Line
+	1350 3750 1750 3750
+Wire Wire Line
+	2150 3550 2550 3550
+Wire Wire Line
+	2550 3550 3100 3550
+Wire Wire Line
+	2150 3650 2550 3650
+Wire Wire Line
+	2550 3650 3200 3650
+Wire Wire Line
+	2150 3750 2550 3750
+Wire Wire Line
+	2550 3750 3300 3750
+Wire Wire Line
+	1200 3250 1200 3450
+Wire Wire Line
+	1200 3450 1200 3550
+Wire Wire Line
+	1200 3550 1200 3650
+Wire Wire Line
+	1200 3650 1200 3750
+Connection ~ 1350 3450
+Connection ~ 1200 3450
+Connection ~ 1350 3550
+Connection ~ 1200 3550
+Connection ~ 1350 3650
+Connection ~ 1200 3650
+Connection ~ 1350 3750
+$Comp
+L +3V3 #PWR?
+U 1 1 5B87B71B
+P 1200 3250
+F 0 "#PWR?" H 1200 3100 50  0001 C CNN
+F 1 "+3V3" H 1200 3390 50  0000 C CNN
+F 2 "" H 1200 3250 50  0001 C CNN
+F 3 "" H 1200 3250 50  0001 C CNN
+	1    1200 3250
+	1    0    0    -1  
+$EndComp
+Wire Notes Line
+	1400 3350 1400 3850
+Wire Notes Line
+	1400 3850 2500 3850
+Wire Notes Line
+	2500 3850 2500 3350
+Wire Notes Line
+	2500 3350 1400 3350
+Text Notes 1450 3200 0    60   ~ 0
+Rotary Selector Switch
+Text Notes 1600 3300 0    39   ~ 0
+http://a.co/d/aNRq7J4
+Wire Wire Line
+	2800 4500 2800 5100
+Wire Wire Line
+	2800 5100 2150 5100
+Wire Wire Line
+	3000 3450 3000 4400
+Wire Wire Line
+	3000 4400 5150 4400
+Connection ~ 2550 3450
+Wire Wire Line
+	3100 3550 3100 4300
+Wire Wire Line
+	3100 4300 5150 4300
+Connection ~ 2550 3550
+Wire Wire Line
+	3200 3650 3200 4200
+Wire Wire Line
+	3200 4200 5150 4200
+Connection ~ 2550 3650
+Wire Wire Line
+	3300 3750 3300 4100
+Wire Wire Line
+	3300 4100 5150 4100
+Connection ~ 2550 3750
 $EndSCHEMATC
