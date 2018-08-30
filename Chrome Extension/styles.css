@@ -137,7 +137,7 @@ input[type="number"]:disabled {
   margin-top: 15px;
 }
 
-#advanced span {
+#advanced-expandertext {
   padding-bottom: 12px;
   padding-left: 10px;
   display: inline-block;
