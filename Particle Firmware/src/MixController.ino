@@ -9,10 +9,11 @@
 #include "config.h"
 #include "AccelStepper.h"
 #include <clickButton.h>
+#include "SerialSettings.h"
 
 SYSTEM_THREAD(ENABLED);
 SYSTEM_MODE(SEMI_AUTOMATIC);
-bool wifiStatus = 0;
+uint32_t wifiStatus = 0;
 
 bool FLAG_messageReceived = false;
 bool FLAG_isWrite = false;
@@ -24,6 +25,8 @@ char variableNameBuffer[32];
 char valueBuffer[32];
 uint32_t selectorBuffer;
 uint8_t messageIndex = 0;
+
+int selector = 0;
 
 
 AccelStepper motorA(AccelStepper::DRIVER, MOTORA_STEP_PIN, MOTORA_DIR_PIN);
@@ -38,31 +41,17 @@ bool FLAG_justReset = 0;
 
 ClickButton button(BUTTON_PIN, HIGH);
 ClickButton remote(REMOTE_PIN, HIGH);
-prom_SelectorSettings settings[5];
-prom_MotorSettings motorSettings;
-prom_AllSettings AllSettings;
+prom_settings settings;
 
 
 void setup() {
   Serial.begin(57600);
 
-  EEPROM.get(settingsAddr, AllSettings);
-  if(AllSettings.version != 0) {
+  EEPROM.get(settingsAddr, settings);
+  if(settings.version != 0) {
     // Memory was not previously set, initialize
-    prom_AllSettings tempAllSettings;
-    tempAllSettings.version = 0;
-    for(int i=0; i<NUM_SELECTORS; i++){
-      tempAllSettings.selectorSettings[i] = defaultSelectorSettings;
-    }
-    tempAllSettings.motorSettings=defaultMotorSettings;
-
-    AllSettings = tempAllSettings;
-    EEPROM.put(settingsAddr, AllSettings);
+    settings = defaultSettings;
   }
-  for(int i=0; i<NUM_SELECTORS; i++){
-    settings[i] = AllSettings.selectorSettings[i];
-  }
-  motorSettings = AllSettings.motorSettings;
 
   System.on(reset+firmware_update, fwUpdateAndResetHandler);
 
@@ -113,19 +102,19 @@ void loop() {
   static bool changeState = false;
 
   // Check Wifi Status Setting
-  static int previousWifiStatus = 0;
+  static unsigned int previousWifiStatus = 0;
   if(wifiStatus != previousWifiStatus){
     previousWifiStatus = wifiStatus;
     if(wifiStatus){
       Particle.connect();
-      Particle.subscribe("particle/device/name", nameHandler);
+      Particle.subscribe("particle/device/name", nameHandler, MY_DEVICES);
     }else {
       WiFi.off();
     }
   }
 
   // Check setting selector
-  static int selector = 0;
+
   int newSelector = checkSelectorSwitch();
   if(newSelector >= 0 && selector != newSelector){
     selector = newSelector;
@@ -141,9 +130,9 @@ void loop() {
     digitalWrite(MOTORB_ENABLE_PIN, HIGH); // Disable Motor B
     if(changeState == true) STATE_mixer = 1;
   }else if(STATE_mixer == 1){ // Mixing Calculations
-    motorSpeedA = calculateMotorSpeed(settings[selector].flowRate, settings[selector].ratioA, settings[selector].ratioB, motorSettings.stepsPerMlA);
-    motorSpeedB = calculateMotorSpeed(settings[selector].flowRate, settings[selector].ratioB, settings[selector].ratioA, motorSettings.stepsPerMlB);
-    timeToMix = calculateTimeForVolume(settings[selector].volume, settings[selector].flowRate);
+    motorSpeedA = calculateMotorSpeed(settings.flowRate[selector], settings.ratioA[selector], settings.ratioB[selector], settings.stepsPerMlA);
+    motorSpeedB = calculateMotorSpeed(settings.flowRate[selector], settings.ratioB[selector], settings.ratioA[selector], settings.stepsPerMlB);
+    timeToMix = calculateTimeForVolume(settings.volume[selector], settings.flowRate[selector]);
     timeStartedMixing = millis();
     digitalWrite(MOTORA_ENABLE_PIN, LOW); // Enable Motor A
     digitalWrite(MOTORB_ENABLE_PIN, LOW); // Enable Motor B
@@ -156,7 +145,7 @@ void loop() {
     motorA.runSpeed();
     motorB.runSpeed();
     if(changeState == true || (millis() - timeStartedMixing > timeToMix)){
-      if(settings[selector].autoReverseA > 0 || settings[selector].autoReverseB > 0) STATE_mixer = 3;
+      if(settings.autoReverseA[selector] > 0 || settings.autoReverseB[selector] > 0) STATE_mixer = 3;
       else STATE_mixer = 0;
     }
   }else if(STATE_mixer == 3){ // Start AutoReverse
@@ -164,8 +153,8 @@ void loop() {
     motorB.setMaxSpeed(autoReverseSpeed);
     motorA.setCurrentPosition(0);
     motorB.setCurrentPosition(0);
-    motorA.moveTo(-settings[selector].autoReverseA);
-    motorB.moveTo(-settings[selector].autoReverseB);
+    motorA.moveTo(-settings.autoReverseA[selector]);
+    motorB.moveTo(-settings.autoReverseB[selector]);
     STATE_mixer = 4;
   }else if(STATE_mixer == 4){ // AutoReversing
     motorA.run();
@@ -182,95 +171,12 @@ void loop() {
   if(button.clicks != 0) Serial.println("Button Pressed");
 
   if(FLAG_messageReceived){
-    FLAG_messageReceived = false;
-
-    Serial.print(variableNameBuffer);
-    Serial.print(':');
-
-    if(strcmp("flowRate", variableNameBuffer) == 0){
-      if(FLAG_isWrite) {
-        settings[selectorBuffer].flowRate = atoi(valueBuffer);
-      }
-      Serial.print(settings[selectorBuffer].flowRate);
-    }else if(strcmp("ratioA", variableNameBuffer) == 0){
-      if(FLAG_isWrite) {
-        settings[selectorBuffer].ratioA = atoi(valueBuffer);
-      }
-      Serial.print(settings[selectorBuffer].ratioA);
-    }else if(strcmp("ratioB", variableNameBuffer) == 0){
-      if(FLAG_isWrite) {
-        settings[selectorBuffer].ratioB = atoi(valueBuffer);
-      }
-      Serial.print(settings[selectorBuffer].ratioB);
-    }else if(strcmp("stepsPerMlA", variableNameBuffer) == 0){
-      if(FLAG_isWrite) {
-        motorSettings.stepsPerMlA = atoi(valueBuffer);
-      }
-      Serial.print(motorSettings.stepsPerMlA);
-    }else if(strcmp("stepsPerMlB", variableNameBuffer) == 0){
-      if(FLAG_isWrite) {
-        motorSettings.stepsPerMlB = atoi(valueBuffer);
-      }
-      Serial.print(motorSettings.stepsPerMlB);
-    }else if(strcmp("volume", variableNameBuffer) == 0){
-      if(FLAG_isWrite) {
-        settings[selectorBuffer].volume = atoi(valueBuffer);
-      }
-      Serial.print(settings[selectorBuffer].volume);
-    }else if(strcmp("autoReverseA", variableNameBuffer) == 0){
-      if(FLAG_isWrite) settings[selectorBuffer].autoReverseA = atoi(valueBuffer);
-      Serial.print(settings[selectorBuffer].autoReverseA);
-    }else if(strcmp("autoReverseB", variableNameBuffer) == 0){
-        if(FLAG_isWrite) settings[selectorBuffer].autoReverseB = atoi(valueBuffer);
-        Serial.print(settings[selectorBuffer].autoReverseB);
-    }else if(strcmp("firmwareID", variableNameBuffer) == 0){
-      Serial.print(THIS_PRODUCT_ID);
-    }else if(strcmp("version", variableNameBuffer) == 0){
-      Serial.print(THIS_PRODUCT_VERSION);
-    }else if(strcmp("name", variableNameBuffer) == 0){
-      Serial.print("wait");
-      Particle.publish("particle/device/name");
-    }else if(strcmp("cloudStatus", variableNameBuffer) == 0){
-      if(Particle.connected()){
-        Serial.print("Connected");
-      }else {
-        Serial.print("Not Available");
-      }
-    }else if(strcmp("motorSpeedA", variableNameBuffer) == 0){
-      Serial.print(motorSpeedA);
-    }else if(strcmp("motorSpeedB", variableNameBuffer) == 0){
-      Serial.print(motorSpeedB);
-    }else if(strcmp("action", variableNameBuffer) == 0){
-      Serial.print(STATE_mixer);
-    }else if(strcmp("toggleMotor", variableNameBuffer) == 0){
-      changeState = true;
-    }else if(strcmp("selector", variableNameBuffer) == 0){
-      Serial.print(selector);
-    }else if(strcmp("numSelectors", variableNameBuffer) == 0){
-      Serial.print(NUM_SELECTORS);
-    }else if(strcmp("wifiStatus", variableNameBuffer) == 0){
-      if(FLAG_isWrite){
-        wifiStatus = (bool)atoi(valueBuffer);
-      }
-      Serial.print(wifiStatus);
-    }else {
-      Serial.print(valueBuffer);
-    }
-    Serial.print('\n');
-
+    serialCommandHander(variableNameBuffer, selectorBuffer, valueBuffer, FLAG_isWrite);
     valueBuffer[0] = 0;
-
+    FLAG_messageReceived = false;
     if(FLAG_isWrite){
       FLAG_isWrite = false;
-
-      prom_AllSettings tempAllSettings;
-      tempAllSettings.version = 0;
-      for(int i=0; i<NUM_SELECTORS; i++){
-        tempAllSettings.selectorSettings[i] = settings[i];
-      }
-      tempAllSettings.motorSettings = motorSettings;
-
-      EEPROM.put(settingsAddr, tempAllSettings);
+      EEPROM.put(settingsAddr, settings);
     }
   }
 

@@ -26,38 +26,29 @@ PRODUCT_VERSION(THIS_PRODUCT_VERSION);
 #define SELECTOR_SWITCH_3 A5
 #define SELECTOR_SWITCH_4 A6
 
-struct prom_SelectorSettings {
-  uint16_t flowRate;
-  uint16_t ratioA;
-  uint16_t ratioB;
-  uint32_t autoReverseA;
-  uint32_t autoReverseB;
-  uint32_t volume;
-};
-
-struct prom_MotorSettings {
-  uint16_t stepsPerMlA;
-  uint16_t stepsPerMlB;
-};
-
-struct prom_AllSettings {
+struct prom_settings {
   bool version;
-  prom_SelectorSettings selectorSettings[5];
-  prom_MotorSettings motorSettings;
+  uint32_t stepsPerMlA;
+  uint32_t stepsPerMlB;
+  // Selector Based Settings
+  uint32_t flowRate[NUM_SELECTORS];
+  uint32_t ratioA[NUM_SELECTORS];
+  uint32_t ratioB[NUM_SELECTORS];
+  uint32_t autoReverseA[NUM_SELECTORS];
+  uint32_t autoReverseB[NUM_SELECTORS];
+  uint32_t volume[NUM_SELECTORS];
 };
 
 const uint32_t settingsAddr = 0;
 
-const prom_SelectorSettings defaultSelectorSettings = {
-  3000,
-  200,
-  100,
+const prom_settings defaultSettings = {
   0,
-  0,
-  3785
-};
-
-const prom_MotorSettings defaultMotorSettings = {
-  128,
-  128
+  128, // stepsPerMlA
+  128, // stepsPerMlB
+  {3000,3000,3000,3000,3000}, // flowRate
+  {200,200,200,200,200}, // ratioA
+  {100,100,100,100,100}, // ratioB
+  {150,150,150,150,150}, // autoReverseA
+  {75,75,75,75,75}, // autoReverseB
+  {3785,3785,3785,3785,3785} // volume
 };
