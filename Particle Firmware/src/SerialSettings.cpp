@@ -29,3 +29,45 @@ void serialCommandHander(char* commandName, uint32_t selector, char* newValue, b
 
   Serial.print("\n");
 }
+
+void readSerial(char c){
+  /*
+  Serial data comes in form of:
+    {variableName}:{selector}:{value} for a write, and
+    {variableName}:{selector} (with no ":") for a read
+  followed by a newline character.
+  **if a variable not requiring a selector (ex. stepsPerMlA), then {selector}
+    can be any value and is ignored by the interpreter
+
+  ex. WRITE --> flowRate:1:250
+      READ  --> flowRate:1
+  */
+  if(messageIndex >= messageBufferSize) messageIndex = 0;
+  
+  if(c != '\n' && c != ':') {
+    messageBuffer[messageIndex++] = c;
+  }else if(c == ':'){
+    messageBuffer[messageIndex] = 0;
+    if(FLAG_isSelectorSetting) {
+      selectorBuffer = atoi(messageBuffer); // Data was Selector Number
+      FLAG_isWrite = true; // Next data is value to write
+    } else {
+      strcpy(variableNameBuffer, messageBuffer); // Data was variableName
+      FLAG_isSelectorSetting = true; // Next data is selector setting
+    }
+    messageIndex = 0;
+  }else {
+    messageBuffer[messageIndex] = 0;
+    if(FLAG_isWrite){
+      strcpy(valueBuffer, messageBuffer); // Data was new value
+    } else if(FLAG_isSelectorSetting){
+      selectorBuffer = atoi(messageBuffer); // Data was Selector Number
+    } else{
+      selectorBuffer = 0; // No Selector Setting was sent
+      strcpy(variableNameBuffer, messageBuffer); // Data was variable name
+    }
+    FLAG_isSelectorSetting = false;
+    FLAG_messageReceived = true;
+    messageIndex = 0;
+  }
+}
