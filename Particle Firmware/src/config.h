@@ -1,9 +1,8 @@
-#pragma once
+#ifndef CONFIG_H
+#define CONFIG_H
 
 #define THIS_PRODUCT_ID 7951
 #define THIS_PRODUCT_VERSION 5
-PRODUCT_ID(THIS_PRODUCT_ID);
-PRODUCT_VERSION(THIS_PRODUCT_VERSION);
 
 #define MOTORA_ENABLE_PIN D0
 #define MOTORA_DIR_PIN D1
@@ -26,8 +25,13 @@ PRODUCT_VERSION(THIS_PRODUCT_VERSION);
 #define SELECTOR_SWITCH_3 A5
 #define SELECTOR_SWITCH_4 A6
 
+//  EEPROM Structure Definition
+//    When changing the structure of EEPROM, increase THIS_EEPROM_VERSION, this
+//    will cause EEPROM of previous versions to reset to default.
+#define THIS_EEPROM_VERSION 2
+
 struct prom_settings {
-  bool version;
+  uint32_t version;
   uint32_t stepsPerMlA;
   uint32_t stepsPerMlB;
   // Selector Based Settings
@@ -42,7 +46,7 @@ struct prom_settings {
 const uint32_t settingsAddr = 0;
 
 const prom_settings defaultSettings = {
-  0,
+  THIS_EEPROM_VERSION,
   128, // stepsPerMlA
   128, // stepsPerMlB
   {3000,3000,3000,3000,3000}, // flowRate
@@ -52,3 +56,5 @@ const prom_settings defaultSettings = {
   {75,75,75,75,75}, // autoReverseB
   {3785,3785,3785,3785,3785} // volume
 };
+
+#endif

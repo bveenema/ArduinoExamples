@@ -4,10 +4,11 @@ void serialCommandHander(char* commandName, uint32_t selector, char* newValue, b
   Serial.print(commandName);
   Serial.print(':');
 
+  bool foundCommand = false;
   for(int i=0; commandList[i].name != NULL; i++){
     if(strcmp(commandList[i].name, commandName) == 0){
       uint32_t tempSelector = selector;
-      if(commandList[i].isSelectorConfigured) tempSelector = 0;
+      if(!commandList[i].isSelectorConfigured) tempSelector = 0;
 
       // handle setting if write
       if(isWrite){
@@ -15,14 +16,16 @@ void serialCommandHander(char* commandName, uint32_t selector, char* newValue, b
       }
 
       // report setting back to sender
-      if(commandList[i].setting) Serial.print(*commandList[i].setting);
+      if(commandList[i].setting) Serial.print(*(commandList[i].setting+tempSelector));
 
       // handle any action function
       if(commandList[i].action) commandList[i].action();
+
+      foundCommand = true;
       break;
-    } else {
-      Serial.print("NOT Recognized");
     }
-    Serial.print("\n");
   }
+  if(!foundCommand) Serial.print("NOT Recognized");
+
+  Serial.print("\n");
 }

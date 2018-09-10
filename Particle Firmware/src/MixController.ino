@@ -11,6 +11,9 @@
 #include <clickButton.h>
 #include "SerialSettings.h"
 
+PRODUCT_ID(THIS_PRODUCT_ID);
+PRODUCT_VERSION(THIS_PRODUCT_VERSION);
+
 SYSTEM_THREAD(ENABLED);
 SYSTEM_MODE(SEMI_AUTOMATIC);
 uint32_t wifiStatus = 0;
@@ -26,7 +29,10 @@ char valueBuffer[32];
 uint32_t selectorBuffer;
 uint8_t messageIndex = 0;
 
+char currentError[30] = "none";
+
 int selector = 0;
+bool changeState = false;
 
 
 AccelStepper motorA(AccelStepper::DRIVER, MOTORA_STEP_PIN, MOTORA_DIR_PIN);
@@ -48,7 +54,7 @@ void setup() {
   Serial.begin(57600);
 
   EEPROM.get(settingsAddr, settings);
-  if(settings.version != 0) {
+  if(settings.version != THIS_EEPROM_VERSION) {
     // Memory was not previously set, initialize
     settings = defaultSettings;
   }
@@ -99,8 +105,6 @@ void loop() {
   button.Update();
   remote.Update();
 
-  static bool changeState = false;
-
   // Check Wifi Status Setting
   static unsigned int previousWifiStatus = 0;
   if(wifiStatus != previousWifiStatus){
@@ -128,7 +132,7 @@ void loop() {
     motorB.setSpeed(0);
     digitalWrite(MOTORA_ENABLE_PIN, HIGH); // Disable Motor A
     digitalWrite(MOTORB_ENABLE_PIN, HIGH); // Disable Motor B
-    if(changeState == true) STATE_mixer = 1;
+    if(changeState == true) { Serial.println("Changing State"); STATE_mixer = 1; }
   }else if(STATE_mixer == 1){ // Mixing Calculations
     motorSpeedA = calculateMotorSpeed(settings.flowRate[selector], settings.ratioA[selector], settings.ratioB[selector], settings.stepsPerMlA);
     motorSpeedB = calculateMotorSpeed(settings.flowRate[selector], settings.ratioB[selector], settings.ratioA[selector], settings.stepsPerMlB);

@@ -15,10 +15,12 @@ extern uint8_t STATE_mixer;
 extern bool changeState;
 extern int selector;
 extern uint32_t wifiStatus;
+extern char currentError[30];
 
 // Command Functions
 //      ** must take no arguments and return 'void'
 inline void printCurrentSelector(){ Serial.print(selector); }
+inline void printCurrentError(){ Serial.print(currentError); }
 inline void printFirmwareID(){ Serial.print(THIS_PRODUCT_ID); }
 inline void printMixerState(){ Serial.print(STATE_mixer); }
 inline void printMotorSpeedA(){ Serial.print(motorSpeedA); }
@@ -32,13 +34,8 @@ inline void printCloudStatus(){
     Serial.print("Not Available");
   }
 }
-
-
 inline void toggleMotor(){ changeState = true; Serial.print("N/A"); }
 inline void getDeviceName(){ Particle.publish("particle/device/name", NULL, 60, PRIVATE); Serial.print("wait"); }
-
-
-
 
 // Command Declarations
 typedef struct {
@@ -52,7 +49,9 @@ const commandSet commandList[] = {
   {"action", NULL, NULL, printMixerState},
   {"autoReverseA", settings.autoReverseA, true, NULL},
   {"autoReverseB", settings.autoReverseB, true, NULL},
-  {"couldStatus", NULL, NULL, printCloudStatus},
+  {"cloudStatus", NULL, NULL, printCloudStatus},
+  {"error", NULL, NULL, printCurrentError},
+  {"eepromVersion", &settings.version, false, NULL},
   {"firmwareID", NULL, NULL, printFirmwareID},
   {"flowRate", settings.flowRate, true, NULL},
   {"motorSpeedA", NULL, NULL, printMotorSpeedA},
@@ -64,6 +63,7 @@ const commandSet commandList[] = {
   {"selector", NULL, NULL, printCurrentSelector},
   {"stepsPerMlA", &settings.stepsPerMlA, false, NULL},
   {"stepsPerMlB", &settings.stepsPerMlB, false, NULL},
+  {"toggleMotor", NULL, NULL, toggleMotor},
   {"version", NULL, NULL, printProductVersion},
   {"volume", settings.volume, true, NULL},
   {"wifiStatus", &wifiStatus, false, NULL },
