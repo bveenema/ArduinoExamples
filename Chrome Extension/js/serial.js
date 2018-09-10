@@ -1,10 +1,14 @@
 var connectionId = -1;
 var readBuffer = "";
+var serialStatus = "Not Connected";
 
 function sendMessage(message) {
   let encoder = new TextEncoder();
   let buffer = encoder.encode(message + '\n'); // add newline and encode message for transmission
-  chrome.serial.send(connectionId, buffer, function(sendInfo){});
+  chrome.serial.send(connectionId, buffer, function(sendInfo){
+    // console.log(sendInfo);
+    // if(sendInfo.error) isConnected = false;
+  });
 };
 
 function recieveData(readInfo) {
@@ -36,7 +40,7 @@ function recieveData(readInfo) {
       }
       if(message.variableName === "numSelectors"){
         buildSelectorPicker(message.value);
-        showVersionedElements(document.getElementById("version").getElementsByTagName('span')[0].innerText);
+        toggleVersionedElements(document.getElementById("version").getElementsByTagName('span')[0].innerText);
       }
 
       if(variable != null){
@@ -76,29 +80,62 @@ function onOpen(connectionInfo) {
   console.log("Getting FW Version")
   sendMessage("version");
 
-  //getInitialValues();
+
+  connectionManager();
 };
+
+
+function connectionManager(){
+  let killConnectionManager = false;
+  chrome.serial.getInfo(connectionId, function(ConnectionInfo){
+    if(ConnectionInfo.paused) {
+      isConnected = false;
+      haveVersion = false;
+      setStatus("Disconnected");
+      beginSerial();
+      timeouts.forEach(function(timeout){
+        clearTimeout(timeout);
+      });
+      killConnectionManager = true;
+    }
+    if(!killConnectionManager){
+      setTimeout(function(){
+        connectionManager();
+      }, 2000);
+    }
+  });
+}
 
 function setStatus(status) {
   document.getElementById('status').innerText = status;
-  if(status === 'Connected') isConnected = 1;
+  serialStatus = status;
 }
 
 function buildDevicePicker(devices) {
   var eligibleDevices = devices.filter(function(device) {
     return device.productId === 49158 && device.vendorId === 11012;
   });
+  if(eligibleDevices.length === 0){
+    console.log('no eligibleDevices');
+    setTimeout(function(){
+      beginSerial();
+    },5000);
+  }
   console.log("Eligible Devices: ");
   console.log(eligibleDevices);
   var devicePicker = document.getElementById('device-picker');
   devicePicker.innerHTML = "";
-  eligibleDevices.forEach(function(device) {
-    var deviceOption = document.createElement('option');
-    let deviceName = device.displayName + ' (' + device.path + ')';
-    deviceOption.value = deviceOption.innerText = deviceName;
-    deviceOption.id = device.path;
-    devicePicker.appendChild(deviceOption);
-  });
+  if(eligibleDevices.length > 0){
+    eligibleDevices.forEach(function(device) {
+      var deviceOption = document.createElement('option');
+      let deviceName = device.displayName + ' (' + device.path + ')';
+      deviceOption.value = deviceOption.innerText = deviceName;
+      deviceOption.id = device.path;
+      devicePicker.appendChild(deviceOption);
+    });
+    openSelectedPort();
+  }
+
 
   devicePicker.onchange = function() {
     if (connectionId != -1) {
@@ -121,14 +158,14 @@ function beginSerial() {
       chrome.serial.disconnect(connectionId, function(){
         console.log('disconnected!');
         chrome.serial.getDevices(function(ports) {
+          console.log("Ports: ",ports)
           buildDevicePicker(ports)
-          openSelectedPort();
         });
       });
     }else {
       chrome.serial.getDevices(function(ports) {
+        console.log("Ports: ",ports)
         buildDevicePicker(ports)
-        openSelectedPort();
       });
     }
   });

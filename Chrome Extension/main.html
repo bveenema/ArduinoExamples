@@ -65,7 +65,7 @@
       <div id="advanced-expander"><img src="assets/plus.svg" alt="+"><span id="advanced-expandertext">Advanced</span></div>
       <div id="advanced-input" style="display: none;">
         <ul>
-          <li class="advanced" name="flowRate">
+          <li class="advanced" name="flowRate" id="flowRate">
             Flow Rate (ml/min):
             <input class="textbox" type="number" min="0" max="10000" step="10" value="0" disabled>
             Current: <span>0</span>
@@ -130,7 +130,7 @@
         </li>
         <button id="toggle-motor" type="button">Toggle Pumps</button>
       </ul>
-      <button id="toggle-wifi" type="button" name="wifiStatus" class="showMinVersion-5" hidden>Enable Wifi</button>
+      <button id="toggle-wifi" type="button" class="showMinVersion-5" hidden>Enable Wifi</button>
 
       <ul id="error" style="display:block">
         <li class="controller-state-once" name="error">

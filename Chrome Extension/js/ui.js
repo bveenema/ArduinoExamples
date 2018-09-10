@@ -1,5 +1,4 @@
 let isAdvanced = false;
-let isConnected = false;
 
 function uiOnLoad(){
 
@@ -66,8 +65,8 @@ function uiOnLoad(){
 
   }
 
-  // Initialize Connection manager
-  connectionManager();
+  // Initialize Connection view
+  setConnectionView();
 }
 
 function updateSibling(sibling,value){
@@ -137,22 +136,38 @@ function advancedOptionsManager(advancedExpander){
   }
 }
 
-function connectionManager(){
-  if(isConnected) { // Enable all inputs
+function setConnectionView(){
+  if(serialStatus === "Connected") { // Enable all inputs
     let inputs = document.getElementsByTagName('input');
     for(let i=0; i<inputs.length; i++){
       inputs[i].disabled = false;
     }
-  } else {  // Disable all inputs
-    let inputs = document.getElementsByTagName('input');
-    for(let i=0; i<inputs.length; i++){
-      inputs[i].disabled = true;
-    }
+  } else {
+    // Disable all inputs and set all variables to default
+    allVariables.forEach(function(variable){
+      let inputs = variable.element.getElementsByTagName('input');
+      for(let i=0; i<inputs.length; i++){
+        inputs[i].disabled = true;
+      }
+      if(variable.type === 'slide-box') updateSlideBoxValue(variable.name, variable.defaultValue)
+      else if(variable.type === 'advanced') updateAdvancedValue(variable.name, variable.defaultValue)
+      else if(variable.type === 'controller-state-infrequent' ||
+              variable.type === 'controller-state-frequent' ||
+              variable.type === 'controller-state-once') {
+                updateControllerStateValue(variable.name, variable.defaultValue)
+              }
+    })
+
+    // hide Versioned Elements
+    toggleVersionedElements(999, false);
+
+    // Clear Device Picker
+
   }
-  setTimeout(function(){connectionManager()}, 500);
+  setTimeout(function(){setConnectionView()}, 500);
 }
 
-function showVersionedElements(ver){
+function toggleVersionedElements(ver, show = true){
   let version = 0;
   if(isNaN(Number(ver))) {
     return;
@@ -181,13 +196,17 @@ function showVersionedElements(ver){
   // display element if element.version is <= version
   elements.forEach(function(element){
     if((element.version <= version) && (version < 1000)){
-      document.getElementById(element.id).removeAttribute('hidden');
+      if(show === true){
+        document.getElementById(element.id).removeAttribute('hidden');
+      } else {
+        document.getElementById(element.id).setAttribute('hidden', true);
+      }
     }
   })
 }
 
 function buildSelectorPicker(numSelectors) {
-  console.log("Building Selectors: " + numSelectors)
+  console.log("Building Selectors: " + numSelectors);
 
   let selector = document.getElementById('selector-picker');
   selector.innerHTML = "";

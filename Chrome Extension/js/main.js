@@ -129,7 +129,12 @@ function getInfrequentStateValues(){
 function getAllVariables(){
   allVariables =  Array.from(document.querySelectorAll('[name]'))
                 .map(function(element){
-                  return {type: element.className,  name: element.attributes.name.value};
+                  return {
+                    type: element.className,
+                    name: element.attributes.name.value,
+                    element: element,
+                    defaultValue: element.getElementsByTagName('span')[0].innerText
+                  };
               });
   console.log(allVariables);
 }
