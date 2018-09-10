@@ -8,20 +8,8 @@
 // Wifi Status
 extern uint32_t wifiStatus;
 
-// Serial Communication
-extern bool FLAG_messageReceived;
-extern bool FLAG_isWrite;
-extern bool FLAG_isSelectorSetting;
-const size_t messageBufferSize = 128;
-extern char messageBuffer[messageBufferSize];
-extern char variableNameBuffer[32];
-extern char valueBuffer[32];
-extern uint32_t selectorBuffer;
-extern uint8_t messageIndex;
-
 // Error Status
 extern char currentError[30];
-
 
 extern int selector;
 

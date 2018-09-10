@@ -1,5 +1,15 @@
 #include "SerialSettings.h"
 
+// Variables for handling serial protocol
+bool FLAG_isWrite = false;
+bool FLAG_isSelectorSetting = false;
+const size_t messageBufferSize = 128;
+char messageBuffer[messageBufferSize];
+char variableNameBuffer[32];
+char valueBuffer[32];
+uint32_t selectorBuffer = 0;
+uint8_t messageIndex = 0;
+
 void serialCommandHander(char* commandName, uint32_t selector, char* newValue, bool isWrite){
   Serial.print(commandName);
   Serial.print(':');
@@ -43,7 +53,7 @@ void readSerial(char c){
       READ  --> flowRate:1
   */
   if(messageIndex >= messageBufferSize) messageIndex = 0;
-  
+
   if(c != '\n' && c != ':') {
     messageBuffer[messageIndex++] = c;
   }else if(c == ':'){
@@ -67,7 +77,14 @@ void readSerial(char c){
       strcpy(variableNameBuffer, messageBuffer); // Data was variable name
     }
     FLAG_isSelectorSetting = false;
-    FLAG_messageReceived = true;
     messageIndex = 0;
+
+    // Interpet the completed command
+    serialCommandHander(variableNameBuffer, selectorBuffer, valueBuffer, FLAG_isWrite);
+    valueBuffer[0] = 0;
+    if(FLAG_isWrite){
+      FLAG_isWrite = false;
+      EEPROM.put(settingsAddr, settings);
+    }
   }
 }

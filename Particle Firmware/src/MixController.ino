@@ -93,7 +93,6 @@ void loop() {
   }
 
   // Check setting selector
-
   int newSelector = checkSelectorSwitch();
   if(newSelector >= 0 && selector != newSelector){
     selector = newSelector;
@@ -107,7 +106,7 @@ void loop() {
     motorB.setSpeed(0);
     digitalWrite(MOTORA_ENABLE_PIN, HIGH); // Disable Motor A
     digitalWrite(MOTORB_ENABLE_PIN, HIGH); // Disable Motor B
-    if(changeState == true) { Serial.println("Changing State"); STATE_mixer = 1; }
+    if(changeState == true) { changeState = false; STATE_mixer = 1; }
   }else if(STATE_mixer == 1){ // Mixing Calculations
     motorSpeedA = calculateMotorSpeed(settings.flowRate[selector], settings.ratioA[selector], settings.ratioB[selector], settings.stepsPerMlA);
     motorSpeedB = calculateMotorSpeed(settings.flowRate[selector], settings.ratioB[selector], settings.ratioA[selector], settings.stepsPerMlB);
@@ -124,6 +123,7 @@ void loop() {
     motorA.runSpeed();
     motorB.runSpeed();
     if(changeState == true || (millis() - timeStartedMixing > timeToMix)){
+      changeState = false;
       if(settings.autoReverseA[selector] > 0 || settings.autoReverseB[selector] > 0) STATE_mixer = 3;
       else STATE_mixer = 0;
     }
@@ -144,20 +144,9 @@ void loop() {
   }
 
   // check buttons
-  changeState = false;
   if(button.clicks != 0 || remote.clicks !=0) changeState = true;
   if(remote.clicks != 0) Serial.println("Remote Pressed");
   if(button.clicks != 0) Serial.println("Button Pressed");
-
-  if(FLAG_messageReceived){
-    serialCommandHander(variableNameBuffer, selectorBuffer, valueBuffer, FLAG_isWrite);
-    valueBuffer[0] = 0;
-    FLAG_messageReceived = false;
-    if(FLAG_isWrite){
-      FLAG_isWrite = false;
-      EEPROM.put(settingsAddr, settings);
-    }
-  }
 
 }
 

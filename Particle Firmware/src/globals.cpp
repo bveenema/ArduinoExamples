@@ -3,19 +3,8 @@
 // Wifi Status
  uint32_t wifiStatus = 0;
 
-// Serial Communication
-bool FLAG_messageReceived = false;
-bool FLAG_isWrite = false;
-bool FLAG_isSelectorSetting = false;
-char messageBuffer[messageBufferSize];
-char variableNameBuffer[32];
-char valueBuffer[32];
-uint32_t selectorBuffer = 0;
-uint8_t messageIndex = 0;
-
 // Error Status
 char currentError[30] = "none";
-
 
 int selector = 0;
 

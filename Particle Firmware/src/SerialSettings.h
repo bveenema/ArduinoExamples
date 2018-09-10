@@ -63,7 +63,6 @@ const commandSet commandList[] = {
   {NULL, NULL, NULL, NULL}
   };
 
-void serialCommandHander(char* commandName, uint32_t selector, char* newValue, bool isWrite);
 void readSerial(char c);
 
 #endif
