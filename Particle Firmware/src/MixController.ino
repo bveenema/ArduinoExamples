@@ -7,6 +7,7 @@
 
 #include "Particle.h"
 #include "config.h"
+#include "globals.h"
 #include "AccelStepper.h"
 #include <clickButton.h>
 #include "SerialSettings.h"
@@ -16,38 +17,12 @@ PRODUCT_VERSION(THIS_PRODUCT_VERSION);
 
 SYSTEM_THREAD(ENABLED);
 SYSTEM_MODE(SEMI_AUTOMATIC);
-uint32_t wifiStatus = 0;
-
-bool FLAG_messageReceived = false;
-bool FLAG_isWrite = false;
-bool FLAG_isSelectorSetting = false;
-
-const size_t messageBufferSize = 128;
-char messageBuffer[messageBufferSize];
-char variableNameBuffer[32];
-char valueBuffer[32];
-uint32_t selectorBuffer;
-uint8_t messageIndex = 0;
-
-char currentError[30] = "none";
-
-int selector = 0;
-bool changeState = false;
-
 
 AccelStepper motorA(AccelStepper::DRIVER, MOTORA_STEP_PIN, MOTORA_DIR_PIN);
 AccelStepper motorB(AccelStepper::DRIVER, MOTORB_STEP_PIN, MOTORB_DIR_PIN);
-uint8_t STATE_mixer = 0; //0: Not Moving 1: Mixing 2: Start AutoReverse 3: AutoReversing
-uint32_t motorSpeedA = 0; //steps/s
-uint32_t motorSpeedB = 0; //steps/s
-bool FLAG_wasError = 0;
-bool FLAG_justReset = 0;
-#define ultimateMaxSpeed 15000
-#define autoReverseSpeed 4000
 
 ClickButton button(BUTTON_PIN, HIGH);
 ClickButton remote(REMOTE_PIN, HIGH);
-prom_settings settings;
 
 
 void setup() {

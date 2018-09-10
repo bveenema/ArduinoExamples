@@ -6,19 +6,12 @@
 #include "config.h"
 
 // Link to external variables
-//    ( variables of type other than uint32_t and Read only variables should
-//      be returned via Command Function)
-extern struct prom_settings settings;
-extern uint32_t motorSpeedA;
-extern uint32_t motorSpeedB;
-extern uint8_t STATE_mixer;
-extern bool changeState;
-extern int selector;
-extern uint32_t wifiStatus;
-extern char currentError[30];
+#include "globals.h"
 
 // Command Functions
 //      ** must take no arguments and return 'void'
+//      ** variables of type other than uint32_t and Read only variables should
+//         be returned via Command Function
 inline void printCurrentSelector(){ Serial.print(selector); }
 inline void printCurrentError(){ Serial.print(currentError); }
 inline void printFirmwareID(){ Serial.print(THIS_PRODUCT_ID); }
