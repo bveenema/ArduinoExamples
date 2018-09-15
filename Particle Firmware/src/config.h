@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define THIS_PRODUCT_ID 7951
-#define THIS_PRODUCT_VERSION 5
+#define THIS_PRODUCT_VERSION 6
 
 #define MOTORA_ENABLE_PIN D0
 #define MOTORA_DIR_PIN D1
