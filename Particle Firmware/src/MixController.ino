@@ -174,6 +174,7 @@ int checkSelectorSwitch() {
 }
 
 void serialEvent(){
+  if(WiFi.listening()) return;
   readSerial(Serial.read());
 }
 
