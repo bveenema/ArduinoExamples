@@ -28,7 +28,7 @@ To install the user interface:
   - Mix Controller requires access to your computers serial devices, click *Add App* to approve
   ![Img of Accept Permissions][JPG_acceptPermissions]
 
-5. See [App Readme](../Chrome%20Extension/README.md) for information on launching and using the app
+5. See [App Readme](https://github.com/bveenema/MixController/blob/master/Chrome%20Extension/README.md) for information on launching and using the app
 
 ### Create Shortcuts
 To create Desktop/Start Menu/Taskbar shortcuts:
