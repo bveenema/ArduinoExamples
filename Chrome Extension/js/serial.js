@@ -57,7 +57,7 @@ function recieveData(readInfo) {
         console.log("Message: ", message.variableName, message.value);
       }
 
-      //console.log(message.variableName + ": " + message.value);
+      // console.log(message.variableName + ": " + message.value);
 
 
     });

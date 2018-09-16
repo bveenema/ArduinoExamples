@@ -54,17 +54,19 @@ function getInitialValues() {
     return variable.name;
   })//["flowRate", "ratioA", "ratioB", "autoReverse", "firmwareID", "version", "name", "stepsPerMlA", "stepsPerMlB"];
 
-  if(this.index === undefined){
-    this.index = 0;
+  if(this.initialIndex === undefined){
+    this.initialIndex = 0;
   }else{
-    ++this.index;
+    ++this.initialIndex;
   }
-  if(this.index > variables.length-1){
-    this.index = 0;
+  if(this.initialIndex > variables.length-1){
+    this.initialIndex = 0;
   }
 
-  sendMessage(formatMessage(variables[this.index]));
-  if(this.index < variables.length-1) timeouts.push(setTimeout(function(){getInitialValues()},10));
+  // console.log("Current Variable: ", variables[this.initialIndex]);
+
+  sendMessage(formatMessage(variables[this.initialIndex]));
+  if(this.initialIndex < variables.length-1) timeouts.push(setTimeout(function(){getInitialValues()},10));
   else {
     timeouts.forEach(function(timeout){
       clearTimeout(timeout);
@@ -107,18 +109,18 @@ function getInfrequentStateValues(){
     return variable.name;
   });
 
-  if(this.index === undefined){
-    this.index = 0;
+  if(this.infrequentIndex === undefined){
+    this.infrequentIndex = 0;
   }else{
-    ++this.index;
+    ++this.infrequentIndex;
   }
-  if(this.index > variables.length-1){
-    this.index = 0;
+  if(this.infrequentIndex > variables.length-1){
+    this.infrequentIndex = 0;
   }
 
-  //console.log('infrequent: ' + variables[this.index]);
-  sendMessage(formatMessage(variables[this.index]));
-  if(this.index < variables.length-1) timeouts.push(setTimeout(function(){getInfrequentStateValues()},10));
+  //console.log('infrequent: ' + variables[this.infrequentIndex]);
+  sendMessage(formatMessage(variables[this.infrequentIndex]));
+  if(this.infrequentIndex < variables.length-1) timeouts.push(setTimeout(function(){getInfrequentStateValues()},10));
   else {
     timeouts.push(setInterval(function(){getFrequentStateValues()},frequentInterval));
     timeouts.push(setInterval(function(){getInfrequentStateValues()},infrequentInterval));
