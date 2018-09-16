@@ -12,34 +12,28 @@ A chrome extension user interface and embedded firmware for controlling mixing p
 ## User Interface (Chrome Extension)
 ### Installation
 To install the user interface:
-1. Download and extract the zip file
-![Img of where to go to download ZIP][JPG_downloadZIP]
+1. Download the CRX file from the latest release
+  - Go to [MixController/releases](https://github.com/bveenema/MixController/releases)
+  - Click the **.crx** file in this *Assets* of the latest realese
+  ![Img of where to download CRX file][JPG_downloadCRX]
 
-1. Open the **Extensions** page in Chrome
+2. Open the **Extensions** page in Chrome
 ![Type "chrome://extensions" in the address bar][JPG_GoToExtensions]
 
-1. Turn on **Developer Mode** and **Load unpacked extension...** . Navigate to the extracted zip file and select the **Chrome Extension** folder.  Click **OK**
-![Check the box next to "Developer Mode" and then click "Load unpacked extension"][JPG_LoadUnpackedExtension]
+3. Install the App
+  - Click and drag the CRX file into the *Extensions* window
+  ![Install the App][JPG_installApp]
 
-1. **Mix Controller** extension should be loaded
-![Mix Controller is at top of extension list][JPG_MixControllerExtension]
+4. Accept the Permsions
+  - Mix Controller requires access to your computers serial devices, click *Add App* to approve
+  ![Img of Accept Permissions][JPG_acceptPermissions]
+
+5. See [App Readme](../Chrome Extension/README.md) for information on launching and using the app
 
 ### Create Shortcuts
 To create Desktop/Start Menu/Taskbar shortcuts:
 1. Click **Details** under Mix Controller, select **Create Shortcuts...** , select or deselect the shortcuts you want to create , click **Create**
 ![How to create shortcuts][JPG_CreateShortcuts]
-
-### How to Use
-To update the settings on the firmware
-
-1. Launch **Mix Controller** app/extension
-1. Select the device in the drop-down list
-1. Change settings using the sliders or text boxes
-  * Use slider for quick adjustments
-  * Text box will update with slider value
-  * Exact numbers can be typed in the box
-  * **Current** displays the value the actual controller recognizes and has stored
-
 
 ## Firmware (Mixer Software)
 ### Driver Installation
@@ -69,11 +63,10 @@ Download the [Windows CLI Installer](https://binaries.particle.io/cli/installer/
 
 
 [JPG_downloadZIP]: ReadmeAssets/DownloadZip.jpg "How to download ZIP"
-
 [JPG_GoToExtensions]: ReadmeAssets/GoToExtensions.jpg "Or type \"chrome://extensions\" in the address bar"
-
 [JPG_LoadUnpackedExtension]: ReadmeAssets/LoadUnpackedExtension.jpg "Check the box next to \"Developer Mode\" and then click \"Load unpacked extension\""
-
 [JPG_MixControllerExtension]: ReadmeAssets/MixControllerExtension.jpg "Mix Controller Extension"
-
 [JPG_CreateShortcuts]: ReadmeAssets/CreateShortcuts.jpg "How to create shortcuts"
+[JPG_downloadCRX]: ReadmeAssets/downloadCRX.jpg "Where to download CRX"
+[JPG_installApp]: ReadmeAssets/installApp.jpg "Click and drag to install"
+[JPG_acceptPermissions]: ReadmeAssets/acceptPermission.jpg "Click Add App to accept serial permissions"
