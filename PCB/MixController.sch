@@ -6,11 +6,11 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "Mix Controller"
-Date "2018-07-18"
-Rev "V0.0.3"
+Date "2018-09-16"
+Rev "V0.0.6"
 Comp "Veenema Design Works"
 Comment1 "https://github.com/bveenema/MixController/releases"
-Comment2 "See Release V0.0.3 for additional files"
+Comment2 "See Release V0.0.6 for additional files"
 Comment3 ""
 Comment4 ""
 $EndDescr
