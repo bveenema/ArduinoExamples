@@ -16,8 +16,8 @@ inline void printCurrentSelector(){ Serial.print(selector); }
 inline void printCurrentError(){ Serial.print(currentError); }
 inline void printFirmwareID(){ Serial.print(THIS_PRODUCT_ID); }
 inline void printMixerState(){ Serial.print(STATE_mixer); }
-inline void printMotorSpeedA(){ Serial.print(motorSpeedA); }
-inline void printMotorSpeedB(){ Serial.print(motorSpeedB); }
+inline void printMotorSpeedResin(){ Serial.print(motorSpeedResin); }
+inline void printMotorSpeedHardener(){ Serial.print(motorSpeedHardener); }
 inline void printNumSelectors(){ Serial.print(NUM_SELECTORS); }
 inline void printProductVersion(){ Serial.print(THIS_PRODUCT_VERSION); }
 inline void printCloudStatus(){
@@ -40,22 +40,22 @@ typedef struct {
 
 const commandSet commandList[] = {
   {"action", NULL, NULL, printMixerState},
-  {"autoReverseA", settings.autoReverseA, true, NULL},
-  {"autoReverseB", settings.autoReverseB, true, NULL},
+  {"autoReverseResin", settings.autoReverseResin, true, NULL},
+  {"autoReverseHardener", settings.autoReverseHardener, true, NULL},
   {"cloudStatus", NULL, NULL, printCloudStatus},
   {"error", NULL, NULL, printCurrentError},
   {"eepromVersion", &settings.version, false, NULL},
   {"firmwareID", NULL, NULL, printFirmwareID},
   {"flowRate", settings.flowRate, true, NULL},
-  {"motorSpeedA", NULL, NULL, printMotorSpeedA},
-  {"motorSpeedB", NULL, NULL, printMotorSpeedB},
+  {"motorSpeedResin", NULL, NULL, printMotorSpeedResin},
+  {"motorSpeedHardener", NULL, NULL, printMotorSpeedHardener},
   {"name", NULL, NULL, getDeviceName},
   {"numSelectors", NULL, NULL, printNumSelectors},
-  {"ratioA", settings.ratioA, true, NULL},
-  {"ratioB", settings.ratioB, true, NULL},
+  {"ratioResin", settings.ratioResin, true, NULL},
+  {"ratioHardener", settings.ratioHardener, true, NULL},
   {"selector", NULL, NULL, printCurrentSelector},
-  {"stepsPerMlA", &settings.stepsPerMlA, false, NULL},
-  {"stepsPerMlB", &settings.stepsPerMlB, false, NULL},
+  {"stepsPerMlResin", &settings.stepsPerMlResin, false, NULL},
+  {"stepsPerMlHardener", &settings.stepsPerMlHardener, false, NULL},
   {"toggleMotor", NULL, NULL, toggleMotor},
   {"version", NULL, NULL, printProductVersion},
   {"volume", settings.volume, true, NULL},

@@ -4,17 +4,17 @@
 #include <stdint.h>
 
 #define THIS_PRODUCT_ID 7951
-#define THIS_PRODUCT_VERSION 6
+#define THIS_PRODUCT_VERSION 7
 
-#define MOTORA_ENABLE_PIN D0
-#define MOTORA_DIR_PIN D1
-#define MOTORA_STEP_PIN D2
-#define MOTORA_ASSERT_PIN D3
+#define MOTOR_RESIN_ENABLE_PIN D0
+#define MOTOR_RESIN_DIR_PIN D1
+#define MOTOR_RESIN_STEP_PIN D2
+#define MOTOR_RESIN_ASSERT_PIN D3
 
-#define MOTORB_ENABLE_PIN D4
-#define MOTORB_DIR_PIN D5
-#define MOTORB_STEP_PIN D6
-#define MOTORB_ASSERT_PIN D7
+#define MOTOR_HARDENER_ENABLE_PIN D4
+#define MOTOR_HARDENER_DIR_PIN D5
+#define MOTOR_HARDENER_STEP_PIN D6
+#define MOTOR_HARDENER_ASSERT_PIN D7
 
 #define BUTTON_PIN A0
 #define ERROR_LED_PIN A1
@@ -34,14 +34,14 @@
 
 struct prom_settings {
   uint32_t version;
-  uint32_t stepsPerMlA;
-  uint32_t stepsPerMlB;
+  uint32_t stepsPerMlResin;
+  uint32_t stepsPerMlHardener;
   // Selector Based Settings
   uint32_t flowRate[NUM_SELECTORS];
-  uint32_t ratioA[NUM_SELECTORS];
-  uint32_t ratioB[NUM_SELECTORS];
-  uint32_t autoReverseA[NUM_SELECTORS];
-  uint32_t autoReverseB[NUM_SELECTORS];
+  uint32_t ratioResin[NUM_SELECTORS];
+  uint32_t ratioHardener[NUM_SELECTORS];
+  uint32_t autoReverseResin[NUM_SELECTORS];
+  uint32_t autoReverseHardener[NUM_SELECTORS];
   uint32_t volume[NUM_SELECTORS];
 };
 
@@ -49,13 +49,13 @@ const uint32_t settingsAddr = 0;
 
 const prom_settings defaultSettings = {
   THIS_EEPROM_VERSION,
-  128, // stepsPerMlA
-  128, // stepsPerMlB
+  128, // stepsPerMlResin
+  128, // stepsPerMlHardener
   {3000,3000,3000,3000,3000}, // flowRate
-  {200,200,200,200,200}, // ratioA
-  {100,100,100,100,100}, // ratioB
-  {150,150,150,150,150}, // autoReverseA
-  {75,75,75,75,75}, // autoReverseB
+  {200,200,200,200,200}, // ratioResin
+  {100,100,100,100,100}, // ratioHardener
+  {150,150,150,150,150}, // autoReverseResin
+  {75,75,75,75,75}, // autoReverseHardener
   {3785,3785,3785,3785,3785} // volume
 };
 

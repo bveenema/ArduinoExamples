@@ -46,7 +46,7 @@ void readSerial(char c){
     {variableName}:{selector}:{value} for a write, and
     {variableName}:{selector} (with no ":") for a read
   followed by a newline character.
-  **if a variable not requiring a selector (ex. stepsPerMlA), then {selector}
+  **if a variable not requiring a selector (ex. stepsPerMlResin), then {selector}
     can be any value and is ignored by the interpreter
 
   ex. WRITE --> flowRate:1:250

@@ -13,8 +13,8 @@ bool changeState = false;
 uint8_t STATE_mixer = 0; //0: Not Moving 1: Mixing 2: Start AutoReverse 3: AutoReversing
 
 // Motor Info
-uint32_t motorSpeedA = 0; //steps/s
-uint32_t motorSpeedB = 0; //steps/s
+uint32_t motorSpeedResin = 0; //steps/s
+uint32_t motorSpeedHardener = 0; //steps/s
 const unsigned int ultimateMaxSpeed = 15000;
 const unsigned int autoReverseSpeed = 4000;
 
