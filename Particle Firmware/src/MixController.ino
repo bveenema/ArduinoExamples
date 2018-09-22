@@ -47,7 +47,7 @@ void setup() {
   pinMode(MOTOR_HARDENER_ASSERT_PIN, INPUT_PULLDOWN);
 
   pinMode(BUTTON_PIN, INPUT);
-  pinMode(ERROR_LED_PIN, OUTPUT);
+  pinMode(STATUS_LED_PIN, OUTPUT);
   pinMode(REMOTE_PIN, INPUT);
 
   pinMode(SELECTOR_SWITCH_1, INPUT_PULLDOWN);
@@ -60,7 +60,7 @@ void setup() {
 
   delay(100);
 
-  digitalWrite(ERROR_LED_PIN, LOW);
+  digitalWrite(STATUS_LED_PIN, LOW);
 
   digitalWrite(MOTOR_RESIN_ENABLE_PIN, LOW); // Enable Motor A
   digitalWrite(MOTOR_HARDENER_ENABLE_PIN, LOW); // Enable Motor B

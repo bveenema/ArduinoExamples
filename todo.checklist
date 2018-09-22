@@ -16,8 +16,9 @@ App
   - Add output(s) for current charge pressure
 
 Firmware
-  - Update FW to version 7
-  - Rename A to "Resin" and B to "Hardener"
+  + Update FW to version 7
+  + Rename A to "Resin" and B to "Hardener"
+  - Update pins
   - Serial Interface Module
     - Rename SerialSettings to 'SerialInterface'
     - Add 'charge pressure' handler
@@ -38,20 +39,19 @@ Firmware
     - Blink for Purge, on continous for preset values, fast blink for motor error
 
 Electronics
-  - Update Electronics to v0.0.7
-  - Spec Pressure Transducer(s)
-  - Spec Rocker Switch
-  - Spec Pail Sensor
-  - Spec LED
-  ? Spec I/O Expander
-  - Order Components
-  - New Circuits
-    - Pressure Transducer
-    - Pail Sensor
-    - LED
-    ? I/O Expander
-    - Rocker Switch
+  + Update Electronics to v0.0.7
+  + Spec Pressure Transducer(s)
+  + Spec Rocker Switch
+  + Spec Pail Sensor
+  + Spec LED
+  + Spec Push Button
+  + Order Components
+  + New Circuits
+    + Pressure Transducer
+    + Pail Sensor
+    + LED
+    + Rocker Switch
 
 Pneumatics
-  - Spec Pressure relief valve
-  - Order Components
+  + Spec Pressure relief valve
+  + Order Components

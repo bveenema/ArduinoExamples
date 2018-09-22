@@ -16,16 +16,20 @@
 #define MOTOR_HARDENER_STEP_PIN D6
 #define MOTOR_HARDENER_ASSERT_PIN D7
 
-#define BUTTON_PIN A0
-#define ERROR_LED_PIN A1
-#define REMOTE_PIN A2
+#define PRESS_SNS_PIN A0
+#define PAIL_SNS_PIN A1
+#define PUMP_EN A2
+
+#define BUTTON_PIN A3
+#define STATUS_LED_PIN A4
+#define REMOTE_PIN A5
+
+#define SELECTOR_SWITCH_4 DAC
+#define SELECTOR_SWITCH_3 WKP
+#define SELECTOR_SWITCH_2 RX
+#define SELECTOR_SWITCH_1 TX
 
 #define NUM_SELECTORS 5
-
-#define SELECTOR_SWITCH_1 A3
-#define SELECTOR_SWITCH_2 A4
-#define SELECTOR_SWITCH_3 A5
-#define SELECTOR_SWITCH_4 A6
 
 //  EEPROM Structure Definition
 //    When changing the structure of EEPROM, increase THIS_EEPROM_VERSION, this
