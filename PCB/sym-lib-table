@@ -27,4 +27,5 @@
   (lib (name contrib)(type Legacy)(uri ${KICAD_SYMBOL_DIR}/contrib.lib)(options "")(descr ""))
   (lib (name valves)(type Legacy)(uri ${KICAD_SYMBOL_DIR}/valves.lib)(options "")(descr ""))
   (lib (name particle)(type Legacy)(uri ${KIPRJMOD}/lib/particle.lib)(options "")(descr ""))
+  (lib (name proj)(type Legacy)(uri C:/MixController/PCB/proj.lib)(options "")(descr ""))
 )

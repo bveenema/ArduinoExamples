@@ -1,0 +1,1075 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>C:\MixController\PCB\MixController.sch</source>
+    <date>9/22/2018 4:59:09 PM</date>
+    <tool>Eeschema (5.0.0)</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>Mix Controller</title>
+        <company>Veenema Design Works</company>
+        <rev>V0.0.7</rev>
+        <date>2018-09-22</date>
+        <source>MixController.sch</source>
+        <comment number="1" value="https://github.com/bveenema/MixController/releases"/>
+        <comment number="2" value="See Release V0.0.6 for additional files"/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="U1">
+      <value>PARTICLE_PHOTON</value>
+      <datasheet>https://media.digikey.com/pdf/Data%20Sheets/Particle%20PDFs/Photon_v015_Web.pdf</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">PHOTONH</field>
+        <field name="Vendor">DigiKey</field>
+        <field name="Vendor P/N">1878-1000-ND</field>
+      </fields>
+      <libsource lib="particle" part="PARTICLE_PHOTON" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AD855AD</tstamp>
+    </comp>
+    <comp ref="D1">
+      <value>LED</value>
+      <datasheet>http://www.cree.com/led-components/media/documents/C503B-BAS-BAN-BCS-BCN-GAS-GAN-GCS-GCN-1094.pdf</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">C503B-GCS-CY0C0791</field>
+        <field name="Vendor">DigiKey</field>
+        <field name="Vendor P/N">C503B-GCS-CY0C0791-ND</field>
+      </fields>
+      <libsource lib="Device" part="LED" description="LED generic"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AD86215</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>330</value>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">~</field>
+        <field name="Vendor">House</field>
+        <field name="Vendor P/N">~</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AD862D6</tstamp>
+    </comp>
+    <comp ref="SW6">
+      <value>SW_Push</value>
+      <datasheet>https://www.e-switch.com/system/asset/product_line/data_sheet/1/PV1.pdf</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">PV1F240SS</field>
+        <field name="Vendor">DigiKey</field>
+        <field name="Vendor P/N">PV1F240SS-ND</field>
+      </fields>
+      <libsource lib="switches" part="SW_Push" description="Push button switch, generic, two pins"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5AD86C2C</tstamp>
+    </comp>
+    <comp ref="J5">
+      <value>PG7</value>
+      <datasheet>http://a.co/d/5Wgcdna</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">a16101300ux0476</field>
+        <field name="Vendor">Amazon</field>
+        <field name="Vendor P/N">B01MSQI150</field>
+      </fields>
+      <libsource lib="conn" part="Conn_01x02" description="Generic connector, single row, 01x02"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5B069086</tstamp>
+    </comp>
+    <comp ref="J6">
+      <value>PG7</value>
+      <datasheet>http://a.co/d/5Wgcdna</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">a16101300ux0476</field>
+        <field name="Vendor">Amazon</field>
+        <field name="Vendor P/N">B01MSQI150</field>
+      </fields>
+      <libsource lib="conn" part="Conn_01x02" description="Generic connector, single row, 01x02"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5B0690C9</tstamp>
+    </comp>
+    <comp ref="J14">
+      <value>PG7</value>
+      <datasheet>http://a.co/d/5Wgcdna</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">a16101300ux0476</field>
+        <field name="Vendor">Amazon</field>
+        <field name="Vendor P/N">B01MSQI150</field>
+      </fields>
+      <libsource lib="conn" part="Conn_01x08" description="Generic connector, single row, 01x08"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5B46BBE2</tstamp>
+    </comp>
+    <comp ref="J13">
+      <value>PG7</value>
+      <datasheet>http://a.co/d/5Wgcdna</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">a16101300ux0476</field>
+        <field name="Vendor">Amazon</field>
+        <field name="Vendor P/N">B01MSQI150</field>
+      </fields>
+      <libsource lib="conn" part="Conn_01x08" description="Generic connector, single row, 01x08"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5B46DB46</tstamp>
+    </comp>
+    <comp ref="J1">
+      <value>PG7</value>
+      <datasheet>http://a.co/d/5Wgcdna</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">a16101300ux0476</field>
+        <field name="Vendor">Amazon</field>
+        <field name="Vendor P/N">B01MSQI150</field>
+      </fields>
+      <libsource lib="conn" part="Conn_01x02" description="Generic connector, single row, 01x02"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5B7E7A55</tstamp>
+    </comp>
+    <comp ref="SW5">
+      <value>GRB136A05BB2</value>
+      <datasheet>http://switches-connectors-custom.cwind.com/Asset/GRB136A05BB2.pdf</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">GRB136A05BB2</field>
+        <field name="Vendor">DigiKey</field>
+        <field name="Vendor P/N">SW652-ND</field>
+      </fields>
+      <libsource lib="switches" part="SW_SPST" description="Single Pole Single Throw (SPST) switch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5B87AEFE</tstamp>
+    </comp>
+    <comp ref="K1">
+      <value>G2R-1A-T DC48</value>
+      <datasheet>http://omronfs.omron.com/en_US/ecb/products/pdf/en-g2r.pdf</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">G2R-1A-T DC48</field>
+        <field name="Vendor">DigiKey</field>
+        <field name="Vendor P/N">Z6234-ND</field>
+      </fields>
+      <libsource lib="Relay" part="DIPxx-1Axx-11x" description="Standex Meder DIP reed relay, SPST, Closing Contact"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BA6E921</tstamp>
+    </comp>
+    <comp ref="PS1">
+      <value>RSD-30H-24</value>
+      <datasheet>https://www.meanwell.com/Upload/PDF/RSD-30/RSD-30-SPEC.PDF</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">RSD-30H-24</field>
+        <field name="Vendor">DigiKey</field>
+        <field name="Vendor P/N">1866-5459-ND</field>
+      </fields>
+      <libsource lib="proj" part="RSD-30H-24" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BB8B770</tstamp>
+    </comp>
+    <comp ref="PS2">
+      <value>RSDW20H-05</value>
+      <datasheet>http://www.meanwell.com/webapp/product/search.aspx?prod=RSDW20#1</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">RSDW20H-05</field>
+        <field name="Vendor">Mouser</field>
+        <field name="Vendor P/N">709-RSDW20H-05</field>
+      </fields>
+      <libsource lib="proj" part="RSDW20H-05" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BB9E524</tstamp>
+    </comp>
+    <comp ref="U3">
+      <value>BOB-12009</value>
+      <datasheet>https://www.sparkfun.com/products/12009</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">BOB-12009</field>
+        <field name="Vendor">DigiKey</field>
+        <field name="Vendor P/N">1568-1209-ND</field>
+      </fields>
+      <libsource lib="proj" part="BOB-12009" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BC6FCBF</tstamp>
+    </comp>
+    <comp ref="U4">
+      <value>BOB-12009</value>
+      <datasheet>https://www.sparkfun.com/products/12009</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">BOB-12009</field>
+        <field name="Vendor">DigiKey</field>
+        <field name="Vendor P/N">1568-1209-ND</field>
+      </fields>
+      <libsource lib="proj" part="BOB-12009" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BCA0824</tstamp>
+    </comp>
+    <comp ref="SW1">
+      <value>Rotary_Selector_Switch</value>
+      <datasheet> http://a.co/d/7F7LLH1</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">LW28-20/0123.3</field>
+        <field name="Vendor">Amazon</field>
+        <field name="Vendor P/N">B014KPR3D2</field>
+      </fields>
+      <libsource lib="proj" part="Rotary_Selector_Switch" description="Single Pole Single Throw (SPST) switch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BDA98E8</tstamp>
+    </comp>
+    <comp ref="U2">
+      <value>Adafruit_1096</value>
+      <datasheet>https://www.adafruit.com/product/1096</datasheet>
+      <fields>
+        <field name="Alt Vendor">Adafruit</field>
+        <field name="Alt Vendor P/N">1096</field>
+        <field name="MPN">1096</field>
+        <field name="Vendor">DigiKey</field>
+        <field name="Vendor P/N">1528-1935-ND</field>
+      </fields>
+      <libsource lib="proj" part="Adafruit_1096" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BDF0A13</tstamp>
+    </comp>
+    <comp ref="J2">
+      <value>B2B-XH-A(LF)(SN)</value>
+      <datasheet>http://www.jst-mfg.com/product/pdf/eng/eXH.pdf</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">B2B-XH-A(LF)(SN)</field>
+        <field name="Vendor">DigiKey</field>
+        <field name="Vendor P/N">455-2247-ND</field>
+      </fields>
+      <libsource lib="conn" part="Conn_01x02_Male" description="Generic connector, single row, 01x02"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BE9B3C4</tstamp>
+    </comp>
+    <comp ref="Q1">
+      <value>Q_NMOS_GDS</value>
+      <datasheet>https://www.fairchildsemi.com/datasheets/FQ/FQP30N06L.pdf</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">FQP30N06L</field>
+        <field name="Vendor">DigiKey</field>
+        <field name="Vendor P/N">FQP30N06L-ND</field>
+      </fields>
+      <libsource lib="Device" part="Q_NMOS_GDS" description="Transistor N-MOSFET with substrate diode (general)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BEB7D86</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>100K</value>
+      <datasheet>~</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">~</field>
+        <field name="Vendor">House</field>
+        <field name="Vendor P/N">~</field>
+      </fields>
+      <libsource lib="Device" part="R_Small" description="Resistor, small symbol"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BF057DE</tstamp>
+    </comp>
+    <comp ref="SP1">
+      <value>LED_HOLDER_5MM</value>
+      <datasheet>https://media.digikey.com/pdf/Data%20Sheets/Adafruit%20PDFs/2178_Web.pdf</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">2178</field>
+        <field name="Vendor">DigiKey</field>
+        <field name="Vendor P/N">1528-1399-ND</field>
+      </fields>
+      <libsource lib="proj" part="LED_HOLDER_5MM" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BF2782C</tstamp>
+    </comp>
+    <comp ref="J3">
+      <value>XHP-2</value>
+      <datasheet>http://www.jst-mfg.com/product/pdf/eng/eXH.pdf</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">XHP-2</field>
+        <field name="Vendor">DigiKey</field>
+        <field name="Vendor P/N">455-2266-ND</field>
+      </fields>
+      <libsource lib="conn" part="Conn_01x02_Female" description="Generic connector, single row, 01x02"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BF31126</tstamp>
+    </comp>
+    <comp ref="U6">
+      <value>HSCDLNN001PDAA3</value>
+      <datasheet>https://sensing.honeywell.com/index.php?ci_id=151133</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">HSCDLNN001PDAA3</field>
+        <field name="Vendor">DigiKey</field>
+        <field name="Vendor P/N">480-5420-ND</field>
+      </fields>
+      <libsource lib="proj" part="HSCDLNN001PDAA3" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BF9B807</tstamp>
+    </comp>
+    <comp ref="U5">
+      <value>GP2Y0A02YK0F</value>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">GP2Y0A02YK0F</field>
+        <field name="Vendor">SparkFun</field>
+        <field name="Vendor P/N">SEN-08958</field>
+      </fields>
+      <libsource lib="proj" part="GP2Y0A02YK0F" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BFBED5C</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>120</value>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">~</field>
+        <field name="Vendor">House</field>
+        <field name="Vendor P/N">~</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BFDABB1</tstamp>
+    </comp>
+    <comp ref="R4">
+      <value>220</value>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">~</field>
+        <field name="Vendor">House</field>
+        <field name="Vendor P/N">~</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BFE4235</tstamp>
+    </comp>
+    <comp ref="J4">
+      <value>XHP-3</value>
+      <datasheet>http://www.jst-mfg.com/product/pdf/eng/eXH.pdf</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">XHP-3</field>
+        <field name="Vendor">DigiKey</field>
+        <field name="Vendor P/N">455-2219-ND</field>
+      </fields>
+      <libsource lib="conn" part="Conn_01x03_Female" description="Generic connector, single row, 01x03"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C01523A</tstamp>
+    </comp>
+    <comp ref="J7">
+      <value>B3B-XH-A(LF)(SN)</value>
+      <datasheet>http://www.jst-mfg.com/product/pdf/eng/eXH.pdf</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">B3B-XH-A(LF)(SN)</field>
+        <field name="Vendor">DigiKey</field>
+        <field name="Vendor P/N">455-2248-ND</field>
+      </fields>
+      <libsource lib="conn" part="Conn_01x03_Male" description="Generic connector, single row, 01x03"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C015301</tstamp>
+    </comp>
+    <comp ref="J8">
+      <value>XHP-3</value>
+      <datasheet>http://www.jst-mfg.com/product/pdf/eng/eXH.pdf</datasheet>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">XHP-3</field>
+        <field name="Vendor">DigiKey</field>
+        <field name="Vendor P/N">455-2219-ND</field>
+      </fields>
+      <libsource lib="conn" part="Conn_01x03_Female" description="Generic connector, single row, 01x03"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5C029783</tstamp>
+    </comp>
+    <comp ref="R5">
+      <value>2.2K</value>
+      <fields>
+        <field name="Alt Vendor">~</field>
+        <field name="Alt Vendor P/N">~</field>
+        <field name="MPN">~</field>
+        <field name="Vendor">House</field>
+        <field name="Vendor P/N">~</field>
+      </fields>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>5BA74793</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Device" part="LED">
+      <description>LED generic</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>LED*</fp>
+        <fp>LED_SMD:*</fp>
+        <fp>LED_THT:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LED</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="Q_NMOS_GDS">
+      <description>Transistor N-MOSFET with substrate diode (general)</description>
+      <docs>~</docs>
+      <fields>
+        <field name="Reference">Q</field>
+        <field name="Value">Q_NMOS_GDS</field>
+      </fields>
+      <pins>
+        <pin num="1" name="G" type="input"/>
+        <pin num="2" name="D" type="passive"/>
+        <pin num="3" name="S" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R_Small">
+      <description>Resistor, small symbol</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R_Small</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Relay" part="DIPxx-1Axx-11x">
+      <description>Standex Meder DIP reed relay, SPST, Closing Contact</description>
+      <docs>https://standexelectronics.com/wp-content/uploads/datasheet_reed_relay_DIP.pdf</docs>
+      <footprints>
+        <fp>Relay*StandexMeder*DIP*LowProfile*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">K</field>
+        <field name="Value">DIPxx-1Axx-11x</field>
+        <field name="Footprint">Relay_THT:Relay_StandexMeder_DIP_LowProfile</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+        <pin num="6" name="~" type="passive"/>
+        <pin num="7" name="~" type="passive"/>
+        <pin num="8" name="~" type="passive"/>
+        <pin num="14" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="Conn_01x02">
+      <description>Generic connector, single row, 01x02</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_??x*mm*</fp>
+        <fp>Connector*:*1x??x*mm*</fp>
+        <fp>Pin?Header?Straight?1X*</fp>
+        <fp>Pin?Header?Angled?1X*</fp>
+        <fp>Socket?Strip?Straight?1X*</fp>
+        <fp>Socket?Strip?Angled?1X*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x02</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="Conn_01x02_Female">
+      <description>Generic connector, single row, 01x02</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_??x*mm*</fp>
+        <fp>Connector*:*1x??x*mm*</fp>
+        <fp>Socket?Strip?Straight?1X*</fp>
+        <fp>Socket?Strip?Angled?1X*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x02_Female</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="Conn_01x02_Male">
+      <description>Generic connector, single row, 01x02</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_??x*mm*</fp>
+        <fp>Connector*:*1x??x*mm*</fp>
+        <fp>Pin?Header?Straight?1X*</fp>
+        <fp>Pin?Header?Angled?1X*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x02_Male</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="Conn_01x03_Female">
+      <description>Generic connector, single row, 01x03</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_??x*mm*</fp>
+        <fp>Connector*:*1x??x*mm*</fp>
+        <fp>Socket?Strip?Straight?1X*</fp>
+        <fp>Socket?Strip?Angled?1X*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x03_Female</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="Conn_01x03_Male">
+      <description>Generic connector, single row, 01x03</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_??x*mm*</fp>
+        <fp>Connector*:*1x??x*mm*</fp>
+        <fp>Pin?Header?Straight?1X*</fp>
+        <fp>Pin?Header?Angled?1X*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x03_Male</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="conn" part="Conn_01x08">
+      <description>Generic connector, single row, 01x08</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_??x*mm*</fp>
+        <fp>Connector*:*1x??x*mm*</fp>
+        <fp>Pin?Header?Straight?1X*</fp>
+        <fp>Pin?Header?Angled?1X*</fp>
+        <fp>Socket?Strip?Straight?1X*</fp>
+        <fp>Socket?Strip?Angled?1X*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x08</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+        <pin num="5" name="Pin_5" type="passive"/>
+        <pin num="6" name="Pin_6" type="passive"/>
+        <pin num="7" name="Pin_7" type="passive"/>
+        <pin num="8" name="Pin_8" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="particle" part="PARTICLE_PHOTON">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">PARTICLE_PHOTON</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VIN" type="power_in"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="TX" type="BiDi"/>
+        <pin num="4" name="RX" type="BiDi"/>
+        <pin num="5" name="WKP" type="BiDi"/>
+        <pin num="6" name="DAC" type="BiDi"/>
+        <pin num="7" name="A5" type="BiDi"/>
+        <pin num="8" name="A4" type="BiDi"/>
+        <pin num="9" name="A3" type="BiDi"/>
+        <pin num="10" name="A2" type="BiDi"/>
+        <pin num="11" name="A1" type="BiDi"/>
+        <pin num="12" name="A0" type="BiDi"/>
+        <pin num="13" name="D0" type="BiDi"/>
+        <pin num="14" name="D1" type="BiDi"/>
+        <pin num="15" name="D2" type="BiDi"/>
+        <pin num="16" name="D3" type="BiDi"/>
+        <pin num="17" name="D4" type="BiDi"/>
+        <pin num="18" name="D5" type="BiDi"/>
+        <pin num="19" name="D6" type="BiDi"/>
+        <pin num="20" name="D7" type="BiDi"/>
+        <pin num="21" name="GND" type="power_in"/>
+        <pin num="22" name="VBAT" type="power_in"/>
+        <pin num="23" name="RST" type="input"/>
+        <pin num="24" name="3V3" type="BiDi"/>
+      </pins>
+    </libpart>
+    <libpart lib="proj" part="Adafruit_1096">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">Adafruit_1096</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VT" type="output"/>
+        <pin num="2" name="D3" type="output"/>
+        <pin num="3" name="D2" type="output"/>
+        <pin num="4" name="D1" type="output"/>
+        <pin num="5" name="D0" type="output"/>
+        <pin num="6" name="+5V" type="power_in"/>
+        <pin num="7" name="GND" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="proj" part="BOB-12009">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">BOB-12009</field>
+      </fields>
+      <pins>
+        <pin num="1" name="LV4" type="BiDi"/>
+        <pin num="2" name="LV3" type="BiDi"/>
+        <pin num="3" name="GND" type="power_in"/>
+        <pin num="4" name="LV+" type="power_in"/>
+        <pin num="5" name="LV2" type="BiDi"/>
+        <pin num="6" name="LV1" type="BiDi"/>
+        <pin num="7" name="HV4" type="BiDi"/>
+        <pin num="8" name="HV3" type="BiDi"/>
+        <pin num="9" name="GND" type="power_in"/>
+        <pin num="10" name="HV+" type="power_in"/>
+        <pin num="11" name="HV2" type="BiDi"/>
+        <pin num="12" name="HV1" type="BiDi"/>
+      </pins>
+    </libpart>
+    <libpart lib="proj" part="GP2Y0A02YK0F">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">GP2Y0A02YK0F</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Vout" type="output"/>
+        <pin num="2" name="GND" type="power_in"/>
+        <pin num="3" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="proj" part="HSCDLNN001PDAA3">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">HSCDLNN001PDAA3</field>
+      </fields>
+      <pins>
+        <pin num="1" name="NC" type="NotConnected"/>
+        <pin num="2" name="+V" type="power_in"/>
+        <pin num="3" name="Vout" type="output"/>
+        <pin num="4" name="GND" type="power_in"/>
+        <pin num="5" name="NC" type="NotConnected"/>
+        <pin num="6" name="NC" type="NotConnected"/>
+        <pin num="7" name="NC" type="NotConnected"/>
+        <pin num="8" name="NC" type="NotConnected"/>
+      </pins>
+    </libpart>
+    <libpart lib="proj" part="LED_HOLDER_5MM">
+      <fields>
+        <field name="Reference">SP</field>
+        <field name="Value">LED_HOLDER_5MM</field>
+      </fields>
+    </libpart>
+    <libpart lib="proj" part="RSD-30H-24">
+      <fields>
+        <field name="Reference">PS</field>
+        <field name="Value">RSD-30H-24</field>
+      </fields>
+      <pins>
+        <pin num="1" name="+VIN" type="power_in"/>
+        <pin num="2" name="-VIN" type="power_in"/>
+        <pin num="3" name="EARTH" type="BiDi"/>
+        <pin num="4" name="-VOUT" type="power_out"/>
+        <pin num="5" name="+VOUT" type="power_out"/>
+      </pins>
+    </libpart>
+    <libpart lib="proj" part="RSDW20H-05">
+      <fields>
+        <field name="Reference">PS</field>
+        <field name="Value">RSDW20H-05</field>
+      </fields>
+      <pins>
+        <pin num="1" name="+VIN" type="power_in"/>
+        <pin num="2" name="-VIN" type="power_in"/>
+        <pin num="3" name="+VOUT" type="power_out"/>
+        <pin num="4" name="TRIM" type="BiDi"/>
+        <pin num="5" name="-VOUT" type="power_out"/>
+        <pin num="6" name="ON/OFF" type="BiDi"/>
+      </pins>
+    </libpart>
+    <libpart lib="proj" part="Rotary_Selector_Switch">
+      <description>Single Pole Single Throw (SPST) switch</description>
+      <fields>
+        <field name="Reference">SW</field>
+        <field name="Value">Rotary_Selector_Switch</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+        <pin num="3" name="~" type="passive"/>
+        <pin num="4" name="~" type="passive"/>
+        <pin num="5" name="~" type="passive"/>
+        <pin num="6" name="~" type="passive"/>
+        <pin num="7" name="~" type="passive"/>
+        <pin num="8" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="switches" part="SW_Push">
+      <description>Push button switch, generic, two pins</description>
+      <fields>
+        <field name="Reference">SW</field>
+        <field name="Value">SW_Push</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="switches" part="SW_SPST">
+      <description>Single Pole Single Throw (SPST) switch</description>
+      <fields>
+        <field name="Reference">SW</field>
+        <field name="Value">SW_SPST</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Device">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Device.lib</uri>
+    </library>
+    <library logical="Relay">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Relay.lib</uri>
+    </library>
+    <library logical="conn">
+      <uri>C:\Program Files\KiCad\share\kicad\library/conn.lib</uri>
+    </library>
+    <library logical="particle">
+      <uri>C:\MixController\PCB/lib/particle.lib</uri>
+    </library>
+    <library logical="proj">
+      <uri>C:/MixController/PCB/proj.lib</uri>
+    </library>
+    <library logical="switches">
+      <uri>C:\Program Files\KiCad\share\kicad\library/switches.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="Net-(U1-Pad7)">
+      <node ref="U2" pin="1"/>
+      <node ref="U1" pin="7"/>
+    </net>
+    <net code="2" name="Net-(U2-Pad2)">
+      <node ref="U2" pin="2"/>
+    </net>
+    <net code="3" name="Net-(J14-Pad6)">
+      <node ref="J14" pin="6"/>
+      <node ref="U4" pin="8"/>
+    </net>
+    <net code="4" name="Net-(U2-Pad5)">
+      <node ref="U2" pin="5"/>
+    </net>
+    <net code="5" name="+24V">
+      <node ref="J2" pin="2"/>
+      <node ref="PS1" pin="5"/>
+    </net>
+    <net code="6" name="Net-(J2-Pad1)">
+      <node ref="J2" pin="1"/>
+      <node ref="Q1" pin="2"/>
+    </net>
+    <net code="7" name="Net-(D1-Pad2)">
+      <node ref="R1" pin="2"/>
+      <node ref="D1" pin="2"/>
+    </net>
+    <net code="8" name="Net-(U2-Pad4)">
+      <node ref="U2" pin="4"/>
+    </net>
+    <net code="9" name="Net-(U2-Pad3)">
+      <node ref="U2" pin="3"/>
+    </net>
+    <net code="10" name="Net-(J13-Pad8)">
+      <node ref="U3" pin="12"/>
+      <node ref="J13" pin="8"/>
+    </net>
+    <net code="11" name="Net-(J13-Pad7)">
+      <node ref="U3" pin="11"/>
+      <node ref="J13" pin="7"/>
+    </net>
+    <net code="12" name="+5V">
+      <node ref="J13" pin="3"/>
+      <node ref="J7" pin="1"/>
+      <node ref="J14" pin="1"/>
+      <node ref="J13" pin="2"/>
+      <node ref="J13" pin="4"/>
+      <node ref="U1" pin="1"/>
+      <node ref="J14" pin="4"/>
+      <node ref="J13" pin="1"/>
+      <node ref="PS2" pin="3"/>
+      <node ref="J14" pin="2"/>
+      <node ref="J14" pin="3"/>
+      <node ref="U4" pin="10"/>
+      <node ref="U3" pin="10"/>
+      <node ref="U2" pin="6"/>
+    </net>
+    <net code="13" name="GND">
+      <node ref="U4" pin="9"/>
+      <node ref="U3" pin="3"/>
+      <node ref="Q1" pin="3"/>
+      <node ref="U4" pin="3"/>
+      <node ref="U6" pin="4"/>
+      <node ref="J6" pin="2"/>
+      <node ref="J5" pin="2"/>
+      <node ref="PS1" pin="2"/>
+      <node ref="PS1" pin="4"/>
+      <node ref="PS2" pin="2"/>
+      <node ref="SW6" pin="1"/>
+      <node ref="D1" pin="1"/>
+      <node ref="PS2" pin="5"/>
+      <node ref="J1" pin="1"/>
+      <node ref="K1" pin="6"/>
+      <node ref="U2" pin="7"/>
+      <node ref="U1" pin="21"/>
+      <node ref="U1" pin="2"/>
+      <node ref="J7" pin="2"/>
+      <node ref="R2" pin="2"/>
+      <node ref="R4" pin="1"/>
+      <node ref="U3" pin="9"/>
+    </net>
+    <net code="14" name="Net-(J13-Pad5)">
+      <node ref="U3" pin="7"/>
+      <node ref="J13" pin="5"/>
+    </net>
+    <net code="15" name="Net-(J13-Pad6)">
+      <node ref="J13" pin="6"/>
+      <node ref="U3" pin="8"/>
+    </net>
+    <net code="16" name="Net-(J4-Pad3)">
+      <node ref="J4" pin="3"/>
+      <node ref="J8" pin="1"/>
+    </net>
+    <net code="17" name="Net-(J4-Pad1)">
+      <node ref="J4" pin="1"/>
+      <node ref="J8" pin="3"/>
+    </net>
+    <net code="18" name="/PAIL_SNS">
+      <node ref="R4" pin="2"/>
+      <node ref="U1" pin="11"/>
+      <node ref="R3" pin="1"/>
+    </net>
+    <net code="19" name="Net-(J4-Pad2)">
+      <node ref="J4" pin="2"/>
+      <node ref="J8" pin="2"/>
+    </net>
+    <net code="20" name="Net-(J7-Pad3)">
+      <node ref="J7" pin="3"/>
+      <node ref="R3" pin="2"/>
+    </net>
+    <net code="21" name="Net-(U5-Pad1)">
+      <node ref="U5" pin="1"/>
+    </net>
+    <net code="23" name="Net-(U1-Pad22)">
+      <node ref="U1" pin="22"/>
+    </net>
+    <net code="24" name="Net-(U1-Pad23)">
+      <node ref="U1" pin="23"/>
+    </net>
+    <net code="25" name="Net-(PS2-Pad4)">
+      <node ref="PS2" pin="4"/>
+    </net>
+    <net code="26" name="Net-(PS2-Pad6)">
+      <node ref="PS2" pin="6"/>
+    </net>
+    <net code="27" name="Net-(PS1-Pad3)">
+      <node ref="PS1" pin="3"/>
+    </net>
+    <net code="28" name="Net-(U5-Pad2)">
+      <node ref="U5" pin="2"/>
+    </net>
+    <net code="29" name="Net-(U5-Pad3)">
+      <node ref="U5" pin="3"/>
+    </net>
+    <net code="30" name="Net-(J1-Pad2)">
+      <node ref="K1" pin="14"/>
+      <node ref="R5" pin="2"/>
+      <node ref="K1" pin="1"/>
+      <node ref="J1" pin="2"/>
+    </net>
+    <net code="31" name="Net-(SW6-Pad2)">
+      <node ref="U1" pin="9"/>
+      <node ref="SW6" pin="2"/>
+    </net>
+    <net code="32" name="/PRESS_SNS">
+      <node ref="U6" pin="3"/>
+      <node ref="U1" pin="12"/>
+    </net>
+    <net code="33" name="/PUMP_EN">
+      <node ref="U1" pin="10"/>
+      <node ref="Q1" pin="1"/>
+      <node ref="R2" pin="1"/>
+    </net>
+    <net code="34" name="Net-(R1-Pad1)">
+      <node ref="U1" pin="8"/>
+      <node ref="R1" pin="1"/>
+    </net>
+    <net code="35" name="+3V3">
+      <node ref="U3" pin="4"/>
+      <node ref="SW1" pin="1"/>
+      <node ref="SW1" pin="3"/>
+      <node ref="U4" pin="4"/>
+      <node ref="U6" pin="2"/>
+      <node ref="SW1" pin="5"/>
+      <node ref="SW1" pin="7"/>
+      <node ref="U1" pin="24"/>
+    </net>
+    <net code="36" name="Net-(U6-Pad8)">
+      <node ref="U6" pin="8"/>
+    </net>
+    <net code="37" name="Net-(U6-Pad7)">
+      <node ref="U6" pin="7"/>
+    </net>
+    <net code="38" name="Net-(U6-Pad6)">
+      <node ref="U6" pin="6"/>
+    </net>
+    <net code="39" name="Net-(U6-Pad5)">
+      <node ref="U6" pin="5"/>
+    </net>
+    <net code="40" name="Net-(U6-Pad1)">
+      <node ref="U6" pin="1"/>
+    </net>
+    <net code="41" name="Net-(J3-Pad1)">
+      <node ref="J3" pin="1"/>
+    </net>
+    <net code="42" name="Net-(J3-Pad2)">
+      <node ref="J3" pin="2"/>
+    </net>
+    <net code="43" name="/red">
+      <node ref="U3" pin="2"/>
+      <node ref="U1" pin="15"/>
+      <node ref="U4" pin="2"/>
+      <node ref="U1" pin="19"/>
+      <node ref="U1" pin="4"/>
+      <node ref="SW1" pin="4"/>
+    </net>
+    <net code="44" name="Net-(J14-Pad5)">
+      <node ref="J14" pin="5"/>
+      <node ref="U4" pin="7"/>
+    </net>
+    <net code="45" name="Net-(J14-Pad8)">
+      <node ref="J14" pin="8"/>
+      <node ref="U4" pin="12"/>
+    </net>
+    <net code="46" name="Net-(J14-Pad7)">
+      <node ref="U4" pin="11"/>
+      <node ref="J14" pin="7"/>
+    </net>
+    <net code="47" name="/black">
+      <node ref="U3" pin="1"/>
+      <node ref="U1" pin="20"/>
+      <node ref="U1" pin="16"/>
+      <node ref="SW1" pin="2"/>
+      <node ref="U4" pin="1"/>
+      <node ref="U1" pin="3"/>
+    </net>
+    <net code="48" name="+72V">
+      <node ref="J5" pin="1"/>
+      <node ref="PS2" pin="1"/>
+      <node ref="J6" pin="1"/>
+      <node ref="PS1" pin="1"/>
+      <node ref="K1" pin="7"/>
+      <node ref="K1" pin="8"/>
+    </net>
+    <net code="49" name="/white">
+      <node ref="U4" pin="6"/>
+      <node ref="SW1" pin="8"/>
+      <node ref="U3" pin="6"/>
+      <node ref="U1" pin="17"/>
+      <node ref="U1" pin="13"/>
+      <node ref="U1" pin="6"/>
+    </net>
+    <net code="50" name="/green">
+      <node ref="U3" pin="5"/>
+      <node ref="SW1" pin="6"/>
+      <node ref="U4" pin="5"/>
+      <node ref="U1" pin="14"/>
+      <node ref="U1" pin="18"/>
+      <node ref="U1" pin="5"/>
+    </net>
+    <net code="51" name="Net-(K1-Pad2)">
+      <node ref="SW5" pin="2"/>
+      <node ref="K1" pin="2"/>
+    </net>
+    <net code="52" name="Net-(R5-Pad1)">
+      <node ref="R5" pin="1"/>
+      <node ref="SW5" pin="1"/>
+    </net>
+  </nets>
+</export>

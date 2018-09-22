@@ -1,0 +1,13 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP +72V
+D power-flag symbol
+K Power Flag Symbol
+$ENDCMP
+#
+$CMP Rotary_Selector_Switch
+D Single Pole Single Throw (SPST) switch
+K switch lever
+$ENDCMP
+#
+#End Doc Library
