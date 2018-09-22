@@ -1,5 +1,5 @@
-#ifndef SerialSettings_h
-#define SerialSettings_h
+#ifndef AppInterface_h
+#define AppInterface_h
 
 
 #include "Particle.h"

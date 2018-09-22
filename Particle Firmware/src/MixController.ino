@@ -10,7 +10,7 @@
 #include "globals.h"
 #include "AccelStepper.h"
 #include <clickButton.h>
-#include "SerialSettings.h"
+#include "AppInterface.h"
 
 PRODUCT_ID(THIS_PRODUCT_ID);
 PRODUCT_VERSION(THIS_PRODUCT_VERSION);

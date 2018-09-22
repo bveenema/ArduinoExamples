@@ -1,4 +1,4 @@
-#include "SerialSettings.h"
+#include "AppInterface.h"
 
 // Variables for handling serial protocol
 bool FLAG_isWrite = false;
