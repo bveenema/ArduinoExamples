@@ -199,7 +199,7 @@ void MixMaster::runPumps(){
 bool MixMaster::runPumpsWithErrorCheck(){
   this->runPumps();
   if(digitalRead(RESIN_PUMP_ASSERT_PIN) || digitalRead(HARDENER_PUMP_ASSERT_PIN)){
-    strncpy("Motor Error",currentError,30);
+    strncpy("Pump Error",currentError,30);
     return true;
   }
   return false;
