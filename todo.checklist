@@ -32,7 +32,7 @@ Firmware
     - Check for Pail presence
     - Create 'Pressure Charge' state machine
     - Control pump
-  - Keep open flush
+  + Keep open flush
     + Add last shot timer (5 minutes)
     + flush 150cc both channels
   - Clean Cycle
