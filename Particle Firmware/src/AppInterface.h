@@ -18,8 +18,8 @@ inline void printCurrentSelector(){ Serial.print(selector); }
 inline void printCurrentError(){ Serial.print(currentError); }
 inline void printFirmwareID(){ Serial.print(THIS_PRODUCT_ID); }
 inline void printMixerState(){ Serial.print(mixMaster.getState()); }
-inline void printMotorSpeedResin(){ Serial.print(motorSpeedResin); }
-inline void printMotorSpeedHardener(){ Serial.print(motorSpeedHardener); }
+inline void printMotorSpeedResin(){ Serial.print(mixMaster.getMotorSpeed(Resin)); }
+inline void printMotorSpeedHardener(){ Serial.print(mixMaster.getMotorSpeed(Hardener)); }
 inline void printNumSelectors(){ Serial.print(NUM_SELECTORS); }
 inline void printProductVersion(){ Serial.print(THIS_PRODUCT_VERSION); }
 inline void printCloudStatus(){

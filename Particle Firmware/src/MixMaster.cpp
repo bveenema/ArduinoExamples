@@ -97,3 +97,10 @@ bool MixMaster::update(bool _changeState){
 MixerState MixMaster::getState(){
   return mixerState;
 }
+
+uint32_t MixMaster::getMotorSpeed(MixerChannel channel){
+  if(channel == Resin){
+    return motorSpeedResin;
+  }
+  return motorSpeedHardener;
+}
