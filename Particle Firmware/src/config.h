@@ -43,7 +43,6 @@
 
 // Mix Master Settings
 #define TIME_BETWEEN_FLUSHES 300000 // 5 minutes
-#define FLUSH_VOLUME 150 //ml
 #define CLEANING_FLOW_RATE 3000 // ml/min
 #define CLEANING_VOLUME_PER_PULSE 200 //ml
 #define CLEANING_PULSE_INTERVAL 10000 // time bewteen start of pulses (10 sec)
@@ -64,6 +63,7 @@ struct prom_settings {
   uint32_t stepsPerMlHardener;
   uint32_t autoReverseSteps;
   uint32_t chargePressure;
+  uint32_t flushVolume;
   // Selector Based Settings
   uint32_t flowRate[NUM_SELECTORS];
   uint32_t ratioResin[NUM_SELECTORS];

@@ -31,6 +31,7 @@ inline void printCloudStatus(){
 }
 inline void togglePump(){ changeState = true; Serial.print("N/A"); }
 inline void getDeviceName(){ Particle.publish("particle/device/name", NULL, 60, PRIVATE); Serial.print("wait"); }
+inline void startCleaning(){ MixMaster.startCleaning(); }
 
 // Command Declarations
 typedef struct {
@@ -54,10 +55,12 @@ const commandSet commandList[] = {
   {"action", NULL, NULL, printMixerState},
   {"autoReverseSteps", &settings.autoReverseSteps, false, NULL},
   {"cloudStatus", NULL, NULL, printCloudStatus},
+  {"chargePressure", &settings.chargePressure, false, NULL},
   {"error", NULL, NULL, printCurrentError},
   {"eepromVersion", &settings.version, false, NULL},
   {"firmwareID", NULL, NULL, printFirmwareID},
   {"flowRate", settings.flowRate, true, NULL},
+  {"flushVolume", &settings.flushVolume, false, NULL},
   {"resinPumpSpeed", NULL, NULL, printResinPumpSpeed},
   {"hardenerPumpSpeed", NULL, NULL, printHardenerPumpSpeed},
   {"name", NULL, NULL, getDeviceName},
@@ -65,6 +68,7 @@ const commandSet commandList[] = {
   {"ratioResin", settings.ratioResin, true, NULL},
   {"ratioHardener", settings.ratioHardener, true, NULL},
   {"selector", NULL, NULL, printCurrentSelector},
+  {"startCleaning", NULL, NULL, startCleaning},
   {"stepsPerMlResin", &settings.stepsPerMlResin, false, NULL},
   {"stepsPerMlHardener", &settings.stepsPerMlHardener, false, NULL},
   {"togglePump", NULL, NULL, togglePump},

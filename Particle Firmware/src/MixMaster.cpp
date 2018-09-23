@@ -68,7 +68,7 @@ bool mixMaster::update(bool _changeState){
         timeToMix = this->prepForMixing(settings.volume[selector], settings.flowRate[selector]);
         isFlushing = false;
       } else {
-        timeToMix = this->prepForMixing(FLUSH_VOLUME, settings.flowRate[selector]);
+        timeToMix = this->prepForMixing(settings.flushVolume, settings.flowRate[selector]);
         isFlushing = true;
       }
       timeStartedMixing = millis();

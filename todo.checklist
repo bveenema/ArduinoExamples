@@ -24,11 +24,11 @@ Firmware
   - Check for Pail presence before running
   - check globals
     + changeState
-  - Serial Interface Module
+  + Serial Interface Module
     + Rename "SerialSettings" to 'AppInterface'
-    - Add 'charge pressure' handler
-    - Add 'startCleaning' handler
-    - Add 'flush' handler
+    + Add 'charge pressure' handler
+    + Add 'startCleaning' handler
+    + Add 'flush' handler
   + Pressure Charge Module
     + Read pressure sensors to scientific value
     + Create 'Pressure Charge' state machine
