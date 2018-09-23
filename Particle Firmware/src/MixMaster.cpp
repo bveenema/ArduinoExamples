@@ -48,24 +48,32 @@ bool MixMaster::update(bool _changeState){
 
   static uint32_t timeToMix = 0;
   static uint32_t timeStartedMixing = 0;
+  static uint32_t timeStartedIdling = 0;
+  static bool isFlushing = false;
 
-  if(mixerState == Idle){
-    idlePumps();
-    if(_changeState == true) { _changeState = false; mixerState = MixingCalculations; }
-  }else if(mixerState == MixingCalculations){
-    resinPumpSpeed = calculatePumpSpeed(settings.flowRate[selector], settings.ratioResin[selector], settings.ratioHardener[selector], settings.stepsPerMlResin);
-    hardenerPumpSpeed = calculatePumpSpeed(settings.flowRate[selector], settings.ratioHardener[selector], settings.ratioResin[selector], settings.stepsPerMlHardener);
-    timeToMix = calculateTimeForVolume(settings.volume[selector], settings.flowRate[selector]);
-    timeStartedMixing = millis();
-    digitalWrite(RESIN_PUMP_ENABLE_PIN, LOW); // Enable Resin Pump
-    digitalWrite(HARDENER_PUMP_ENABLE_PIN, LOW); // Enable Hardener Pump
-    mixerState = Mixing;
+  if(mixerState == StartIdle){
+    timeStartedIdling = millis();
+    mixerState = Idle;
+  }else if(mixerState == Idle){
+    this->idlePumps();
+    if(_changeState || (millis() - timeStartedIdling > TIME_BETWEEN_FLUSHES)) {
+      if(_changeState){
+        timeToMix = this->prepForMixing(settings.volume[selector], settings.flowRate[selector]);
+        isFlushing = false;
+      } else {
+        timeToMix = this->prepForMixing(150, settings.flowRate[selector]);
+        isFlushing = true;
+      }
+      timeStartedMixing = millis();
+      mixerState = Mixing;
+    }
   }else if(mixerState == Mixing){
-    runPumps();
+    this->runPumps();
     if(_changeState == true || (millis() - timeStartedMixing > timeToMix)){
-      _changeState = false;
+      // don't reset _changeState when flushing so button won't be "ignored" while flushing
+      if(!isFlushing) _changeState = false;
       if(settings.autoReverseResin[selector] > 0 || settings.autoReverseHardener[selector] > 0) mixerState = StartAutoReverse;
-      else mixerState = Idle;
+      else mixerState = StartIdle;
     }
   }else if(mixerState == StartAutoReverse){
     ResinPump.setMaxSpeed(autoReverseSpeed);
@@ -79,12 +87,12 @@ bool MixMaster::update(bool _changeState){
     ResinPump.run();
     HardenerPump.run();
     if(!ResinPump.isRunning() && !HardenerPump.isRunning()){
-      mixerState = Idle;
+      mixerState = StartIdle;
     }
   }else if(mixerState == Cleaning){
-    this.updateCleaning();
+    this->updateCleaning();
     if(_changeState == true || (millis()-timeStartedCleaning > cleaningTime)){
-      mixerState = Idle;
+      mixerState = StartIdle;
     }
   }
 

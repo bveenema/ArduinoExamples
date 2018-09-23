@@ -31,6 +31,9 @@
 
 #define NUM_SELECTORS 5
 
+// Mix Master Settings
+#define TIME_BETWEEN_FLUSHES 300000 // 5 minutes
+
 // Button and Remote Settings
 // time must be held down to be a long press to initiate a "Cleaning" cycle
 #define LONG_PRESS_TIME 5000

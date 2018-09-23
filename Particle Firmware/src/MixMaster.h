@@ -5,8 +5,8 @@
 #include "globals.h"
 
 typedef enum{
+  StartIdle,
   Idle,
-  MixingCalculations,
   Mixing,
   StartAutoReverse,
   AutoReversing,
@@ -39,7 +39,7 @@ public:
   // Puts Mix Master in to Cleaning state
   //  * Mix Master can only be taken in to Cleaning state through this function
   //  * The "Cleaning" mixerState calls updateCleaning() and checks for _changestate
-  //  * if _changeState is true while "Cleaning" Mixer State becomes "Idle"
+  //  * if _changeState is true while "Cleaning" Mixer State becomes "StartIdle"
   //  * startCleaning records the time "Cleaning" started, "Cleaning" state checks
   //      if "Cleaning" has been running for longer than cleaningTime
   void startCleaning();
@@ -56,7 +56,7 @@ private:
   void runPumps();
 
   // Current State of Mix Master
-  MixerState mixerState = Idle;
+  MixerState mixerState = StartIdle;
 
   // Pump configuration
   const unsigned int ultimateMaxSpeed = 15000;
@@ -78,7 +78,7 @@ private:
 
   // Cleaning Timer
   uint32_t timeStartedCleaning;
-  const uint32_t cleaningTime = 600000 // Total time to run cleaning cycle (10 minutes)
+  const uint32_t cleaningTime = 600000; // Total time to run cleaning cycle (10 minutes)
 };
 
 
