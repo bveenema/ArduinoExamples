@@ -14,10 +14,26 @@ uint32_t calculateTimeForVolume(uint32_t volume, uint16_t flowRate){
   return time * 100;
 }
 
+void idlePumps(){
+  motorResin.setSpeed(0);
+  motorHardener.setSpeed(0);
+  digitalWrite(MOTOR_RESIN_ENABLE_PIN, HIGH); // Disable Resin Motor
+  digitalWrite(MOTOR_HARDENER_ENABLE_PIN, HIGH); // Disable Hardener Motor
+}
+
+void runPumps(){
+  motorResin.setMaxSpeed(ultimateMaxSpeed);
+  motorHardener.setMaxSpeed(ultimateMaxSpeed);
+  motorResin.setSpeed(motorSpeedResin);
+  motorHardener.setSpeed(motorSpeedHardener);
+  motorResin.runSpeed();
+  motorHardener.runSpeed();
+}
+
 // Class Functions
 MixMaster::MixMaster() :
-  motorResin(1, MOTOR_RESIN_STEP_PIN, MOTOR_RESIN_DIR_PIN),
-  motorHardener(1, MOTOR_HARDENER_STEP_PIN, MOTOR_HARDENER_DIR_PIN)
+  motorResin(AccelStepper::DRIVER, MOTOR_RESIN_STEP_PIN, MOTOR_RESIN_DIR_PIN),
+  motorHardener(AccelStepper::DRIVER, MOTOR_HARDENER_STEP_PIN, MOTOR_HARDENER_DIR_PIN)
   {}
 
 void MixMaster::init(){
@@ -31,8 +47,8 @@ void MixMaster::init(){
   pinMode(MOTOR_HARDENER_DIR_PIN, OUTPUT);
   pinMode(MOTOR_HARDENER_ASSERT_PIN, INPUT_PULLDOWN);
 
-  digitalWrite(MOTOR_RESIN_ENABLE_PIN, LOW); // Enable Motor A
-  digitalWrite(MOTOR_HARDENER_ENABLE_PIN, LOW); // Enable Motor B
+  digitalWrite(MOTOR_RESIN_ENABLE_PIN, LOW); // Enable Resin Motor
+  digitalWrite(MOTOR_HARDENER_ENABLE_PIN, LOW); // Enable Hardener Motor
 
   motorResin.setAcceleration(100000);
   motorHardener.setAcceleration(100000);
@@ -50,26 +66,18 @@ bool MixMaster::update(bool _changeState){
   static uint32_t timeStartedMixing = 0;
 
   if(mixerState == Idle){
-    motorResin.setSpeed(0);
-    motorHardener.setSpeed(0);
-    digitalWrite(MOTOR_RESIN_ENABLE_PIN, HIGH); // Disable Motor A
-    digitalWrite(MOTOR_HARDENER_ENABLE_PIN, HIGH); // Disable Motor B
+    idlePumps();
     if(_changeState == true) { _changeState = false; mixerState = MixingCalculations; }
   }else if(mixerState == MixingCalculations){
     motorSpeedResin = calculateMotorSpeed(settings.flowRate[selector], settings.ratioResin[selector], settings.ratioHardener[selector], settings.stepsPerMlResin);
     motorSpeedHardener = calculateMotorSpeed(settings.flowRate[selector], settings.ratioHardener[selector], settings.ratioResin[selector], settings.stepsPerMlHardener);
     timeToMix = calculateTimeForVolume(settings.volume[selector], settings.flowRate[selector]);
     timeStartedMixing = millis();
-    digitalWrite(MOTOR_RESIN_ENABLE_PIN, LOW); // Enable Motor A
-    digitalWrite(MOTOR_HARDENER_ENABLE_PIN, LOW); // Enable Motor B
+    digitalWrite(MOTOR_RESIN_ENABLE_PIN, LOW); // Enable Resin Motor
+    digitalWrite(MOTOR_HARDENER_ENABLE_PIN, LOW); // Enable Hardener Motor
     mixerState = Mixing;
   }else if(mixerState == Mixing){
-    motorResin.setMaxSpeed(ultimateMaxSpeed);
-    motorHardener.setMaxSpeed(ultimateMaxSpeed);
-    motorResin.setSpeed(motorSpeedResin);
-    motorHardener.setSpeed(motorSpeedHardener);
-    motorResin.runSpeed();
-    motorHardener.runSpeed();
+    runPumps();
     if(_changeState == true || (millis() - timeStartedMixing > timeToMix)){
       _changeState = false;
       if(settings.autoReverseResin[selector] > 0 || settings.autoReverseHardener[selector] > 0) mixerState = StartAutoReverse;
@@ -89,6 +97,11 @@ bool MixMaster::update(bool _changeState){
     if(!motorResin.isRunning() && !motorHardener.isRunning()){
       mixerState = Idle;
     }
+  }else if(mixerState == Cleaning){
+    this.updateCleaning();
+    if(_changeState == true || (millis()-timeStartedCleaning > cleaningTime)){
+      mixerState = Idle;
+    }
   }
 
   return _changeState;
@@ -103,4 +116,70 @@ uint32_t MixMaster::getMotorSpeed(MixerChannel channel){
     return motorSpeedResin;
   }
   return motorSpeedHardener;
+}
+
+void MixMaster::startCleaning(){
+  mixerState = Cleaning;
+  CleaningState = InitCleaning;
+  timeStartedCleaning = millis();
+}
+
+void MixMaster::updateCleaning(){
+  static uint32_t cleaningPulseTime;
+  static uint32_t cleaningIdleTime;
+  static uint32_t timeStateStarted;
+  const uint32_t cycleTime = 60000; // Amount of time between starting pulses - 1 minute
+
+  switch(CleaningState){
+    case InitCleaning:
+      const uint32_t cleaningFlowRate = 200; // ml/min
+      const uint32_t cleaningVolume = 200; // ml
+      const uint32_t cleaningRatioResin = 100;
+      const uint32_t cleaningRatioHardener = 100;
+
+      // We don't know current motor state, so assume it's running and stop it
+      idlePumps();
+
+      // Configure the motors for cleaning
+      motorSpeedResin = calculateMotorSpeed(cleaningFlowRate, cleaningRatioResin, cleaningRatioHardener, settings.stepsPerMlResin);
+      motorSpeedHardener = calculateMotorSpeed(cleaningFlowRate, cleaningRatioHardener, cleaningRatioResin, settings.stepsPerMlHardener);
+
+      // Calculate Cleaning Pulse and Idle times
+      cleaningPulseTime = calculateTimeForVolume(cleaningVolume, cleaningFlowRate);
+      if(cleaningPulseTime < cycleTime){
+        cleaningIdleTime = cycleTime - cleaningPulseTime;
+      } else {
+        cleaningIdleTime = 0;
+      }
+
+      timeStateStarted = millis();
+      digitalWrite(MOTOR_RESIN_ENABLE_PIN, LOW); // Enable Resin Motor
+      digitalWrite(MOTOR_HARDENER_ENABLE_PIN, LOW); // Enable Hardener Motor
+
+      CleaningState = PulseOn;
+
+      // No break, fall through to pulse motor on immediately
+
+    case PulseOn:
+      runPumps();
+      if(millis()-cleaningPulseTime > timeStateStarted){
+        timeStateStarted = millis();
+        CleaningState = IdleCleaning;
+      }
+
+      break;
+
+    case IdleCleaning:
+      idlePumps();
+      if(millis()-cleaningIdleTime > timeStateStarted){
+        timeStateStarted = millis();
+        CleaningState = PulseOn;
+      }
+
+      break;
+
+    default:
+      CleaningState = InitCleaning;
+      break;
+  }
 }
