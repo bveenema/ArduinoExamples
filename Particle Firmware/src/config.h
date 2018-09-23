@@ -31,6 +31,10 @@
 
 #define NUM_SELECTORS 5
 
+// Button and Remote Settings
+// time must be held down to be a long press to initiate a "Cleaning" cycle
+#define LONG_PRESS_TIME 5000
+
 //  EEPROM Structure Definition
 //    When changing the structure of EEPROM, increase THIS_EEPROM_VERSION, this
 //    will cause EEPROM of previous versions to reset to default.

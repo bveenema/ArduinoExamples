@@ -48,6 +48,8 @@ void setup() {
 
 
   remote.debounceTime = 10;
+  button.longClickTime = LONG_PRESS_TIME;
+  remote.longClickTime = LONG_PRESS_TIME;
 
   delay(100);
 
@@ -55,10 +57,6 @@ void setup() {
 }
 
 void loop() {
-
-  button.Update();
-  remote.Update();
-
   // Check Wifi Status Setting
   static unsigned int previousWifiStatus = 0;
   if(wifiStatus != previousWifiStatus){
@@ -83,7 +81,12 @@ void loop() {
   changeState = mixMaster.update(changeState);
 
   // check buttons
-  if(button.clicks != 0 || remote.clicks !=0) changeState = true;
+  // positive value for clicks is number of short presses
+  // negative value for click is number of long presses
+  button.Update();
+  remote.Update();
+  if(button.clicks > 0 || remote.clicks > 0) changeState = true; // short press
+  if(button.clicks < 0 || remote.clicks < 0) mixMaster.startCleaning(); // long press
   if(remote.clicks != 0) Serial.println("Remote Pressed");
   if(button.clicks != 0) Serial.println("Button Pressed");
 
