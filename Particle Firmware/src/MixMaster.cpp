@@ -61,7 +61,7 @@ bool MixMaster::update(bool _changeState){
         timeToMix = this->prepForMixing(settings.volume[selector], settings.flowRate[selector]);
         isFlushing = false;
       } else {
-        timeToMix = this->prepForMixing(150, settings.flowRate[selector]);
+        timeToMix = this->prepForMixing(FLUSH_VOLUME, settings.flowRate[selector]);
         isFlushing = true;
       }
       timeStartedMixing = millis();
@@ -91,7 +91,7 @@ bool MixMaster::update(bool _changeState){
     }
   }else if(mixerState == Cleaning){
     this->updateCleaning();
-    if(_changeState == true || (millis()-timeStartedCleaning > cleaningTime)){
+    if(_changeState == true || (millis()-timeStartedCleaning > CLEANING_CYCLE_DURATION)){
       mixerState = StartIdle;
     }
   }
@@ -120,20 +120,17 @@ void MixMaster::updateCleaning(){
   static uint32_t cleaningPulseTime;
   static uint32_t cleaningIdleTime;
   static uint32_t timeStateStarted;
-  const uint32_t cycleTime = 60000; // Amount of time between starting pulses - 1 minute
 
   switch(CleaningState){
     case InitCleaning: {
-      const uint32_t cleaningFlowRate = 200; // ml/min
-      const uint32_t cleaningVolume = 200; // ml
 
       // We don't know current pump state, so assume it's running and stop it
       this->idlePumps();
 
       // Calculate Cleaning Pulse and Idle times, prep for mixing
-      cleaningPulseTime = prepForMixing(cleaningVolume, cleaningFlowRate);
-      if(cleaningPulseTime < cycleTime){
-        cleaningIdleTime = cycleTime - cleaningPulseTime;
+      cleaningPulseTime = prepForMixing(CLEANING_VOLUME_PER_PULSE, CLEANING_FLOW_RATE);
+      if(cleaningPulseTime < CLEANING_PULSE_INTERVAL){
+        cleaningIdleTime = CLEANING_PULSE_INTERVAL - cleaningPulseTime;
       } else {
         cleaningIdleTime = 0;
       }

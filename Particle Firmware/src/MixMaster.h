@@ -41,7 +41,7 @@ public:
   //  * The "Cleaning" mixerState calls updateCleaning() and checks for _changestate
   //  * if _changeState is true while "Cleaning" Mixer State becomes "StartIdle"
   //  * startCleaning records the time "Cleaning" started, "Cleaning" state checks
-  //      if "Cleaning" has been running for longer than cleaningTime
+  //      if "Cleaning" has been running for longer than CLEANING_CYCLE_DURATION
   void startCleaning();
 
 private:
@@ -78,7 +78,6 @@ private:
 
   // Cleaning Timer
   uint32_t timeStartedCleaning;
-  const uint32_t cleaningTime = 600000; // Total time to run cleaning cycle (10 minutes)
 };
 
 
