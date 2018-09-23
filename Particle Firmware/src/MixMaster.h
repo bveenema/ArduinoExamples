@@ -22,7 +22,7 @@ class MixMaster{
 public:
   MixMaster();
 
-  // setup pins and motor configurations
+  // setup pins and pump configurations
   void init();
 
   // Updates the mixer state handler (ie. the main "brain" of the mixer)
@@ -33,8 +33,8 @@ public:
   // Get the current state of the mixer
   MixerState getState();
 
-  // returns the currently calculated motor speeds
-  uint32_t getMotorSpeed(MixerChannel channel);
+  // returns the currently calculated pump speeds
+  uint32_t getPumpSpeed(MixerChannel channel);
 
   // Puts Mix Master in to Cleaning state
   //  * Mix Master can only be taken in to Cleaning state through this function
@@ -45,20 +45,20 @@ public:
   void startCleaning();
 
 private:
-  // Motor objects
-  AccelStepper motorResin;
-  AccelStepper motorHardener;
+  // Pump objects
+  AccelStepper ResinPump;
+  AccelStepper HardenerPump;
 
   // Current State of Mix Master
   MixerState mixerState = Idle;
 
-  // Motor configuration
+  // Pump configuration
   const unsigned int ultimateMaxSpeed = 15000;
   const unsigned int autoReverseSpeed = 4000;
 
-  // Motor Info
-  uint32_t motorSpeedResin = 0; //steps/s
-  uint32_t motorSpeedHardener = 0; //steps/s
+  // Pump Info
+  uint32_t resinPumpSpeed = 0; //steps/s
+  uint32_t hardenerPumpSpeed = 0; //steps/s
 
   // Cleaning States
   enum CleaningState{

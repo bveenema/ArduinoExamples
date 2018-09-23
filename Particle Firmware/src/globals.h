@@ -16,9 +16,7 @@ extern int selector;
 // State Machine
 extern bool changeState;
 
-// Motor Info
-extern uint32_t motorSpeedResin; //steps/s
-extern uint32_t motorSpeedHardener; //steps/s
+// Pump Info
 extern const unsigned int ultimateMaxSpeed;
 extern const unsigned int autoReverseSpeed;
 

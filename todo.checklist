@@ -2,10 +2,10 @@ v0.0.7 Updates
 
 General
   - Look up offset from motor speed actual from real for error condition
-  ? Get ECM to Pail distance from MCD
-  ? Get Cable Length from MCD
-  ? Verify number of Pressure transducers from MCD
-  ? Get Manual button from MCD
+  + Get ECM to Pail distance from MCD
+  + Get Cable Length from MCD
+  + Verify number of Pressure transducers from MCD
+  + Get Manual button from MCD
   ? Verify tubing and Bulkhead with MCD
 
 App
@@ -14,16 +14,19 @@ App
   - Add inputs for 'keep open flush', 'charge pressure'
   - Change 'autoreverse A' and 'autoReverse B' inputs to be 'reverseSteps'
   - Add output(s) for current charge pressure
+  - Add button for 'clean pumps'
 
 Firmware
   + Update FW to version 7
   + Rename A to "Resin" and B to "Hardener"
   + Update pins
+  + Rename motors to pumps
   - check globals
-    - changeState
+    + changeState
   - Serial Interface Module
     + Rename "SerialSettings" to 'AppInterface'
     - Add 'charge pressure' handler
+    - Add 'startCleaning' handler
   - Pressure Charge Module
     - Read pressure sensors to scientific value
     - Check for Pail presence
@@ -33,8 +36,8 @@ Firmware
     - Add last shot timer (5 minutes)
     - flush 150cc both channels
   - Clean Cycle
-    - User initiated (long button press) to start. Press button again to cancel
-    - Pulse 200ml/min for 10 min
+    + User initiated (long button press) to start. Press button again to cancel
+    + Pulse 200ml/min for 10 min
   - Stop both motors on error
   - Status LED
     - Add Status LED Module (State Machine)

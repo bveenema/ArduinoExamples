@@ -18,8 +18,8 @@ inline void printCurrentSelector(){ Serial.print(selector); }
 inline void printCurrentError(){ Serial.print(currentError); }
 inline void printFirmwareID(){ Serial.print(THIS_PRODUCT_ID); }
 inline void printMixerState(){ Serial.print(mixMaster.getState()); }
-inline void printMotorSpeedResin(){ Serial.print(mixMaster.getMotorSpeed(Resin)); }
-inline void printMotorSpeedHardener(){ Serial.print(mixMaster.getMotorSpeed(Hardener)); }
+inline void printResinPumpSpeed(){ Serial.print(mixMaster.getPumpSpeed(Resin)); }
+inline void printHardenerPumpSpeed(){ Serial.print(mixMaster.getPumpSpeed(Hardener)); }
 inline void printNumSelectors(){ Serial.print(NUM_SELECTORS); }
 inline void printProductVersion(){ Serial.print(THIS_PRODUCT_VERSION); }
 inline void printCloudStatus(){
@@ -29,7 +29,7 @@ inline void printCloudStatus(){
     Serial.print("Not Available");
   }
 }
-inline void toggleMotor(){ changeState = true; Serial.print("N/A"); }
+inline void togglePump(){ changeState = true; Serial.print("N/A"); }
 inline void getDeviceName(){ Particle.publish("particle/device/name", NULL, 60, PRIVATE); Serial.print("wait"); }
 
 // Command Declarations
@@ -59,8 +59,8 @@ const commandSet commandList[] = {
   {"eepromVersion", &settings.version, false, NULL},
   {"firmwareID", NULL, NULL, printFirmwareID},
   {"flowRate", settings.flowRate, true, NULL},
-  {"motorSpeedResin", NULL, NULL, printMotorSpeedResin},
-  {"motorSpeedHardener", NULL, NULL, printMotorSpeedHardener},
+  {"resinPumpSpeed", NULL, NULL, printResinPumpSpeed},
+  {"hardenerPumpSpeed", NULL, NULL, printHardenerPumpSpeed},
   {"name", NULL, NULL, getDeviceName},
   {"numSelectors", NULL, NULL, printNumSelectors},
   {"ratioResin", settings.ratioResin, true, NULL},
@@ -68,7 +68,7 @@ const commandSet commandList[] = {
   {"selector", NULL, NULL, printCurrentSelector},
   {"stepsPerMlResin", &settings.stepsPerMlResin, false, NULL},
   {"stepsPerMlHardener", &settings.stepsPerMlHardener, false, NULL},
-  {"toggleMotor", NULL, NULL, toggleMotor},
+  {"togglePump", NULL, NULL, togglePump},
   {"version", NULL, NULL, printProductVersion},
   {"volume", settings.volume, true, NULL},
   {"wifiStatus", &wifiStatus, false, NULL },

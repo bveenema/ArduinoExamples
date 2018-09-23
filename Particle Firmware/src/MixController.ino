@@ -126,6 +126,6 @@ void nameHandler(const char *topic, const char *data) {
 }
 
 void fwUpdateAndResetHandler(){
-  pinSetFast(MOTOR_RESIN_ENABLE_PIN);
-  pinSetFast(MOTOR_HARDENER_ENABLE_PIN);
+  pinSetFast(RESIN_PUMP_ENABLE_PIN);
+  pinSetFast(HARDENER_PUMP_ENABLE_PIN);
 }
