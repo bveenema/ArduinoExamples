@@ -42,9 +42,9 @@ Firmware
     - Update per new understanding from Skip - "Pulse 200ml at a rate of 3000ml/min every 10 seconds for 10 minutes at currently selected ratio"
   + Stop both motors on error
   + Change autoReverse to be 500 counts, ratio dependent
-  - Status LED
-    - Add Status LED Module (State Machine)
-    - Blink for Purge, on continous for preset values, fast blink for motor error
+  + Status LED
+    + Add Status LED Module (State Machine)
+    + Blink for Clean, on continous for preset values, fast blink for motor error
 
 Electronics
   + Update Electronics to v0.0.7

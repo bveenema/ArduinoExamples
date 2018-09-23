@@ -31,6 +31,10 @@
 
 #define NUM_SELECTORS 5
 
+// Status LED Settings
+#define FAST_BLINK_RATE 250 // toggle every 250 ms
+#define REGULAR_BLINK_RATE 750 // toggle every 750 ms
+
 // Pressure Charge Settings
 #define MAX_CHARGE_PRESSURE 25000
 #define PRESSURE_SENSOR_DELTA_P 55360 // Pmax-Pmin, 55.360 inH2O (2psi)

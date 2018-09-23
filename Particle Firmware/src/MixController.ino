@@ -11,6 +11,7 @@
 #include <clickButton.h>
 #include "AppInterface.h"
 #include "MixMaster.h"
+#include "StatusLED.h"
 
 PRODUCT_ID(THIS_PRODUCT_ID);
 PRODUCT_VERSION(THIS_PRODUCT_VERSION);
@@ -22,6 +23,7 @@ ClickButton button(BUTTON_PIN, HIGH);
 ClickButton remote(REMOTE_PIN, HIGH);
 
 mixMaster MixMaster;
+statusLED StatusLED;
 
 void setup() {
   Serial.begin(57600);
@@ -35,6 +37,7 @@ void setup() {
   System.on(reset+firmware_update, fwUpdateAndResetHandler);
 
   MixMaster.init();
+  StatusLED.init();
 
   pinMode(BUTTON_PIN, INPUT);
   pinMode(STATUS_LED_PIN, OUTPUT);
@@ -88,6 +91,9 @@ void loop() {
   if(button.clicks < 0 || remote.clicks < 0) MixMaster.startCleaning(); // long press
   if(remote.clicks != 0) Serial.println("Remote Pressed");
   if(button.clicks != 0) Serial.println("Button Pressed");
+
+  // Update the StatusLED
+  StatusLED.update();
 
 }
 
