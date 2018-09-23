@@ -73,7 +73,7 @@ bool MixMaster::update(bool _changeState){
     PressureManager.setChargingState(true);
     if(PressureManager.isCharged()) mixerState = Mixing;
   }else if(mixerState == Mixing){
-    this->runPumps();
+    if(this->runPumpsWithErrorCheck()) mixerState = StartIdle;
     if(_changeState == true || (millis() - timeStartedMixing > timeToMix)){
       // don't reset _changeState when flushing so button won't be "ignored" while flushing
       if(!isFlushing) _changeState = false;
@@ -148,7 +148,7 @@ void MixMaster::updateCleaning(){
     }
     // No break, fall through to pulse pumps on immediately
     case PulseOn:
-      this->runPumps();
+      if(this->runPumpsWithErrorCheck()) mixerState = StartIdle;
       if(millis()-cleaningPulseTime > timeStateStarted){
         timeStateStarted = millis();
         CleaningState = IdleCleaning;
@@ -174,6 +174,10 @@ void MixMaster::updateCleaning(){
 uint32_t MixMaster::prepForMixing(uint32_t volume, uint32_t flowRate){
   resinPumpSpeed = calculatePumpSpeed(flowRate, settings.ratioResin[selector], settings.ratioHardener[selector], settings.stepsPerMlResin);
   hardenerPumpSpeed = calculatePumpSpeed(flowRate, settings.ratioHardener[selector], settings.ratioResin[selector], settings.stepsPerMlHardener);
+  ResinPump.setMaxSpeed(ultimateMaxSpeed);
+  HardenerPump.setMaxSpeed(ultimateMaxSpeed);
+  ResinPump.setSpeed(resinPumpSpeed);
+  HardenerPump.setSpeed(hardenerPumpSpeed);
   digitalWrite(RESIN_PUMP_ENABLE_PIN, LOW); // Enable Resin Pump
   digitalWrite(HARDENER_PUMP_ENABLE_PIN, LOW); // Enable Hardener Pump
   return calculateTimeForVolume(volume, flowRate);
@@ -188,10 +192,15 @@ void MixMaster::idlePumps(){
 }
 
 void MixMaster::runPumps(){
-  ResinPump.setMaxSpeed(ultimateMaxSpeed);
-  HardenerPump.setMaxSpeed(ultimateMaxSpeed);
-  ResinPump.setSpeed(resinPumpSpeed);
-  HardenerPump.setSpeed(hardenerPumpSpeed);
   ResinPump.runSpeed();
   HardenerPump.runSpeed();
+}
+
+bool MixMaster::runPumpsWithErrorCheck(){
+  this->runPumps();
+  if(digitalRead(RESIN_PUMP_ASSERT_PIN) || digitalRead(HARDENER_PUMP_ASSERT_PIN)){
+    strncpy("Motor Error",currentError,30);
+    return true;
+  }
+  return false;
 }

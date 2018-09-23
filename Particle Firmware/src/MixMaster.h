@@ -56,6 +56,7 @@ private:
   uint32_t prepForMixing(uint32_t volume, uint32_t flowRate);
   void idlePumps();
   void runPumps();
+  bool runPumpsWithErrorCheck();
 
   // Current State of Mix Master
   MixerState mixerState = StartIdle;
