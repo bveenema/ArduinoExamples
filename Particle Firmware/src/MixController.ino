@@ -21,8 +21,7 @@ SYSTEM_MODE(SEMI_AUTOMATIC);
 ClickButton button(BUTTON_PIN, HIGH);
 ClickButton remote(REMOTE_PIN, HIGH);
 
-MixMaster mixMaster;
-
+mixMaster MixMaster;
 
 void setup() {
   Serial.begin(57600);
@@ -35,7 +34,7 @@ void setup() {
 
   System.on(reset+firmware_update, fwUpdateAndResetHandler);
 
-  mixMaster.init();
+  MixMaster.init();
 
   pinMode(BUTTON_PIN, INPUT);
   pinMode(STATUS_LED_PIN, OUTPUT);
@@ -76,9 +75,9 @@ void loop() {
   }
 
   // Update the mix Master
-  //  pass the changeState bool to mixMaster, if true, mixMaster will return it
+  //  pass the changeState bool to MixMaster, if true, MixMaster will return it
   //  as false when after it has processed the command
-  changeState = mixMaster.update(changeState);
+  changeState = MixMaster.update(changeState);
 
   // check buttons
   // positive value for clicks is number of short presses
@@ -86,7 +85,7 @@ void loop() {
   button.Update();
   remote.Update();
   if(button.clicks > 0 || remote.clicks > 0) changeState = true; // short press
-  if(button.clicks < 0 || remote.clicks < 0) mixMaster.startCleaning(); // long press
+  if(button.clicks < 0 || remote.clicks < 0) MixMaster.startCleaning(); // long press
   if(remote.clicks != 0) Serial.println("Remote Pressed");
   if(button.clicks != 0) Serial.println("Button Pressed");
 

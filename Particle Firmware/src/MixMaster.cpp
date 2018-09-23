@@ -19,12 +19,12 @@ uint32_t calculateAutoReverseSteps(uint32_t thisPumpRatio, uint32_t otherPumpRat
 }
 
 // Class Functions
-MixMaster::MixMaster() :
+mixMaster::mixMaster() :
   ResinPump(AccelStepper::DRIVER, RESIN_PUMP_STEP_PIN, RESIN_PUMP_DIR_PIN),
   HardenerPump(AccelStepper::DRIVER, HARDENER_PUMP_STEP_PIN, HARDENER_PUMP_DIR_PIN)
   {}
 
-void MixMaster::init(){
+void mixMaster::init(){
   pinMode(RESIN_PUMP_ENABLE_PIN, OUTPUT);
   pinMode(RESIN_PUMP_STEP_PIN, OUTPUT);
   pinMode(RESIN_PUMP_DIR_PIN, OUTPUT);
@@ -48,7 +48,7 @@ void MixMaster::init(){
   HardenerPump.setMaxSpeed(ultimateMaxSpeed);
 }
 
-bool MixMaster::update(bool _changeState){
+bool mixMaster::update(bool _changeState){
 
   PressureManager.update();
 
@@ -81,7 +81,7 @@ bool MixMaster::update(bool _changeState){
     if(_changeState == true || (millis() - timeStartedMixing > timeToMix)){
       // don't reset _changeState when flushing so button won't be "ignored" while flushing
       if(!isFlushing) _changeState = false;
-      if(settings.autoReverseResin[selector] > 0 || settings.autoReverseHardener[selector] > 0) mixerState = StartAutoReverse;
+      if(settings.autoReverseSteps > 0) mixerState = StartAutoReverse;
       else mixerState = StartIdle;
     }
   }else if(mixerState == StartAutoReverse){
@@ -108,24 +108,24 @@ bool MixMaster::update(bool _changeState){
   return _changeState;
 }
 
-MixerState MixMaster::getState(){
+MixerState mixMaster::getState(){
   return mixerState;
 }
 
-uint32_t MixMaster::getPumpSpeed(MixerChannel channel){
+uint32_t mixMaster::getPumpSpeed(MixerChannel channel){
   if(channel == Resin){
     return resinPumpSpeed;
   }
   return hardenerPumpSpeed;
 }
 
-void MixMaster::startCleaning(){
+void mixMaster::startCleaning(){
   mixerState = Cleaning;
   CleaningState = InitCleaning;
   timeStartedCleaning = millis();
 }
 
-void MixMaster::updateCleaning(){
+void mixMaster::updateCleaning(){
   static uint32_t cleaningPulseTime;
   static uint32_t cleaningIdleTime;
   static uint32_t timeStateStarted;
@@ -175,7 +175,7 @@ void MixMaster::updateCleaning(){
   }
 }
 
-uint32_t MixMaster::prepForMixing(uint32_t volume, uint32_t flowRate){
+uint32_t mixMaster::prepForMixing(uint32_t volume, uint32_t flowRate){
   resinPumpSpeed = calculatePumpSpeed(flowRate, settings.ratioResin[selector], settings.ratioHardener[selector], settings.stepsPerMlResin);
   hardenerPumpSpeed = calculatePumpSpeed(flowRate, settings.ratioHardener[selector], settings.ratioResin[selector], settings.stepsPerMlHardener);
   ResinPump.setMaxSpeed(ultimateMaxSpeed);
@@ -187,7 +187,7 @@ uint32_t MixMaster::prepForMixing(uint32_t volume, uint32_t flowRate){
   return calculateTimeForVolume(volume, flowRate);
 }
 
-void MixMaster::idlePumps(){
+void mixMaster::idlePumps(){
   PressureManager.setChargingState(false);
   ResinPump.setSpeed(0);
   HardenerPump.setSpeed(0);
@@ -195,12 +195,12 @@ void MixMaster::idlePumps(){
   digitalWrite(HARDENER_PUMP_ENABLE_PIN, HIGH); // Disable Hardener Pump
 }
 
-void MixMaster::runPumps(){
+void mixMaster::runPumps(){
   ResinPump.runSpeed();
   HardenerPump.runSpeed();
 }
 
-bool MixMaster::runPumpsWithErrorCheck(){
+bool mixMaster::runPumpsWithErrorCheck(){
   this->runPumps();
   if(digitalRead(RESIN_PUMP_ASSERT_PIN) || digitalRead(HARDENER_PUMP_ASSERT_PIN)){
     strncpy("Pump Error",currentError,30);

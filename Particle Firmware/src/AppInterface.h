@@ -8,7 +8,7 @@
 
 // Link to external variables
 #include "globals.h"
-extern MixMaster mixMaster;
+extern mixMaster MixMaster;
 
 // Command Functions
 //      ** must take no arguments and return 'void'
@@ -17,9 +17,9 @@ extern MixMaster mixMaster;
 inline void printCurrentSelector(){ Serial.print(selector); }
 inline void printCurrentError(){ Serial.print(currentError); }
 inline void printFirmwareID(){ Serial.print(THIS_PRODUCT_ID); }
-inline void printMixerState(){ Serial.print(mixMaster.getState()); }
-inline void printResinPumpSpeed(){ Serial.print(mixMaster.getPumpSpeed(Resin)); }
-inline void printHardenerPumpSpeed(){ Serial.print(mixMaster.getPumpSpeed(Hardener)); }
+inline void printMixerState(){ Serial.print(MixMaster.getState()); }
+inline void printResinPumpSpeed(){ Serial.print(MixMaster.getPumpSpeed(Resin)); }
+inline void printHardenerPumpSpeed(){ Serial.print(MixMaster.getPumpSpeed(Hardener)); }
 inline void printNumSelectors(){ Serial.print(NUM_SELECTORS); }
 inline void printProductVersion(){ Serial.print(THIS_PRODUCT_VERSION); }
 inline void printCloudStatus(){
@@ -52,7 +52,7 @@ typedef struct {
 //    - List must be end with {NULL,NULL,NULL,NULL}
 const commandSet commandList[] = {
   {"action", NULL, NULL, printMixerState},
-  {"autoReverseSteps", &settings.autoReverseSteps, false, NULL}
+  {"autoReverseSteps", &settings.autoReverseSteps, false, NULL},
   {"cloudStatus", NULL, NULL, printCloudStatus},
   {"error", NULL, NULL, printCurrentError},
   {"eepromVersion", &settings.version, false, NULL},

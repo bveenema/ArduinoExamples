@@ -24,10 +24,10 @@ extern bool changeState;
 extern const unsigned int ultimateMaxSpeed;
 extern const unsigned int autoReverseSpeed;
 
-extern bool FLAG_wasError;
-extern bool FLAG_justReset;
-
 // Settings
 extern prom_settings settings;
+
+extern bool FLAG_wasError;
+extern bool FLAG_justReset;
 
 #endif

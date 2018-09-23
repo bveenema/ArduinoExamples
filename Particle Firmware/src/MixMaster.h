@@ -20,9 +20,9 @@ typedef enum{
   Hardener
 } MixerChannel;
 
-class MixMaster{
+class mixMaster{
 public:
-  MixMaster();
+  mixMaster();
 
   // setup pins and pump configurations
   void init();
