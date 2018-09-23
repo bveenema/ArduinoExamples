@@ -46,6 +46,8 @@ void MixMaster::init(){
 
 bool MixMaster::update(bool _changeState){
 
+  PressureManager.update();
+
   static uint32_t timeToMix = 0;
   static uint32_t timeStartedMixing = 0;
   static uint32_t timeStartedIdling = 0;
@@ -65,8 +67,11 @@ bool MixMaster::update(bool _changeState){
         isFlushing = true;
       }
       timeStartedMixing = millis();
-      mixerState = Mixing;
+      mixerState = Charging;
     }
+  }else if(mixerState == Charging){
+    PressureManager.setChargingState(true);
+    if(PressureManager.isCharged()) mixerState = Mixing;
   }else if(mixerState == Mixing){
     this->runPumps();
     if(_changeState == true || (millis() - timeStartedMixing > timeToMix)){
@@ -175,6 +180,7 @@ uint32_t MixMaster::prepForMixing(uint32_t volume, uint32_t flowRate){
 }
 
 void MixMaster::idlePumps(){
+  PressureManager.setChargingState(false);
   ResinPump.setSpeed(0);
   HardenerPump.setSpeed(0);
   digitalWrite(RESIN_PUMP_ENABLE_PIN, HIGH); // Disable Resin Pump

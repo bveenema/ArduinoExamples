@@ -1,12 +1,14 @@
 #ifndef MixMaster_h
 #define MixMaster_h
 
+#include "Particle.h"
 #include "AccelStepper.h"
 #include "globals.h"
 
 typedef enum{
   StartIdle,
   Idle,
+  Charging,
   Mixing,
   StartAutoReverse,
   AutoReversing,
