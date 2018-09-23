@@ -40,6 +40,16 @@ typedef struct {
   void (*action)(void);
 } commandSet;
 
+// List of serial commands
+// Form of: {commandString, settingStructMember, bool isSelectorConfigured, function to call}
+//    - for commands referncing the  "settings" struct: bool isSelectorConfigured
+//          may or many not be true and action function is typically NULL
+//          * if the setting's NOT selectorConfigured, pass by reference (ex. {"eepromVersion", &settings.version, false, NULL})
+//          * if the setting IS selectorConfigured, you are passing an array by reference (ex. {"flowRate", settings.flowRate, true, NULL})
+//    - for commands NOT reference the "settings struct": *setting and bool isSelectorConfigured
+//          should be NULL. All command actions should take place in the command function
+//          defined above
+//    - List must be end with {NULL,NULL,NULL,NULL}
 const commandSet commandList[] = {
   {"action", NULL, NULL, printMixerState},
   {"autoReverseResin", settings.autoReverseResin, true, NULL},
