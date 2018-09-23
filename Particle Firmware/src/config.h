@@ -18,7 +18,7 @@
 
 #define PRESS_SNS_PIN A0
 #define PAIL_SNS_PIN A1
-#define PUMP_EN A2
+#define AIR_PUMP_EN A2
 
 #define BUTTON_PIN A3
 #define STATUS_LED_PIN A4
@@ -30,6 +30,12 @@
 #define SELECTOR_SWITCH_1 TX
 
 #define NUM_SELECTORS 5
+
+// Pressure Charge Settings
+#define MAX_CHARGE_PRESSURE 25000
+#define PRESSURE_SENSOR_DELTA_P 55360 // Pmax-Pmin, 55.360 inH2O (2psi)
+#define PRESSURE_SENSOR_PMIN 27680 // Pmin 27.680 inH2O (1psi)
+#define PRESSURE_SENSOR_VSUPPLY 3300 // 3.3 volts
 
 // Mix Master Settings
 #define TIME_BETWEEN_FLUSHES 300000 // 5 minutes

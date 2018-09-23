@@ -21,17 +21,17 @@ Firmware
   + Rename A to "Resin" and B to "Hardener"
   + Update pins
   + Rename motors to pumps
+  - Check for Pail presence before running
   - check globals
     + changeState
   - Serial Interface Module
     + Rename "SerialSettings" to 'AppInterface'
     - Add 'charge pressure' handler
     - Add 'startCleaning' handler
-  - Pressure Charge Module
-    - Read pressure sensors to scientific value
-    - Check for Pail presence
-    - Create 'Pressure Charge' state machine
-    - Control pump
+  + Pressure Charge Module
+    + Read pressure sensors to scientific value
+    + Create 'Pressure Charge' state machine
+    + Control pump
   + Keep open flush
     + Add last shot timer (5 minutes)
     + flush 150cc both channels

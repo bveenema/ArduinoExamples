@@ -4,6 +4,7 @@
 
 #include "Particle.h"
 #include "config.h"
+#include "PressureManager.h"
 
 // Wifi Status
 extern uint32_t wifiStatus;
@@ -12,6 +13,9 @@ extern uint32_t wifiStatus;
 extern char currentError[30];
 
 extern int selector;
+
+// Pressure Manager
+extern pressureManager PressureManager;
 
 // State Machine
 extern bool changeState;
