@@ -19,8 +19,10 @@ Firmware
   + Update FW to version 7
   + Rename A to "Resin" and B to "Hardener"
   + Update pins
+  - check globals
+    - changeState
   - Serial Interface Module
-    - Rename "SerialSettings" to 'AppInterface'
+    + Rename "SerialSettings" to 'AppInterface'
     - Add 'charge pressure' handler
   - Pressure Charge Module
     - Read pressure sensors to scientific value

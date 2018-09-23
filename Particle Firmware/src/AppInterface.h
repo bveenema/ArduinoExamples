@@ -4,9 +4,11 @@
 
 #include "Particle.h"
 #include "config.h"
+#include "MixMaster.h"
 
 // Link to external variables
 #include "globals.h"
+extern MixMaster mixMaster;
 
 // Command Functions
 //      ** must take no arguments and return 'void'
@@ -15,7 +17,7 @@
 inline void printCurrentSelector(){ Serial.print(selector); }
 inline void printCurrentError(){ Serial.print(currentError); }
 inline void printFirmwareID(){ Serial.print(THIS_PRODUCT_ID); }
-inline void printMixerState(){ Serial.print(STATE_mixer); }
+inline void printMixerState(){ Serial.print(mixMaster.getState()); }
 inline void printMotorSpeedResin(){ Serial.print(motorSpeedResin); }
 inline void printMotorSpeedHardener(){ Serial.print(motorSpeedHardener); }
 inline void printNumSelectors(){ Serial.print(NUM_SELECTORS); }

@@ -15,7 +15,6 @@ extern int selector;
 
 // State Machine
 extern bool changeState;
-extern uint8_t STATE_mixer; //0: Not Moving 1: Mixing 2: Start AutoReverse 3: AutoReversing
 
 // Motor Info
 extern uint32_t motorSpeedResin; //steps/s
