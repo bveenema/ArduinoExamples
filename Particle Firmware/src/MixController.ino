@@ -78,6 +78,8 @@ void loop() {
   }
 
   // Update the mix Master
+  //  pass the changeState bool to mixMaster, if true, mixMaster will return it
+  //  as false when after it has processed the command
   changeState = mixMaster.update(changeState);
 
   // check buttons
