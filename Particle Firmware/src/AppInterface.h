@@ -52,8 +52,7 @@ typedef struct {
 //    - List must be end with {NULL,NULL,NULL,NULL}
 const commandSet commandList[] = {
   {"action", NULL, NULL, printMixerState},
-  {"autoReverseResin", settings.autoReverseResin, true, NULL},
-  {"autoReverseHardener", settings.autoReverseHardener, true, NULL},
+  {"autoReverseSteps", &settings.autoReverseSteps, false, NULL}
   {"cloudStatus", NULL, NULL, printCloudStatus},
   {"error", NULL, NULL, printCurrentError},
   {"eepromVersion", &settings.version, false, NULL},

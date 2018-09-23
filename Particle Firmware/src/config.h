@@ -52,18 +52,18 @@
 //  EEPROM Structure Definition
 //    When changing the structure of EEPROM, increase THIS_EEPROM_VERSION, this
 //    will cause EEPROM of previous versions to reset to default.
-#define THIS_EEPROM_VERSION 2
+#define THIS_EEPROM_VERSION 3
 
 struct prom_settings {
   uint32_t version;
   uint32_t stepsPerMlResin;
   uint32_t stepsPerMlHardener;
+  uint32_t autoReverseSteps;
+  uint32_t chargePressure;
   // Selector Based Settings
   uint32_t flowRate[NUM_SELECTORS];
   uint32_t ratioResin[NUM_SELECTORS];
   uint32_t ratioHardener[NUM_SELECTORS];
-  uint32_t autoReverseResin[NUM_SELECTORS];
-  uint32_t autoReverseHardener[NUM_SELECTORS];
   uint32_t volume[NUM_SELECTORS];
 };
 
@@ -73,11 +73,11 @@ const prom_settings defaultSettings = {
   THIS_EEPROM_VERSION,
   128, // stepsPerMlResin
   128, // stepsPerMlHardener
+  500, // autoReverseSteps
+  10000, // chargePressure
   {3000,3000,3000,3000,3000}, // flowRate
   {200,200,200,200,200}, // ratioResin
   {100,100,100,100,100}, // ratioHardener
-  {150,150,150,150,150}, // autoReverseResin
-  {75,75,75,75,75}, // autoReverseHardener
   {3785,3785,3785,3785,3785} // volume
 };
 

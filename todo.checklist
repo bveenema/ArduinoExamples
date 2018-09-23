@@ -28,6 +28,7 @@ Firmware
     + Rename "SerialSettings" to 'AppInterface'
     - Add 'charge pressure' handler
     - Add 'startCleaning' handler
+    - Add 'flush' handler
   + Pressure Charge Module
     + Read pressure sensors to scientific value
     + Create 'Pressure Charge' state machine
@@ -39,8 +40,8 @@ Firmware
     + User initiated (long button press) to start. Press button again to cancel
     + Pulse 200ml/min for 10 min
     - Update per new understanding from Skip - "Pulse 200ml at a rate of 3000ml/min every 10 seconds for 10 minutes at currently selected ratio"
-  - Stop both motors on error
-  - Change autoReverse to be 500 counts, ratio dependent
+  + Stop both motors on error
+  + Change autoReverse to be 500 counts, ratio dependent
   - Status LED
     - Add Status LED Module (State Machine)
     - Blink for Purge, on continous for preset values, fast blink for motor error

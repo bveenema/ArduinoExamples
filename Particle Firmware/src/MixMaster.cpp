@@ -1,10 +1,9 @@
 #include "MixMaster.h"
 
 // Utility Functions
-uint32_t calculatePumpSpeed(uint16_t flowRate, uint16_t thisPumpRatio, uint16_t otherPumpRatio, uint16_t stepsPerMl){
+uint32_t calculatePumpSpeed(uint32_t flowRate, uint32_t thisPumpRatio, uint32_t otherPumpRatio, uint32_t stepsPerMl){
   if(thisPumpRatio == 0 && otherPumpRatio == 0) return 0; // prevent divide by 0 error
-  uint32_t pumpSpeed = flowRate*stepsPerMl*thisPumpRatio/(thisPumpRatio+otherPumpRatio)/60;
-  return pumpSpeed;
+  return flowRate*stepsPerMl*thisPumpRatio/(thisPumpRatio+otherPumpRatio)/60;
 }
 
 uint32_t calculateTimeForVolume(uint32_t volume, uint16_t flowRate){
@@ -12,6 +11,11 @@ uint32_t calculateTimeForVolume(uint32_t volume, uint16_t flowRate){
   if(flowRate == 0) return 0; // prevent divide by 0 error
   uint32_t time = volume*600/flowRate;
   return time * 100;
+}
+
+uint32_t calculateAutoReverseSteps(uint32_t thisPumpRatio, uint32_t otherPumpRatio){
+  if(thisPumpRatio == 0 && otherPumpRatio == 0) return 0; // prevent divide by 0 error
+  return (settings.autoReverseSteps*100)/(thisPumpRatio+otherPumpRatio)*thisPumpRatio/100;
 }
 
 // Class Functions
@@ -85,8 +89,8 @@ bool MixMaster::update(bool _changeState){
     HardenerPump.setMaxSpeed(autoReverseSpeed);
     ResinPump.setCurrentPosition(0);
     HardenerPump.setCurrentPosition(0);
-    ResinPump.moveTo(-settings.autoReverseResin[selector]);
-    HardenerPump.moveTo(-settings.autoReverseHardener[selector]);
+    ResinPump.moveTo(-calculateAutoReverseSteps(settings.ratioResin[selector], settings.ratioHardener[selector]));
+    HardenerPump.moveTo(-calculateAutoReverseSteps(settings.ratioHardener[selector], settings.ratioResin[selector]));
     mixerState = AutoReversing;
   }else if(mixerState == AutoReversing){ // AutoReversing
     ResinPump.run();
