@@ -115,21 +115,15 @@ void MixMaster::updateCleaning(){
   const uint32_t cycleTime = 60000; // Amount of time between starting pulses - 1 minute
 
   switch(CleaningState){
-    case InitCleaning:
+    case InitCleaning: {
       const uint32_t cleaningFlowRate = 200; // ml/min
       const uint32_t cleaningVolume = 200; // ml
-      const uint32_t cleaningRatioResin = 100;
-      const uint32_t cleaningRatioHardener = 100;
 
       // We don't know current pump state, so assume it's running and stop it
-      idlePumps();
+      this->idlePumps();
 
-      // Configure the pumpss for cleaning
-      resinPumpSpeed = calculatePumpSpeed(cleaningFlowRate, cleaningRatioResin, cleaningRatioHardener, settings.stepsPerMlResin);
-      hardenerPumpSpeed = calculatePumpSpeed(cleaningFlowRate, cleaningRatioHardener, cleaningRatioResin, settings.stepsPerMlHardener);
-
-      // Calculate Cleaning Pulse and Idle times
-      cleaningPulseTime = calculateTimeForVolume(cleaningVolume, cleaningFlowRate);
+      // Calculate Cleaning Pulse and Idle times, prep for mixing
+      cleaningPulseTime = prepForMixing(cleaningVolume, cleaningFlowRate);
       if(cleaningPulseTime < cycleTime){
         cleaningIdleTime = cycleTime - cleaningPulseTime;
       } else {
@@ -141,11 +135,10 @@ void MixMaster::updateCleaning(){
       digitalWrite(HARDENER_PUMP_ENABLE_PIN, LOW); // Enable Hardener Pump
 
       CleaningState = PulseOn;
-
-      // No break, fall through to pulse pumps on immediately
-
+    }
+    // No break, fall through to pulse pumps on immediately
     case PulseOn:
-      runPumps();
+      this->runPumps();
       if(millis()-cleaningPulseTime > timeStateStarted){
         timeStateStarted = millis();
         CleaningState = IdleCleaning;
@@ -154,7 +147,7 @@ void MixMaster::updateCleaning(){
       break;
 
     case IdleCleaning:
-      idlePumps();
+      this->idlePumps();
       if(millis()-cleaningIdleTime > timeStateStarted){
         timeStateStarted = millis();
         CleaningState = PulseOn;
