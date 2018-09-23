@@ -14,22 +14,6 @@ uint32_t calculateTimeForVolume(uint32_t volume, uint16_t flowRate){
   return time * 100;
 }
 
-void idlePumps(){
-  ResinPump.setSpeed(0);
-  HardenerPump.setSpeed(0);
-  digitalWrite(RESIN_PUMP_ENABLE_PIN, HIGH); // Disable Resin Pump
-  digitalWrite(HARDENER_PUMP_ENABLE_PIN, HIGH); // Disable Hardener Pump
-}
-
-void runPumps(){
-  ResinPump.setMaxSpeed(ultimateMaxSpeed);
-  HardenerPump.setMaxSpeed(ultimateMaxSpeed);
-  ResinPump.setSpeed(resinPumpSpeed);
-  HardenerPump.setSpeed(hardenerPumpSpeed);
-  ResinPump.runSpeed();
-  HardenerPump.runSpeed();
-}
-
 // Class Functions
 MixMaster::MixMaster() :
   ResinPump(AccelStepper::DRIVER, RESIN_PUMP_STEP_PIN, RESIN_PUMP_DIR_PIN),
@@ -182,4 +166,28 @@ void MixMaster::updateCleaning(){
       CleaningState = InitCleaning;
       break;
   }
+}
+
+uint32_t MixMaster::prepForMixing(uint32_t volume, uint32_t flowRate){
+  resinPumpSpeed = calculatePumpSpeed(flowRate, settings.ratioResin[selector], settings.ratioHardener[selector], settings.stepsPerMlResin);
+  hardenerPumpSpeed = calculatePumpSpeed(flowRate, settings.ratioHardener[selector], settings.ratioResin[selector], settings.stepsPerMlHardener);
+  digitalWrite(RESIN_PUMP_ENABLE_PIN, LOW); // Enable Resin Pump
+  digitalWrite(HARDENER_PUMP_ENABLE_PIN, LOW); // Enable Hardener Pump
+  return calculateTimeForVolume(volume, flowRate);
+}
+
+void MixMaster::idlePumps(){
+  ResinPump.setSpeed(0);
+  HardenerPump.setSpeed(0);
+  digitalWrite(RESIN_PUMP_ENABLE_PIN, HIGH); // Disable Resin Pump
+  digitalWrite(HARDENER_PUMP_ENABLE_PIN, HIGH); // Disable Hardener Pump
+}
+
+void MixMaster::runPumps(){
+  ResinPump.setMaxSpeed(ultimateMaxSpeed);
+  HardenerPump.setMaxSpeed(ultimateMaxSpeed);
+  ResinPump.setSpeed(resinPumpSpeed);
+  HardenerPump.setSpeed(hardenerPumpSpeed);
+  ResinPump.runSpeed();
+  HardenerPump.runSpeed();
 }

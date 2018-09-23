@@ -49,6 +49,12 @@ private:
   AccelStepper ResinPump;
   AccelStepper HardenerPump;
 
+  // Pump Control functions
+  // Calculate the resinPumpSpeed and hardenerPumpSpeed, enable the pumps, return the time to pump
+  uint32_t prepForMixing(uint32_t volume, uint32_t flowRate);
+  void idlePumps();
+  void runPumps();
+
   // Current State of Mix Master
   MixerState mixerState = Idle;
 
