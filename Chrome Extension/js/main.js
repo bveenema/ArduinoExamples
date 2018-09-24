@@ -129,14 +129,24 @@ function getInfrequentStateValues(){
 
 // Get a list of all the variables (name attribute) in main.html
 function getAllVariables(){
-  allVariables =  Array.from(document.querySelectorAll('[name]'))
+  allVariables =  Array.from(document.querySelectorAll('[id^=command]'))
+                .filter(function(variable){
+                  return !variable.className.includes("hidden")
+                })
                 .map(function(element){
+                  let type = element.className.split(" ").filter(function(el){
+                    return  el === "slide-box" ||
+                            el === "advanced" ||
+                            el === "controller-state-infrequent" ||
+                            el === "controller-state-frequent" ||
+                            el === "controller-state-once"
+                  })[0];
                   return {
-                    type: element.className,
-                    name: element.attributes.name.value,
+                    type: type,
+                    name: element.id.split("-")[1],
                     element: element,
                     defaultValue: element.getElementsByTagName('span')[0].innerText
                   };
-              });
+                });
   console.log(allVariables);
 }
