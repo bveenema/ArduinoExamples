@@ -173,10 +173,10 @@ input[type="number"]:disabled {
   color: #888;
 }
 
-#error{
+#command-error{
   color: rgb(255,0,0);
 }
 
-#error span {
+#command-error span {
   color: rgba(255,0,0,0.7);
 }

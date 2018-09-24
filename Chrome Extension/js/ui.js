@@ -117,9 +117,9 @@ function updateControllerStateValue(variable, value){
       current.innerHTML = value.toString(10);
       if(variable === "error"){
         if(value === "none" || value === ""){
-          document.getElementById('error').style = "display: none";
+          document.getElementById('command-error').style = "display: none";
         }else{
-          document.getElementById('error').style = "display: block";
+          document.getElementById('command-error').style = "display: block";
         }
       }
     }
