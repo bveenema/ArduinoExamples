@@ -19,7 +19,7 @@ PRODUCT_VERSION(THIS_PRODUCT_VERSION);
 SYSTEM_THREAD(ENABLED);
 SYSTEM_MODE(SEMI_AUTOMATIC);
 
-ClickButton button(BUTTON_PIN, HIGH);
+ClickButton button(BUTTON_PIN, LOW, CLICKBTN_PULLUP);
 ClickButton remote(REMOTE_PIN, HIGH);
 
 mixMaster MixMaster;
@@ -39,7 +39,7 @@ void setup() {
   MixMaster.init();
   StatusLED.init();
 
-  pinMode(BUTTON_PIN, INPUT);
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(STATUS_LED_PIN, OUTPUT);
   pinMode(REMOTE_PIN, INPUT);
 
