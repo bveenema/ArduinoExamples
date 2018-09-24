@@ -79,6 +79,7 @@ const prom_settings defaultSettings = {
   128, // stepsPerMlHardener
   500, // autoReverseSteps
   10000, // chargePressure
+  150, // flushVolume
   {3000,3000,3000,3000,3000}, // flowRate
   {200,200,200,200,200}, // ratioResin
   {100,100,100,100,100}, // ratioHardener

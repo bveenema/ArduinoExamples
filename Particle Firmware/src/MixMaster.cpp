@@ -67,6 +67,7 @@ bool mixMaster::update(bool _changeState){
       if(_changeState){
         timeToMix = this->prepForMixing(settings.volume[selector], settings.flowRate[selector]);
         isFlushing = false;
+        _changeState = false;
       } else {
         timeToMix = this->prepForMixing(settings.flushVolume, settings.flowRate[selector]);
         isFlushing = true;
@@ -103,6 +104,7 @@ bool mixMaster::update(bool _changeState){
     this->updateCleaning();
     if(_changeState == true || (millis()-timeStartedCleaning > CLEANING_CYCLE_DURATION)){
       mixerState = StartIdle;
+      _changeState = false;
     }
   }
 

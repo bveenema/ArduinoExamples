@@ -6,13 +6,13 @@
 #include "globals.h"
 
 typedef enum{
-  StartIdle,
-  Idle,
-  Charging,
-  Mixing,
-  StartAutoReverse,
-  AutoReversing,
-  Cleaning
+  StartIdle, // 0
+  Idle, // 1
+  Charging, // 2
+  Mixing, // 3
+  StartAutoReverse, // 4
+  AutoReversing, // 5
+  Cleaning // 6
 } MixerState;
 
 typedef enum{
