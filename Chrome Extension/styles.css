@@ -19,6 +19,10 @@ label {
   color: #999;
 }
 
+.hidden {
+  display: none !important;
+}
+
 #device-picker,
 #status {
   color: #000;
@@ -56,15 +60,12 @@ label {
   margin-left: 20px;
 }
 
-#toggle-motor, #toggle-wifi {
+.action-button {
   background: rgb(67, 135, 253);
   border: none;
   font-size: 16px;
   color: rgb(255,255,255);
   padding: 10px 15px;
-  margin-bottom: 5px;
-}
-#toggle-wifi {
   margin: 5px 0;
   width: 100%;
 }

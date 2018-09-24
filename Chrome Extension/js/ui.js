@@ -12,11 +12,13 @@ function uiOnLoad(){
       updateSibling(textboxElement, parseFloat(this.value, 10));
     }
     sliderElement.onchange = function(){
-      updateMicro(this.parentNode.getAttribute('name'), parseFloat(this.value, 10), this.getAttribute('step'));
+      let commandName = this.parentNode.getAttribute('id').split('-')[1];
+      updateMicro(commandName, parseFloat(this.value, 10), this.getAttribute('step'));
     }
     textboxElement.onchange = function(){
       updateSibling(sliderElement, parseInt(this.value, 10));
-      updateMicro(this.parentNode.getAttribute('name'), parseFloat(this.value, 10), this.getAttribute('step'));
+      let commandName = this.parentNode.getAttribute('id').split('-')[1];
+      updateMicro(commandName, parseFloat(this.value, 10), this.getAttribute('step'));
     }
   }
 
@@ -26,7 +28,8 @@ function uiOnLoad(){
     let advancedElement = advancedSettings[i].getElementsByClassName('textbox')[0];
 
     advancedElement.onchange = function(){
-      updateMicro(this.parentNode.getAttribute('name'), parseFloat(this.value, 10), this.getAttribute('step'));
+      let commandName = this.parentNode.getAttribute('id').split('-')[1];
+      updateMicro(commandName, parseFloat(this.value, 10), this.getAttribute('step'));
     }
   }
 
@@ -43,9 +46,9 @@ function uiOnLoad(){
   }
 
   // Attach listener to Toggle Motor button
-  let toggleMotorButton = document.getElementById('toggle-motor');
-  toggleMotorButton.onclick = function(){
-    sendMessage("toggleMotor");
+  let togglePumpButton = document.getElementById('toggle-pump');
+  togglePumpButton.onclick = function(){
+    sendMessage("togglePump");
   }
 
   // Attach listener to Wifi Button
@@ -76,7 +79,7 @@ function updateSibling(sibling,value){
 function updateSlideBoxValue(variable, value){
   let elements = document.getElementsByClassName('slide-box');
   for(let i=0; i<elements.length; i++){
-    let name = elements[i].getAttribute('name');
+    let name = elements[i].getAttribute('id').split("-")[1];
     if(name === variable){
       let stepSize = parseFloat(elements[i].getElementsByClassName('slider')[0].getAttribute('step'));
       if(stepSize < 1) value /= 100;
@@ -94,7 +97,7 @@ function updateSlideBoxValue(variable, value){
 function updateAdvancedValue(variable, value){
   let elements = document.getElementsByClassName('advanced');
   for(let i=0; i<elements.length; i++){
-    let name = elements[i].getAttribute('name');
+    let name = elements[i].getAttribute('id').split("-")[1];
     if(name === variable){
       let textbox = elements[i].getElementsByClassName('textbox')[0];
       let current = elements[i].getElementsByTagName('span')[0];
@@ -108,7 +111,7 @@ function updateControllerStateValue(variable, value){
   if(value === "wait") return;
   let elements = document.querySelectorAll('.controller-state-frequent, .controller-state-infrequent, .controller-state-once');
   for(let i=0; i<elements.length; i++){
-    let name = elements[i].getAttribute('name');
+    let name = elements[i].getAttribute('id').split("-")[1];
     if(name === variable){
       let current = elements[i].getElementsByTagName('span')[0];
       current.innerHTML = value.toString(10);
@@ -175,7 +178,6 @@ function toggleVersionedElements(ver, show = true){
     version = Number(ver);
   }
   var potentials = document.querySelectorAll("[class*='version:']");
-  console.log("Potentials:",potentials);
 
   // convert potentials (nodelist) to array
   var potentialsArray = [];
@@ -194,18 +196,19 @@ function toggleVersionedElements(ver, show = true){
     return returnVal;
   });
 
-  console.log("elements", elements);
-
   // display element if element.version is <= version
   elements.forEach(function(element){
     let selectorVersion = element.version.split('-')[1];
+    if(element.version.startsWith("all")){
+      document.getElementById(element.id).classList.remove('hidden');
+    }
     if(element.version.startsWith("min")){
       if((selectorVersion <= version) && version < 1000){
-        document.getElementsByName(element.id).removeAttribute('hidden');
+        document.getElementById(element.id).classList.remove('hidden');
       }
     } else if(element.version.startsWith("max")){
-      if((selectorVersion >= version) && version < 1000){
-        document.getElementById(element.id).setAttribute('hidden', true);
+      if((selectorVersion <= version) && version < 1000){
+        document.getElementById(element.id).classList.add('hidden');
       }
     }
     // if((element.version <= version) && (version < 1000)){
@@ -216,6 +219,7 @@ function toggleVersionedElements(ver, show = true){
     //   }
     // }
   })
+  getAllVariables();
 }
 
 function buildSelectorPicker(numSelectors) {

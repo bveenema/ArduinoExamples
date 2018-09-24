@@ -40,7 +40,7 @@ function recieveData(readInfo) {
       }
       if(message.variableName === "numSelectors"){
         buildSelectorPicker(message.value);
-        toggleVersionedElements(document.getElementById("version").getElementsByTagName('span')[0].innerText);
+        toggleVersionedElements(document.getElementById("command-version").getElementsByTagName('span')[0].innerText);
       }
 
       if(variable != null){

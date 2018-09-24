@@ -19,7 +19,7 @@
       <span id="status">Loading</span>
     </label>
 
-    <!-- <label class="slide-box" name="flowRate">
+    <!-- <label class="slide-box">
       Flow Rate (ml/min):
       <input class="textbox" type="number" min="0" max="3000" step="10" value="0" disabled>
       <input class="slider" type="range" min="0" max="3000" step="100" value="0" disabled>
@@ -27,14 +27,14 @@
         Current: <span>0</span>
       </div>
     </label> -->
-    <div id="selector-div" class="version:min-5" hidden>
+    <div id="selector-div" class="version:min-5">
       <label class="selector">
         Selector:
         <select id="selector-picker"></select>
       </label>
     </div>
 
-    <label class="slide-box version:all" class="thisIsATest-7" name="ratioA">
+    <label id="command-ratioA" class="slide-box version:max-6 hidden">
       Ratio - A:
       <input class="textbox" type="number" min="0" max="10" step="0.1" value="0" disabled>
       <input class="slider" type="range" min="0" max="10" step="0.1" value="0" disabled>
@@ -43,7 +43,7 @@
       </div>
     </label>
 
-    <label class="slide-box version:all" name="ratioB">
+    <label id="command-ratioB" class="slide-box version:max-6 hidden">
       Ratio - B:
       <input class="textbox" type="number" min="0" max="10" step="0.1" value="0" disabled>
       <input class="slider" type="range" min="0" max="10" step="0.1" value="0" disabled>
@@ -52,7 +52,25 @@
       </div>
     </label>
 
-    <!-- <label class="slide-box" name="autoReverse">
+    <label id="command-ratioResin" class="slide-box version:min-7">
+      Ratio - Resin:
+      <input class="textbox" type="number" min="0" max="10" step="0.1" value="0" disabled>
+      <input class="slider" type="range" min="0" max="10" step="0.1" value="0" disabled>
+      <div class="current-value">
+        Current: <span>0</span>
+      </div>
+    </label>
+
+    <label id="command-ratioHardener" class="slide-box version:min-7">
+      Ratio - Hardener:
+      <input class="textbox" type="number" min="0" max="10" step="0.1" value="0" disabled>
+      <input class="slider" type="range" min="0" max="10" step="0.1" value="0" disabled>
+      <div class="current-value">
+        Current: <span >0</span>
+      </div>
+    </label>
+
+    <!-- <label class="slide-box">
       Auto Reverse:
       <input class="textbox" type="number" min="0" max="10000" step="1000" value="0" disabled>
       <input class="slider" type="range" min="0" max="10000" step="100" value="0" disabled>
@@ -65,38 +83,43 @@
       <div id="advanced-expander"><img src="assets/plus.svg" alt="+"><span id="advanced-expandertext">Advanced</span></div>
       <div id="advanced-input" style="display: none;">
         <ul>
-          <li class="advanced" name="flowRate" id="flowRate">
+          <li id="command-flowRate" class="advanced version:all">
             Flow Rate (ml/min):
             <input class="textbox" type="number" min="0" max="10000" step="100" value="0" disabled>
             Current: <span>0</span>
           </li>
-          <li class="advanced" name="volume">
+          <li id="command-volume" class="advanced version:all">
             Volume (ml):
             <input class="textbox" type="number" min="0" max="150000" step="100" value="0" disabled>
             Current: <span>0</span>
           </li>
-          <li class="advanced version:min-7" name="autoReverseSteps" hidden>
+          <li id="command-autoReverseSteps" class="advanced version:min-7">
             Auto Reverse Steps:
             <input class="textbox" type="number" min="0" max="10000" step="100" value="0" disabled>
             Current: <span>0</span>
           </li>
-          <li class="advanced version:max-6" name="autoReverseA">
+          <li id="command-autoReverseA" class="advanced version:max-6">
             Auto Reverse A:
             <input class="textbox" type="number" min="0" max="10000" step="1000" value="0" disabled>
             Current: <span>0</span>
           </li>
-          <li class="advanced version:max-6" name="autoReverseB">
+          <li id="command-autoReverseB" class="advanced version:max-6">
             Auto Reverse B:
             <input class="textbox" type="number" min="0" max="10000" step="1000" value="0" disabled>
             Current: <span>0</span>
           </li>
-          <li class="advanced" name="stepsPerMlA">
+          <li id="command-stepsPerMlA" class="advanced version:max-6">
             Steps/ml - A:
             <input class="textbox" type="number" min="0" max="1000" step="10" value="0" disabled>
             Current: <span>0</span>
           </li>
-          <li class="advanced" name="stepsPerMlB">
-            Steps/ml - B:
+          <li id="command-stepsPerMlResin" class="advanced version:min-7">
+            Steps/ml - Resin:
+            <input class="textbox" type="number" min="0" max="1000" step="10" value="0" disabled>
+            Current: <span>0</span>
+          </li>
+          <li id="command-stepsPerMlHardener" class="advanced version:min-7">
+            Steps/ml - Hardener:
             <input class="textbox" type="number" min="0" max="1000" step="10" value="0" disabled>
             Current: <span>0</span>
           </li>
@@ -107,38 +130,44 @@
     <div id="controller-state">
       <h3>Controller State</h3>
       <ul>
-        <li class="controller-state-infrequent" name="name">
+        <li id="command-name" class="controller-state-infrequent version:all">
           Name: <span>Unknown</span>
         </li>
-        <li class="controller-state-infrequent" name="firmwareID">
+        <li id="command-firmwareID" class="controller-state-infrequent version:all">
           Firmware ID: <span>0</span>
         </li>
-        <li class="controller-state-infrequent" name="version" id="version">
+        <li id="command-version" class="controller-state-infrequent version:all">
           Version: <span>0</span>
         </li>
-        <li class="controller-state-infrequent" name="cloudStatus">
+        <li id="command-cloudStatus" class="controller-state-infrequent version:all">
           Cloud Status: <span>Not Connected</span>
         </li>
-        <li class="controller-state-frequent" name="selector">
+        <li id="command-selector" class="controller-state-frequent version:min-6">
           Selector: <span>-1</span>
         </li>
       </ul>
       <ul>
-        <li class="controller-state-frequent" name="motorSpeedA">
+        <li id="command-motorSpeedA" class="controller-state-frequent version:max-6">
           Motor A Speed: <span>0</span>
         </li>
-        <li class="controller-state-frequent" name="motorSpeedB">
-          Motor B Speed: <span>0</span>
+        <li id="command-resinPumpSpeed" class="controller-state-frequent version:min-7">
+          Resin Pump Speed: <span>0</span>
         </li>
-        <li class="controller-state-frequent" name="action">
+        <li id="command-hardenerPumpSpeed" class="controller-state-frequent version:min-7">
+          Hardener Pump Speed: <span>0</span>
+        </li>
+        <li id="command-action" class="controller-state-frequent version:all">
           Action: <span>none</span>
         </li>
-        <button id="toggle-motor" type="button">Toggle Pumps</button>
       </ul>
-      <button id="toggle-wifi" type="button" class="showMinVersion-5" hidden>Enable Wifi</button>
+      <ul>
+        <button id="toggle-pump" type="button" class="action-button version:all">Toggle Pumps</button>
+        <button id="toggle-wifi" type="button" class="action-button version:min-5">Enable Wifi</button>
+        <button id="startCleaning" type="button" class="action-button version:min-7">Start Cleaning</button>
+      </ul>
 
-      <ul id="error" style="display:block">
-        <li class="controller-state-frequent" name="error">
+      <ul style="display:block">
+        <li id="error" class="controller-state-frequent version:all">
           Error: <span>none</span>
         </li>
       </ul>
