@@ -174,7 +174,8 @@ function toggleVersionedElements(ver, show = true){
   }else{
     version = Number(ver);
   }
-  var potentials = document.querySelectorAll("[class*=showMinVersion-]");
+  var potentials = document.querySelectorAll("[class*='version:']");
+  console.log("Potentials:",potentials);
 
   // convert potentials (nodelist) to array
   var potentialsArray = [];
@@ -184,8 +185,8 @@ function toggleVersionedElements(ver, show = true){
   let elements = potentialsArray.filter(function(element){
     let returnVal = false;
     for(i=0;i<element.classList.length; i++){
-      if(element.classList[i].match(/^showMinVersion-/)){
-        element.version = Number(element.classList[i].split('-')[1]);
+      if(element.classList[i].match(/^version:/)){
+        element.version = element.classList[i].split(':')[1];
         returnVal = true;
         break;
       }
@@ -193,15 +194,27 @@ function toggleVersionedElements(ver, show = true){
     return returnVal;
   });
 
+  console.log("elements", elements);
+
   // display element if element.version is <= version
   elements.forEach(function(element){
-    if((element.version <= version) && (version < 1000)){
-      if(show === true){
-        document.getElementById(element.id).removeAttribute('hidden');
-      } else {
+    let selectorVersion = element.version.split('-')[1];
+    if(element.version.startsWith("min")){
+      if((selectorVersion <= version) && version < 1000){
+        document.getElementsByName(element.id).removeAttribute('hidden');
+      }
+    } else if(element.version.startsWith("max")){
+      if((selectorVersion >= version) && version < 1000){
         document.getElementById(element.id).setAttribute('hidden', true);
       }
     }
+    // if((element.version <= version) && (version < 1000)){
+    //   if(show === true){
+    //     document.getElementById(element.id).removeAttribute('hidden');
+    //   } else {
+    //     document.getElementById(element.id).setAttribute('hidden', true);
+    //   }
+    // }
   })
 }
 
