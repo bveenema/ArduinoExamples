@@ -9,12 +9,12 @@ General
   ? Verify tubing and Bulkhead with MCD
 
 App
-  - Rename A to "Resin" and B to "Hardener"
-  - Update Manifest to v0.0.7
+  + Rename A to "Resin" and B to "Hardener"
+  + Update Manifest to v0.0.7
   - Add inputs for 'keep open flush', 'charge pressure'
-  - Change 'autoreverse A' and 'autoReverse B' inputs to be 'reverseSteps'
+  + Change 'autoreverse A' and 'autoReverse B' inputs to be 'reverseSteps'
   - Add output(s) for current charge pressure
-  - Add button for 'clean pumps'
+  + Add button for 'clean pumps'
 
 Firmware
   + Update FW to version 7

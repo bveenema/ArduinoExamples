@@ -45,27 +45,21 @@ function uiOnLoad(){
     beginSerial();
   }
 
-  // Attach listener to Toggle Motor button
-  let togglePumpButton = document.getElementById('toggle-pump');
-  togglePumpButton.onclick = function(){
-    sendMessage("togglePump");
-  }
-
-  // Attach listener to Wifi Button
-  let toggleWifiButton = document.getElementById('toggle-wifi');
-  toggleWifiButton.onclick = function(){
-    if(toggleWifiButton.innerText === "Enable Wifi"){
-      console.log("Enabling Wifi");
-      toggleWifiButton.innerText = "Disable Wifi"
-      toggleWifiButton.classList.toggle("enabled");
-      sendMessage(formatMessage("wifiStatus",1));
-    } else {
-      console.log("Disabling Wifi");
-      toggleWifiButton.innerText = "Enable Wifi"
-      toggleWifiButton.classList.toggle("enabled");
-      sendMessage(formatMessage("wifiStatus",0));
+  // Attach Listeners to Buttons (if not hidden)
+  let buttons = document.getElementsByClassName('action-button');
+  for(let i=0; i<buttons.length; i++){
+    let button = buttons[i]
+    console.log(button);
+    button.onclick = function(){
+      console.log("toggle", button.innerText.split(" ")[1]);
+      sendMessage(formatMessage(button.getAttribute('id'),1));
+      if(button.nextElementSibling && button.nextElementSibling.classList.contains('button-alt-text')){
+        let swapText = button.innerText;
+        button.innerText = button.nextSibling.innerText;
+        button.nextSibling.innerText = swapText;
+        button.classList.toggle('enabled');
+      }
     }
-
   }
 
   // Initialize Connection view
