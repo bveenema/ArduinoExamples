@@ -78,6 +78,7 @@ input[type="number"] {
   height: 20px;
   font-size: 16px;
   border-width: 2px;
+  display: block;
 }
 
 .slide-box input[type="number"] {
