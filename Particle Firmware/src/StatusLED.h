@@ -24,7 +24,7 @@ public:
 
   // Checks MixMaster state and currentError to decide LEDState
   //  * Hierarchy:  0 - Motor Error
-  //                1 - Cleaning
+  //                1 - Flushing
   //                2 - Mixing
   //                3 - Off
   void update();

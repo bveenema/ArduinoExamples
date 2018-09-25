@@ -31,7 +31,7 @@ inline void printCloudStatus(){
 }
 inline void togglePump(){ changeState = true; Serial.print("N/A"); }
 inline void getDeviceName(){ Particle.publish("particle/device/name", NULL, 60, PRIVATE); Serial.print("wait"); }
-inline void startCleaning(){ MixMaster.startCleaning(); }
+inline void startFlush(){ MixMaster.startFlush(); }
 
 // Command Declarations
 typedef struct {
@@ -68,7 +68,7 @@ const commandSet commandList[] = {
   {"ratioResin", settings.ratioResin, true, NULL},
   {"ratioHardener", settings.ratioHardener, true, NULL},
   {"selector", NULL, NULL, printCurrentSelector},
-  {"startCleaning", NULL, NULL, startCleaning},
+  {"startFlush", NULL, NULL, startFlush},
   {"stepsPerMlResin", &settings.stepsPerMlResin, false, NULL},
   {"stepsPerMlHardener", &settings.stepsPerMlHardener, false, NULL},
   {"togglePump", NULL, NULL, togglePump},

@@ -9,7 +9,7 @@ void statusLED::init(){
 
 void statusLED::update(){
   if(strcmp(currentError, "none") != 0) currentState = FAST_BLINK;
-  else if(MixMaster.getState() == Cleaning) currentState = BLINK;
+  else if(MixMaster.getState() == Flushing) currentState = BLINK;
   else if(MixMaster.getState() == Mixing) currentState = ON;
   else currentState = OFF;
 

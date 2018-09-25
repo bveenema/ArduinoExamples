@@ -12,7 +12,7 @@ typedef enum{
   Mixing, // 3
   StartAutoReverse, // 4
   AutoReversing, // 5
-  Cleaning // 6
+  Flushing // 6
 } MixerState;
 
 typedef enum{
@@ -38,13 +38,13 @@ public:
   // returns the currently calculated pump speeds
   uint32_t getPumpSpeed(MixerChannel channel);
 
-  // Puts Mix Master in to Cleaning state
-  //  * Mix Master can only be taken in to Cleaning state through this function
-  //  * The "Cleaning" mixerState calls updateCleaning() and checks for _changestate
-  //  * if _changeState is true while "Cleaning" Mixer State becomes "StartIdle"
-  //  * startCleaning records the time "Cleaning" started, "Cleaning" state checks
-  //      if "Cleaning" has been running for longer than CLEANING_CYCLE_DURATION
-  void startCleaning();
+  // Puts Mix Master in to Flushing state
+  //  * Mix Master can only be taken in to Flushing state through this function
+  //  * The "Flushing" mixerState calls updateFlushing() and checks for _changestate
+  //  * if _changeState is true while "Flushing" Mixer State becomes "StartIdle"
+  //  * startFlushing records the time "Flushing" started, "Flushing" state checks
+  //      if "Flushing" has been running for longer than FLUSH_CYCLE_DURATION
+  void startFlush();
 
 private:
   // Pump objects
@@ -69,18 +69,18 @@ private:
   uint32_t resinPumpSpeed = 0; //steps/s
   uint32_t hardenerPumpSpeed = 0; //steps/s
 
-  // Cleaning States
-  enum CleaningState{
-    InitCleaning,
+  // Flushing States
+  enum FlushingState{
+    InitFlush,
     PulseOn,
-    IdleCleaning
-  } CleaningState;
+    IdleFlushing
+  } FlushingState;
 
-  // Cleaning State Machine Handler
-  void updateCleaning();
+  // Flushing State Machine Handler
+  void updateFlushing();
 
-  // Cleaning Timer
-  uint32_t timeStartedCleaning;
+  // Flushing Timer
+  uint32_t timeStartedFlushing;
 };
 
 

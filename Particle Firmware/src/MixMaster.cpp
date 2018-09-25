@@ -100,9 +100,9 @@ bool mixMaster::update(bool _changeState){
     if(!ResinPump.isRunning() && !HardenerPump.isRunning()){
       mixerState = StartIdle;
     }
-  }else if(mixerState == Cleaning){
-    this->updateCleaning();
-    if(_changeState == true || (millis()-timeStartedCleaning > CLEANING_CYCLE_DURATION)){
+  }else if(mixerState == Flushing){
+    this->updateFlushing();
+    if(_changeState == true || (millis()-timeStartedFlushing > FLUSH_CYCLE_DURATION)){
       mixerState = StartIdle;
       _changeState = false;
     }
@@ -122,58 +122,58 @@ uint32_t mixMaster::getPumpSpeed(MixerChannel channel){
   return hardenerPumpSpeed;
 }
 
-void mixMaster::startCleaning(){
-  mixerState = Cleaning;
-  CleaningState = InitCleaning;
-  timeStartedCleaning = millis();
+void mixMaster::startFlush(){
+  mixerState = Flushing;
+  FlushingState = InitFlush;
+  timeStartedFlushing = millis();
 }
 
-void mixMaster::updateCleaning(){
-  static uint32_t cleaningPulseTime;
-  static uint32_t cleaningIdleTime;
+void mixMaster::updateFlushing(){
+  static uint32_t flushPulseTime;
+  static uint32_t flushIdleTime;
   static uint32_t timeStateStarted;
 
-  switch(CleaningState){
-    case InitCleaning: {
+  switch(FlushingState){
+    case InitFlush: {
 
       // We don't know current pump state, so assume it's running and stop it
       this->idlePumps();
 
-      // Calculate Cleaning Pulse and Idle times, prep for mixing
-      cleaningPulseTime = prepForMixing(CLEANING_VOLUME_PER_PULSE, CLEANING_FLOW_RATE);
-      if(cleaningPulseTime < CLEANING_PULSE_INTERVAL){
-        cleaningIdleTime = CLEANING_PULSE_INTERVAL - cleaningPulseTime;
+      // Calculate Flush Pulse and Idle times, prep for mixing
+      flushPulseTime = prepForMixing(FLUSH_VOLUME_PER_PULSE, FLUSH_FLOW_RATE);
+      if(flushPulseTime < FLUSH_PULSE_INTERVAL){
+        flushIdleTime = FLUSH_PULSE_INTERVAL - flushPulseTime;
       } else {
-        cleaningIdleTime = 0;
+        flushIdleTime = 0;
       }
 
       timeStateStarted = millis();
       digitalWrite(RESIN_PUMP_ENABLE_PIN, LOW); // Enable Resin Pump
       digitalWrite(HARDENER_PUMP_ENABLE_PIN, LOW); // Enable Hardener Pump
 
-      CleaningState = PulseOn;
+      FlushingState = PulseOn;
     }
     // No break, fall through to pulse pumps on immediately
     case PulseOn:
       if(this->runPumpsWithErrorCheck()) mixerState = StartIdle;
-      if(millis()-cleaningPulseTime > timeStateStarted){
+      if(millis()-flushPulseTime > timeStateStarted){
         timeStateStarted = millis();
-        CleaningState = IdleCleaning;
+        FlushingState = IdleFlushing;
       }
 
       break;
 
-    case IdleCleaning:
+    case IdleFlushing:
       this->idlePumps();
-      if(millis()-cleaningIdleTime > timeStateStarted){
+      if(millis()-flushIdleTime > timeStateStarted){
         timeStateStarted = millis();
-        CleaningState = PulseOn;
+        FlushingState = PulseOn;
       }
 
       break;
 
     default:
-      CleaningState = InitCleaning;
+      FlushingState = InitFlush;
       break;
   }
 }

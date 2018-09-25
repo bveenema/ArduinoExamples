@@ -43,13 +43,13 @@
 
 // Mix Master Settings
 #define TIME_BETWEEN_FLUSHES 300000 // 5 minutes
-#define CLEANING_FLOW_RATE 3000 // ml/min
-#define CLEANING_VOLUME_PER_PULSE 200 //ml
-#define CLEANING_PULSE_INTERVAL 10000 // time bewteen start of pulses (10 sec)
-#define CLEANING_CYCLE_DURATION 600000 // duration of cleaning cycle (10 min)
+#define FLUSH_FLOW_RATE 3000 // ml/min
+#define FLUSH_VOLUME_PER_PULSE 200 //ml
+#define FLUSH_PULSE_INTERVAL 10000 // time bewteen start of pulses (10 sec)
+#define FLUSH_CYCLE_DURATION 600000 // duration of flush cycle (10 min)
 
 // Button and Remote Settings
-// time must be held down to be a long press to initiate a "Cleaning" cycle
+// time must be held down to be a long press to initiate a "Flush" cycle
 #define LONG_PRESS_TIME 5000
 
 //  EEPROM Structure Definition

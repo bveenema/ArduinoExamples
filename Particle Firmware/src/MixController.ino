@@ -88,7 +88,7 @@ void loop() {
   button.Update();
   remote.Update();
   if(button.clicks > 0 || remote.clicks > 0) changeState = true; // short press
-  if(button.clicks < 0 || remote.clicks < 0) MixMaster.startCleaning(); // long press
+  if(button.clicks < 0 || remote.clicks < 0) MixMaster.startFlush(); // long press
   if(remote.clicks != 0) Serial.println("Remote Pressed");
   if(button.clicks != 0) Serial.println("Button Pressed");
 
