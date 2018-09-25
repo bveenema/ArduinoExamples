@@ -56,21 +56,21 @@ bool mixMaster::update(bool _changeState){
   static uint32_t timeToMix = 0;
   static uint32_t timeStartedMixing = 0;
   static uint32_t timeStartedIdling = 0;
-  static bool isFlushing = false;
+  static bool keepOpen = false;
 
   if(mixerState == StartIdle){
     timeStartedIdling = millis();
     mixerState = Idle;
   }else if(mixerState == Idle){
     this->idlePumps();
-    if(_changeState || (millis() - timeStartedIdling > TIME_BETWEEN_FLUSHES)) {
+    if(_changeState || (millis() - timeStartedIdling > TIME_BETWEEN_KEEP_OPEN_CYCLES)) {
       if(_changeState){
         timeToMix = this->prepForMixing(settings.volume[selector], settings.flowRate[selector]);
-        isFlushing = false;
+        keepOpen = false;
         _changeState = false;
       } else {
-        timeToMix = this->prepForMixing(settings.flushVolume, settings.flowRate[selector]);
-        isFlushing = true;
+        timeToMix = this->prepForMixing(settings.keepOpenVolume, settings.flowRate[selector]);
+        keepOpen = true;
       }
       timeStartedMixing = millis();
       mixerState = Charging;
@@ -81,8 +81,8 @@ bool mixMaster::update(bool _changeState){
   }else if(mixerState == Mixing){
     if(this->runPumpsWithErrorCheck()) mixerState = StartIdle;
     if(_changeState == true || (millis() - timeStartedMixing > timeToMix)){
-      // don't reset _changeState when flushing so button won't be "ignored" while flushing
-      if(!isFlushing) _changeState = false;
+      // don't reset _changeState when keep open so button won't be "ignored" while keep open
+      if(!keepOpen) _changeState = false;
       if(settings.autoReverseSteps > 0) mixerState = StartAutoReverse;
       else mixerState = StartIdle;
     }

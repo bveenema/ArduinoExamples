@@ -42,7 +42,7 @@
 #define PRESSURE_SENSOR_VSUPPLY 3300 // 3.3 volts
 
 // Mix Master Settings
-#define TIME_BETWEEN_FLUSHES 300000 // 5 minutes
+#define TIME_BETWEEN_KEEP_OPEN_CYCLES 300000 // 5 minutes
 #define FLUSH_FLOW_RATE 3000 // ml/min
 #define FLUSH_VOLUME_PER_PULSE 200 //ml
 #define FLUSH_PULSE_INTERVAL 10000 // time bewteen start of pulses (10 sec)
@@ -63,7 +63,7 @@ struct prom_settings {
   uint32_t stepsPerMlHardener;
   uint32_t autoReverseSteps;
   uint32_t chargePressure;
-  uint32_t flushVolume;
+  uint32_t keepOpenVolume;
   // Selector Based Settings
   uint32_t flowRate[NUM_SELECTORS];
   uint32_t ratioResin[NUM_SELECTORS];
@@ -79,7 +79,7 @@ const prom_settings defaultSettings = {
   128, // stepsPerMlHardener
   500, // autoReverseSteps
   10000, // chargePressure
-  150, // flushVolume
+  150, // keepOpenVolume
   {3000,3000,3000,3000,3000}, // flowRate
   {200,200,200,200,200}, // ratioResin
   {100,100,100,100,100}, // ratioHardener

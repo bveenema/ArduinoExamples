@@ -60,7 +60,7 @@ const commandSet commandList[] = {
   {"eepromVersion", &settings.version, false, NULL},
   {"firmwareID", NULL, NULL, printFirmwareID},
   {"flowRate", settings.flowRate, true, NULL},
-  {"flushVolume", &settings.flushVolume, false, NULL},
+  {"keepOpenVolume", &settings.keepOpenVolume, false, NULL},
   {"resinPumpSpeed", NULL, NULL, printResinPumpSpeed},
   {"hardenerPumpSpeed", NULL, NULL, printHardenerPumpSpeed},
   {"name", NULL, NULL, getDeviceName},
