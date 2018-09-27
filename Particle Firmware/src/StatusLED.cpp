@@ -9,8 +9,8 @@ void statusLED::init(){
 
 void statusLED::update(){
   if(strcmp(currentError, "none") != 0) currentState = FAST_BLINK;
-  else if(MixMaster.getState() == Flushing) currentState = BLINK;
-  else if(MixMaster.getState() == Mixing) currentState = ON;
+  else if(MixMaster.getState() == FLUSHING) currentState = BLINK;
+  else if(MixMaster.getState() == MIXING) currentState = ON;
   else currentState = OFF;
 
   if(currentState == FAST_BLINK) this->blink(FAST_BLINK_RATE);
@@ -26,3 +26,4 @@ void statusLED::blink(uint32_t rate){
     lastBlinkTime = millis();
   }
 }
+FLUSHING

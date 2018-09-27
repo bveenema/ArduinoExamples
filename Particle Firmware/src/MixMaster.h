@@ -6,13 +6,13 @@
 #include "globals.h"
 
 typedef enum{
-  StartIdle, // 0
-  Idle, // 1
-  Charging, // 2
-  Mixing, // 3
-  StartAutoReverse, // 4
-  AutoReversing, // 5
-  Flushing // 6
+  START_IDLE, // 0
+  IDLE, // 1
+  CHARGING, // 2
+  MIXING, // 3
+  START_AUTO_REVERSE, // 4
+  AUTO_REVERSING, // 5
+  FLUSHING // 6
 } MixerState;
 
 typedef enum{
@@ -28,7 +28,7 @@ public:
   void init();
 
   // Updates the mixer state handler (ie. the main "brain" of the mixer)
-  //  if _changeState is passed true, update will process if in Idle or Mixing states
+  //  if _changeState is passed true, update will process if in IDLE or MIXING states
   //  and return it as false when it has processed it.
   bool update(bool _changeState);
 
@@ -38,12 +38,12 @@ public:
   // returns the currently calculated pump speeds
   uint32_t getPumpSpeed(MixerChannel channel);
 
-  // Puts Mix Master in to Flushing state
-  //  * Mix Master can only be taken in to Flushing state through this function
-  //  * The "Flushing" mixerState calls updateFlushing() and checks for _changestate
-  //  * if _changeState is true while "Flushing" Mixer State becomes "StartIdle"
-  //  * startFlushing records the time "Flushing" started, "Flushing" state checks
-  //      if "Flushing" has been running for longer than FLUSH_CYCLE_DURATION
+  // Puts Mix Master in to FLUSHING state
+  //  * Mix Master can only be taken in to FLUSHING state through this function
+  //  * The "FLUSHING" mixerState calls updateFlushing() and checks for _changestate
+  //  * if _changeState is true while "FLUSHING" Mixer State becomes "START_IDLE"
+  //  * startFlushing records the time "FLUSHING" started, "FLUSHING" state checks
+  //      if "FLUSHING" has been running for longer than FLUSH_CYCLE_DURATION
   void startFlush();
 
 private:
@@ -59,7 +59,7 @@ private:
   bool runPumpsWithErrorCheck();
 
   // Current State of Mix Master
-  MixerState mixerState = StartIdle;
+  MixerState mixerState = START_IDLE;
 
   // Pump configuration
   const unsigned int ultimateMaxSpeed = 15000;
@@ -69,11 +69,11 @@ private:
   uint32_t resinPumpSpeed = 0; //steps/s
   uint32_t hardenerPumpSpeed = 0; //steps/s
 
-  // Flushing States
+  // FLUSHING States
   enum FlushingState{
-    InitFlush,
-    PulseOn,
-    IdleFlushing
+    INITFLUSH,
+    PULSE_ON,
+    IDLE_FLUSHING
   } FlushingState;
 
   // Flushing State Machine Handler

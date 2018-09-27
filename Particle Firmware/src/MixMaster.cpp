@@ -58,10 +58,10 @@ bool mixMaster::update(bool _changeState){
   static uint32_t timeStartedIdling = 0;
   static bool keepOpen = false;
 
-  if(mixerState == StartIdle){
+  if(mixerState == START_IDLE){
     timeStartedIdling = millis();
-    mixerState = Idle;
-  }else if(mixerState == Idle){
+    mixerState = IDLE;
+  }else if(mixerState == IDLE){
     this->idlePumps();
     if(_changeState || (millis() - timeStartedIdling > TIME_BETWEEN_KEEP_OPEN_CYCLES)) {
       if(_changeState){
@@ -72,45 +72,45 @@ bool mixMaster::update(bool _changeState){
         timeToMix = this->prepForMixing(settings.keepOpenVolume, settings.flowRate[selector]);
         keepOpen = true;
       }
-      mixerState = Charging;
+      mixerState = CHARGING;
     }
-  }else if(mixerState == Charging){
+  }else if(mixerState == CHARGING){
     PressureManager.setChargingState(true);
     if(PressureManager.isCharged()) {
       timeStartedMixing = millis();
-      mixerState = Mixing;
+      mixerState = MIXING;
     }
     if(_changeState == true){
       // don't reset _changeState when keep open so button won't be "ignored" while keep open
       if(!keepOpen) _changeState = false;
-      mixerState = StartIdle;
+      mixerState = START_IDLE;
     }
-  }else if(mixerState == Mixing){
-    if(this->runPumpsWithErrorCheck()) mixerState = StartIdle;
+  }else if(mixerState == MIXING){
+    if(this->runPumpsWithErrorCheck()) mixerState = START_IDLE;
     if(_changeState == true || (millis() - timeStartedMixing > timeToMix)){
       // don't reset _changeState when keep open so button won't be "ignored" while keep open
       if(!keepOpen) _changeState = false;
-      if(settings.autoReverseSteps > 0) mixerState = StartAutoReverse;
-      else mixerState = StartIdle;
+      if(settings.autoReverseSteps > 0) mixerState = START_AUTO_REVERSE;
+      else mixerState = START_IDLE;
     }
-  }else if(mixerState == StartAutoReverse){
+  }else if(mixerState == START_AUTO_REVERSE){
     ResinPump.setMaxSpeed(autoReverseSpeed);
     HardenerPump.setMaxSpeed(autoReverseSpeed);
     ResinPump.setCurrentPosition(0);
     HardenerPump.setCurrentPosition(0);
     ResinPump.moveTo(-calculateAutoReverseSteps(settings.ratioResin[selector], settings.ratioHardener[selector]));
     HardenerPump.moveTo(-calculateAutoReverseSteps(settings.ratioHardener[selector], settings.ratioResin[selector]));
-    mixerState = AutoReversing;
-  }else if(mixerState == AutoReversing){ // AutoReversing
+    mixerState = AUTO_REVERSING;
+  }else if(mixerState == AUTO_REVERSING){
     ResinPump.run();
     HardenerPump.run();
     if(!ResinPump.isRunning() && !HardenerPump.isRunning()){
-      mixerState = StartIdle;
+      mixerState = START_IDLE;
     }
-  }else if(mixerState == Flushing){
+  }else if(mixerState == FLUSHING){
     this->updateFlushing();
     if(_changeState == true || (millis()-timeStartedFlushing > FLUSH_CYCLE_DURATION)){
-      mixerState = StartIdle;
+      mixerState = START_IDLE;
       _changeState = false;
     }
   }
@@ -130,8 +130,8 @@ uint32_t mixMaster::getPumpSpeed(MixerChannel channel){
 }
 
 void mixMaster::startFlush(){
-  mixerState = Flushing;
-  FlushingState = InitFlush;
+  mixerState = FLUSHING;
+  FlushingState = INITFLUSH;
   timeStartedFlushing = millis();
 }
 
@@ -141,7 +141,7 @@ void mixMaster::updateFlushing(){
   static uint32_t timeStateStarted;
 
   switch(FlushingState){
-    case InitFlush: {
+    case INITFLUSH: {
 
       // We don't know current pump state, so assume it's running and stop it
       this->idlePumps();
@@ -158,29 +158,29 @@ void mixMaster::updateFlushing(){
       digitalWrite(RESIN_PUMP_ENABLE_PIN, LOW); // Enable Resin Pump
       digitalWrite(HARDENER_PUMP_ENABLE_PIN, LOW); // Enable Hardener Pump
 
-      FlushingState = PulseOn;
+      FlushingState = PULSE_ON;
     }
     // No break, fall through to pulse pumps on immediately
-    case PulseOn:
-      if(this->runPumpsWithErrorCheck()) mixerState = StartIdle;
+    case PULSE_ON:
+      if(this->runPumpsWithErrorCheck()) mixerState = START_IDLE;
       if(millis()-flushPulseTime > timeStateStarted){
         timeStateStarted = millis();
-        FlushingState = IdleFlushing;
+        FlushingState = IDLE_FLUSHING;
       }
 
       break;
 
-    case IdleFlushing:
+    case IDLE_FLUSHING:
       this->idlePumps();
       if(millis()-flushIdleTime > timeStateStarted){
         timeStateStarted = millis();
-        FlushingState = PulseOn;
+        FlushingState = PULSE_ON;
       }
 
       break;
 
     default:
-      FlushingState = InitFlush;
+      FlushingState = INITFLUSH;
       break;
   }
 }
