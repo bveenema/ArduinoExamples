@@ -58,7 +58,7 @@ private:
 
   // Pump Control functions
   // Calculate the resinPumpSpeed and hardenerPumpSpeed, enable the pumps, return the time to pump
-  uint32_t prepForMixing(uint32_t volume, uint32_t flowRate);
+  uint32_t prepForMixing(uint32_t volume, uint32_t flowRate, uint32_t ratioResin=settings.ratioResin[selector], uint32_t ratioHardener=settings.ratioHardener[selector]);
   void idlePumps();
   void runPumps();
   bool runPumpsWithErrorCheck();

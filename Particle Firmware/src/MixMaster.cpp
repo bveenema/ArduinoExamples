@@ -153,7 +153,7 @@ void mixMaster::updateFlushing(){
       this->idlePumps();
 
       // Calculate Flush Pulse and Idle times, prep for mixing
-      flushPulseTime = prepForMixing(FLUSH_VOLUME_PER_PULSE, FLUSH_FLOW_RATE);
+      flushPulseTime = prepForMixing(FLUSH_VOLUME_PER_PULSE, FLUSH_FLOW_RATE, 100, 100);
       if(flushPulseTime < FLUSH_PULSE_INTERVAL){
         flushIdleTime = FLUSH_PULSE_INTERVAL - flushPulseTime;
       } else {
@@ -191,9 +191,9 @@ void mixMaster::updateFlushing(){
   }
 }
 
-uint32_t mixMaster::prepForMixing(uint32_t volume, uint32_t flowRate){
-  resinPumpSpeed = calculatePumpSpeed(flowRate, settings.ratioResin[selector], settings.ratioHardener[selector], settings.stepsPerMlResin);
-  hardenerPumpSpeed = calculatePumpSpeed(flowRate, settings.ratioHardener[selector], settings.ratioResin[selector], settings.stepsPerMlHardener);
+uint32_t mixMaster::prepForMixing(uint32_t volume, uint32_t flowRate, uint32_t ratioResin, uint32_t ratioHardener){
+  resinPumpSpeed = calculatePumpSpeed(flowRate, ratioResin, ratioHardener, settings.stepsPerMlResin);
+  hardenerPumpSpeed = calculatePumpSpeed(flowRate, ratioHardener, ratioResin, settings.stepsPerMlHardener);
   ResinPump.setMaxSpeed(ultimateMaxSpeed);
   HardenerPump.setMaxSpeed(ultimateMaxSpeed);
   ResinPump.setSpeed(resinPumpSpeed);

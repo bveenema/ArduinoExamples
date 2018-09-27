@@ -49,7 +49,7 @@
 #define TIME_BETWEEN_KEEP_OPEN_CYCLES 300000 // 5 minutes
 #define FLUSH_FLOW_RATE 3000 // ml/min
 #define FLUSH_VOLUME_PER_PULSE 200 //ml
-#define FLUSH_PULSE_INTERVAL 10000 // time bewteen start of pulses (10 sec)
+#define FLUSH_PULSE_INTERVAL 60000 // time bewteen start of pulses (1 min)
 #define FLUSH_CYCLE_DURATION 600000 // duration of flush cycle (10 min)
 
 // Button and Remote Settings
