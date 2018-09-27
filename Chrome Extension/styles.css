@@ -87,9 +87,10 @@ input[type="number"] {
   margin: 10px auto;
 }
 
-input[type="number"]:disabled {
+input[type="number"]:disabled, button:disabled {
   background: rgb(211,211,211);
-  border:2px solid #cccccc
+  border:2px solid #cccccc;
+  color: black;
 }
 
 .slide-box input[type="range"] {

@@ -135,16 +135,20 @@ function advancedOptionsManager(advancedExpander){
 
 function setConnectionView(){
   if(serialStatus === "Connected") { // Enable all inputs
-    let inputs = document.getElementsByTagName('input');
-    for(let i=0; i<inputs.length; i++){
-      inputs[i].disabled = false;
+    let inputs = Array.from(document.getElementsByTagName('input'));
+    let buttons = Array.from(document.getElementsByClassName('action-button'));
+    let elements = inputs.concat(buttons);
+    for(let i=0; i<elements.length; i++){
+      elements[i].disabled = false;
     }
   } else {
-    // Disable all inputs and set all variables to default
+    // Disable all inputs and buttons, set all variables to default
     allVariables.forEach(function(variable){
-      let inputs = variable.element.getElementsByTagName('input');
-      for(let i=0; i<inputs.length; i++){
-        inputs[i].disabled = true;
+      let inputs = Array.from(variable.element.getElementsByTagName('input'));
+      let buttons = Array.from(document.getElementsByClassName('action-button'));
+      let elements = inputs.concat(buttons);
+      for(let i=0; i<elements.length; i++){
+        elements[i].disabled = true;
       }
       if(variable.type === 'slide-box') updateSlideBoxValue(variable.name, variable.defaultValue)
       else if(variable.type === 'advanced') updateAdvancedValue(variable.name, variable.defaultValue)
