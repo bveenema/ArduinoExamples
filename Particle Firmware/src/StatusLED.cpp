@@ -26,4 +26,3 @@ void statusLED::blink(uint32_t rate){
     lastBlinkTime = millis();
   }
 }
-FLUSHING
