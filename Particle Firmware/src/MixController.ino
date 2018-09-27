@@ -41,7 +41,7 @@ void setup() {
 
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(STATUS_LED_PIN, OUTPUT);
-  pinMode(REMOTE_PIN, INPUT);
+  pinMode(REMOTE_PIN, INPUT_PULLDOWN);
 
   pinMode(SELECTOR_SWITCH_1, INPUT_PULLDOWN);
   pinMode(SELECTOR_SWITCH_2, INPUT_PULLDOWN);
@@ -89,8 +89,11 @@ void loop() {
   remote.Update();
   if(button.clicks > 0 || remote.clicks > 0) changeState = true; // short press
   if(button.clicks < 0 || remote.clicks < 0) MixMaster.startFlush(); // long press
-  if(remote.clicks != 0) Serial.println("Remote Pressed");
-  if(button.clicks != 0) Serial.println("Button Pressed");
+  if(remote.clicks > 0) Serial.println("Remote SHORT Press");
+  if(button.clicks > 0) Serial.println("Button SHORT Press");
+  if(remote.clicks < 0) Serial.println("Remote LONG Press");
+  if(button.clicks < 0) Serial.println("Button LONG Press");
+
 
   // Update the StatusLED
   StatusLED.update();
