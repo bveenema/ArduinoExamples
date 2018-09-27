@@ -148,5 +148,18 @@ function getAllVariables(){
                     defaultValue: element.getElementsByTagName('span')[0].innerText
                   };
                 });
+  // Add Dual State Buttons
+  // if button is dual state - add it to the controller-state-frequent list
+  let dualStateButtons = document.getElementsByClassName('dual-state-button')
+  for(let i=0; i<dualStateButtons.length; i++){
+    let button = dualStateButtons[i];
+    allVariables.push({
+      type: 'dual-state-button',
+      name: button.getAttribute('id'),
+      element: button,
+      defaultValue: button.getAttribute('value')
+    });
+    console.log("Added Button: ",allVariables);
+  }
   console.log(allVariables);
 }

@@ -45,22 +45,34 @@ function uiOnLoad(){
     beginSerial();
   }
 
-  // Attach Listeners to Buttons (if not hidden)
+  // Attach Listeners to Action Buttons
   let buttons = document.getElementsByClassName('action-button');
   for(let i=0; i<buttons.length; i++){
     let button = buttons[i]
     console.log(button);
+
     button.onclick = function(){
       console.log("toggle", button.innerText.split(" ")[1]);
       sendMessage(formatMessage(button.getAttribute('id'),1));
-      if(button.nextElementSibling && button.nextElementSibling.classList.contains('button-alt-text')){
-        let swapText = button.innerText;
-        button.innerText = button.nextSibling.innerText;
-        button.nextSibling.innerText = swapText;
-        button.classList.toggle('enabled');
+    }
+
+    // Attach listeners to Dual State Buttons
+    let dualStateButtons = document.getElementsByClassName('dual-state-button');
+    for(let i=0; i<dualStateButtons.length; i++){
+      let button = dualStateButtons[i];
+      button.onclick = function(){
+        let value = parseInt(this.value, 10);
+        console.log(value);
+        if(!value){
+          console.log("Enabling ", button.innerText.split(" ")[1]);
+        } else {
+          console.log("Disabling ", button.innerText.split(" ")[1]);
+        }
+        sendMessage(formatMessage(button.getAttribute('id'), + !value)); // '+' coverts bool to int
       }
     }
   }
+
 
   // Initialize Connection view
   setConnectionView();
@@ -120,6 +132,17 @@ function updateControllerStateValue(variable, value){
   }
 }
 
+function updateDualStateButton(element, value){
+  element.value = value;
+  if(value === 1){
+    element.innerText = element.getAttribute('enabledText');
+    element.classList.add('enabled');
+  }else {
+    element.innerText = element.getAttribute('disabledText');
+    element.classList.remove('enabled');
+  }
+}
+
 function advancedOptionsManager(advancedExpander){
   //Toggle Advanced Options
   isAdvanced = !isAdvanced;
@@ -136,8 +159,9 @@ function advancedOptionsManager(advancedExpander){
 function setConnectionView(){
   if(serialStatus === "Connected") { // Enable all inputs
     let inputs = Array.from(document.getElementsByTagName('input'));
-    let buttons = Array.from(document.getElementsByClassName('action-button'));
-    let elements = inputs.concat(buttons);
+    let actionButtons = Array.from(document.getElementsByClassName('action-button'));
+    let dualStateButtons = Array.from(document.getElementsByClassName('dual-state-button'))
+    let elements = inputs.concat(actionButtons).concat(dualStateButtons);
     for(let i=0; i<elements.length; i++){
       elements[i].disabled = false;
     }
@@ -145,8 +169,9 @@ function setConnectionView(){
     // Disable all inputs and buttons, set all variables to default
     allVariables.forEach(function(variable){
       let inputs = Array.from(variable.element.getElementsByTagName('input'));
-      let buttons = Array.from(document.getElementsByClassName('action-button'));
-      let elements = inputs.concat(buttons);
+      let actionButtons = Array.from(document.getElementsByClassName('action-button'));
+      let dualStateButtons = Array.from(document.getElementsByClassName('dual-state-button'))
+      let elements = inputs.concat(actionButtons).concat(dualStateButtons);
       for(let i=0; i<elements.length; i++){
         elements[i].disabled = true;
       }

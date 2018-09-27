@@ -44,14 +44,17 @@ function recieveData(readInfo) {
       }
 
       if(variable != null){
-        message.variableType = allVariables.filter(function(variable){
+        message.variableInfo = allVariables.filter(function(variable){
           return variable.name === message.variableName;
-        })[0].type;
-        if(message.variableType === 'slide-box')
+        })[0];
+        if(message.variableInfo.element.tagName === 'BUTTON'){
+          updateDualStateButton(message.variableInfo.element, message.value);
+        }
+        if(message.variableInfo.type === 'slide-box')
           updateSlideBoxValue(message.variableName, message.value);
-        else if(message.variableType === 'advanced')
+        else if(message.variableInfo.type === 'advanced')
           updateAdvancedValue(message.variableName, message.value);
-        else if(message.variableType.includes('controller-state'))
+        else if(message.variableInfo.type.includes('controller-state'))
           updateControllerStateValue(message.variableName, message.value);
       } else {
         console.log("Message: ", message.variableName, message.value);
