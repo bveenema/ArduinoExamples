@@ -64,7 +64,6 @@ bool mixMaster::update(bool _changeState){
   }else if(mixerState == Idle){
     this->idlePumps();
     if(_changeState || (millis() - timeStartedIdling > TIME_BETWEEN_KEEP_OPEN_CYCLES)) {
-      Serial.println("Changing State from Idle");
       if(_changeState){
         timeToMix = this->prepForMixing(settings.volume[selector], settings.flowRate[selector]);
         keepOpen = false;
@@ -73,15 +72,20 @@ bool mixMaster::update(bool _changeState){
         timeToMix = this->prepForMixing(settings.keepOpenVolume, settings.flowRate[selector]);
         keepOpen = true;
       }
-      timeStartedMixing = millis();
       mixerState = Charging;
     }
   }else if(mixerState == Charging){
-    Serial.println("Charging");
     PressureManager.setChargingState(true);
-    if(PressureManager.isCharged()) mixerState = Mixing;
+    if(PressureManager.isCharged()) {
+      timeStartedMixing = millis();
+      mixerState = Mixing;
+    }
+    if(_changeState == true){
+      // don't reset _changeState when keep open so button won't be "ignored" while keep open
+      if(!keepOpen) _changeState = false;
+      mixerState = StartIdle;
+    }
   }else if(mixerState == Mixing){
-    Serial.println("Mixing");
     if(this->runPumpsWithErrorCheck()) mixerState = StartIdle;
     if(_changeState == true || (millis() - timeStartedMixing > timeToMix)){
       // don't reset _changeState when keep open so button won't be "ignored" while keep open
@@ -90,7 +94,6 @@ bool mixMaster::update(bool _changeState){
       else mixerState = StartIdle;
     }
   }else if(mixerState == StartAutoReverse){
-    Serial.println("StartAutoReverse");
     ResinPump.setMaxSpeed(autoReverseSpeed);
     HardenerPump.setMaxSpeed(autoReverseSpeed);
     ResinPump.setCurrentPosition(0);
@@ -99,14 +102,12 @@ bool mixMaster::update(bool _changeState){
     HardenerPump.moveTo(-calculateAutoReverseSteps(settings.ratioHardener[selector], settings.ratioResin[selector]));
     mixerState = AutoReversing;
   }else if(mixerState == AutoReversing){ // AutoReversing
-    Serial.println("AutoReversing");
     ResinPump.run();
     HardenerPump.run();
     if(!ResinPump.isRunning() && !HardenerPump.isRunning()){
       mixerState = StartIdle;
     }
   }else if(mixerState == Flushing){
-    Serial.println("Flushing");
     this->updateFlushing();
     if(_changeState == true || (millis()-timeStartedFlushing > FLUSH_CYCLE_DURATION)){
       mixerState = StartIdle;
