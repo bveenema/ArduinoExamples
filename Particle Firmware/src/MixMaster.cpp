@@ -213,7 +213,7 @@ bool mixMaster::runPumpsWithErrorCheck(){
   this->runPumps();
   if(digitalRead(RESIN_PUMP_ASSERT_PIN) || digitalRead(HARDENER_PUMP_ASSERT_PIN)){
     Serial.println("Error Detected");
-    strncpy("Pump Error",currentError,30);
+    strncpy(currentError, "Pump Error",30);
     return true;
   }
   return false;

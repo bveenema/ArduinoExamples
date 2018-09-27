@@ -21,7 +21,9 @@ public:
   // Returns True if Pails are charged
   bool isCharged();
 
-  uint32_t updateTargetPressure(uint32_t _targetPressure);
+  int32_t updateTargetPressure(int32_t _targetPressure);
+
+  int32_t getPressure();
 private:
   // True if Pails are charged
   bool charged = false;
@@ -30,10 +32,10 @@ private:
   bool isCharging = false;
 
   // Pressure to Maintain in the Pails
-  uint32_t targetPressure = 0; // milli-inH20
+  int32_t targetPressure = 0; // milli-inH20
 
   // Reads the pressure sensor and returns the value in milli-inH2O
-  uint32_t readPressure();
+  int32_t readPressure();
 };
 
 #endif

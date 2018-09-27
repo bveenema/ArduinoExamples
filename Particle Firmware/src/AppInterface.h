@@ -32,6 +32,7 @@ inline void printCloudStatus(){
 inline void togglePump(){ changeState = true; Serial.print("N/A"); }
 inline void getDeviceName(){ Particle.publish("particle/device/name", NULL, 60, PRIVATE); Serial.print("wait"); }
 inline void startFlush(){ MixMaster.startFlush(); }
+inline void printCurrentPressure(){ Serial.print(PressureManager.getPressure()); }
 
 // Command Declarations
 typedef struct {
@@ -56,6 +57,7 @@ const commandSet commandList[] = {
   {"autoReverseSteps", &settings.autoReverseSteps, false, NULL},
   {"cloudStatus", NULL, NULL, printCloudStatus},
   {"chargePressure", &settings.chargePressure, false, NULL},
+  {"currentPressure", NULL, NULL, printCurrentPressure},
   {"error", NULL, NULL, printCurrentError},
   {"eepromVersion", &settings.version, false, NULL},
   {"firmwareID", NULL, NULL, printFirmwareID},
