@@ -64,6 +64,12 @@ bool mixMaster::update(bool _changeState){
   }else if(mixerState == IDLE){
     this->idlePumps();
     if(_changeState || (millis() - timeStartedIdling > TIME_BETWEEN_KEEP_OPEN_CYCLES)) {
+      #ifdef PAIL_SENSOR_ENABLED
+      // If no Pail in position, prevent keep open or mixing
+      if(!PailSensor.getState()){
+        mixerState = START_IDLE;
+      }
+      #endif
       if(_changeState){
         timeToMix = this->prepForMixing(settings.volume[selector], settings.flowRate[selector]);
         keepOpen = false;

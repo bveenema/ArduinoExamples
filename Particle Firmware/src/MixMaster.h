@@ -5,6 +5,11 @@
 #include "AccelStepper.h"
 #include "globals.h"
 
+#ifdef PAIL_SENSOR_ENABLED
+#include "PailSensor.h"
+#endif
+
+
 typedef enum{
   START_IDLE, // 0
   IDLE, // 1

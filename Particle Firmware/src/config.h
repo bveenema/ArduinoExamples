@@ -41,6 +41,10 @@
 #define PRESSURE_SENSOR_PMIN -27680 // Pmin 27.680 inH2O (1psi)
 #define PRESSURE_SENSOR_VSUPPLY 3300 // 3.3 volts
 
+// Pail Sensor Settings
+#define DEFAULT_PAIL_DETECTION_THRESHOLD 600 // ADC Value (out of 4085)
+#define PAIL_SENSOR_ENABLED // Remove to Disable the Pail Sensor
+
 // Mix Master Settings
 #define TIME_BETWEEN_KEEP_OPEN_CYCLES 300000 // 5 minutes
 #define FLUSH_FLOW_RATE 3000 // ml/min
@@ -55,7 +59,7 @@
 //  EEPROM Structure Definition
 //    When changing the structure of EEPROM, increase THIS_EEPROM_VERSION, this
 //    will cause EEPROM of previous versions to reset to default.
-#define THIS_EEPROM_VERSION 3
+#define THIS_EEPROM_VERSION 4
 
 struct prom_settings {
   uint32_t version;
@@ -64,6 +68,7 @@ struct prom_settings {
   uint32_t autoReverseSteps;
   uint32_t chargePressure;
   uint32_t keepOpenVolume;
+  uint32_t pailThreshold;
   // Selector Based Settings
   uint32_t flowRate[NUM_SELECTORS];
   uint32_t ratioResin[NUM_SELECTORS];
@@ -80,6 +85,7 @@ const prom_settings defaultSettings = {
   500, // autoReverseSteps
   10000, // chargePressure
   150, // keepOpenVolume
+  600, // pailThreshold
   {3000,3000,3000,3000,3000}, // flowRate
   {200,200,200,200,200}, // ratioResin
   {100,100,100,100,100}, // ratioHardener

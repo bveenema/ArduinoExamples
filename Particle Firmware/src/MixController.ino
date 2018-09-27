@@ -13,6 +13,10 @@
 #include "MixMaster.h"
 #include "StatusLED.h"
 
+#ifdef PAIL_SENSOR_ENABLED
+#include "PailSensor.h"
+#endif
+
 PRODUCT_ID(THIS_PRODUCT_ID);
 PRODUCT_VERSION(THIS_PRODUCT_VERSION);
 
@@ -38,6 +42,10 @@ void setup() {
 
   MixMaster.init();
   StatusLED.init();
+  #ifdef PAIL_SENSOR_ENABLED
+  PailSensor.init();
+  PailSensor.setDetectionThreshold(settings.pailThreshold);
+  #endif
 
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(STATUS_LED_PIN, OUTPUT);
@@ -97,6 +105,11 @@ void loop() {
 
   // Update the StatusLED
   StatusLED.update();
+
+  #ifdef PAIL_SENSOR_ENABLED
+  //Update the Pail Sensor
+  PailSensor.update();
+  #endif
 
 }
 

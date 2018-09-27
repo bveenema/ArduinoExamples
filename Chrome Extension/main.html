@@ -110,7 +110,7 @@
             Volume (ml):
             <input class="textbox" type="number" min="0" max="150000" step="100" value="0" disabled>
             Current: <span>0</span>
-          </li>
+          </li> -->
           <li id="command-autoReverseSteps" class="advanced version:min-7">
             Auto Reverse Steps:
             <input class="textbox" type="number" min="0" max="10000" step="100" value="0" disabled>
@@ -124,6 +124,11 @@
           <li id="command-keepOpenVolume" class="advanced version:min-7">
             Keep Open Volume (ml):
             <input class="textbox" type="number" min="0" max="3000" step="10" value="0" disabled>
+            Current: <span>0</span>
+          </li>
+          <li id="command-pailThreshold" class="advanced version:min-7">
+            Pail Threshold (value/4085):
+            <input class="textbox" type="number" min="0" max="4085" step="10" value="0" disabled>
             Current: <span>0</span>
           </li>
           <li id="command-autoReverseA" class="advanced version:max-6">
@@ -192,6 +197,9 @@
         </li>
         <li id="command-currentPressure" class="controller-state-frequent version:min-7">
           Pressure: <span>0</span>
+        </li>
+        <li id="command-pailState" class="controller-state-frequent version:min-7">
+          Pail State: <span>0</span>
         </li>
       </ul>
       <ul>

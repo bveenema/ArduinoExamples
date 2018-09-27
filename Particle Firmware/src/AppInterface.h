@@ -8,6 +8,7 @@
 
 // Link to external variables
 #include "globals.h"
+#include "PailSensor.h"
 extern mixMaster MixMaster;
 
 // Command Functions
@@ -33,6 +34,7 @@ inline void togglePump(){ changeState = true; Serial.print("N/A"); }
 inline void getDeviceName(){ Particle.publish("particle/device/name", NULL, 60, PRIVATE); Serial.print("wait"); }
 inline void startFlush(){ MixMaster.startFlush(); }
 inline void printCurrentPressure(){ Serial.print(PressureManager.getPressure()); }
+inline void printPailState(){ Serial.print(PailSensor.getState()); }
 
 // Command Declarations
 typedef struct {
@@ -67,9 +69,11 @@ const commandSet commandList[] = {
   {"hardenerPumpSpeed", NULL, NULL, printHardenerPumpSpeed},
   {"name", NULL, NULL, getDeviceName},
   {"numSelectors", NULL, NULL, printNumSelectors},
+  {"pailState", NULL, NULL, printPailState},
   {"ratioResin", settings.ratioResin, true, NULL},
   {"ratioHardener", settings.ratioHardener, true, NULL},
   {"selector", NULL, NULL, printCurrentSelector},
+  {"pailThreshold", &settings.pailThreshold, false, NULL},
   {"startFlush", NULL, NULL, startFlush},
   {"stepsPerMlResin", &settings.stepsPerMlResin, false, NULL},
   {"stepsPerMlHardener", &settings.stepsPerMlHardener, false, NULL},
