@@ -70,21 +70,22 @@ function recieveData(readInfo) {
 function onOpen(connectionInfo) {
   if(!chrome.serial.onReceive.hasListeners())
     chrome.serial.onReceive.addListener(recieveData);
-  console.log('Connection Info:');
-  console.log(connectionInfo);
-  connectionId = connectionInfo.connectionId;
-  if (connectionId == -1) {
-    setStatus('Could not open');
-    return;
+  console.log('Connection Info:', connectionInfo);
+  if(connectionInfo){
+    connectionId = connectionInfo.connectionId;
+    if (connectionId == -1) {
+      setStatus('Could not open');
+      return;
+    }
+    setStatus('Connected');
+
+    // Get the Serial Version
+    console.log("Getting FW Version")
+    sendMessage("version");
+
+
+    connectionManager();
   }
-  setStatus('Connected');
-
-  // Get the Serial Version
-  console.log("Getting FW Version")
-  sendMessage("version");
-
-
-  connectionManager();
 };
 
 
@@ -124,8 +125,7 @@ function buildDevicePicker(devices) {
       beginSerial();
     },5000);
   }
-  console.log("Eligible Devices: ");
-  console.log(eligibleDevices);
+  console.log("Eligible Devices: ", eligibleDevices);
   var devicePicker = document.getElementById('device-picker');
   devicePicker.innerHTML = "";
   if(eligibleDevices.length > 0){
@@ -152,6 +152,7 @@ function buildDevicePicker(devices) {
 function openSelectedPort() {
   var devicePicker = document.getElementById('device-picker');
   var selectedPort = devicePicker.options[devicePicker.selectedIndex].id;
+  console.log("Selected Port: ",selectedPort);
   chrome.serial.connect(selectedPort, {bitrate: 57600}, onOpen);
 }
 
