@@ -70,6 +70,24 @@
       </div>
     </label>
 
+    <label id="command-flowRate" class="slide-box version:min-7">
+      Flow Rate (ml/min):
+      <input class="textbox" type="number" min="0" max="10000" step="100" value="0" disabled>
+      <input class="slider" type="range" min="0" max="10000" step="100" value="0" disabled>
+      <div class="current-value">
+        Current: <span >0</span>
+      </div>
+    </label>
+
+    <label id="command-volume" class="slide-box version:min-7">
+      Volume (ml):
+      <input class="textbox" type="number" min="0" max="150000" step="100" value="0" disabled>
+      <input class="slider" type="range" min="0" max="150000" step="100" value="0" disabled>
+      <div class="current-value">
+        Current: <span >0</span>
+      </div>
+    </label>
+
     <!-- <label class="slide-box">
       Auto Reverse:
       <input class="textbox" type="number" min="0" max="10000" step="1000" value="0" disabled>
@@ -83,7 +101,7 @@
       <div id="advanced-expander"><img src="assets/plus.svg" alt="+"><span id="advanced-expandertext">Advanced</span></div>
       <div id="advanced-input" style="display: none;">
         <ul>
-          <li id="command-flowRate" class="advanced version:all">
+          <!-- <li id="command-flowRate" class="advanced version:all">
             Flow Rate (ml/min):
             <input class="textbox" type="number" min="0" max="10000" step="100" value="0" disabled>
             Current: <span>0</span>
