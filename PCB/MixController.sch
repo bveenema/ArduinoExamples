@@ -202,9 +202,9 @@ F 3 "" H 3200 2550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text Notes 3650 2400 0    60   ~ 0
-MOTOR B POWER
+HARDENER MOTOR POWER
 Text Notes 3650 3100 0    60   ~ 0
-MOTOR A POWER
+RESIN MOTOR POWER
 Wire Wire Line
 	5150 4100 4900 4100
 Wire Wire Line
@@ -286,7 +286,7 @@ F 3 "" H 7600 5100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text Notes 9550 6150 0    60   ~ 0
-20" Long\n7" Remove Sheath
+22.5" Long\n12" Remove Sheath
 Text Label 7050 3650 0    60   ~ 0
 red
 $Comp
@@ -452,7 +452,7 @@ F 3 "" H 7600 3250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text Notes 9550 4300 0    60   ~ 0
-18" Long\n5" Remove Sheath
+18.5" Long\n12" Remove Sheath
 $Comp
 L conn:Conn_01x08 J13
 U 1 1 5B46DB46
@@ -612,10 +612,10 @@ Text Notes 650  1050 0    60   ~ 0
 Battery Connector
 Text Notes 10100 5850 0    39   ~ 0
 Same side as +VIN \n(RED)
-Text Notes 4500 2500 0    60   ~ 0
-18" Long\n5" Remove Sheath\nCut BLACK wire to 2"
-Text Notes 4500 3150 0    60   ~ 0
-18" Long\n5" Remove Sheath\nCut RED wire to 2"
+Text Notes 4950 2500 0    60   ~ 0
+18" Long\n8" Remove Sheath\nCut BLACK wire to 2"
+Text Notes 4950 3150 0    60   ~ 0
+14" Long\n8" Remove Sheath\nCut RED wire to 2"
 $Comp
 L switches:SW_SPST SW5
 U 1 1 5B87AEFE
