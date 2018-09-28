@@ -1,0 +1,1500 @@
+EESchema Schematic File Version 4
+LIBS:MixController-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "Mix Controller"
+Date "2018-09-22"
+Rev "V0.0.7"
+Comp "Veenema Design Works"
+Comment1 "https://github.com/bveenema/MixController/releases"
+Comment2 "See Release V0.0.6 for additional files"
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L particle:PARTICLE_PHOTON U1
+U 1 1 5AD855AD
+P 5800 4650
+F 0 "U1" H 5800 4700 60  0000 C CNN
+F 1 "PARTICLE_PHOTON" H 5800 3900 60  0000 C CNN
+F 2 "" H 6300 4850 60  0000 C CNN
+F 3 "https://media.digikey.com/pdf/Data%20Sheets/Particle%20PDFs/Photon_v015_Web.pdf" H 6300 4850 60  0001 C CNN
+F 4 "~" H 0   500 50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   500 50  0001 C CNN "Alt Vendor P/N"
+F 6 "PHOTONH" H 0   500 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   500 50  0001 C CNN "Vendor"
+F 8 "1878-1000-ND" H 0   500 50  0001 C CNN "Vendor P/N"
+	1    5800 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR09
+U 1 1 5AD856E8
+P 4900 3900
+F 0 "#PWR09" H 4900 3750 50  0001 C CNN
+F 1 "+5V" H 4900 4040 50  0000 C CNN
+F 2 "" H 4900 3900 50  0001 C CNN
+F 3 "" H 4900 3900 50  0001 C CNN
+	1    4900 3900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR010
+U 1 1 5AD8570C
+P 4750 4200
+F 0 "#PWR010" H 4750 3950 50  0001 C CNN
+F 1 "GND" H 4750 4050 50  0000 C CNN
+F 2 "" H 4750 4200 50  0001 C CNN
+F 3 "" H 4750 4200 50  0001 C CNN
+	1    4750 4200
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+3V3 #PWR013
+U 1 1 5AD86030
+P 6550 3600
+F 0 "#PWR013" H 6550 3450 50  0001 C CNN
+F 1 "+3V3" H 6550 3740 50  0000 C CNN
+F 2 "" H 6550 3600 50  0001 C CNN
+F 3 "" H 6550 3600 50  0001 C CNN
+	1    6550 3600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR014
+U 1 1 5AD8609C
+P 6500 4400
+F 0 "#PWR014" H 6500 4150 50  0001 C CNN
+F 1 "GND" H 6500 4250 50  0000 C CNN
+F 2 "" H 6500 4400 50  0001 C CNN
+F 3 "" H 6500 4400 50  0001 C CNN
+	1    6500 4400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:LED D1
+U 1 1 5AD86215
+P 1600 5100
+F 0 "D1" H 1600 5200 50  0001 C CNN
+F 1 "LED" H 1600 5200 50  0000 C CNN
+F 2 "" H 1600 5100 50  0001 C CNN
+F 3 "http://www.cree.com/led-components/media/documents/C503B-BAS-BAN-BCS-BCN-GAS-GAN-GCS-GCN-1094.pdf" H 1600 5100 50  0001 C CNN
+F 4 "~" H -2150 500 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -2150 500 50  0001 C CNN "Alt Vendor P/N"
+F 6 "C503B-GCS-CY0C0791" H -2150 500 50  0001 C CNN "MPN"
+F 7 "DigiKey" H -2150 500 50  0001 C CNN "Vendor"
+F 8 "C503B-GCS-CY0C0791-ND" H -2150 500 50  0001 C CNN "Vendor P/N"
+	1    1600 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 5AD862D6
+P 2850 5100
+F 0 "R1" V 2950 5100 50  0000 C CNN
+F 1 "330" V 2850 5100 50  0000 C CNN
+F 2 "" V 2780 5100 50  0001 C CNN
+F 3 "" H 2850 5100 50  0001 C CNN
+F 4 "~" H -1500 500 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -1500 500 50  0001 C CNN "Alt Vendor P/N"
+F 6 "~" H -1500 500 50  0001 C CNN "MPN"
+F 7 "House" H -1500 500 50  0001 C CNN "Vendor"
+F 8 "~" H -1500 500 50  0001 C CNN "Vendor P/N"
+	1    2850 5100
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR08
+U 1 1 5AD86489
+P 2550 5750
+F 0 "#PWR08" H 2550 5500 50  0001 C CNN
+F 1 "GND" H 2550 5600 50  0000 C CNN
+F 2 "" H 2550 5750 50  0001 C CNN
+F 3 "" H 2550 5750 50  0001 C CNN
+	1    2550 5750
+	1    0    0    -1  
+$EndComp
+$Comp
+L switches:SW_Push SW6
+U 1 1 5AD86C2C
+P 1550 5550
+F 0 "SW6" H 1500 5700 50  0000 L CNN
+F 1 "SW_Push" H 1550 5490 50  0001 C CNN
+F 2 "" H 1550 5750 50  0001 C CNN
+F 3 "https://www.e-switch.com/system/asset/product_line/data_sheet/1/PV1.pdf" H 1550 5750 50  0001 C CNN
+F 4 "~" H -1400 -200 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -1400 -200 50  0001 C CNN "Alt Vendor P/N"
+F 6 "PV1F240SS" H -1400 -200 50  0001 C CNN "MPN"
+F 7 "DigiKey" H -1400 -200 50  0001 C CNN "Vendor"
+F 8 "PV1F240SS-ND" H -1400 -200 50  0001 C CNN "Vendor P/N"
+	1    1550 5550
+	1    0    0    -1  
+$EndComp
+Text Label 7050 3550 0    60   ~ 0
+black
+Text Label 7050 3950 0    60   ~ 0
+green
+Text Label 7050 5400 0    60   ~ 0
+black
+Text Label 7050 5800 0    60   ~ 0
+green
+Text Label 7050 5900 0    60   ~ 0
+white
+Text Notes 10100 3650 0    60   ~ 0
+To Motor B
+Text Label 7050 5500 0    60   ~ 0
+red
+$Comp
+L conn:Conn_01x02 J5
+U 1 1 5B069086
+P 3550 2300
+F 0 "J5" H 3550 2400 50  0000 C CNN
+F 1 "PG7" H 3550 2100 50  0000 C CNN
+F 2 "" H 3550 2300 50  0001 C CNN
+F 3 "http://a.co/d/5Wgcdna" H 3550 2300 50  0001 C CNN
+F 4 "~" H -100 400 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -100 400 50  0001 C CNN "Alt Vendor P/N"
+F 6 "a16101300ux0476" H -100 400 50  0001 C CNN "MPN"
+F 7 "Amazon" H -100 400 50  0001 C CNN "Vendor"
+F 8 "B01MSQI150" H -100 400 50  0001 C CNN "Vendor P/N"
+	1    3550 2300
+	1    0    0    -1  
+$EndComp
+$Comp
+L conn:Conn_01x02 J6
+U 1 1 5B0690C9
+P 3550 3000
+F 0 "J6" H 3550 3100 50  0000 C CNN
+F 1 "PG7" H 3550 2800 50  0000 C CNN
+F 2 "" H 3550 3000 50  0001 C CNN
+F 3 "http://a.co/d/5Wgcdna" H 3550 3000 50  0001 C CNN
+F 4 "~" H -100 400 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -100 400 50  0001 C CNN "Alt Vendor P/N"
+F 6 "a16101300ux0476" H -100 400 50  0001 C CNN "MPN"
+F 7 "Amazon" H -100 400 50  0001 C CNN "Vendor"
+F 8 "B01MSQI150" H -100 400 50  0001 C CNN "Vendor P/N"
+	1    3550 3000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR07
+U 1 1 5B069148
+P 3200 3250
+F 0 "#PWR07" H 3200 3000 50  0001 C CNN
+F 1 "GND" H 3200 3100 50  0000 C CNN
+F 2 "" H 3200 3250 50  0001 C CNN
+F 3 "" H 3200 3250 50  0001 C CNN
+	1    3200 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR06
+U 1 1 5B069209
+P 3200 2550
+F 0 "#PWR06" H 3200 2300 50  0001 C CNN
+F 1 "GND" H 3200 2400 50  0000 C CNN
+F 2 "" H 3200 2550 50  0001 C CNN
+F 3 "" H 3200 2550 50  0001 C CNN
+	1    3200 2550
+	1    0    0    -1  
+$EndComp
+Text Notes 3650 2400 0    60   ~ 0
+HARDENER MOTOR POWER
+Text Notes 3650 3100 0    60   ~ 0
+RESIN MOTOR POWER
+Wire Wire Line
+	5150 4100 4900 4100
+Wire Wire Line
+	4900 4100 4900 3900
+Wire Wire Line
+	6450 5000 6900 5000
+Wire Wire Line
+	6450 4900 7000 4900
+Wire Wire Line
+	6450 4800 7000 4800
+Wire Wire Line
+	7000 4800 7000 4050
+Wire Wire Line
+	6900 3950 6900 4700
+Wire Wire Line
+	6900 4700 6450 4700
+Wire Wire Line
+	6700 3550 6700 4500
+Wire Wire Line
+	6700 4500 6450 4500
+Wire Wire Line
+	6550 3600 6550 4100
+Wire Wire Line
+	6550 4100 6450 4100
+Wire Wire Line
+	6450 4400 6500 4400
+Wire Wire Line
+	2950 1200 2950 1600
+Wire Wire Line
+	2950 2300 2950 3000
+Wire Wire Line
+	3350 3100 3200 3100
+Wire Wire Line
+	3200 3100 3200 3250
+Wire Wire Line
+	3350 2400 3200 2400
+Wire Wire Line
+	3200 2400 3200 2550
+Wire Wire Line
+	2950 3000 3350 3000
+Connection ~ 2950 2300
+Wire Wire Line
+	2850 4300 2850 3850
+Wire Wire Line
+	3000 4200 3000 4450
+$Comp
+L power:GND #PWR04
+U 1 1 5B3B4E53
+P 3000 4450
+F 0 "#PWR04" H 3000 4200 50  0001 C CNN
+F 1 "GND" H 3000 4300 50  0000 C CNN
+F 2 "" H 3000 4450 50  0001 C CNN
+F 3 "" H 3000 4450 50  0001 C CNN
+	1    3000 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR03
+U 1 1 5B3B4E94
+P 2850 3850
+F 0 "#PWR03" H 2850 3700 50  0001 C CNN
+F 1 "+5V" H 2850 3990 50  0000 C CNN
+F 2 "" H 2850 3850 50  0001 C CNN
+F 3 "" H 2850 3850 50  0001 C CNN
+	1    2850 3850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6900 5000 6900 5500
+$Comp
+L power:+3V3 #PWR018
+U 1 1 5B3B70CA
+P 7600 5100
+F 0 "#PWR018" H 7600 4950 50  0001 C CNN
+F 1 "+3V3" H 7600 5240 50  0000 C CNN
+F 2 "" H 7600 5100 50  0001 C CNN
+F 3 "" H 7600 5100 50  0001 C CNN
+	1    7600 5100
+	1    0    0    -1  
+$EndComp
+Text Notes 9550 6150 0    60   ~ 0
+22.5" Long\n12" Remove Sheath
+Text Label 7050 3650 0    60   ~ 0
+red
+$Comp
+L conn:Conn_01x08 J14
+U 1 1 5B46BBE2
+P 9550 5400
+F 0 "J14" H 9550 5800 50  0000 C CNN
+F 1 "PG7" H 9550 4900 50  0000 C CNN
+F 2 "" H 9550 5400 50  0001 C CNN
+F 3 "http://a.co/d/5Wgcdna" H 9550 5400 50  0001 C CNN
+F 4 "~" H -450 0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H -450 0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "a16101300ux0476" H -450 0   50  0001 C CNN "MPN"
+F 7 "Amazon" H -450 0   50  0001 C CNN "Vendor"
+F 8 "B01MSQI150" H -450 0   50  0001 C CNN "Vendor P/N"
+	1    9550 5400
+	1    0    0    -1  
+$EndComp
+Text Notes 10200 5500 0    60   ~ 0
+To Motor A
+Text Notes 10300 5600 0    60   ~ 0
+"RED"
+Wire Wire Line
+	8900 5800 9350 5800
+Wire Wire Line
+	8800 5600 9350 5600
+Wire Wire Line
+	8900 5500 9350 5500
+Wire Wire Line
+	9000 5400 9350 5400
+Wire Wire Line
+	9000 5300 9350 5300
+Wire Wire Line
+	9000 5200 9350 5200
+Wire Wire Line
+	9000 5100 9350 5100
+Text Notes 9650 5150 0    60   ~ 0
+GREEN
+Text Notes 9650 5250 0    60   ~ 0
+BLACK
+Text Notes 9650 5350 0    60   ~ 0
+WHITE
+Text Notes 9650 5450 0    60   ~ 0
+BLUE
+Text Notes 9650 5550 0    60   ~ 0
+RED
+Text Notes 9650 5650 0    60   ~ 0
+YELLOW
+Text Notes 9650 5750 0    60   ~ 0
+BROWN
+Text Notes 9650 5850 0    60   ~ 0
+ORANGE
+$Comp
+L power:+5V #PWR024
+U 1 1 5B46C438
+P 9000 4900
+F 0 "#PWR024" H 9000 4750 50  0001 C CNN
+F 1 "+5V" H 9000 5040 50  0000 C CNN
+F 2 "" H 9000 4900 50  0001 C CNN
+F 3 "" H 9000 4900 50  0001 C CNN
+	1    9000 4900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9000 4900 9000 5100
+Wire Wire Line
+	9000 5100 9000 5200
+Wire Wire Line
+	9000 5200 9000 5300
+Wire Wire Line
+	9000 5300 9000 5400
+Connection ~ 9000 5300
+Connection ~ 9000 5200
+Connection ~ 9000 5100
+Wire Wire Line
+	6800 3650 6800 4600
+Wire Wire Line
+	6800 4600 6450 4600
+Wire Wire Line
+	6700 5900 7750 5900
+Wire Wire Line
+	8450 5900 8900 5900
+Wire Wire Line
+	8900 5900 8900 5800
+Wire Wire Line
+	8450 5800 8800 5800
+Wire Wire Line
+	8800 5800 8800 5700
+Wire Wire Line
+	8450 5400 8900 5400
+Wire Wire Line
+	8900 5400 8900 5500
+Wire Wire Line
+	8800 5600 8800 5500
+Wire Wire Line
+	8800 5500 8450 5500
+Wire Wire Line
+	6800 5800 7750 5800
+Wire Wire Line
+	6900 5500 7750 5500
+Wire Wire Line
+	7000 4900 7000 5400
+Wire Wire Line
+	7000 5400 7750 5400
+$Comp
+L power:GND #PWR016
+U 1 1 5B46D415
+P 7500 6150
+F 0 "#PWR016" H 7500 5900 50  0001 C CNN
+F 1 "GND" H 7500 6000 50  0000 C CNN
+F 2 "" H 7500 6150 50  0001 C CNN
+F 3 "" H 7500 6150 50  0001 C CNN
+	1    7500 6150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7750 5600 7500 5600
+Wire Wire Line
+	7500 5600 7500 6150
+Wire Wire Line
+	7600 5100 7600 5700
+Wire Wire Line
+	7600 5700 7750 5700
+$Comp
+L power:+5V #PWR020
+U 1 1 5B46D7D2
+P 8600 5100
+F 0 "#PWR020" H 8600 4950 50  0001 C CNN
+F 1 "+5V" H 8600 5240 50  0000 C CNN
+F 2 "" H 8600 5100 50  0001 C CNN
+F 3 "" H 8600 5100 50  0001 C CNN
+	1    8600 5100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8600 5100 8600 5700
+Wire Wire Line
+	8600 5700 8450 5700
+Wire Wire Line
+	8450 5600 8700 5600
+Wire Wire Line
+	8700 5600 8700 6150
+$Comp
+L power:GND #PWR022
+U 1 1 5B46D960
+P 8700 6150
+F 0 "#PWR022" H 8700 5900 50  0001 C CNN
+F 1 "GND" H 8700 6000 50  0000 C CNN
+F 2 "" H 8700 6150 50  0001 C CNN
+F 3 "" H 8700 6150 50  0001 C CNN
+	1    8700 6150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR017
+U 1 1 5B46DB20
+P 7600 3250
+F 0 "#PWR017" H 7600 3100 50  0001 C CNN
+F 1 "+3V3" H 7600 3390 50  0000 C CNN
+F 2 "" H 7600 3250 50  0001 C CNN
+F 3 "" H 7600 3250 50  0001 C CNN
+	1    7600 3250
+	1    0    0    -1  
+$EndComp
+Text Notes 9550 4300 0    60   ~ 0
+18.5" Long\n12" Remove Sheath
+$Comp
+L conn:Conn_01x08 J13
+U 1 1 5B46DB46
+P 9550 3550
+F 0 "J13" H 9550 3950 50  0000 C CNN
+F 1 "PG7" H 9550 3050 50  0000 C CNN
+F 2 "" H 9550 3550 50  0001 C CNN
+F 3 "http://a.co/d/5Wgcdna" H 9550 3550 50  0001 C CNN
+F 4 "~" H -450 0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H -450 0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "a16101300ux0476" H -450 0   50  0001 C CNN "MPN"
+F 7 "Amazon" H -450 0   50  0001 C CNN "Vendor"
+F 8 "B01MSQI150" H -450 0   50  0001 C CNN "Vendor P/N"
+	1    9550 3550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8900 3950 9350 3950
+Wire Wire Line
+	8800 3850 9350 3850
+Wire Wire Line
+	8800 3750 9350 3750
+Wire Wire Line
+	8900 3650 9350 3650
+Wire Wire Line
+	9000 3550 9350 3550
+Wire Wire Line
+	9000 3450 9350 3450
+Wire Wire Line
+	9000 3350 9350 3350
+Wire Wire Line
+	9000 3250 9350 3250
+Text Notes 9650 3300 0    60   ~ 0
+GREEN
+Text Notes 9650 3400 0    60   ~ 0
+BLACK
+Text Notes 9650 3500 0    60   ~ 0
+WHITE
+Text Notes 9650 3600 0    60   ~ 0
+BLUE
+Text Notes 9650 3700 0    60   ~ 0
+RED
+Text Notes 9650 3800 0    60   ~ 0
+YELLOW
+Text Notes 9650 3900 0    60   ~ 0
+BROWN
+Text Notes 9650 4000 0    60   ~ 0
+ORANGE
+$Comp
+L power:+5V #PWR023
+U 1 1 5B46DB5E
+P 9000 3050
+F 0 "#PWR023" H 9000 2900 50  0001 C CNN
+F 1 "+5V" H 9000 3190 50  0000 C CNN
+F 2 "" H 9000 3050 50  0001 C CNN
+F 3 "" H 9000 3050 50  0001 C CNN
+	1    9000 3050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9000 3050 9000 3250
+Wire Wire Line
+	9000 3250 9000 3350
+Wire Wire Line
+	9000 3350 9000 3450
+Wire Wire Line
+	9000 3450 9000 3550
+Connection ~ 9000 3450
+Connection ~ 9000 3350
+Connection ~ 9000 3250
+Wire Wire Line
+	8900 4050 8900 3950
+Wire Wire Line
+	8800 3950 8800 3850
+Wire Wire Line
+	8900 3550 8900 3650
+Wire Wire Line
+	8800 3750 8800 3650
+$Comp
+L power:GND #PWR015
+U 1 1 5B46DB77
+P 7500 4300
+F 0 "#PWR015" H 7500 4050 50  0001 C CNN
+F 1 "GND" H 7500 4150 50  0000 C CNN
+F 2 "" H 7500 4300 50  0001 C CNN
+F 3 "" H 7500 4300 50  0001 C CNN
+	1    7500 4300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7500 3750 7500 4300
+Wire Wire Line
+	7600 3250 7600 3850
+$Comp
+L power:+5V #PWR019
+U 1 1 5B46DB81
+P 8600 3250
+F 0 "#PWR019" H 8600 3100 50  0001 C CNN
+F 1 "+5V" H 8600 3390 50  0000 C CNN
+F 2 "" H 8600 3250 50  0001 C CNN
+F 3 "" H 8600 3250 50  0001 C CNN
+	1    8600 3250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8600 3250 8600 3850
+Wire Wire Line
+	8700 3750 8700 4300
+$Comp
+L power:GND #PWR021
+U 1 1 5B46DB8B
+P 8700 4300
+F 0 "#PWR021" H 8700 4050 50  0001 C CNN
+F 1 "GND" H 8700 4150 50  0000 C CNN
+F 2 "" H 8700 4300 50  0001 C CNN
+F 3 "" H 8700 4300 50  0001 C CNN
+	1    8700 4300
+	1    0    0    -1  
+$EndComp
+Text Label 7050 4050 0    60   ~ 0
+white
+Wire Wire Line
+	8800 5700 9350 5700
+Text Notes 10150 5700 0    39   ~ 0
+Closest to Switch
+$Comp
+L conn:Conn_01x02 J1
+U 1 1 5B7E7A55
+P 1100 1300
+F 0 "J1" H 1100 1400 50  0000 C CNN
+F 1 "PG7" H 1100 1100 50  0001 C CNN
+F 2 "" H 1100 1300 50  0001 C CNN
+F 3 "http://a.co/d/5Wgcdna" H 1100 1300 50  0001 C CNN
+F 4 "~" H -100 100 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -100 100 50  0001 C CNN "Alt Vendor P/N"
+F 6 "a16101300ux0476" H -100 100 50  0001 C CNN "MPN"
+F 7 "Amazon" H -100 100 50  0001 C CNN "Vendor"
+F 8 "B01MSQI150" H -100 100 50  0001 C CNN "Vendor P/N"
+	1    1100 1300
+	-1   0    0    1   
+$EndComp
+Text Notes 800  1250 0    60   ~ 0
++VIN
+Text Notes 800  1350 0    60   ~ 0
+-VIN
+Wire Wire Line
+	3350 2300 2950 2300
+Wire Notes Line
+	1250 1450 1250 1100
+Wire Notes Line
+	1250 1100 650  1100
+Wire Notes Line
+	650  1100 650  1450
+Wire Notes Line
+	650  1450 1250 1450
+Text Notes 650  1050 0    60   ~ 0
+Battery Connector
+Text Notes 10100 5850 0    39   ~ 0
+Same side as +VIN \n(RED)
+Text Notes 4950 2500 0    60   ~ 0
+18" Long\n8" Remove Sheath\nCut BLACK wire to 2"
+Text Notes 4950 3150 0    60   ~ 0
+14" Long\n8" Remove Sheath\nCut RED wire to 2"
+$Comp
+L switches:SW_SPST SW5
+U 1 1 5B87AEFE
+P 1700 1600
+F 0 "SW5" H 1700 1725 50  0000 C CNN
+F 1 "GRB136A05BB2" H 1700 1500 50  0000 C CNN
+F 2 "" H 1700 1600 50  0001 C CNN
+F 3 "http://switches-connectors-custom.cwind.com/Asset/GRB136A05BB2.pdf" H 1700 1600 50  0001 C CNN
+F 4 "~" H -250 -2150 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -250 -2150 50  0001 C CNN "Alt Vendor P/N"
+F 6 "GRB136A05BB2" H -250 -2150 50  0001 C CNN "MPN"
+F 7 "DigiKey" H -250 -2150 50  0001 C CNN "Vendor"
+F 8 "SW652-ND" H -250 -2150 50  0001 C CNN "Vendor P/N"
+	1    1700 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3250 4400 3250 4500
+Wire Wire Line
+	3250 4500 3250 4600
+Connection ~ 3250 4400
+Connection ~ 3250 4500
+$Comp
+L power:+3V3 #PWR01
+U 1 1 5B87B71B
+P 3250 4100
+F 0 "#PWR01" H 3250 3950 50  0001 C CNN
+F 1 "+3V3" H 3250 4240 50  0000 C CNN
+F 2 "" H 3250 4100 50  0001 C CNN
+F 3 "" H 3250 4100 50  0001 C CNN
+	1    3250 4100
+	1    0    0    -1  
+$EndComp
+Text Label 4100 4600 0    60   ~ 0
+white
+Text Label 4100 4500 0    60   ~ 0
+green
+Text Label 4100 4400 0    60   ~ 0
+red
+Text Label 4100 4300 0    60   ~ 0
+black
+$Comp
+L power:GND #PWR02
+U 1 1 5BA6E060
+P 1350 1950
+F 0 "#PWR02" H 1350 1700 50  0001 C CNN
+F 1 "GND" H 1350 1800 50  0000 C CNN
+F 2 "" H 1350 1950 50  0001 C CNN
+F 3 "" H 1350 1950 50  0001 C CNN
+	1    1350 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Relay:DIPxx-1Axx-11x K1
+U 1 1 5BA6E921
+P 2300 1400
+F 0 "K1" V 2767 1400 50  0000 C CNN
+F 1 "G2R-1A-T DC48" V 2676 1400 50  0000 C CNN
+F 2 "" H 2650 1350 50  0001 L CNN
+F 3 "http://omronfs.omron.com/en_US/ecb/products/pdf/en-g2r.pdf" H 2300 1400 50  0001 C CNN
+F 4 "~" H -100 100 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -100 100 50  0001 C CNN "Alt Vendor P/N"
+F 6 "G2R-1A-T DC48" H -100 100 50  0001 C CNN "MPN"
+F 7 "DigiKey" H -100 100 50  0001 C CNN "Vendor"
+F 8 "Z6234-ND" H -100 100 50  0001 C CNN "Vendor P/N"
+	1    2300 1400
+	0    1    -1   0   
+$EndComp
+Wire Wire Line
+	1300 1300 1350 1300
+Text Notes 650  700  0    60   ~ 0
+15" RED 12 AWG
+Text Notes 650  850  0    60   ~ 0
+15" BLACK 12 AWG
+Wire Wire Line
+	1900 1600 2000 1600
+Wire Wire Line
+	1500 1600 1450 1600
+Wire Wire Line
+	2600 1600 2700 1600
+Wire Wire Line
+	2700 1600 2700 1950
+$Comp
+L power:GND #PWR05
+U 1 1 5BB5D8F3
+P 2700 1950
+F 0 "#PWR05" H 2700 1700 50  0001 C CNN
+F 1 "GND" H 2700 1800 50  0000 C CNN
+F 2 "" H 2700 1950 50  0001 C CNN
+F 3 "" H 2700 1950 50  0001 C CNN
+	1    2700 1950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 1200 2950 1200
+$Comp
+L proj:RSD-30H-24 PS1
+U 1 1 5BB8B770
+P 3600 1050
+F 0 "PS1" H 3600 1437 60  0000 C CNN
+F 1 "RSD-30H-24" H 3600 1331 60  0000 C CNN
+F 2 "" H 3850 1400 60  0001 C CNN
+F 3 "https://www.meanwell.com/Upload/PDF/RSD-30/RSD-30-SPEC.PDF" H 3850 1400 60  0001 C CNN
+F 4 "RSD-30H-24" H 3600 1050 50  0001 C CNN "MPN"
+F 5 "DigiKey" H 3600 1050 50  0001 C CNN "Vendor"
+F 6 "1866-5459-ND" H 3600 1050 50  0001 C CNN "Vendor P/N"
+F 7 "~" H 3600 1050 50  0001 C CNN "Alt Vendor"
+F 8 "~" H 3600 1050 50  0001 C CNN "Alt Vendor P/N"
+	1    3600 1050
+	1    0    0    -1  
+$EndComp
+$Comp
+L proj:RSDW20H-05 PS2
+U 1 1 5BB9E524
+P 3600 1700
+F 0 "PS2" H 3600 2087 60  0000 C CNN
+F 1 "RSDW20H-05" H 3600 1981 60  0000 C CNN
+F 2 "" H 3850 2050 60  0001 C CNN
+F 3 "http://www.meanwell.com/webapp/product/search.aspx?prod=RSDW20#1" H 3850 2050 60  0001 C CNN
+F 4 "~" H -100 100 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -100 100 50  0001 C CNN "Alt Vendor P/N"
+F 6 "RSDW20H-05" H -100 100 50  0001 C CNN "MPN"
+F 7 "Mouser" H -100 100 50  0001 C CNN "Vendor"
+F 8 "709-RSDW20H-05" H -100 100 50  0001 C CNN "Vendor P/N"
+	1    3600 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+24V #PWR025
+U 1 1 5BBAFEC1
+P 4250 850
+F 0 "#PWR025" H 4250 700 50  0001 C CNN
+F 1 "+24V" H 4265 1023 50  0000 C CNN
+F 2 "" H 4250 850 50  0001 C CNN
+F 3 "" H 4250 850 50  0001 C CNN
+	1    4250 850 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2950 1200 2950 950 
+Connection ~ 2950 1200
+Wire Wire Line
+	4250 1050 4250 850 
+Wire Wire Line
+	4000 1050 4250 1050
+Wire Wire Line
+	4000 1700 4100 1700
+Wire Wire Line
+	4100 1700 4100 1950
+$Comp
+L power:GND #PWR012
+U 1 1 5BBEE83A
+P 4100 1150
+F 0 "#PWR012" H 4100 900 50  0001 C CNN
+F 1 "GND" H 4100 1000 50  0000 C CNN
+F 2 "" H 4100 1150 50  0001 C CNN
+F 3 "" H 4100 1150 50  0001 C CNN
+	1    4100 1150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4100 950  4000 950 
+$Comp
+L power:GND #PWR011
+U 1 1 5BBF7DA8
+P 3100 1950
+F 0 "#PWR011" H 3100 1700 50  0001 C CNN
+F 1 "GND" H 3100 1800 50  0000 C CNN
+F 2 "" H 3100 1950 50  0001 C CNN
+F 3 "" H 3100 1950 50  0001 C CNN
+	1    3100 1950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3100 1950 3100 1700
+Wire Wire Line
+	3100 1700 3200 1700
+Wire Wire Line
+	3100 1700 3100 1050
+Wire Wire Line
+	3100 1050 3200 1050
+Connection ~ 3100 1700
+Wire Wire Line
+	3200 1600 2950 1600
+Connection ~ 2950 1600
+Wire Wire Line
+	2950 1600 2950 2300
+Wire Wire Line
+	3200 950  2950 950 
+$Comp
+L power:+5V #PWR026
+U 1 1 5BC31D26
+P 4250 1500
+F 0 "#PWR026" H 4250 1350 50  0001 C CNN
+F 1 "+5V" H 4250 1640 50  0000 C CNN
+F 2 "" H 4250 1500 50  0001 C CNN
+F 3 "" H 4250 1500 50  0001 C CNN
+	1    4250 1500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4250 1500 4250 1600
+Wire Wire Line
+	4250 1600 4000 1600
+$Comp
+L proj:BOB-12009 U3
+U 1 1 5BC6FCBF
+P 8100 3800
+F 0 "U3" H 8100 4297 60  0000 C CNN
+F 1 "BOB-12009" H 8100 4191 60  0000 C CNN
+F 2 "" H 8800 4350 60  0001 C CNN
+F 3 "https://www.sparkfun.com/products/12009" H 8800 4350 60  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "BOB-12009" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "1568-1209-ND" H 0   0   50  0001 C CNN "Vendor P/N"
+	1    8100 3800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7000 4050 7750 4050
+Wire Wire Line
+	6900 3950 7750 3950
+Wire Wire Line
+	6800 3650 7750 3650
+Wire Wire Line
+	6700 3550 7750 3550
+Wire Wire Line
+	8450 3750 8700 3750
+Wire Wire Line
+	8600 3850 8450 3850
+Wire Wire Line
+	7600 3850 7750 3850
+Wire Wire Line
+	7750 3750 7500 3750
+Wire Wire Line
+	8800 3650 8450 3650
+Wire Wire Line
+	8450 3550 8900 3550
+Wire Wire Line
+	8450 3950 8800 3950
+Wire Wire Line
+	8450 4050 8900 4050
+$Comp
+L proj:BOB-12009 U4
+U 1 1 5BCA0824
+P 8100 5650
+F 0 "U4" H 8100 6147 60  0000 C CNN
+F 1 "BOB-12009" H 8100 6041 60  0000 C CNN
+F 2 "" H 8800 6200 60  0001 C CNN
+F 3 "https://www.sparkfun.com/products/12009" H 8800 6200 60  0001 C CNN
+F 4 "~" H 0   1850 50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   1850 50  0001 C CNN "Alt Vendor P/N"
+F 6 "BOB-12009" H 0   1850 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   1850 50  0001 C CNN "Vendor"
+F 8 "1568-1209-ND" H 0   1850 50  0001 C CNN "Vendor P/N"
+	1    8100 5650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1350 1300 1350 1950
+Wire Wire Line
+	6450 5100 6800 5100
+Wire Wire Line
+	6800 5100 6800 5800
+Wire Wire Line
+	6700 5900 6700 5200
+Wire Wire Line
+	6700 5200 6450 5200
+Wire Wire Line
+	5150 4300 4000 4300
+$Comp
+L proj:Rotary_Selector_Switch SW1
+U 1 1 5BDA98E8
+P 3800 4300
+F 0 "SW1" H 3800 4565 50  0000 C CNN
+F 1 "Rotary_Selector_Switch" H 3800 4474 50  0000 C CNN
+F 2 "" H 3800 4300 50  0001 C CNN
+F 3 " http://a.co/d/7F7LLH1" H 3800 4300 50  0001 C CNN
+F 4 "~" H 0   500 50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   500 50  0001 C CNN "Alt Vendor P/N"
+F 6 "LW28-20/0123.3" H 0   500 50  0001 C CNN "MPN"
+F 7 "Amazon" H 0   500 50  0001 C CNN "Vendor"
+F 8 "B014KPR3D2" H 0   500 50  0001 C CNN "Vendor P/N"
+	1    3800 4300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3250 4400 3600 4400
+Wire Wire Line
+	3250 4500 3600 4500
+Wire Wire Line
+	3250 4600 3600 4600
+Wire Wire Line
+	3250 4300 3250 4400
+Wire Wire Line
+	3250 4100 3250 4300
+Connection ~ 3250 4300
+Wire Wire Line
+	3250 4300 3600 4300
+Wire Wire Line
+	4750 4200 5150 4200
+Wire Wire Line
+	4000 4400 5150 4400
+Wire Wire Line
+	5150 4500 4000 4500
+Wire Wire Line
+	5150 4600 4000 4600
+$Comp
+L proj:Adafruit_1096 U2
+U 1 1 5BDF0A13
+P 2400 4500
+F 0 "U2" H 2456 5047 60  0000 C CNN
+F 1 "Adafruit_1096" H 2456 4941 60  0000 C CNN
+F 2 "" H 3350 5100 60  0001 C CNN
+F 3 "https://www.adafruit.com/product/1096" H 3350 5100 60  0001 C CNN
+F 4 "Adafruit" H 0   500 50  0001 C CNN "Alt Vendor"
+F 5 "1096" H 0   500 50  0001 C CNN "Alt Vendor P/N"
+F 6 "1096" H 0   500 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   500 50  0001 C CNN "Vendor"
+F 8 "1528-1935-ND" H 0   500 50  0001 C CNN "Vendor P/N"
+	1    2400 4500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2700 4200 3000 4200
+Wire Wire Line
+	2700 4300 2850 4300
+Wire Wire Line
+	5150 4700 4050 4700
+Wire Wire Line
+	4050 4700 4050 4800
+Wire Wire Line
+	2700 4800 4050 4800
+NoConn ~ 2700 4700
+NoConn ~ 2700 4600
+NoConn ~ 2700 4500
+NoConn ~ 2700 4400
+$Comp
+L conn:Conn_01x02_Male J2
+U 1 1 5BE9B3C4
+P 10000 1150
+F 0 "J2" H 10150 1300 50  0000 R CNN
+F 1 "B2B-XH-A(LF)(SN)" V 10200 950 50  0001 R CNN
+F 2 "" H 10000 1150 50  0001 C CNN
+F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 10000 1150 50  0001 C CNN
+F 4 "~" H 450 -650 50  0001 C CNN "Alt Vendor"
+F 5 "~" H 450 -650 50  0001 C CNN "Alt Vendor P/N"
+F 6 "B2B-XH-A(LF)(SN)" H 450 -650 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 450 -650 50  0001 C CNN "Vendor"
+F 8 "455-2247-ND" H 450 -650 50  0001 C CNN "Vendor P/N"
+	1    10000 1150
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	9800 1250 9650 1250
+Wire Wire Line
+	9650 1250 9650 1350
+Wire Wire Line
+	9800 1150 9650 1150
+Wire Wire Line
+	9650 1150 9650 1000
+$Comp
+L power:+24V #PWR027
+U 1 1 5BEB7C9D
+P 9650 1000
+F 0 "#PWR027" H 9650 850 50  0001 C CNN
+F 1 "+24V" H 9665 1173 50  0000 C CNN
+F 2 "" H 9650 1000 50  0001 C CNN
+F 3 "" H 9650 1000 50  0001 C CNN
+	1    9650 1000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Q_NMOS_GDS Q1
+U 1 1 5BEB7D86
+P 9550 1550
+F 0 "Q1" H 9755 1596 50  0000 L CNN
+F 1 "Q_NMOS_GDS" H 9755 1505 50  0000 L CNN
+F 2 "" H 9750 1650 50  0001 C CNN
+F 3 "https://www.fairchildsemi.com/datasheets/FQ/FQP30N06L.pdf" H 9550 1550 50  0001 C CNN
+F 4 "FQP30N06L" H 9550 1550 50  0001 C CNN "MPN"
+F 5 "DigiKey" H 9550 1550 50  0001 C CNN "Vendor"
+F 6 "FQP30N06L-ND" H 9550 1550 50  0001 C CNN "Vendor P/N"
+F 7 "~" H 450 -550 50  0001 C CNN "Alt Vendor"
+F 8 "~" H 450 -550 50  0001 C CNN "Alt Vendor P/N"
+	1    9550 1550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR028
+U 1 1 5BEB7E6D
+P 9650 2000
+F 0 "#PWR028" H 9650 1750 50  0001 C CNN
+F 1 "GND" H 9650 1850 50  0000 C CNN
+F 2 "" H 9650 2000 50  0001 C CNN
+F 3 "" H 9650 2000 50  0001 C CNN
+	1    9650 2000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9350 1550 9100 1550
+Text Label 8850 1550 0    60   ~ 0
+PUMP_EN
+Wire Wire Line
+	4150 5100 4150 4800
+Wire Wire Line
+	4150 4800 5150 4800
+Wire Wire Line
+	3000 5100 4150 5100
+Wire Wire Line
+	5150 4900 4250 4900
+Wire Wire Line
+	5150 5000 4500 5000
+Text Label 4500 5000 0    60   ~ 0
+PUMP_EN
+Text Label 4500 5200 0    60   ~ 0
+PRESS_SNS
+$Comp
+L Device:R_Small R2
+U 1 1 5BF057DE
+P 9100 1750
+F 0 "R2" H 9159 1796 50  0000 L CNN
+F 1 "100K" H 9159 1705 50  0000 L CNN
+F 2 "" H 9100 1750 50  0001 C CNN
+F 3 "~" H 9100 1750 50  0001 C CNN
+F 4 "~" H 450 -550 50  0001 C CNN "Alt Vendor"
+F 5 "~" H 450 -550 50  0001 C CNN "Alt Vendor P/N"
+F 6 "~" H 450 -550 50  0001 C CNN "MPN"
+F 7 "House" H 450 -550 50  0001 C CNN "Vendor"
+F 8 "~" H 450 -550 50  0001 C CNN "Vendor P/N"
+	1    9100 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9100 1650 9100 1550
+Connection ~ 9100 1550
+Wire Wire Line
+	9100 1550 8850 1550
+Wire Wire Line
+	9100 1850 9100 1950
+Wire Wire Line
+	9100 1950 9650 1950
+Wire Wire Line
+	9650 1950 9650 2000
+Wire Wire Line
+	9650 1750 9650 1950
+Connection ~ 9650 1950
+$Comp
+L proj:LED_HOLDER_5MM SP1
+U 1 1 5BF2782C
+P 1500 4750
+F 0 "SP1" H 1550 4650 60  0000 R CNN
+F 1 "LED_HOLDER_5MM" H 2150 4900 60  0000 R CNN
+F 2 "" H 1500 4750 60  0001 C CNN
+F 3 "https://media.digikey.com/pdf/Data%20Sheets/Adafruit%20PDFs/2178_Web.pdf" H 1500 4750 60  0001 C CNN
+F 4 "~" H -450 300 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -450 300 50  0001 C CNN "Alt Vendor P/N"
+F 6 "2178" H -450 300 50  0001 C CNN "MPN"
+F 7 "DigiKey" H -450 300 50  0001 C CNN "Vendor"
+F 8 "1528-1399-ND" H -450 300 50  0001 C CNN "Vendor P/N"
+	1    1500 4750
+	-1   0    0    1   
+$EndComp
+$Comp
+L conn:Conn_01x02_Female J3
+U 1 1 5BF31126
+P 10000 1150
+F 0 "J3" H 9900 1300 50  0000 C CNN
+F 1 "XHP-2" H 9550 950 50  0001 C CNN
+F 2 "" H 10000 1150 50  0001 C CNN
+F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 10000 1150 50  0001 C CNN
+F 4 "~" H 550 -550 50  0001 C CNN "Alt Vendor"
+F 5 "~" H 550 -550 50  0001 C CNN "Alt Vendor P/N"
+F 6 "XHP-2" H 550 -550 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 550 -550 50  0001 C CNN "Vendor"
+F 8 "455-2266-ND" H 550 -550 50  0001 C CNN "Vendor P/N"
+	1    10000 1150
+	-1   0    0    -1  
+$EndComp
+NoConn ~ 10200 1150
+NoConn ~ 10200 1250
+Text Notes 10300 1250 0    60   ~ 0
+To Pump
+$Comp
+L proj:HSCDLNN001PDAA3 U6
+U 1 1 5BF9B807
+P 3700 6250
+F 0 "U6" H 3700 6687 60  0000 C CNN
+F 1 "HSCDLNN001PDAA3" H 3700 6581 60  0000 C CNN
+F 2 "" H 3700 6300 60  0001 C CNN
+F 3 "https://sensing.honeywell.com/index.php?ci_id=151133" H 3700 6300 60  0001 C CNN
+F 4 "HSCDLNN001PDAA3" H 3700 6250 50  0001 C CNN "MPN"
+F 5 "DigiKey" H 3700 6250 50  0001 C CNN "Vendor"
+F 6 "480-5420-ND" H 3700 6250 50  0001 C CNN "Vendor P/N"
+F 7 "~" H 0   -100 50  0001 C CNN "Alt Vendor"
+F 8 "~" H 0   -100 50  0001 C CNN "Alt Vendor P/N"
+	1    3700 6250
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	4100 6400 4250 6400
+Wire Wire Line
+	4250 6400 4250 6750
+Wire Wire Line
+	4100 6200 4250 6200
+Wire Wire Line
+	4250 6200 4250 5850
+$Comp
+L power:+3V3 #PWR032
+U 1 1 5BFAC91A
+P 4250 5850
+F 0 "#PWR032" H 4250 5700 50  0001 C CNN
+F 1 "+3V3" H 4250 5990 50  0000 C CNN
+F 2 "" H 4250 5850 50  0001 C CNN
+F 3 "" H 4250 5850 50  0001 C CNN
+	1    4250 5850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4100 6300 4450 6300
+Wire Wire Line
+	4450 6300 4450 5200
+Wire Wire Line
+	4450 5200 5150 5200
+$Comp
+L power:GND #PWR033
+U 1 1 5BFB5711
+P 4250 6750
+F 0 "#PWR033" H 4250 6500 50  0001 C CNN
+F 1 "GND" H 4250 6600 50  0000 C CNN
+F 2 "" H 4250 6750 50  0001 C CNN
+F 3 "" H 4250 6750 50  0001 C CNN
+	1    4250 6750
+	1    0    0    -1  
+$EndComp
+$Comp
+L proj:GP2Y0A02YK0F U5
+U 1 1 5BFBED5C
+P 1000 6250
+F 0 "U5" H 700 5950 60  0000 R CNN
+F 1 "GP2Y0A02YK0F" H 1250 6050 60  0000 R CNN
+F 2 "" H 850 6250 60  0001 C CNN
+F 3 "https://www.sparkfun.com/datasheets/Sensors/Infrared/gp2y0a02yk_e.pdf" H 850 6250 60  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "GP2Y0A02YK0F" H 0   0   50  0001 C CNN "MPN"
+F 7 "SparkFun" H 0   0   50  0001 C CNN "Vendor"
+F 8 "SEN-08958" H 0   0   50  0001 C CNN "Vendor P/N"
+	1    1000 6250
+	1    0    0    1   
+$EndComp
+$Comp
+L power:+5V #PWR029
+U 1 1 5BFBF1CF
+P 2350 6050
+F 0 "#PWR029" H 2350 5900 50  0001 C CNN
+F 1 "+5V" H 2350 6190 50  0000 C CNN
+F 2 "" H 2350 6050 50  0001 C CNN
+F 3 "" H 2350 6050 50  0001 C CNN
+	1    2350 6050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2350 6050 2350 6150
+Wire Wire Line
+	2350 6150 2250 6150
+$Comp
+L power:GND #PWR030
+U 1 1 5BFC822D
+P 2350 6600
+F 0 "#PWR030" H 2350 6350 50  0001 C CNN
+F 1 "GND" H 2350 6450 50  0000 C CNN
+F 2 "" H 2350 6600 50  0001 C CNN
+F 3 "" H 2350 6600 50  0001 C CNN
+	1    2350 6600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 5BFDABB1
+P 2600 6500
+F 0 "R3" V 2700 6500 50  0000 C CNN
+F 1 "120" V 2600 6500 50  0000 C CNN
+F 2 "" V 2530 6500 50  0001 C CNN
+F 3 "" H 2600 6500 50  0001 C CNN
+F 4 "~" H -1750 1900 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -1750 1900 50  0001 C CNN "Alt Vendor P/N"
+F 6 "~" H -1750 1900 50  0001 C CNN "MPN"
+F 7 "House" H -1750 1900 50  0001 C CNN "Vendor"
+F 8 "~" H -1750 1900 50  0001 C CNN "Vendor P/N"
+	1    2600 6500
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R R4
+U 1 1 5BFE4235
+P 2600 7050
+F 0 "R4" V 2700 7050 50  0000 C CNN
+F 1 "220" V 2600 7050 50  0000 C CNN
+F 2 "" V 2530 7050 50  0001 C CNN
+F 3 "" H 2600 7050 50  0001 C CNN
+F 4 "~" H -1750 2450 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -1750 2450 50  0001 C CNN "Alt Vendor P/N"
+F 6 "~" H -1750 2450 50  0001 C CNN "MPN"
+F 7 "House" H -1750 2450 50  0001 C CNN "Vendor"
+F 8 "~" H -1750 2450 50  0001 C CNN "Vendor P/N"
+	1    2600 7050
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2600 6650 2600 6800
+$Comp
+L power:GND #PWR031
+U 1 1 5BFED9FC
+P 2600 7350
+F 0 "#PWR031" H 2600 7100 50  0001 C CNN
+F 1 "GND" H 2600 7200 50  0000 C CNN
+F 2 "" H 2600 7350 50  0001 C CNN
+F 3 "" H 2600 7350 50  0001 C CNN
+	1    2600 7350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2600 7200 2600 7350
+Wire Wire Line
+	2600 6800 3150 6800
+Connection ~ 2600 6800
+Wire Wire Line
+	2600 6800 2600 6900
+Text Label 3150 6800 2    60   ~ 0
+PAIL_SNS
+Wire Wire Line
+	5150 5100 4500 5100
+Text Label 4500 5100 0    60   ~ 0
+PAIL_SNS
+$Comp
+L conn:Conn_01x03_Female J4
+U 1 1 5C01523A
+P 1450 6250
+F 0 "J4" H 1400 6000 50  0000 L CNN
+F 1 "XHP-3" H 1350 5950 50  0001 L CNN
+F 2 "" H 1450 6250 50  0001 C CNN
+F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 1450 6250 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "XHP-3" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "455-2219-ND" H 0   0   50  0001 C CNN "Vendor P/N"
+	1    1450 6250
+	-1   0    0    1   
+$EndComp
+$Comp
+L conn:Conn_01x03_Male J7
+U 1 1 5C015301
+P 2050 6250
+F 0 "J7" H 2150 6500 50  0000 C CNN
+F 1 "B3B-XH-A(LF)(SN)" H 2000 6050 50  0001 C CNN
+F 2 "" H 2050 6250 50  0001 C CNN
+F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 2050 6250 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "B3B-XH-A(LF)(SN)" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "455-2248-ND" H 0   0   50  0001 C CNN "Vendor P/N"
+	1    2050 6250
+	1    0    0    -1  
+$EndComp
+$Comp
+L conn:Conn_01x03_Female J8
+U 1 1 5C029783
+P 2050 6250
+F 0 "J8" H 1950 6500 50  0000 L CNN
+F 1 "XHP-3" H 1850 6600 50  0001 L CNN
+F 2 "" H 2050 6250 50  0001 C CNN
+F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 2050 6250 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "XHP-3" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "455-2219-ND" H 0   0   50  0001 C CNN "Vendor P/N"
+	1    2050 6250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1650 6150 1850 6150
+Wire Wire Line
+	1650 6250 1850 6250
+Wire Wire Line
+	1650 6350 1850 6350
+Wire Notes Line
+	1550 6050 1550 6400
+Wire Notes Line
+	1550 6400 1950 6400
+Wire Notes Line
+	1950 6400 1950 6050
+Wire Notes Line
+	1950 6050 1550 6050
+Text Notes 1600 6050 0    60   ~ 0
+CABLE
+$Comp
+L Device:R R5
+U 1 1 5BA74793
+P 1450 1400
+F 0 "R5" H 1350 1350 50  0000 C CNN
+F 1 "2.2K" V 1450 1400 50  0000 C CNN
+F 2 "" V 1380 1400 50  0001 C CNN
+F 3 "" H 1450 1400 50  0001 C CNN
+F 4 "~" H -2900 -3200 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -2900 -3200 50  0001 C CNN "Alt Vendor P/N"
+F 6 "~" H -2900 -3200 50  0001 C CNN "MPN"
+F 7 "House" H -2900 -3200 50  0001 C CNN "Vendor"
+F 8 "~" H -2900 -3200 50  0001 C CNN "Vendor P/N"
+	1    1450 1400
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1300 1200 1450 1200
+Wire Wire Line
+	1450 1250 1450 1200
+Connection ~ 1450 1200
+Wire Wire Line
+	1450 1200 2000 1200
+Wire Wire Line
+	1450 1600 1450 1550
+Text Notes 2100 2200 0    60   ~ 0
+Coil \nR: 4170K\nC: 11.5mA\nV: 48VDC
+NoConn ~ 1450 6150
+NoConn ~ 1450 6250
+NoConn ~ 1450 6350
+$Comp
+L proj:+72V #PWR0101
+U 1 1 5BAB5DD9
+P 2950 850
+F 0 "#PWR0101" H 2950 700 50  0001 C CNN
+F 1 "+72V" H 2965 1023 50  0000 C CNN
+F 2 "" H 2950 850 50  0001 C CNN
+F 3 "" H 2950 850 50  0001 C CNN
+	1    2950 850 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2950 850  2950 950 
+Connection ~ 2950 950 
+NoConn ~ 3200 1150
+NoConn ~ 3200 1800
+NoConn ~ 4000 1800
+Wire Wire Line
+	4100 950  4100 1150
+$Comp
+L power:GND #PWR0102
+U 1 1 5BAEBC00
+P 4100 1950
+F 0 "#PWR0102" H 4100 1700 50  0001 C CNN
+F 1 "GND" H 4100 1800 50  0000 C CNN
+F 2 "" H 4100 1950 50  0001 C CNN
+F 3 "" H 4100 1950 50  0001 C CNN
+	1    4100 1950
+	1    0    0    -1  
+$EndComp
+NoConn ~ 6450 4200
+NoConn ~ 6450 4300
+NoConn ~ 4400 -1650
+Wire Wire Line
+	2000 5550 1750 5550
+Wire Wire Line
+	1350 5550 1250 5550
+Wire Wire Line
+	1250 5550 1250 5650
+Wire Wire Line
+	1250 5650 2000 5650
+$Comp
+L conn:Conn_01x02_Female J9
+U 1 1 5BAFD4BE
+P 2200 5100
+F 0 "J9" H 2050 5250 50  0000 C CNN
+F 1 "XHP-2" H 1750 4900 50  0001 C CNN
+F 2 "" H 2200 5100 50  0001 C CNN
+F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 2200 5100 50  0001 C CNN
+F 4 "~" H -7250 3400 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -7250 3400 50  0001 C CNN "Alt Vendor P/N"
+F 6 "XHP-2" H -7250 3400 50  0001 C CNN "MPN"
+F 7 "DigiKey" H -7250 3400 50  0001 C CNN "Vendor"
+F 8 "455-2266-ND" H -7250 3400 50  0001 C CNN "Vendor P/N"
+	1    2200 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L conn:Conn_01x02_Male J10
+U 1 1 5BAFD550
+P 2200 5100
+F 0 "J10" H 2350 5250 50  0000 R CNN
+F 1 "B2B-XH-A(LF)(SN)" V 2400 4900 50  0001 R CNN
+F 2 "" H 2200 5100 50  0001 C CNN
+F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 2200 5100 50  0001 C CNN
+F 4 "~" H -7350 3300 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -7350 3300 50  0001 C CNN "Alt Vendor P/N"
+F 6 "B2B-XH-A(LF)(SN)" H -7350 3300 50  0001 C CNN "MPN"
+F 7 "DigiKey" H -7350 3300 50  0001 C CNN "Vendor"
+F 8 "455-2247-ND" H -7350 3300 50  0001 C CNN "Vendor P/N"
+	1    2200 5100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2000 5100 1750 5100
+Wire Wire Line
+	1250 5100 1250 5200
+Wire Wire Line
+	1250 5200 2000 5200
+Wire Wire Line
+	1250 5100 1450 5100
+Wire Wire Line
+	2400 5100 2700 5100
+Wire Wire Line
+	2400 5550 4250 5550
+Wire Wire Line
+	2400 5200 2550 5200
+Wire Wire Line
+	2400 5650 2550 5650
+Wire Wire Line
+	4250 4900 4250 5550
+$Comp
+L conn:Conn_01x03_Male J11
+U 1 1 5BBA88CD
+P 2200 5550
+F 0 "J11" H 2300 5750 50  0000 C CNN
+F 1 "B3B-XH-A(LF)(SN)" H 2150 5350 50  0001 C CNN
+F 2 "" H 2200 5550 50  0001 C CNN
+F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 2200 5550 50  0001 C CNN
+F 4 "~" H 150 -700 50  0001 C CNN "Alt Vendor"
+F 5 "~" H 150 -700 50  0001 C CNN "Alt Vendor P/N"
+F 6 "B3B-XH-A(LF)(SN)" H 150 -700 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 150 -700 50  0001 C CNN "Vendor"
+F 8 "455-2248-ND" H 150 -700 50  0001 C CNN "Vendor P/N"
+	1    2200 5550
+	1    0    0    -1  
+$EndComp
+$Comp
+L conn:Conn_01x03_Female J12
+U 1 1 5BBA8941
+P 2200 5550
+F 0 "J12" H 2000 5750 50  0000 L CNN
+F 1 "XHP-3" H 2000 5900 50  0001 L CNN
+F 2 "" H 2200 5550 50  0001 C CNN
+F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 2200 5550 50  0001 C CNN
+F 4 "~" H 150 -700 50  0001 C CNN "Alt Vendor"
+F 5 "~" H 150 -700 50  0001 C CNN "Alt Vendor P/N"
+F 6 "XHP-3" H 150 -700 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 150 -700 50  0001 C CNN "Vendor"
+F 8 "455-2219-ND" H 150 -700 50  0001 C CNN "Vendor P/N"
+	1    2200 5550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2550 5200 2550 5650
+Wire Wire Line
+	2550 5750 2550 5650
+Connection ~ 2550 5650
+Wire Wire Line
+	2250 6350 2350 6350
+Wire Wire Line
+	2350 6350 2350 6600
+Wire Wire Line
+	2250 6250 2600 6250
+Wire Wire Line
+	2600 6250 2600 6350
+Text Label 1700 6150 0    60   ~ 0
+red
+Text Label 1650 6350 0    60   ~ 0
+black
+Text Label 1650 6250 0    60   ~ 0
+white
+Text Label 1750 5550 0    60   ~ 0
+white
+Text Label 1350 5650 0    60   ~ 0
+white
+Text Label 1750 5100 0    60   ~ 0
+white
+Text Label 1700 5200 0    60   ~ 0
+white
+$EndSCHEMATC
