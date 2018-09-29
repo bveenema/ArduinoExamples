@@ -169,21 +169,17 @@ void mixMaster::updateFlushing(){
       } else {
         flushIdleTime = 0;
       }
-      Serial.printlnf("flushPulseTime:%d",flushPulseTime);
-      Serial.printlnf("flushIdleTime:%d",flushIdleTime);
 
       timeStateStarted = millis();
       digitalWrite(RESIN_PUMP_ENABLE_PIN, LOW); // Enable Resin Pump
       digitalWrite(HARDENER_PUMP_ENABLE_PIN, LOW); // Enable Hardener Pump
 
-      Serial.println("Initial PULSE_ON");
       FlushingState = PULSE_ON;
     }
     // No break, fall through to pulse pumps on immediately
     case PULSE_ON:
       if(this->runPumpsWithErrorCheck()) mixerState = START_IDLE;
       if(millis()-timeStateStarted > flushPulseTime){
-        Serial.println("IDLE_FLUSHING");
         timeStateStarted = millis();
         FlushingState = IDLE_FLUSHING;
       }
@@ -193,7 +189,6 @@ void mixMaster::updateFlushing(){
     case IDLE_FLUSHING:
       this->idlePumps();
       if(millis()-timeStateStarted > flushIdleTime){
-        Serial.println("PULSE_ON");
         timeStateStarted = millis();
         FlushingState = PULSE_ON;
       }
