@@ -85,10 +85,10 @@ const prom_settings defaultSettings = {
   500, // autoReverseSteps
   10000, // chargePressure
   150, // keepOpenVolume
-  600, // pailThreshold
+  800, // pailThreshold
   {3000,3000,3000,3000,3000}, // flowRate
-  {200,200,200,200,200}, // ratioResin
-  {100,100,100,100,100}, // ratioHardener
+  {0,200,100,224,189}, // ratioResin
+  {0,100,400,100,100}, // ratioHardener
   {3785,3785,3785,3785,3785} // volume
 };
 
