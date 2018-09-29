@@ -68,6 +68,8 @@ bool mixMaster::update(bool _changeState){
       // If no Pail in position, prevent keep open or mixing
       if(!PailSensor.getState()){
         mixerState = START_IDLE;
+        _changeState = false;
+        return _changeState;
       }
       #endif
       if(_changeState){
