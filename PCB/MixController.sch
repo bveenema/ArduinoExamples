@@ -1156,98 +1156,46 @@ $EndComp
 $Comp
 L proj:GP2Y0A02YK0F U5
 U 1 1 5BFBED5C
-P 1000 6250
-F 0 "U5" H 700 5950 60  0000 R CNN
-F 1 "GP2Y0A02YK0F" H 1250 6050 60  0000 R CNN
-F 2 "" H 850 6250 60  0001 C CNN
-F 3 "https://www.sparkfun.com/datasheets/Sensors/Infrared/gp2y0a02yk_e.pdf" H 850 6250 60  0001 C CNN
-F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
-F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
-F 6 "GP2Y0A02YK0F" H 0   0   50  0001 C CNN "MPN"
-F 7 "SparkFun" H 0   0   50  0001 C CNN "Vendor"
-F 8 "SEN-08958" H 0   0   50  0001 C CNN "Vendor P/N"
-	1    1000 6250
+P 1300 6900
+F 0 "U5" H 1000 6600 60  0000 R CNN
+F 1 "GP2Y0A02YK0F" H 1550 6700 60  0000 R CNN
+F 2 "" H 1150 6900 60  0001 C CNN
+F 3 "https://www.sparkfun.com/datasheets/Sensors/Infrared/gp2y0a02yk_e.pdf" H 1150 6900 60  0001 C CNN
+F 4 "~" H 300 650 50  0001 C CNN "Alt Vendor"
+F 5 "~" H 300 650 50  0001 C CNN "Alt Vendor P/N"
+F 6 "GP2Y0A02YK0F" H 300 650 50  0001 C CNN "MPN"
+F 7 "SparkFun" H 300 650 50  0001 C CNN "Vendor"
+F 8 "SEN-08958" H 300 650 50  0001 C CNN "Vendor P/N"
+	1    1300 6900
 	1    0    0    1   
 $EndComp
 $Comp
 L power:+5V #PWR029
 U 1 1 5BFBF1CF
-P 2350 6050
-F 0 "#PWR029" H 2350 5900 50  0001 C CNN
-F 1 "+5V" H 2350 6190 50  0000 C CNN
-F 2 "" H 2350 6050 50  0001 C CNN
-F 3 "" H 2350 6050 50  0001 C CNN
-	1    2350 6050
+P 2650 6700
+F 0 "#PWR029" H 2650 6550 50  0001 C CNN
+F 1 "+5V" H 2650 6840 50  0000 C CNN
+F 2 "" H 2650 6700 50  0001 C CNN
+F 3 "" H 2650 6700 50  0001 C CNN
+	1    2650 6700
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2350 6050 2350 6150
+	2650 6700 2650 6800
 Wire Wire Line
-	2350 6150 2250 6150
+	2650 6800 2550 6800
 $Comp
 L power:GND #PWR030
 U 1 1 5BFC822D
-P 2350 6600
-F 0 "#PWR030" H 2350 6350 50  0001 C CNN
-F 1 "GND" H 2350 6450 50  0000 C CNN
-F 2 "" H 2350 6600 50  0001 C CNN
-F 3 "" H 2350 6600 50  0001 C CNN
-	1    2350 6600
+P 2650 7250
+F 0 "#PWR030" H 2650 7000 50  0001 C CNN
+F 1 "GND" H 2650 7100 50  0000 C CNN
+F 2 "" H 2650 7250 50  0001 C CNN
+F 3 "" H 2650 7250 50  0001 C CNN
+	1    2650 7250
 	1    0    0    -1  
 $EndComp
-$Comp
-L Device:R R3
-U 1 1 5BFDABB1
-P 2600 6500
-F 0 "R3" V 2700 6500 50  0000 C CNN
-F 1 "120" V 2600 6500 50  0000 C CNN
-F 2 "" V 2530 6500 50  0001 C CNN
-F 3 "" H 2600 6500 50  0001 C CNN
-F 4 "~" H -1750 1900 50  0001 C CNN "Alt Vendor"
-F 5 "~" H -1750 1900 50  0001 C CNN "Alt Vendor P/N"
-F 6 "~" H -1750 1900 50  0001 C CNN "MPN"
-F 7 "House" H -1750 1900 50  0001 C CNN "Vendor"
-F 8 "~" H -1750 1900 50  0001 C CNN "Vendor P/N"
-	1    2600 6500
-	-1   0    0    1   
-$EndComp
-$Comp
-L Device:R R4
-U 1 1 5BFE4235
-P 2600 7050
-F 0 "R4" V 2700 7050 50  0000 C CNN
-F 1 "220" V 2600 7050 50  0000 C CNN
-F 2 "" V 2530 7050 50  0001 C CNN
-F 3 "" H 2600 7050 50  0001 C CNN
-F 4 "~" H -1750 2450 50  0001 C CNN "Alt Vendor"
-F 5 "~" H -1750 2450 50  0001 C CNN "Alt Vendor P/N"
-F 6 "~" H -1750 2450 50  0001 C CNN "MPN"
-F 7 "House" H -1750 2450 50  0001 C CNN "Vendor"
-F 8 "~" H -1750 2450 50  0001 C CNN "Vendor P/N"
-	1    2600 7050
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	2600 6650 2600 6800
-$Comp
-L power:GND #PWR031
-U 1 1 5BFED9FC
-P 2600 7350
-F 0 "#PWR031" H 2600 7100 50  0001 C CNN
-F 1 "GND" H 2600 7200 50  0000 C CNN
-F 2 "" H 2600 7350 50  0001 C CNN
-F 3 "" H 2600 7350 50  0001 C CNN
-	1    2600 7350
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2600 7200 2600 7350
-Wire Wire Line
-	2600 6800 3150 6800
-Connection ~ 2600 6800
-Wire Wire Line
-	2600 6800 2600 6900
-Text Label 3150 6800 2    60   ~ 0
+Text Label 3150 6900 2    60   ~ 0
 PAIL_SNS
 Wire Wire Line
 	5150 5100 4500 5100
@@ -1256,66 +1204,66 @@ PAIL_SNS
 $Comp
 L conn:Conn_01x03_Female J4
 U 1 1 5C01523A
-P 1450 6250
-F 0 "J4" H 1400 6000 50  0000 L CNN
-F 1 "XHP-3" H 1350 5950 50  0001 L CNN
-F 2 "" H 1450 6250 50  0001 C CNN
-F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 1450 6250 50  0001 C CNN
-F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
-F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
-F 6 "XHP-3" H 0   0   50  0001 C CNN "MPN"
-F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
-F 8 "455-2219-ND" H 0   0   50  0001 C CNN "Vendor P/N"
-	1    1450 6250
+P 1750 6900
+F 0 "J4" H 1700 6650 50  0000 L CNN
+F 1 "XHP-3" H 1650 6600 50  0001 L CNN
+F 2 "" H 1750 6900 50  0001 C CNN
+F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 1750 6900 50  0001 C CNN
+F 4 "~" H 300 650 50  0001 C CNN "Alt Vendor"
+F 5 "~" H 300 650 50  0001 C CNN "Alt Vendor P/N"
+F 6 "XHP-3" H 300 650 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 300 650 50  0001 C CNN "Vendor"
+F 8 "455-2219-ND" H 300 650 50  0001 C CNN "Vendor P/N"
+	1    1750 6900
 	-1   0    0    1   
 $EndComp
 $Comp
 L conn:Conn_01x03_Male J7
 U 1 1 5C015301
-P 2050 6250
-F 0 "J7" H 2150 6500 50  0000 C CNN
-F 1 "B3B-XH-A(LF)(SN)" H 2000 6050 50  0001 C CNN
-F 2 "" H 2050 6250 50  0001 C CNN
-F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 2050 6250 50  0001 C CNN
-F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
-F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
-F 6 "B3B-XH-A(LF)(SN)" H 0   0   50  0001 C CNN "MPN"
-F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
-F 8 "455-2248-ND" H 0   0   50  0001 C CNN "Vendor P/N"
-	1    2050 6250
+P 2350 6900
+F 0 "J7" H 2450 7150 50  0000 C CNN
+F 1 "B3B-XH-A(LF)(SN)" H 2300 6700 50  0001 C CNN
+F 2 "" H 2350 6900 50  0001 C CNN
+F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 2350 6900 50  0001 C CNN
+F 4 "~" H 300 650 50  0001 C CNN "Alt Vendor"
+F 5 "~" H 300 650 50  0001 C CNN "Alt Vendor P/N"
+F 6 "B3B-XH-A(LF)(SN)" H 300 650 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 300 650 50  0001 C CNN "Vendor"
+F 8 "455-2248-ND" H 300 650 50  0001 C CNN "Vendor P/N"
+	1    2350 6900
 	1    0    0    -1  
 $EndComp
 $Comp
 L conn:Conn_01x03_Female J8
 U 1 1 5C029783
-P 2050 6250
-F 0 "J8" H 1950 6500 50  0000 L CNN
-F 1 "XHP-3" H 1850 6600 50  0001 L CNN
-F 2 "" H 2050 6250 50  0001 C CNN
-F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 2050 6250 50  0001 C CNN
-F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
-F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
-F 6 "XHP-3" H 0   0   50  0001 C CNN "MPN"
-F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
-F 8 "455-2219-ND" H 0   0   50  0001 C CNN "Vendor P/N"
-	1    2050 6250
+P 2350 6900
+F 0 "J8" H 2250 7150 50  0000 L CNN
+F 1 "XHP-3" H 2150 7250 50  0001 L CNN
+F 2 "" H 2350 6900 50  0001 C CNN
+F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 2350 6900 50  0001 C CNN
+F 4 "~" H 300 650 50  0001 C CNN "Alt Vendor"
+F 5 "~" H 300 650 50  0001 C CNN "Alt Vendor P/N"
+F 6 "XHP-3" H 300 650 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 300 650 50  0001 C CNN "Vendor"
+F 8 "455-2219-ND" H 300 650 50  0001 C CNN "Vendor P/N"
+	1    2350 6900
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1650 6150 1850 6150
+	1950 6800 2150 6800
 Wire Wire Line
-	1650 6250 1850 6250
+	1950 6900 2150 6900
 Wire Wire Line
-	1650 6350 1850 6350
+	1950 7000 2150 7000
 Wire Notes Line
-	1550 6050 1550 6400
+	1850 6700 1850 7050
 Wire Notes Line
-	1550 6400 1950 6400
+	1850 7050 2250 7050
 Wire Notes Line
-	1950 6400 1950 6050
+	2250 7050 2250 6700
 Wire Notes Line
-	1950 6050 1550 6050
-Text Notes 1600 6050 0    60   ~ 0
+	2250 6700 1850 6700
+Text Notes 1900 6700 0    60   ~ 0
 CABLE
 $Comp
 L Device:R R5
@@ -1344,9 +1292,9 @@ Wire Wire Line
 	1450 1600 1450 1550
 Text Notes 2100 2200 0    60   ~ 0
 Coil \nR: 4170K\nC: 11.5mA\nV: 48VDC
-NoConn ~ 1450 6150
-NoConn ~ 1450 6250
-NoConn ~ 1450 6350
+NoConn ~ 1750 6800
+NoConn ~ 1750 6900
+NoConn ~ 1750 7000
 $Comp
 L proj:+72V #PWR0101
 U 1 1 5BAB5DD9
@@ -1476,18 +1424,16 @@ Wire Wire Line
 	2550 5750 2550 5650
 Connection ~ 2550 5650
 Wire Wire Line
-	2250 6350 2350 6350
+	2550 7000 2650 7000
 Wire Wire Line
-	2350 6350 2350 6600
+	2650 7000 2650 7250
 Wire Wire Line
-	2250 6250 2600 6250
-Wire Wire Line
-	2600 6250 2600 6350
-Text Label 1700 6150 0    60   ~ 0
+	2550 6900 3150 6900
+Text Label 2000 6800 0    60   ~ 0
 red
-Text Label 1650 6350 0    60   ~ 0
+Text Label 1950 7000 0    60   ~ 0
 black
-Text Label 1650 6250 0    60   ~ 0
+Text Label 1950 6900 0    60   ~ 0
 white
 Text Label 1750 5550 0    60   ~ 0
 white

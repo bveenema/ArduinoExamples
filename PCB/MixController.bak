@@ -314,7 +314,7 @@ Wire Wire Line
 Wire Wire Line
 	8800 5600 9350 5600
 Wire Wire Line
-	8900 5500 9350 5500
+	8900 5500 9050 5500
 Wire Wire Line
 	9000 5400 9350 5400
 Wire Wire Line
@@ -476,7 +476,7 @@ Wire Wire Line
 Wire Wire Line
 	8800 3750 9350 3750
 Wire Wire Line
-	8900 3650 9350 3650
+	8900 3650 9050 3650
 Wire Wire Line
 	9000 3550 9350 3550
 Wire Wire Line
@@ -1497,4 +1497,62 @@ Text Label 1750 5100 0    60   ~ 0
 white
 Text Label 1700 5200 0    60   ~ 0
 white
+$Comp
+L Device:R_Small R7
+U 1 1 5BB04E7F
+P 9050 6000
+F 0 "R7" H 8991 5954 50  0000 R CNN
+F 1 "470" H 8991 6045 50  0000 R CNN
+F 2 "" H 9050 6000 50  0001 C CNN
+F 3 "~" H 9050 6000 50  0001 C CNN
+	1    9050 6000
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9050 5900 9050 5500
+Connection ~ 9050 5500
+Wire Wire Line
+	9050 5500 9350 5500
+$Comp
+L power:GND #PWR035
+U 1 1 5BB10B21
+P 9050 6150
+F 0 "#PWR035" H 9050 5900 50  0001 C CNN
+F 1 "GND" H 9050 6000 50  0000 C CNN
+F 2 "" H 9050 6150 50  0001 C CNN
+F 3 "" H 9050 6150 50  0001 C CNN
+	1    9050 6150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9050 6150 9050 6100
+$Comp
+L Device:R_Small R6
+U 1 1 5BB1C9E8
+P 9050 4150
+F 0 "R6" H 8991 4104 50  0000 R CNN
+F 1 "470" H 8991 4195 50  0000 R CNN
+F 2 "" H 9050 4150 50  0001 C CNN
+F 3 "~" H 9050 4150 50  0001 C CNN
+	1    9050 4150
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9050 4050 9050 3650
+Connection ~ 9050 3650
+Wire Wire Line
+	9050 3650 9350 3650
+$Comp
+L power:GND #PWR034
+U 1 1 5BB289F3
+P 9050 4300
+F 0 "#PWR034" H 9050 4050 50  0001 C CNN
+F 1 "GND" H 9050 4150 50  0000 C CNN
+F 2 "" H 9050 4300 50  0001 C CNN
+F 3 "" H 9050 4300 50  0001 C CNN
+	1    9050 4300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9050 4300 9050 4250
 $EndSCHEMATC
