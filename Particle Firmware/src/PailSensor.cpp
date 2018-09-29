@@ -8,8 +8,24 @@ void pailSensor::init(){
 }
 
 void pailSensor::update(){
-  currentReading = this->readSensor();
-  if(currentReading > detectionThreshold) this->state = true;
+  // Take readings, reset index and make valid if reading.values is full
+  readings.values[readings.index++] = this->readSensor();
+  if(readings.index > readings.length) {
+    readings.index = 0;
+    readings.areValid = true;
+  }
+
+  // Calculate Average
+  if(readings.areValid) {
+    uint32_t sumOfReadings = 0;
+    for(int i=0; i<readings.length; i++){
+      sumOfReadings += readings.values[i];
+    }
+    currentReading = sumOfReadings/readings.length;
+  }
+
+  // Evaluate
+  if(readings.areValid && (currentReading > detectionThreshold)) this->state = true;
   else this->state = false;
 }
 
@@ -19,13 +35,14 @@ void pailSensor::setDetectionThreshold(uint32_t newThreshold){
 }
 
 uint32_t pailSensor::getCurrentReading(){
-  return this->currentReading;
+  if(readings.areValid) return this->currentReading;
+  return 0;
 }
 
 bool pailSensor::getState(){
   return this->state;
 }
 
-uint32_t pailSensor::readSensor(){
+uint16_t pailSensor::readSensor(){
   return analogRead(PAIL_SNS_PIN);
 }

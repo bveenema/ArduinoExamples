@@ -21,9 +21,16 @@ public:
 private:
   uint32_t detectionThreshold = DEFAULT_PAIL_DETECTION_THRESHOLD;
   uint32_t currentReading = 0;
+  struct {
+    uint16_t values[100] = {0};
+    uint32_t index = 0;
+    uint32_t length = 100;
+    bool areValid = false;
+  } readings;
+
   bool state = false;
 
-  uint32_t readSensor();
+  uint16_t readSensor();
 
 };
 
