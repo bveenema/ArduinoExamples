@@ -94,8 +94,7 @@ bool mixMaster::update(bool _changeState){
       mixerState = START_IDLE;
     }
   }else if(mixerState == MIXING){
-    // if(this->runPumpsWithErrorCheck()) mixerState = START_IDLE;
-    this->runPumps();
+    if(this->runPumpsWithErrorCheck()) mixerState = START_IDLE;
     if(_changeState == true || (millis() - timeStartedMixing > timeToMix)){
       // don't reset _changeState when keep open so button won't be "ignored" while keep open
       if(!keepOpen) _changeState = false;
@@ -171,8 +170,7 @@ void mixMaster::updateFlushing(){
     }
     // No break, fall through to pulse pumps on immediately
     case PULSE_ON:
-      //if(this->runPumpsWithErrorCheck()) mixerState = START_IDLE;
-      this->runPumps();
+      if(this->runPumpsWithErrorCheck()) mixerState = START_IDLE;
       if(millis()-flushPulseTime > timeStateStarted){
         timeStateStarted = millis();
         FlushingState = IDLE_FLUSHING;
