@@ -13,18 +13,39 @@ void pressureManager::init(){
 }
 
 void pressureManager::update(){
-  if(this->isCharging) {
-    int32_t currentPressure = this->readPressure();
-    if(currentPressure < this->targetPressure){
-      pinSetFast(AIR_PUMP_EN);
-    }else{
-      pinResetFast(AIR_PUMP_EN);
-      this->charged = true;
+
+    // Take readings, reset index and make valid if pressure.samples is full
+    pressure.samples[pressure.index++] = this->readPressure();
+    if(pressure.index > pressure.length){
+      pressure.index = 0;
+      pressure.isValid = true;
     }
-  } else {
-    pinResetFast(AIR_PUMP_EN);
-    this->charged = false;
-  }
+
+    // Calculate average and convert to milli-inH2O
+    if(pressure.isValid){
+      uint32_t sumOfSamples = 0;
+      for(int i=0; i<pressure.length; i++){
+        sumOfSamples += pressure.samples[i];
+      }
+      uint32_t averageRaw = sumOfSamples/pressure.length;
+      averageRaw = averageRaw*3300/4095; // convert to milli-volts
+
+      // Convert to milli-inH2O
+      pressure.current = PRESSURE_SENSOR_PMIN + ((PRESSURE_SENSOR_DELTA_P*(averageRaw - (0.1*PRESSURE_SENSOR_VSUPPLY)))/(0.8*PRESSURE_SENSOR_VSUPPLY));
+    }
+
+    // Evaluate
+    if(this->isCharging) {
+      if(pressure.isValid && (pressure.current < this->targetPressure)){
+        pinSetFast(AIR_PUMP_EN);
+      }else{
+        pinResetFast(AIR_PUMP_EN);
+        this->charged = true;
+      }
+    } else {
+      pinResetFast(AIR_PUMP_EN);
+      this->charged = false;
+    }
 }
 
 void pressureManager::setChargingState(bool charging){
@@ -44,11 +65,10 @@ int32_t pressureManager::updateTargetPressure(int32_t _targetPressure){
 }
 
 int32_t pressureManager::getPressure(){
-  return readPressure();
+  if(pressure.isValid) return pressure.current;
+  return 0;
 }
 
-int32_t pressureManager::readPressure(){
-  int32_t pressureRaw = analogRead(PRESS_SNS_PIN)*3300/4095; // conver 12bit ADC to millivolts
-  //Apply transfer function (https://sensing.honeywell.com/index.php?ci_id=151133 page 11)
-  return PRESSURE_SENSOR_PMIN + ((PRESSURE_SENSOR_DELTA_P*(pressureRaw - (0.1*PRESSURE_SENSOR_VSUPPLY)))/(0.8*PRESSURE_SENSOR_VSUPPLY));
+uint16_t pressureManager::readPressure(){
+  return analogRead(PRESS_SNS_PIN);
 }

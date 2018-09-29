@@ -34,8 +34,17 @@ private:
   // Pressure to Maintain in the Pails
   int32_t targetPressure = 0; // milli-inH20
 
+  // Pressure Container
+  struct{
+    int32_t current = 0;
+    uint16_t samples[100] = {0};
+    uint8_t index = 0;
+    uint8_t length = 100;
+    bool isValid = false;
+  } pressure;
+
   // Reads the pressure sensor and returns the value in milli-inH2O
-  int32_t readPressure();
+  uint16_t readPressure();
 };
 
 #endif
