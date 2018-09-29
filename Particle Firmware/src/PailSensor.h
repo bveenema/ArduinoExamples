@@ -14,16 +14,19 @@ public:
 
   void setDetectionThreshold(uint32_t newThreshold);
 
+  uint32_t getCurrentReading();
+
   bool getState();
 
 private:
   uint32_t detectionThreshold = DEFAULT_PAIL_DETECTION_THRESHOLD;
+  uint32_t currentReading = 0;
   bool state = false;
 
   uint32_t readSensor();
 
 };
 
-static pailSensor PailSensor;
+extern pailSensor PailSensor;
 
 #endif

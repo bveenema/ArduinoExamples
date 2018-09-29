@@ -35,6 +35,7 @@ inline void getDeviceName(){ Particle.publish("particle/device/name", NULL, 60, 
 inline void startFlush(){ MixMaster.startFlush(); }
 inline void printCurrentPressure(){ Serial.print(PressureManager.getPressure()); }
 inline void printPailState(){ Serial.print(PailSensor.getState()); }
+inline void printPailRaw(){ Serial.print(PailSensor.getCurrentReading()); }
 
 // Command Declarations
 typedef struct {
@@ -70,6 +71,7 @@ const commandSet commandList[] = {
   {"name", NULL, NULL, getDeviceName},
   {"numSelectors", NULL, NULL, printNumSelectors},
   {"pailState", NULL, NULL, printPailState},
+  {"pailRaw", NULL, NULL, printPailRaw},
   {"ratioResin", settings.ratioResin, true, NULL},
   {"ratioHardener", settings.ratioHardener, true, NULL},
   {"selector", NULL, NULL, printCurrentSelector},
