@@ -1,0 +1,4 @@
+Electronics
+- Replace/Add 470 ohm pulldown on HV4
+- Swap D6 and D7 back to original
+- Remove Voltage divider on Pail Sensor

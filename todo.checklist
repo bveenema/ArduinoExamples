@@ -65,6 +65,6 @@ Pneumatics
   + Order Components
 
 To Fix
-  - Open Collector does not work with level translator
+  + Open Collector does not work with level translator
   - Pail Sensor not working
   - Fix Flush mode
