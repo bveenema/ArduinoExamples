@@ -157,8 +157,7 @@ void mixMaster::updateFlushing(){
   static uint32_t timeStateStarted;
 
   switch(FlushingState){
-    case INITFLUSH: {
-
+    case INITFLUSH:
       // We don't know current pump state, so assume it's running and stop it
       this->idlePumps();
 
@@ -175,7 +174,8 @@ void mixMaster::updateFlushing(){
       digitalWrite(HARDENER_PUMP_ENABLE_PIN, LOW); // Enable Hardener Pump
 
       FlushingState = PULSE_ON;
-    }
+
+    break;
     // No break, fall through to pulse pumps on immediately
     case PULSE_ON:
       if(this->runPumpsWithErrorCheck()) mixerState = START_IDLE;
@@ -190,12 +190,13 @@ void mixMaster::updateFlushing(){
       this->idlePumps();
       if(millis()-timeStateStarted > flushIdleTime){
         timeStateStarted = millis();
-        FlushingState = PULSE_ON;
+        FlushingState = INITFLUSH;
       }
 
       break;
 
     default:
+      Serial.println("Default Case");
       FlushingState = INITFLUSH;
       break;
   }
