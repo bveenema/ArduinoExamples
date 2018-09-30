@@ -227,13 +227,18 @@ void mixMaster::runPumps(){
 }
 
 bool mixMaster::runPumpsWithErrorCheck(){
+  static uint32_t accumulateError = 0;
   this->runPumps();
-  if(digitalRead(RESIN_PUMP_ASSERT_PIN) || digitalRead(HARDENER_PUMP_ASSERT_PIN)){
-    if(digitalRead(RESIN_PUMP_ASSERT_PIN)) Serial.println("Error Resin Pump");
-    if(digitalRead(HARDENER_PUMP_ASSERT_PIN)) Serial.println("Error Hardener Pump");
-    Serial.println("Error Detected");
-    strncpy(currentError, "Pump Error",30);
-    return true;
+  if(!digitalRead(RESIN_PUMP_ASSERT_PIN) || !digitalRead(HARDENER_PUMP_ASSERT_PIN)){
+    if(!digitalRead(RESIN_PUMP_ASSERT_PIN)) Serial.println("Error Resin Pump");
+    if(!digitalRead(HARDENER_PUMP_ASSERT_PIN)) Serial.println("Error Hardener Pump");
+    accumulateError += 1;
+    if(accumulateError > 100){
+      strncpy(currentError, "Pump Error",30);
+      return true;
+    }
+  } else {
+    accumulateError = 0;
   }
   return false;
 }
