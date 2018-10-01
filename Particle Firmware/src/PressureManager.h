@@ -41,6 +41,7 @@ private:
     uint8_t index = 0;
     uint8_t length = 100;
     bool isValid = false;
+    uint32_t lastRead = 0;
   } pressure;
 
   // Reads the pressure sensor and returns the value in milli-inH2O

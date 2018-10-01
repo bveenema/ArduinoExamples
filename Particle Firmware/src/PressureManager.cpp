@@ -15,7 +15,10 @@ void pressureManager::init(){
 void pressureManager::update(){
 
     // Take readings, reset index and make valid if pressure.samples is full
-    pressure.samples[pressure.index++] = this->readPressure();
+    if(millis()-pressure.lastRead > PRESSURE_READ_RATE){
+      pressure.samples[pressure.index++] = this->readPressure();
+      pressure.lastRead = millis();
+    }
     if(pressure.index > pressure.length){
       pressure.index = 0;
       pressure.isValid = true;

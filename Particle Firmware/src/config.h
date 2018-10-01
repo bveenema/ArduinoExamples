@@ -36,6 +36,7 @@
 #define REGULAR_BLINK_RATE 750 // toggle every 750 ms
 
 // Pressure Charge Settings
+#define PRESSURE_READ_RATE 10 // ms between reads of pressure sensor
 #define MAX_CHARGE_PRESSURE 25000
 #define PRESSURE_SENSOR_DELTA_P 55360 // Pmax-Pmin, 55.360 inH2O (2psi)
 #define PRESSURE_SENSOR_PMIN -27680 // Pmin 27.680 inH2O (1psi)
