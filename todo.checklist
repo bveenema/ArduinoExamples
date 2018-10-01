@@ -11,7 +11,7 @@ Air Pump
 + Hard delay before pump on
   + user settable
 + Kill cycle if pressure drops under threshold for longer than x
-   - user settable
+   + user settable
 
 Prime
 - Prime once per power cycle

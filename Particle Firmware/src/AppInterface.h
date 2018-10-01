@@ -69,6 +69,7 @@ const commandSet commandList[] = {
   {"keepOpenVolume", &settings.keepOpenVolume, false, NULL},
   {"resinPumpSpeed", NULL, NULL, printResinPumpSpeed},
   {"hardenerPumpSpeed", NULL, NULL, printHardenerPumpSpeed},
+  {"maxNoPressure", &settings.maxNoPressure, false, NULL},
   {"minChargingTime", &settings.minChargingTime, false, NULL},
   {"name", NULL, NULL, getDeviceName},
   {"numSelectors", NULL, NULL, printNumSelectors},
