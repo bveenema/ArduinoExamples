@@ -54,6 +54,7 @@ bool mixMaster::update(bool _changeState){
   PressureManager.update();
 
   static uint32_t timeToMix = 0;
+  static uint32_t timeStartedCharging = 0;
   static uint32_t timeStartedMixing = 0;
   static uint32_t timeStartedIdling = 0;
   static bool keepOpen = false;
@@ -81,10 +82,11 @@ bool mixMaster::update(bool _changeState){
         keepOpen = true;
       }
       mixerState = CHARGING;
+      timeStartedCharging = millis();
     }
   }else if(mixerState == CHARGING){
     PressureManager.setChargingState(true);
-    if(PressureManager.isCharged()) {
+    if(PressureManager.isCharged() && (millis()-timeStartedCharging > settings.minChargingTime)) {
       timeStartedMixing = millis();
       mixerState = MIXING;
     }

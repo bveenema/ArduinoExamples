@@ -8,7 +8,7 @@ Lights
 
 Air Pump
 + Add delays between reads to total 1000 ms before valid
-- Hard delay before pump on
++ Hard delay before pump on
   - user settable
 - Kill cycle if pressure drops under threshold for longer than x
    - user settable

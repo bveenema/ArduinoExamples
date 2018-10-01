@@ -60,7 +60,7 @@
 //  EEPROM Structure Definition
 //    When changing the structure of EEPROM, increase THIS_EEPROM_VERSION, this
 //    will cause EEPROM of previous versions to reset to default.
-#define THIS_EEPROM_VERSION 4
+#define THIS_EEPROM_VERSION 5
 
 struct prom_settings {
   uint32_t version;
@@ -70,6 +70,7 @@ struct prom_settings {
   uint32_t chargePressure;
   uint32_t keepOpenVolume;
   uint32_t pailThreshold;
+  uint32_t minChargingTime;
   // Selector Based Settings
   uint32_t flowRate[NUM_SELECTORS];
   uint32_t ratioResin[NUM_SELECTORS];
@@ -87,6 +88,7 @@ const prom_settings defaultSettings = {
   10000, // chargePressure
   150, // keepOpenVolume
   800, // pailThreshold
+  5000, // minChargingTime
   {3000,3000,3000,3000,3000}, // flowRate
   {0,200,100,224,189}, // ratioResin
   {0,100,400,100,100}, // ratioHardener
