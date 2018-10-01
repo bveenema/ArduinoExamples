@@ -41,9 +41,15 @@ void pressureManager::update(){
     if(this->isCharging) {
       if(pressure.isValid && (pressure.current < this->targetPressure)){
         pinSetFast(AIR_PUMP_EN);
+        pressure.accumulateUnderPressure += 1;
+        if(pressure.accumulateUnderPressure > 1000) {
+          this->charged = false;
+          pressure.accumulateUnderPressure = 1001;
+        }
       }else{
         pinResetFast(AIR_PUMP_EN);
         this->charged = true;
+        pressure.accumulateUnderPressure = 0;
       }
     } else {
       pinResetFast(AIR_PUMP_EN);

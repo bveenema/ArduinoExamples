@@ -230,18 +230,38 @@ void mixMaster::runPumps(){
 }
 
 bool mixMaster::runPumpsWithErrorCheck(){
-  static uint32_t accumulateError = 0;
+  static uint32_t accumulatePumpError = 0;
+  static uint32_t accumulateChargeError = 0;
+
   this->runPumps();
+
+  // Check pumps for error, return true if more than 100 checks in a row are error
   if(!digitalRead(RESIN_PUMP_ASSERT_PIN) || !digitalRead(HARDENER_PUMP_ASSERT_PIN)){
     if(!digitalRead(RESIN_PUMP_ASSERT_PIN)) Serial.println("Error Resin Pump");
     if(!digitalRead(HARDENER_PUMP_ASSERT_PIN)) Serial.println("Error Hardener Pump");
-    accumulateError += 1;
-    if(accumulateError > 100){
+    accumulatePumpError += 1;
+    if(accumulatePumpError > 100){
       strncpy(currentError, "Pump Error",30);
       return true;
     }
   } else {
-    accumulateError = 0;
+    accumulatePumpError = 0;
   }
+
+  // Check Charging for error, return true if longer than settings.maxNoPressure are error
+  if(!PressureManager.isCharged()){
+    static uint32_t lastNotChargedTime = 0;
+    if(millis()-lastNotChargedTime > 10){
+      accumulateChargeError += 10;
+      lastNotChargedTime = millis();
+    }
+    if(accumulateChargeError > settings.maxNoPressure){
+      strncpy(currentError, "Charge Error", 30);
+      return true;
+    }
+  } else {
+    accumulateChargeError = 0;
+  }
+
   return false;
 }
