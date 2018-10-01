@@ -32,7 +32,7 @@
 #define NUM_SELECTORS 5
 
 // Status LED Settings
-#define FAST_BLINK_RATE 250 // toggle every 250 ms
+#define FAST_BLINK_RATE 150 // toggle every 250 ms
 #define REGULAR_BLINK_RATE 750 // toggle every 750 ms
 
 // Pressure Charge Settings

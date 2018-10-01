@@ -8,10 +8,10 @@ void statusLED::init(){
 }
 
 void statusLED::update(){
-  if(strcmp(currentError, "none") != 0) currentState = FAST_BLINK;
+  if(!PailSensor.getState()) currentState = FAST_BLINK;
+  else if(!isPrimed) currentState = BLINK;
   else if(MixMaster.getState() == FLUSHING) currentState = BLINK;
-  else if(MixMaster.getState() == MIXING) currentState = ON;
-  else currentState = OFF;
+  else currentState = ON;
 
   if(currentState == FAST_BLINK) this->blink(FAST_BLINK_RATE);
   else if(currentState == BLINK) this->blink(REGULAR_BLINK_RATE);

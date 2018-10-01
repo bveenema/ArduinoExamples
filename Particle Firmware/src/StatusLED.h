@@ -5,6 +5,7 @@
 #include "config.h"
 #include "globals.h"
 #include "MixMaster.h"
+#include "PailSensor.h"
 
 extern mixMaster MixMaster;
 
@@ -23,10 +24,10 @@ public:
   void init();
 
   // Checks MixMaster state and currentError to decide LEDState
-  //  * Hierarchy:  0 - Motor Error
-  //                1 - FLUSHING
-  //                2 - MIXING
-  //                3 - Off
+  //  * Hierarchy:  0 - No Bucket - Fast Blink
+  //                1 - Not Primed - Slow Blink
+  //                2 - Flushing - Slow Blink
+  //                3 - Ready to Mix - Solid On
   void update();
 
 private:
