@@ -100,7 +100,9 @@ void loop() {
   button.Update();
   remote.Update();
   if(button.clicks > 0 || remote.clicks > 0) changeState = true; // short press
-  if(button.clicks < 0 || remote.clicks < 0) MixMaster.startFlush(); // long press
+  if((button.clicks < 0 && button.clicks > -3) || remote.clicks < 0) MixMaster.startFlush(); // long press
+  // Enable wifi if button is long pressed 3 times;
+  if(button.clicks = -3) wifiStatus = 1;
   if(remote.clicks > 0) Serial.println("Remote SHORT Press");
   if(button.clicks > 0) Serial.println("Button SHORT Press");
   if(remote.clicks < 0) Serial.println("Remote LONG Press");
