@@ -47,6 +47,10 @@ void setup() {
   PailSensor.setDetectionThreshold(settings.pailThreshold);
   #endif
 
+  #ifdef PRESSURE_ALWAYS_ON
+  PressureManager.setChargingState(true);
+  #endif
+
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(STATUS_LED_PIN, OUTPUT);
   pinMode(REMOTE_PIN, INPUT_PULLDOWN);

@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define THIS_PRODUCT_ID 7951
-#define THIS_PRODUCT_VERSION 8
+#define THIS_PRODUCT_VERSION 9
 
 #define RESIN_PUMP_ENABLE_PIN D0
 #define RESIN_PUMP_DIR_PIN D1
@@ -36,6 +36,7 @@
 #define REGULAR_BLINK_RATE 750 // toggle every 750 ms
 
 // Pressure Charge Settings
+#define PRESSURE_ALWAYS_ON
 #define PRESSURE_READ_RATE 10 // ms between reads of pressure sensor
 #define MAX_CHARGE_PRESSURE 25000
 #define PRESSURE_SENSOR_DELTA_P 55360 // Pmax-Pmin, 55.360 inH2O (2psi)
