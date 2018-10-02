@@ -3,7 +3,7 @@ Updates 10/1/18
 Lights
 + Rapid Flash for no bucket
 + Slow Flash for bucket but not primed
-- Solid Green when primed and bucket
++ Solid Green when primed and bucket
 + Slow Flash for FLUSHING
 
 Air Pump
@@ -22,4 +22,4 @@ Prime
 + Prime State user output
 
 Pail Sensor
-- Create pumping error if pail not present
++ Create pumping error if pail not present

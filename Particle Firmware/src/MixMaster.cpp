@@ -251,6 +251,7 @@ bool mixMaster::runPumpsWithErrorCheck(){
 
   static uint32_t accumulatePumpError = 0;
   static uint32_t accumulateChargeError = 0;
+  static uint32_t accumulatePailError = 0;
 
   this->runPumps();
 
@@ -280,6 +281,17 @@ bool mixMaster::runPumpsWithErrorCheck(){
     }
   } else {
     accumulateChargeError = 0;
+  }
+
+  // Check Output Pail error, return true if output pail not detected
+  if(!PailSensor.getState()){
+    accumulatePailError += 1;
+    if(accumulatePailError > 10000){
+      strncpy(currentError, "Pail Error", 30);
+      returnVal = true;
+    }
+  } else {
+    accumulatePailError = 0;
   }
 
   // if not yet primed and there's an error, reset numConsecutivePrimes
