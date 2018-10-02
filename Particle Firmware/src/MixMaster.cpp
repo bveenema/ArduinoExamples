@@ -269,7 +269,8 @@ bool mixMaster::runPumpsWithErrorCheck(){
   }
 
   // Check Charging for error, return true if longer than settings.maxNoPressure are error
-  if(!PressureManager.isCharged()){
+  // Don't check for charging error when flushing
+  if(mixerState != FLUSHING && !PressureManager.isCharged()){
     static uint32_t lastNotChargedTime = 0;
     if(millis()-lastNotChargedTime > 10){
       accumulateChargeError += 10;
