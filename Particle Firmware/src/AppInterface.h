@@ -37,6 +37,7 @@ inline void printCurrentPressure(){ Serial.print(PressureManager.getPressure());
 inline void printPailState(){ Serial.print(PailSensor.getState()); }
 inline void printPailRaw(){ Serial.print(PailSensor.getCurrentReading()); }
 inline void updatePailThreshold(){ PailSensor.setDetectionThreshold(settings.pailThreshold); }
+inline void printIsPrimed(){ Serial.print(isPrimed); }
 
 // Command Declarations
 typedef struct {
@@ -71,11 +72,14 @@ const commandSet commandList[] = {
   {"hardenerPumpSpeed", NULL, NULL, printHardenerPumpSpeed},
   {"maxNoPressure", &settings.maxNoPressure, false, NULL},
   {"minChargingTime", &settings.minChargingTime, false, NULL},
+  {"minPrimes", &settings.minPrimes, false, NULL},
   {"name", NULL, NULL, getDeviceName},
   {"numSelectors", NULL, NULL, printNumSelectors},
   {"pailThreshold", &settings.pailThreshold, false, updatePailThreshold},
   {"pailState", NULL, NULL, printPailState},
   {"pailRaw", NULL, NULL, printPailRaw},
+  {"primeVolume", &settings.primeVolume, false, NULL},
+  {"primeState", NULL, NULL, printIsPrimed},
   {"ratioResin", settings.ratioResin, true, NULL},
   {"ratioHardener", settings.ratioHardener, true, NULL},
   {"selector", NULL, NULL, printCurrentSelector},

@@ -131,6 +131,16 @@
             <input class="textbox" type="number" min="0" max="30000" step="500" value="0" disabled>
             Current: <span>0</span>
           </li>
+          <li id="command-primeVolume" class="advanced version:min-7">
+            Prime Volume (ml):
+            <input class="textbox" type="number" min="0" max="3000" step="10" value="0" disabled>
+            Current: <span>0</span>
+          </li>
+          <li id="command-minPrimes" class="advanced version:min-7">
+            Minimum Number of Primes:
+            <input class="textbox" type="number" min="0" max="50" step="1" value="0" disabled>
+            Current: <span>0</span>
+          </li>
           <li id="command-keepOpenVolume" class="advanced version:min-7">
             Keep Open Volume (ml):
             <input class="textbox" type="number" min="0" max="3000" step="10" value="0" disabled>
@@ -213,6 +223,9 @@
         </li>
         <li id="command-pailRaw" class="controller-state-frequent version:min-7">
           Pail Raw: <span>0</span>
+        </li>
+        <li id="command-primeState" class="controller-state-infrequent version:min-7">
+          Primed: <span>0</span>
         </li>
       </ul>
       <ul>
