@@ -6,6 +6,9 @@
 #include "config.h"
 #include "PressureManager.h"
 
+// Prime Info
+extern bool isPrimed;
+
 // Wifi Status
 extern uint32_t wifiStatus;
 

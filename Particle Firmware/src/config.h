@@ -72,6 +72,8 @@ struct prom_settings {
   uint32_t pailThreshold;
   uint32_t minChargingTime;
   uint32_t maxNoPressure;
+  uint32_t primeVolume;
+  uint32_t minPrimes;
   // Selector Based Settings
   uint32_t flowRate[NUM_SELECTORS];
   uint32_t ratioResin[NUM_SELECTORS];
@@ -90,7 +92,9 @@ const prom_settings defaultSettings = {
   150, // keepOpenVolume
   800, // pailThreshold
   5000, // minChargingTime
-  10000, // maxNoPressure
+  5000, // maxNoPressure
+  150, // primeVolume
+  4, // minPrimes
   {3000,3000,3000,3000,3000}, // flowRate
   {0,200,100,224,189}, // ratioResin
   {0,100,400,100,100}, // ratioHardener

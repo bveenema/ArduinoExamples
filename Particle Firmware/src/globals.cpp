@@ -1,5 +1,8 @@
 #include "globals.h"
 
+// Prime Info
+bool isPrimed = false;
+
 // Wifi Status
  uint32_t wifiStatus = 0;
 

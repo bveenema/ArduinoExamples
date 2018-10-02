@@ -58,8 +58,10 @@ bool mixMaster::update(bool _changeState){
   static uint32_t timeStartedMixing = 0;
   static uint32_t timeStartedIdling = 0;
   static bool keepOpen = false;
+  static bool prime = false;
 
   if(mixerState == START_IDLE){
+    if(numConsecutivePrimes >= settings.minPrimes) isPrimed = true;
     timeStartedIdling = millis();
     mixerState = IDLE;
   }else if(mixerState == IDLE){
@@ -74,10 +76,21 @@ bool mixMaster::update(bool _changeState){
       }
       #endif
       if(_changeState){
-        timeToMix = this->prepForMixing(settings.volume[selector], settings.flowRate[selector]);
+        if(!isPrimed){
+          Serial.printlnf("Priming:%d",numConsecutivePrimes);
+          prime = true;
+          timeToMix = this->prepForMixing(settings.primeVolume, settings.flowRate[selector]);
+        } else {
+          timeToMix = this->prepForMixing(settings.volume[selector], settings.flowRate[selector]);
+        }
         keepOpen = false;
         _changeState = false;
-      } else {
+      } else { // keep open
+        // prevent keepOpen if not primed
+        if(!isPrimed) {
+          mixerState = START_IDLE;
+          return _changeState;
+        }
         timeToMix = this->prepForMixing(settings.keepOpenVolume, settings.flowRate[selector]);
         keepOpen = true;
       }
@@ -115,6 +128,10 @@ bool mixMaster::update(bool _changeState){
     ResinPump.run();
     HardenerPump.run();
     if(!ResinPump.isRunning() && !HardenerPump.isRunning()){
+      // if the cycle was a prime and it got here, increment numConsecutivePrimes
+      if(prime){
+        numConsecutivePrimes += 1;
+      }
       mixerState = START_IDLE;
     }
   }else if(mixerState == FLUSHING){
@@ -230,6 +247,8 @@ void mixMaster::runPumps(){
 }
 
 bool mixMaster::runPumpsWithErrorCheck(){
+  bool returnVal = false;
+
   static uint32_t accumulatePumpError = 0;
   static uint32_t accumulateChargeError = 0;
 
@@ -242,7 +261,7 @@ bool mixMaster::runPumpsWithErrorCheck(){
     accumulatePumpError += 1;
     if(accumulatePumpError > 100){
       strncpy(currentError, "Pump Error",30);
-      return true;
+      returnVal = true;
     }
   } else {
     accumulatePumpError = 0;
@@ -257,11 +276,16 @@ bool mixMaster::runPumpsWithErrorCheck(){
     }
     if(accumulateChargeError > settings.maxNoPressure){
       strncpy(currentError, "Charge Error", 30);
-      return true;
+      returnVal = true;
     }
   } else {
     accumulateChargeError = 0;
   }
 
-  return false;
+  // if not yet primed and there's an error, reset numConsecutivePrimes
+  if(!isPrimed && returnVal) {
+    Serial.printlnf("numConsecutivePrimes:%d",numConsecutivePrimes);
+    numConsecutivePrimes = 0;
+  }
+  return returnVal;
 }

@@ -4,7 +4,7 @@ Lights
 + Rapid Flash for no bucket
 + Slow Flash for bucket but not primed
 - Solid Green when primed and bucket
-- Slow Flash for FLUSHING
++ Slow Flash for FLUSHING
 
 Air Pump
 + Add delays between reads to total 1000 ms before valid
@@ -14,7 +14,12 @@ Air Pump
    + user settable
 
 Prime
-- Prime once per power cycle
-- A prime cycle is running for 3 seconds with no errors
-- Must complete 4 consecutive cycles before allowing mixing.
-- Prime State user output
++ Prime once per power cycle
++ A prime cycle is running for 3 seconds with no errors
+  + user settable
++ Must complete 4 consecutive cycles before allowing mixing.
+  + user settable
++ Prime State user output
+
+Pail Sensor
+- Create pumping error if pail not present
