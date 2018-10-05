@@ -20,6 +20,8 @@
 PRODUCT_ID(THIS_PRODUCT_ID);
 PRODUCT_VERSION(THIS_PRODUCT_VERSION);
 
+STARTUP(System.enableFeature(FEATURE_RESET_INFO));
+
 SYSTEM_THREAD(ENABLED);
 SYSTEM_MODE(SEMI_AUTOMATIC);
 
@@ -52,7 +54,6 @@ void setup() {
   #endif
 
   pinMode(BUTTON_PIN, INPUT_PULLUP);
-  pinMode(STATUS_LED_PIN, OUTPUT);
   pinMode(REMOTE_PIN, INPUT_PULLDOWN);
 
   pinMode(SELECTOR_SWITCH_1, INPUT_PULLDOWN);
@@ -67,7 +68,13 @@ void setup() {
 
   delay(100);
 
-  digitalWrite(STATUS_LED_PIN, LOW);
+  // If Firmware just updated, enable wifi
+  if(System.resetReason() == RESET_REASON_UPDATE){
+    Particle.connect();
+    while(!Particle.connected()){}
+    delay(5000);
+    System.reset();
+  }
 }
 
 void loop() {
@@ -102,7 +109,7 @@ void loop() {
   if(button.clicks > 0 || remote.clicks > 0) changeState = true; // short press
   if((button.clicks < 0 && button.clicks > -3) || remote.clicks < 0) MixMaster.startFlush(); // long press
   // Enable wifi if button is long pressed 3 times;
-  if(button.clicks = -3) wifiStatus = 1;
+  if(button.clicks == -3) wifiStatus = 1;
   if(remote.clicks > 0) Serial.println("Remote SHORT Press");
   if(button.clicks > 0) Serial.println("Button SHORT Press");
   if(remote.clicks < 0) Serial.println("Remote LONG Press");
