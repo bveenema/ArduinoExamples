@@ -1,4 +1,4 @@
 (fp_lib_table
-  (lib (name Particle)(type Github)(uri https://github.com/bveenema/particle.pretty)(options "")(descr "Particle Boards"))
-  (lib (name Local)(type KiCad)(uri "C:/Mix Controller/PCB/lib/local.pretty")(options "")(descr "Project Specific Footprints"))
+  (lib (name Particle)(type Github)(uri https://github.com/bveenema/particle.pretty)(options "")(descr "Particle Footprints"))
+  (lib (name Local)(type KiCad)(uri ${KIPRJMOD}/lib/local.pretty)(options "")(descr "Project Specific Footprints"))
 )
