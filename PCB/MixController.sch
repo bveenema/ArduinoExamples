@@ -848,7 +848,7 @@ Text Label 14450 1400 0    60   ~ 0
 PUMP_EN
 Text Label 7350 5500 0    60   ~ 0
 PUMP_EN
-Text Label 7600 3250 0    60   ~ 0
+Text Label 7600 3150 0    60   ~ 0
 PRESS_SNS
 $Comp
 L Device:R_Small R2
@@ -1008,7 +1008,7 @@ F 3 "" H 2700 10100 50  0001 C CNN
 $EndComp
 Text Label 3200 9750 2    60   ~ 0
 PAIL_SNS
-Text Label 7600 3150 0    60   ~ 0
+Text Label 7600 3250 0    60   ~ 0
 PAIL_SNS
 $Comp
 L conn:Conn_01x03_Female J4
