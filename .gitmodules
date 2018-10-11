@@ -1,0 +1,3 @@
+[submodule "PCB/VDW-Kicad-Symbols"]
+	path = PCB/VDW-Kicad-Symbols
+	url = https://github.com/bveenema/VDW-Kicad-Symbols.git
