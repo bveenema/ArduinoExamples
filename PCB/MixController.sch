@@ -75,7 +75,7 @@ F 8 "~" H 9050 3550 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L switches:SW_Push SW6
+L Switch:SW_Push SW6
 U 1 1 5AD86C2C
 P 1500 7250
 F 0 "SW6" H 1450 7400 50  0000 L CNN
@@ -99,7 +99,7 @@ HARDENER PUMP
 Text Label 10950 3050 2    60   ~ 0
 RESIN_INPUT_B
 $Comp
-L conn:Conn_01x02 J5
+L Connector:Conn_01x02_Female J5
 U 1 1 5B069086
 P 3150 2650
 F 0 "J5" H 3150 2750 50  0000 C CNN
@@ -115,7 +115,7 @@ F 8 "B01MSQI150" H -500 750 50  0001 C CNN "Vendor P/N"
 	1    0    0    -1  
 $EndComp
 $Comp
-L conn:Conn_01x02 J6
+L Connector:Conn_01x02_Female J6
 U 1 1 5B0690C9
 P 3150 3400
 F 0 "J6" H 3150 3500 50  0000 C CNN
@@ -463,7 +463,7 @@ Wire Wire Line
 Text Notes 16450 6700 1    39   ~ 0
 Closest to Switch
 $Comp
-L conn:Conn_01x02 J1
+L Connector:Conn_01x02_Female J1
 U 1 1 5B7E7A55
 P 1000 1450
 F 0 "J1" H 1000 1550 50  0000 C CNN
@@ -501,7 +501,7 @@ Text Notes 3300 2950 0    60   ~ 0
 Text Notes 3300 3650 0    60   ~ 0
 14" Long\n8" Remove Sheath\nCut RED wire to 2"
 $Comp
-L switches:SW_SPST SW5
+L Switch:SW_SPST SW5
 U 1 1 5B87AEFE
 P 1600 1750
 F 0 "SW5" H 1600 1875 50  0000 C CNN
@@ -585,7 +585,7 @@ $EndComp
 Wire Wire Line
 	2750 1350 3000 1350
 $Comp
-L proj:RSDW20H-05 PS2
+L VDW_Modules:RSDW20H-05 PS2
 U 1 1 5BB9E524
 P 4350 1850
 F 0 "PS2" H 4350 2237 60  0000 C CNN
@@ -660,7 +660,7 @@ Wire Wire Line
 Wire Wire Line
 	5000 1750 4750 1750
 $Comp
-L proj:BOB-12009 U3
+L VDW_Modules:BOB-12009 U3
 U 1 1 5BC6FCBF
 P 13300 4850
 F 0 "U3" H 13300 5347 60  0000 C CNN
@@ -700,7 +700,7 @@ Wire Wire Line
 Wire Wire Line
 	13650 5100 14100 5100
 $Comp
-L proj:BOB-12009 U4
+L VDW_Modules:BOB-12009 U4
 U 1 1 5BCA0824
 P 13300 6650
 F 0 "U4" H 13300 7147 60  0000 C CNN
@@ -720,7 +720,7 @@ Wire Wire Line
 Wire Wire Line
 	3450 4700 2900 4700
 $Comp
-L proj:Rotary_Selector_Switch SW1
+L VDW_Modules:Rotary_Selector_Switch SW1
 U 1 1 5BDA98E8
 P 1700 4700
 F 0 "SW1" H 1700 4965 50  0000 C CNN
@@ -755,7 +755,7 @@ Wire Wire Line
 Wire Wire Line
 	3450 5000 2900 5000
 $Comp
-L proj:Adafruit_1096 U2
+L VDW_Modules:Adafruit_1096 U2
 U 1 1 5BDF0A13
 P 2300 6400
 F 0 "U2" H 2356 6947 60  0000 C CNN
@@ -781,7 +781,7 @@ NoConn ~ 2600 6500
 NoConn ~ 2600 6400
 NoConn ~ 2600 6300
 $Comp
-L conn:Conn_01x02_Male J2
+L Connector:Conn_01x02_Male J2
 U 1 1 5BE9B3C4
 P 15600 1000
 F 0 "J2" H 15750 1150 50  0000 R CNN
@@ -881,7 +881,7 @@ Wire Wire Line
 	15250 1600 15250 1800
 Connection ~ 15250 1800
 $Comp
-L proj:LED_HOLDER_5MM SP1
+L VDW_Mechanical:LED_HOLDER_5MM SP1
 U 1 1 5BF2782C
 P 15500 8150
 F 0 "SP1" H 15550 8050 60  0000 R CNN
@@ -897,7 +897,7 @@ F 8 "1528-1399-ND" H 13550 3700 50  0001 C CNN "Vendor P/N"
 	1    0    0    1   
 $EndComp
 $Comp
-L conn:Conn_01x02_Female J3
+L Connector:Conn_01x02_Female J3
 U 1 1 5BF31126
 P 15600 1000
 F 0 "J3" H 15500 1150 50  0000 C CNN
@@ -917,7 +917,7 @@ NoConn ~ 15800 1100
 Text Notes 15900 1100 0    60   ~ 0
 To Pump
 $Comp
-L proj:HSCDLNN001PDAA3 U6
+L VDW_Modules:HSCDLNN001PDAA3 U6
 U 1 1 5BF9B807
 P 2150 8500
 F 0 "U6" H 2150 8937 60  0000 C CNN
@@ -965,7 +965,7 @@ F 3 "" H 2700 9000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L proj:GP2Y0A02YK0F U5
+L VDW_Modules:GP2Y0A02YK0F U5
 U 1 1 5BFBED5C
 P 1350 9750
 F 0 "U5" H 1050 9450 60  0000 R CNN
@@ -1011,7 +1011,7 @@ PAIL_SNS
 Text Label 7600 3250 0    60   ~ 0
 PAIL_SNS
 $Comp
-L conn:Conn_01x03_Female J4
+L Connector:Conn_01x03_Female J4
 U 1 1 5C01523A
 P 1800 9750
 F 0 "J4" H 1750 9500 50  0000 L CNN
@@ -1027,7 +1027,7 @@ F 8 "455-2219-ND" H 350 3500 50  0001 C CNN "Vendor P/N"
 	-1   0    0    1   
 $EndComp
 $Comp
-L conn:Conn_01x03_Male J7
+L Connector:Conn_01x03_Male J7
 U 1 1 5C015301
 P 2400 9750
 F 0 "J7" H 2500 10000 50  0000 C CNN
@@ -1043,7 +1043,7 @@ F 8 "455-2248-ND" H 350 3500 50  0001 C CNN "Vendor P/N"
 	1    0    0    -1  
 $EndComp
 $Comp
-L conn:Conn_01x03_Female J8
+L Connector:Conn_01x03_Female J8
 U 1 1 5C029783
 P 2400 9750
 F 0 "J8" H 2300 10000 50  0000 L CNN
@@ -1105,7 +1105,7 @@ NoConn ~ 1800 9650
 NoConn ~ 1800 9750
 NoConn ~ 1800 9850
 $Comp
-L proj:+72V #PWR0101
+L Local:+72V #PWR0101
 U 1 1 5BAB5DD9
 P 3700 900
 F 0 "#PWR0101" H 3700 750 50  0001 C CNN
@@ -1219,7 +1219,7 @@ $EndComp
 Wire Wire Line
 	14250 5350 14250 5300
 $Comp
-L microchip:MCP23017 U7
+L Interface_Expansion:MCP23017_SP U7
 U 1 1 5BB8500A
 P 9200 5200
 F 0 "U7" H 8850 6150 50  0000 C CNN
@@ -1993,7 +1993,7 @@ Wire Wire Line
 Wire Wire Line
 	8700 7950 8250 7950
 $Comp
-L conn:TEST_1P J38
+L Connector:TestPoint J38
 U 1 1 5C771FBC
 P 6900 6050
 F 0 "J38" V 6900 6300 50  0000 C CNN
@@ -2009,7 +2009,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J39
+L Connector:TestPoint J39
 U 1 1 5C77243E
 P 6900 6150
 F 0 "J39" V 6900 6400 50  0000 C CNN
@@ -2025,7 +2025,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J40
+L Connector:TestPoint J40
 U 1 1 5C7724BA
 P 6900 6250
 F 0 "J40" V 6900 6500 50  0000 C CNN
@@ -2041,7 +2041,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J41
+L Connector:TestPoint J41
 U 1 1 5C772538
 P 6900 6350
 F 0 "J41" V 6900 6600 50  0000 C CNN
@@ -2087,7 +2087,7 @@ Wire Wire Line
 	6950 6350 6950 6250
 Connection ~ 6950 6250
 $Comp
-L conn:TEST_1P J55
+L Connector:TestPoint J55
 U 1 1 5C7E14EA
 P 7350 6050
 F 0 "J55" V 7350 6300 50  0000 C CNN
@@ -2103,7 +2103,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J56
+L Connector:TestPoint J56
 U 1 1 5C7E14F1
 P 7350 6150
 F 0 "J56" V 7350 6400 50  0000 C CNN
@@ -2119,7 +2119,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J57
+L Connector:TestPoint J57
 U 1 1 5C7E14F8
 P 7350 6250
 F 0 "J57" V 7350 6500 50  0000 C CNN
@@ -2135,7 +2135,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J58
+L Connector:TestPoint J58
 U 1 1 5C7E14FF
 P 7350 6350
 F 0 "J58" V 7350 6600 50  0000 C CNN
@@ -2181,7 +2181,7 @@ F 3 "" H 7400 5950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L conn:TEST_1P J67
+L Connector:TestPoint J67
 U 1 1 5C7F977D
 P 7800 6050
 F 0 "J67" V 7800 6300 50  0000 C CNN
@@ -2197,7 +2197,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J68
+L Connector:TestPoint J68
 U 1 1 5C7F9784
 P 7800 6150
 F 0 "J68" V 7800 6400 50  0000 C CNN
@@ -2213,7 +2213,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J69
+L Connector:TestPoint J69
 U 1 1 5C7F978B
 P 7800 6250
 F 0 "J69" V 7800 6500 50  0000 C CNN
@@ -2229,7 +2229,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J70
+L Connector:TestPoint J70
 U 1 1 5C7F9792
 P 7800 6350
 F 0 "J70" V 7800 6600 50  0000 C CNN
@@ -2275,7 +2275,7 @@ Wire Wire Line
 	7850 6350 7850 6450
 Connection ~ 7850 6350
 $Comp
-L conn:TEST_1P J30
+L Connector:TestPoint J30
 U 1 1 5C85EFD2
 P 6900 7250
 F 0 "J30" V 6900 7500 50  0000 C CNN
@@ -2291,7 +2291,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J31
+L Connector:TestPoint J31
 U 1 1 5C85EFD9
 P 6900 7350
 F 0 "J31" V 6900 7600 50  0000 C CNN
@@ -2307,7 +2307,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J32
+L Connector:TestPoint J32
 U 1 1 5C85EFE0
 P 6900 7450
 F 0 "J32" V 6900 7700 50  0000 C CNN
@@ -2323,7 +2323,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J33
+L Connector:TestPoint J33
 U 1 1 5C85EFE7
 P 6900 7550
 F 0 "J33" V 6900 7800 50  0000 C CNN
@@ -2369,7 +2369,7 @@ Wire Wire Line
 	6950 7550 6950 7450
 Connection ~ 6950 7450
 $Comp
-L conn:TEST_1P J47
+L Connector:TestPoint J47
 U 1 1 5C85EFFF
 P 7350 7250
 F 0 "J47" V 7350 7500 50  0000 C CNN
@@ -2385,7 +2385,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J48
+L Connector:TestPoint J48
 U 1 1 5C85F006
 P 7350 7350
 F 0 "J48" V 7350 7600 50  0000 C CNN
@@ -2401,7 +2401,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J49
+L Connector:TestPoint J49
 U 1 1 5C85F00D
 P 7350 7450
 F 0 "J49" V 7350 7700 50  0000 C CNN
@@ -2417,7 +2417,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J50
+L Connector:TestPoint J50
 U 1 1 5C85F014
 P 7350 7550
 F 0 "J50" V 7350 7800 50  0000 C CNN
@@ -2463,7 +2463,7 @@ F 3 "" H 7400 7150 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L conn:TEST_1P J59
+L Connector:TestPoint J59
 U 1 1 5C85F02C
 P 7800 7250
 F 0 "J59" V 7800 7500 50  0000 C CNN
@@ -2479,7 +2479,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J60
+L Connector:TestPoint J60
 U 1 1 5C85F033
 P 7800 7350
 F 0 "J60" V 7800 7600 50  0000 C CNN
@@ -2495,7 +2495,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J61
+L Connector:TestPoint J61
 U 1 1 5C85F03A
 P 7800 7450
 F 0 "J61" V 7800 7700 50  0000 C CNN
@@ -2511,7 +2511,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J62
+L Connector:TestPoint J62
 U 1 1 5C85F041
 P 7800 7550
 F 0 "J62" V 7800 7800 50  0000 C CNN
@@ -2557,7 +2557,7 @@ Wire Wire Line
 	7850 7550 7850 7650
 Connection ~ 7850 7550
 $Comp
-L conn:TEST_1P J34
+L Connector:TestPoint J34
 U 1 1 5C87C721
 P 6900 7650
 F 0 "J34" V 6900 7900 50  0000 C CNN
@@ -2573,7 +2573,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J35
+L Connector:TestPoint J35
 U 1 1 5C87C728
 P 6900 7750
 F 0 "J35" V 6900 8000 50  0000 C CNN
@@ -2589,7 +2589,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J36
+L Connector:TestPoint J36
 U 1 1 5C87C72F
 P 6900 7850
 F 0 "J36" V 6900 8100 50  0000 C CNN
@@ -2605,7 +2605,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J37
+L Connector:TestPoint J37
 U 1 1 5C87C736
 P 6900 7950
 F 0 "J37" V 6900 8200 50  0000 C CNN
@@ -2621,7 +2621,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J51
+L Connector:TestPoint J51
 U 1 1 5C899C39
 P 7350 7650
 F 0 "J51" V 7350 7900 50  0000 C CNN
@@ -2637,7 +2637,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J52
+L Connector:TestPoint J52
 U 1 1 5C899C40
 P 7350 7750
 F 0 "J52" V 7350 8000 50  0000 C CNN
@@ -2653,7 +2653,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J53
+L Connector:TestPoint J53
 U 1 1 5C899C47
 P 7350 7850
 F 0 "J53" V 7350 8100 50  0000 C CNN
@@ -2669,7 +2669,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J54
+L Connector:TestPoint J54
 U 1 1 5C899C4E
 P 7350 7950
 F 0 "J54" V 7350 8200 50  0000 C CNN
@@ -2685,7 +2685,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J63
+L Connector:TestPoint J63
 U 1 1 5C8B711D
 P 7800 7650
 F 0 "J63" V 7800 7900 50  0000 C CNN
@@ -2701,7 +2701,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J64
+L Connector:TestPoint J64
 U 1 1 5C8B7124
 P 7800 7750
 F 0 "J64" V 7800 8000 50  0000 C CNN
@@ -2717,7 +2717,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J65
+L Connector:TestPoint J65
 U 1 1 5C8B712B
 P 7800 7850
 F 0 "J65" V 7800 8100 50  0000 C CNN
@@ -2733,7 +2733,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J66
+L Connector:TestPoint J66
 U 1 1 5C8B7132
 P 7800 7950
 F 0 "J66" V 7800 8200 50  0000 C CNN
@@ -2890,7 +2890,7 @@ Yellow
 Text Notes 2050 4700 0    60   ~ 0
 Blue
 $Comp
-L conn:TEST_1P J71
+L Connector:TestPoint J71
 U 1 1 5CD55130
 P 8250 6050
 F 0 "J71" V 8250 6300 50  0000 C CNN
@@ -2906,7 +2906,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J72
+L Connector:TestPoint J72
 U 1 1 5CD55137
 P 8250 6150
 F 0 "J72" V 8250 6400 50  0000 C CNN
@@ -2922,7 +2922,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J73
+L Connector:TestPoint J73
 U 1 1 5CD5513E
 P 8250 6250
 F 0 "J73" V 8250 6500 50  0000 C CNN
@@ -2938,7 +2938,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J74
+L Connector:TestPoint J74
 U 1 1 5CD55145
 P 8250 6350
 F 0 "J74" V 8250 6600 50  0000 C CNN
@@ -2954,7 +2954,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J75
+L Connector:TestPoint J75
 U 1 1 5CDC1B30
 P 8250 7250
 F 0 "J75" V 8250 7500 50  0000 C CNN
@@ -2970,7 +2970,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J76
+L Connector:TestPoint J76
 U 1 1 5CDC1B37
 P 8250 7350
 F 0 "J76" V 8250 7600 50  0000 C CNN
@@ -2986,7 +2986,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J77
+L Connector:TestPoint J77
 U 1 1 5CDC1B3E
 P 8250 7450
 F 0 "J77" V 8250 7700 50  0000 C CNN
@@ -3002,7 +3002,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J78
+L Connector:TestPoint J78
 U 1 1 5CDC1B45
 P 8250 7550
 F 0 "J78" V 8250 7800 50  0000 C CNN
@@ -3018,7 +3018,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J79
+L Connector:TestPoint J79
 U 1 1 5CDE5CC4
 P 8250 7650
 F 0 "J79" V 8250 7900 50  0000 C CNN
@@ -3034,7 +3034,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J80
+L Connector:TestPoint J80
 U 1 1 5CDE5CCB
 P 8250 7750
 F 0 "J80" V 8250 8000 50  0000 C CNN
@@ -3050,7 +3050,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J81
+L Connector:TestPoint J81
 U 1 1 5CDE5CD2
 P 8250 7850
 F 0 "J81" V 8250 8100 50  0000 C CNN
@@ -3066,7 +3066,7 @@ F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J82
+L Connector:TestPoint J82
 U 1 1 5CDE5CD9
 P 8250 7950
 F 0 "J82" V 8250 8200 50  0000 C CNN
@@ -3106,7 +3106,7 @@ Wire Wire Line
 Wire Wire Line
 	8300 6050 8250 6050
 $Comp
-L conn:TEST_1P J15
+L Connector:TestPoint J15
 U 1 1 5D031D79
 P 6800 1350
 F 0 "J15" V 6800 1600 50  0000 C CNN
@@ -3122,7 +3122,7 @@ F 8 "~" H 350 -100 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J16
+L Connector:TestPoint J16
 U 1 1 5D031D80
 P 6800 1450
 F 0 "J16" V 6800 1700 50  0000 C CNN
@@ -3138,7 +3138,7 @@ F 8 "~" H 350 -100 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J17
+L Connector:TestPoint J17
 U 1 1 5D031D87
 P 6800 1550
 F 0 "J17" V 6800 1800 50  0000 C CNN
@@ -3154,7 +3154,7 @@ F 8 "~" H 350 -100 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J18
+L Connector:TestPoint J18
 U 1 1 5D031D8E
 P 6800 1650
 F 0 "J18" V 6800 1900 50  0000 C CNN
@@ -3200,7 +3200,7 @@ Wire Wire Line
 	6850 1650 6850 1550
 Connection ~ 6850 1550
 $Comp
-L conn:TEST_1P J20
+L Connector:TestPoint J20
 U 1 1 5D031DA6
 P 6800 2100
 F 0 "J20" V 6800 2350 50  0000 C CNN
@@ -3216,7 +3216,7 @@ F 8 "~" H -100 650 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J21
+L Connector:TestPoint J21
 U 1 1 5D031DAD
 P 6800 2200
 F 0 "J21" V 6800 2450 50  0000 C CNN
@@ -3232,7 +3232,7 @@ F 8 "~" H -100 650 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J22
+L Connector:TestPoint J22
 U 1 1 5D031DB4
 P 6800 2300
 F 0 "J22" V 6800 2550 50  0000 C CNN
@@ -3248,7 +3248,7 @@ F 8 "~" H -100 650 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J23
+L Connector:TestPoint J23
 U 1 1 5D031DBB
 P 6800 2400
 F 0 "J23" V 6800 2650 50  0000 C CNN
@@ -3294,7 +3294,7 @@ F 3 "" H 6850 2000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L conn:TEST_1P J25
+L Connector:TestPoint J25
 U 1 1 5D031DD3
 P 6800 2650
 F 0 "J25" V 6800 2900 50  0000 C CNN
@@ -3310,7 +3310,7 @@ F 8 "~" H -550 1200 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J26
+L Connector:TestPoint J26
 U 1 1 5D031DDA
 P 6800 2750
 F 0 "J26" V 6800 3000 50  0000 C CNN
@@ -3326,7 +3326,7 @@ F 8 "~" H -550 1200 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J27
+L Connector:TestPoint J27
 U 1 1 5D031DE1
 P 6800 2850
 F 0 "J27" V 6800 3100 50  0000 C CNN
@@ -3342,7 +3342,7 @@ F 8 "~" H -550 1200 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J28
+L Connector:TestPoint J28
 U 1 1 5D031DE8
 P 6800 2950
 F 0 "J28" V 6800 3200 50  0000 C CNN
@@ -3388,7 +3388,7 @@ Wire Wire Line
 	6850 2950 6850 3050
 Connection ~ 6850 2950
 $Comp
-L conn:TEST_1P J42
+L Connector:TestPoint J42
 U 1 1 5D031E00
 P 7250 2650
 F 0 "J42" V 7250 2900 50  0000 C CNN
@@ -3404,7 +3404,7 @@ F 8 "~" H -550 1200 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J43
+L Connector:TestPoint J43
 U 1 1 5D031E07
 P 7250 2750
 F 0 "J43" V 7250 3000 50  0000 C CNN
@@ -3420,7 +3420,7 @@ F 8 "~" H -550 1200 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J44
+L Connector:TestPoint J44
 U 1 1 5D031E0E
 P 7250 2850
 F 0 "J44" V 7250 3100 50  0000 C CNN
@@ -3436,7 +3436,7 @@ F 8 "~" H -550 1200 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J45
+L Connector:TestPoint J45
 U 1 1 5D031E15
 P 7250 2950
 F 0 "J45" V 7250 3200 50  0000 C CNN
@@ -3452,7 +3452,7 @@ F 8 "~" H -550 1200 50  0001 C CNN "Vendor P/N"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L conn:TEST_1P J19
+L Connector:TestPoint J19
 U 1 1 5D05E75E
 P 6800 1750
 F 0 "J19" V 6800 2000 50  0000 C CNN
@@ -3470,7 +3470,7 @@ $EndComp
 Wire Wire Line
 	6800 1750 6850 1750
 $Comp
-L conn:TEST_1P J24
+L Connector:TestPoint J24
 U 1 1 5D05E767
 P 6800 2500
 F 0 "J24" V 6800 2750 50  0000 C CNN
@@ -3488,7 +3488,7 @@ $EndComp
 Wire Wire Line
 	6800 2500 6850 2500
 $Comp
-L conn:TEST_1P J29
+L Connector:TestPoint J29
 U 1 1 5D05E770
 P 6800 3050
 F 0 "J29" V 6800 3300 50  0000 C CNN
@@ -3509,7 +3509,7 @@ Wire Wire Line
 	6850 3050 6850 3150
 Connection ~ 6850 3050
 $Comp
-L conn:TEST_1P J46
+L Connector:TestPoint J46
 U 1 1 5D05E77B
 P 7250 3050
 F 0 "J46" V 7250 3300 50  0000 C CNN
@@ -3577,7 +3577,7 @@ F 3 "" H 11300 2200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L conn:TEST_1P J84
+L Connector:TestPoint J84
 U 1 1 5D2B5A1C
 P 10900 2650
 F 0 "J84" V 10900 2900 50  0000 C CNN
@@ -3593,7 +3593,7 @@ F 8 "~" H -1300 1200 50  0001 C CNN "Vendor P/N"
 	0    1    1    0   
 $EndComp
 $Comp
-L conn:TEST_1P J83
+L Connector:TestPoint J83
 U 1 1 5D2B5A23
 P 10900 2550
 F 0 "J83" V 10900 2800 50  0000 C CNN
@@ -3613,7 +3613,7 @@ Wire Wire Line
 Wire Wire Line
 	9800 2550 10900 2550
 $Comp
-L conn:TEST_1P J86
+L Connector:TestPoint J86
 U 1 1 5D5C6621
 P 11350 2650
 F 0 "J86" V 11350 2900 50  0000 C CNN
@@ -3629,7 +3629,7 @@ F 8 "~" H -1300 1200 50  0001 C CNN "Vendor P/N"
 	0    1    1    0   
 $EndComp
 $Comp
-L conn:TEST_1P J85
+L Connector:TestPoint J85
 U 1 1 5D5C6628
 P 11350 2550
 F 0 "J85" V 11350 2800 50  0000 C CNN
@@ -3645,7 +3645,7 @@ F 8 "~" H -1300 1200 50  0001 C CNN "Vendor P/N"
 	0    1    1    0   
 $EndComp
 $Comp
-L conn:TEST_1P J88
+L Connector:TestPoint J88
 U 1 1 5D5F3AA1
 P 11350 2450
 F 0 "J88" V 11350 2700 50  0000 C CNN
@@ -3661,7 +3661,7 @@ F 8 "~" H -1750 1000 50  0001 C CNN "Vendor P/N"
 	0    1    1    0   
 $EndComp
 $Comp
-L conn:TEST_1P J87
+L Connector:TestPoint J87
 U 1 1 5D5F3AA8
 P 11350 2350
 F 0 "J87" V 11350 2600 50  0000 C CNN
@@ -3677,7 +3677,7 @@ F 8 "~" H -1750 1000 50  0001 C CNN "Vendor P/N"
 	0    1    1    0   
 $EndComp
 $Comp
-L conn:TEST_1P J90
+L Connector:TestPoint J90
 U 1 1 5D64E375
 P 11350 1950
 F 0 "J90" V 11350 2200 50  0000 C CNN
@@ -3693,7 +3693,7 @@ F 8 "~" H -2200 500 50  0001 C CNN "Vendor P/N"
 	0    1    1    0   
 $EndComp
 $Comp
-L conn:TEST_1P J89
+L Connector:TestPoint J89
 U 1 1 5D64E37C
 P 11350 1850
 F 0 "J89" V 11350 2100 50  0000 C CNN
@@ -3852,7 +3852,7 @@ Wire Notes Line
 Text Notes 14600 8050 0    60   ~ 0
 CABLE
 $Comp
-L conn:Conn_01x02_Male J9
+L Connector:Conn_01x02_Male J9
 U 1 1 5DC7F6DC
 P 2350 7250
 F 0 "J9" H 2500 7400 50  0000 R CNN
@@ -3868,7 +3868,7 @@ F 8 "455-2247-ND" H -7200 5450 50  0001 C CNN "Vendor P/N"
 	1    0    0    -1  
 $EndComp
 $Comp
-L conn:Conn_01x02_Female J10
+L Connector:Conn_01x02_Female J10
 U 1 1 5DC7F6E8
 P 2350 7250
 F 0 "J10" H 2250 7400 50  0000 C CNN
@@ -3900,7 +3900,7 @@ Wire Notes Line
 Text Notes 1800 7150 0    60   ~ 0
 CABLE
 $Comp
-L proj:TMR_6-7215WIR PS1
+L VDW_Modules:TMR_6-7215WIR PS1
 U 1 1 5BC3AB94
 P 4450 1100
 F 0 "PS1" H 4400 1450 60  0000 C CNN
@@ -3934,7 +3934,7 @@ Wire Wire Line
 Connection ~ 3700 1000
 NoConn ~ 3900 1200
 $Comp
-L conn:Conn_01x02_Female J93
+L Connector:Conn_01x02_Female J93
 U 1 1 5BE5F97F
 P 3200 1350
 F 0 "J93" H 3050 1450 50  0000 L CNN
@@ -3950,7 +3950,7 @@ F 8 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
 	1    0    0    -1  
 $EndComp
 $Comp
-L conn:Conn_01x02_Male J94
+L Connector:Conn_01x02_Male J94
 U 1 1 5BE5FDEC
 P 3200 1350
 F 0 "J94" H 3300 1450 50  0000 C CNN
@@ -4027,7 +4027,7 @@ F 8 "~" H 200 1450 50  0001 C CNN "Alt Vendor P/N"
 	-1   0    0    1   
 $EndComp
 $Comp
-L proj:PG7 SP6
+L VDW_Mechanical:PG7 SP6
 U 1 1 5C8F60C3
 P 15950 4650
 F 0 "SP6" H 15900 4800 60  0000 L CNN
@@ -4041,7 +4041,7 @@ F 6 "B01MSQI150" H 15950 4650 50  0001 C CNN "Vendor P/N"
 	1    0    0    -1  
 $EndComp
 $Comp
-L proj:PG7 SP4
+L VDW_Mechanical:PG7 SP4
 U 1 1 5C8F8B25
 P 4500 3450
 F 0 "SP4" H 4450 3600 60  0000 L CNN
@@ -4055,7 +4055,7 @@ F 6 "B01MSQI150" H 4500 3450 50  0001 C CNN "Vendor P/N"
 	1    0    0    -1  
 $EndComp
 $Comp
-L proj:PG7 SP5
+L VDW_Mechanical:PG7 SP5
 U 1 1 5C8F8EFD
 P 4600 2800
 F 0 "SP5" H 4550 2950 60  0000 L CNN
@@ -4069,7 +4069,7 @@ F 6 "B01MSQI150" H 4600 2800 50  0001 C CNN "Vendor P/N"
 	1    0    0    -1  
 $EndComp
 $Comp
-L proj:PG7 SP2
+L VDW_Mechanical:PG7 SP2
 U 1 1 5C8F902B
 P 750 1900
 F 0 "SP2" H 700 1750 60  0000 L CNN
@@ -4083,7 +4083,7 @@ F 6 "B01MSQI150" H 750 1900 50  0001 C CNN "Vendor P/N"
 	-1   0    0    1   
 $EndComp
 $Comp
-L proj:PG7 SP3
+L VDW_Mechanical:PG7 SP3
 U 1 1 5C8F97A0
 P 750 2250
 F 0 "SP3" H 700 2100 60  0000 L CNN
@@ -4200,7 +4200,7 @@ F 8 "~" H 200 1450 50  0001 C CNN "Alt Vendor P/N"
 	-1   0    0    1   
 $EndComp
 $Comp
-L proj:PG7 SP7
+L VDW_Mechanical:PG7 SP7
 U 1 1 5CDE5291
 P 15950 6450
 F 0 "SP7" H 15900 6600 60  0000 L CNN
@@ -4269,7 +4269,7 @@ Wire Notes Line
 Text Notes 15400 5900 0    60   ~ 0
 CABLE
 $Comp
-L MCU_Particle:Photon U1
+L MCU_Particle-VDW:Photon U1
 U 1 1 5BBFACC7
 P 9150 2700
 F 0 "U1" H 9150 1878 50  0000 C CNN
