@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define THIS_PRODUCT_ID 7951
-#define THIS_PRODUCT_VERSION 9
+#define THIS_PRODUCT_VERSION 10
 
 #define RESIN_PUMP_ENABLE_PIN D0
 #define RESIN_PUMP_DIR_PIN D1
@@ -86,8 +86,8 @@ const uint32_t settingsAddr = 0;
 
 const prom_settings defaultSettings = {
   THIS_EEPROM_VERSION,
-  128, // stepsPerMlResin
-  128, // stepsPerMlHardener
+  33, // stepsPerMlResin
+  33, // stepsPerMlHardener
   500, // autoReverseSteps
   10000, // chargePressure
   150, // keepOpenVolume

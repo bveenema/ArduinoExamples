@@ -4,6 +4,7 @@
 #include "Particle.h"
 #include "AccelStepper.h"
 #include "globals.h"
+#include "SparkIntervalTimer.h";
 
 #ifdef PAIL_SENSOR_ENABLED
 #include "PailSensor.h"
@@ -51,10 +52,16 @@ public:
   //      if "FLUSHING" has been running for longer than FLUSH_CYCLE_DURATION
   void startFlush();
 
+
+  void runPumps();
+
 private:
   // Pump objects
   AccelStepper ResinPump;
   AccelStepper HardenerPump;
+
+  // Pump Timer Object
+  IntervalTimer pumpUpdater;
 
   // Priming
   uint8_t numConsecutivePrimes = 0;
@@ -63,8 +70,8 @@ private:
   // Calculate the resinPumpSpeed and hardenerPumpSpeed, enable the pumps, return the time to pump
   uint32_t prepForMixing(uint32_t volume, uint32_t flowRate, uint32_t ratioResin=settings.ratioResin[selector], uint32_t ratioHardener=settings.ratioHardener[selector]);
   void idlePumps();
-  void runPumps();
   bool runPumpsWithErrorCheck();
+  bool checkPumpErrors();
 
   // Current State of Mix Master
   MixerState mixerState = START_IDLE;
@@ -91,5 +98,6 @@ private:
   uint32_t timeStartedFlushing;
 };
 
+extern mixMaster MixMaster;
 
 #endif

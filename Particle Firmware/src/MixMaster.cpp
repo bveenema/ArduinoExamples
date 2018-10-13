@@ -1,5 +1,7 @@
 #include "MixMaster.h"
 
+mixMaster MixMaster;
+
 // Utility Functions
 uint32_t calculatePumpSpeed(uint32_t flowRate, uint32_t thisPumpRatio, uint32_t otherPumpRatio, uint32_t stepsPerMl){
   if(thisPumpRatio == 0 && otherPumpRatio == 0) return 0; // prevent divide by 0 error
@@ -16,6 +18,12 @@ uint32_t calculateTimeForVolume(uint32_t volume, uint16_t flowRate){
 uint32_t calculateAutoReverseSteps(uint32_t thisPumpRatio, uint32_t otherPumpRatio){
   if(thisPumpRatio == 0 && otherPumpRatio == 0) return 0; // prevent divide by 0 error
   return (settings.autoReverseSteps*100)/(thisPumpRatio+otherPumpRatio)*thisPumpRatio/100;
+}
+
+// Pump handler
+void updatePumps(){
+  debug_incrementer++;
+  MixMaster.runPumps();
 }
 
 // Class Functions
@@ -60,11 +68,11 @@ bool mixMaster::update(bool _changeState){
   static bool keepOpen = false;
   static bool prime = false;
 
-  if(mixerState == START_IDLE){
+  if(mixerState == START_IDLE){ // 0
     if(numConsecutivePrimes >= settings.minPrimes) isPrimed = true;
     timeStartedIdling = millis();
     mixerState = IDLE;
-  }else if(mixerState == IDLE){
+  }else if(mixerState == IDLE){ // 1
     this->idlePumps();
     if(_changeState || (millis() - timeStartedIdling > TIME_BETWEEN_KEEP_OPEN_CYCLES)) {
       #ifdef PAIL_SENSOR_ENABLED
@@ -79,9 +87,8 @@ bool mixMaster::update(bool _changeState){
         if(!isPrimed){
           Serial.printlnf("Priming:%d",numConsecutivePrimes);
           prime = true;
-          timeToMix = this->prepForMixing(settings.primeVolume, settings.flowRate[selector]);
-        } else {
-          timeToMix = this->prepForMixing(settings.volume[selector], settings.flowRate[selector]);
+        } else{
+          prime = false;
         }
         keepOpen = false;
         _changeState = false;
@@ -91,15 +98,20 @@ bool mixMaster::update(bool _changeState){
           mixerState = START_IDLE;
           return _changeState;
         }
-        timeToMix = this->prepForMixing(settings.keepOpenVolume, settings.flowRate[selector]);
         keepOpen = true;
+        prime = false;
+
       }
       mixerState = CHARGING;
       timeStartedCharging = millis();
     }
-  }else if(mixerState == CHARGING){
+  }else if(mixerState == CHARGING){ // 2
     PressureManager.setChargingState(true);
     if(PressureManager.isCharged() && (millis()-timeStartedCharging > settings.minChargingTime)) {
+      if(prime) timeToMix = this->prepForMixing(settings.primeVolume, settings.flowRate[selector]);
+      else if(keepOpen) timeToMix = this->prepForMixing(settings.keepOpenVolume, settings.flowRate[selector]);
+      else timeToMix = this->prepForMixing(settings.volume[selector], settings.flowRate[selector]);
+
       timeStartedMixing = millis();
       mixerState = MIXING;
     }
@@ -108,15 +120,18 @@ bool mixMaster::update(bool _changeState){
       if(!keepOpen) _changeState = false;
       mixerState = START_IDLE;
     }
-  }else if(mixerState == MIXING){
-    if(this->runPumpsWithErrorCheck()) mixerState = START_IDLE;
+  }else if(mixerState == MIXING){ // 3
+    if(this->checkPumpErrors()) mixerState = START_IDLE;
     if(_changeState == true || (millis() - timeStartedMixing > timeToMix)){
       // don't reset _changeState when keep open so button won't be "ignored" while keep open
       if(!keepOpen) _changeState = false;
       if(settings.autoReverseSteps > 0) mixerState = START_AUTO_REVERSE;
       else mixerState = START_IDLE;
+
+      // kill pump interrupt handler
+      pumpUpdater.end();
     }
-  }else if(mixerState == START_AUTO_REVERSE){
+  }else if(mixerState == START_AUTO_REVERSE){ // 4
     ResinPump.setMaxSpeed(autoReverseSpeed);
     HardenerPump.setMaxSpeed(autoReverseSpeed);
     ResinPump.setCurrentPosition(0);
@@ -124,7 +139,7 @@ bool mixMaster::update(bool _changeState){
     ResinPump.moveTo(-calculateAutoReverseSteps(settings.ratioResin[selector], settings.ratioHardener[selector]));
     HardenerPump.moveTo(-calculateAutoReverseSteps(settings.ratioHardener[selector], settings.ratioResin[selector]));
     mixerState = AUTO_REVERSING;
-  }else if(mixerState == AUTO_REVERSING){
+  }else if(mixerState == AUTO_REVERSING){ // 5
     ResinPump.run();
     HardenerPump.run();
     if(!ResinPump.isRunning() && !HardenerPump.isRunning()){
@@ -134,7 +149,7 @@ bool mixMaster::update(bool _changeState){
       }
       mixerState = START_IDLE;
     }
-  }else if(mixerState == FLUSHING){
+  }else if(mixerState == FLUSHING){ // 6
     // kill Flusing if pail no pail
     #ifdef PAIL_SENSOR_ENABLED
     if(!PailSensor.getState()){
@@ -194,10 +209,10 @@ void mixMaster::updateFlushing(){
 
       FlushingState = PULSE_ON;
 
-    break;
-    // No break, fall through to pulse pumps on immediately
+      break;
+
     case PULSE_ON:
-      if(this->runPumpsWithErrorCheck()) mixerState = START_IDLE;
+      if(this->checkPumpErrors()) mixerState = START_IDLE;
       if(millis()-timeStateStarted > flushPulseTime){
         timeStateStarted = millis();
         FlushingState = IDLE_FLUSHING;
@@ -230,6 +245,10 @@ uint32_t mixMaster::prepForMixing(uint32_t volume, uint32_t flowRate, uint32_t r
   HardenerPump.setSpeed(hardenerPumpSpeed);
   digitalWrite(RESIN_PUMP_ENABLE_PIN, LOW); // Enable Resin Pump
   digitalWrite(HARDENER_PUMP_ENABLE_PIN, LOW); // Enable Hardener Pump
+
+  // start pump update handler
+  pumpUpdater.begin(updatePumps, 10, uSec);
+
   return calculateTimeForVolume(volume, flowRate);
 }
 
@@ -237,6 +256,9 @@ void mixMaster::idlePumps(){
   #ifndef PRESSURE_ALWAYS_ON
   PressureManager.setChargingState(false);
   #endif
+  // Update Pump Handler maybe running, so kill it
+  pumpUpdater.end();
+
   ResinPump.setSpeed(0);
   HardenerPump.setSpeed(0);
   digitalWrite(RESIN_PUMP_ENABLE_PIN, HIGH); // Disable Resin Pump
@@ -249,14 +271,16 @@ void mixMaster::runPumps(){
 }
 
 bool mixMaster::runPumpsWithErrorCheck(){
+  this->runPumps();
+  return this->checkPumpErrors();
+}
+
+bool mixMaster::checkPumpErrors(){
   bool returnVal = false;
 
   static uint32_t accumulatePumpError = 0;
   static uint32_t accumulateChargeError = 0;
   static uint32_t accumulatePailError = 0;
-
-  this->runPumps();
-
   // Check pumps for error, return true if more than 100 checks in a row are error
   if(!digitalRead(RESIN_PUMP_ASSERT_PIN) || !digitalRead(HARDENER_PUMP_ASSERT_PIN)){
     if(!digitalRead(RESIN_PUMP_ASSERT_PIN)) Serial.println("Error Resin Pump");

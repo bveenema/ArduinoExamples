@@ -23,14 +23,13 @@ extern pressureManager PressureManager;
 // State Machine
 extern bool changeState;
 
-// Pump Info
-extern const unsigned int ultimateMaxSpeed;
-extern const unsigned int autoReverseSpeed;
-
 // Settings
 extern prom_settings settings;
 
 extern bool FLAG_wasError;
 extern bool FLAG_justReset;
+
+// Debugging Variables
+extern uint32_t debug_incrementer;
 
 #endif

@@ -22,3 +22,7 @@ bool FLAG_justReset = 0;
 
 // Settings
 prom_settings settings;
+
+
+// Debugging Variables
+uint32_t debug_incrementer = 0;
