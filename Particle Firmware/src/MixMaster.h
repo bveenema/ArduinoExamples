@@ -5,7 +5,7 @@
 #include "AccelStepper.h"
 #include "PressureManager.h"
 #include "globals.h"
-#include "SparkIntervalTimer.h";
+#include "SparkIntervalTimer.h"
 
 #ifdef PAIL_SENSOR_ENABLED
 #include "PailSensor.h"
