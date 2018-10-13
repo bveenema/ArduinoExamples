@@ -88,7 +88,7 @@ const prom_settings defaultSettings = {
   THIS_EEPROM_VERSION,
   33, // stepsPerMlResin
   33, // stepsPerMlHardener
-  500, // autoReverseSteps
+  700, // autoReverseSteps
   10000, // chargePressure
   150, // keepOpenVolume
   800, // pailThreshold
