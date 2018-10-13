@@ -1,13 +1,11 @@
 #include "PressureManager.h"
 
-pressureManager::pressureManager(uint32_t _targetPressure){
-  updateTargetPressure(_targetPressure);
-}
 pressureManager PressureManager;
 
 
 // Initialize air pump and pressure sensor
-void pressureManager::init(){
+void pressureManager::init(uint32_t targetPressure){
+  updateTargetPressure(targetPressure);
   pinMode(AIR_PUMP_EN, OUTPUT);
   pinMode(PRESS_SNS_PIN, INPUT);
 

@@ -7,10 +7,10 @@
 class pressureManager{
 public:
   // Constructor: takes targetPressure (milli-inH20) agrument - defaults to 10 inH20
-  pressureManager(uint32_t targetPressure = 10000);
+  pressureManager(){}
 
   // Initialize air pump and pressure sensor
-  void init();
+  void init(uint32_t targetPressure = defaultSettings.chargePressure);
 
   // Charge the Pails to the target pressure if isCharging is true
   void update();
