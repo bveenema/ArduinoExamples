@@ -9,6 +9,7 @@
 // Link to external variables
 #include "globals.h"
 #include "PailSensor.h"
+#include "PressureManager.h"
 extern mixMaster MixMaster;
 
 // Command Functions

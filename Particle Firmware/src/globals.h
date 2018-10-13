@@ -17,9 +17,6 @@ extern char currentError[30];
 
 extern int selector;
 
-// Pressure Manager
-extern pressureManager PressureManager;
-
 // State Machine
 extern bool changeState;
 

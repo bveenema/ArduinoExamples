@@ -3,6 +3,7 @@
 
 #include "Particle.h"
 #include "AccelStepper.h"
+#include "PressureManager.h"
 #include "globals.h"
 #include "SparkIntervalTimer.h";
 

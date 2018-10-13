@@ -3,6 +3,8 @@
 pressureManager::pressureManager(uint32_t _targetPressure){
   updateTargetPressure(_targetPressure);
 }
+pressureManager PressureManager;
+
 
 // Initialize air pump and pressure sensor
 void pressureManager::init(){

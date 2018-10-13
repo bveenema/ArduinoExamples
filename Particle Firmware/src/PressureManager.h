@@ -49,4 +49,6 @@ private:
   uint16_t readPressure();
 };
 
+extern pressureManager PressureManager;
+
 #endif

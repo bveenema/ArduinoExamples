@@ -11,9 +11,6 @@ char currentError[30] = "none";
 
 int selector = 0;
 
-// Pressure Manager
-pressureManager PressureManager(10000);
-
 // State Machine
 bool changeState = false;
 
