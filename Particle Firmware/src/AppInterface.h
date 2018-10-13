@@ -38,6 +38,7 @@ inline void printPailState(){ Serial.print(PailSensor.getState()); }
 inline void printPailRaw(){ Serial.print(PailSensor.getCurrentReading()); }
 inline void updatePailThreshold(){ PailSensor.setDetectionThreshold(settings.pailThreshold); }
 inline void printIsPrimed(){ Serial.print(isPrimed); }
+inline void printIncrementer(){ Serial.print(debug_incrementer); }
 
 // Command Declarations
 typedef struct {
@@ -67,6 +68,7 @@ const commandSet commandList[] = {
   {"eepromVersion", &settings.version, false, NULL},
   {"firmwareID", NULL, NULL, printFirmwareID},
   {"flowRate", settings.flowRate, true, NULL},
+  {"incrementer", NULL, NULL, printIncrementer},
   {"keepOpenVolume", &settings.keepOpenVolume, false, NULL},
   {"resinPumpSpeed", NULL, NULL, printResinPumpSpeed},
   {"hardenerPumpSpeed", NULL, NULL, printHardenerPumpSpeed},
