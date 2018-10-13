@@ -22,7 +22,6 @@ uint32_t calculateAutoReverseSteps(uint32_t thisPumpRatio, uint32_t otherPumpRat
 
 // Pump handler
 void updatePumps(){
-  debug_incrementer++;
   MixMaster.runPumps();
 }
 
