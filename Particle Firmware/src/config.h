@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define THIS_PRODUCT_ID 7951
-#define THIS_PRODUCT_VERSION 10
+#define THIS_PRODUCT_VERSION 11
 
 #define RESIN_PUMP_ENABLE_PIN D0
 #define RESIN_PUMP_DIR_PIN D1
@@ -63,14 +63,15 @@
 //  EEPROM Structure Definition
 //    When changing the structure of EEPROM, increase THIS_EEPROM_VERSION, this
 //    will cause EEPROM of previous versions to reset to default.
-#define THIS_EEPROM_VERSION 5
+#define THIS_EEPROM_VERSION 6
 
 struct prom_settings {
   uint32_t version;
   uint32_t stepsPerMlResin;
   uint32_t stepsPerMlHardener;
   uint32_t autoReverseSteps;
-  uint32_t chargePressure;
+  uint32_t onPressure;
+  uint32_t offPressure;
   uint32_t keepOpenVolume;
   uint32_t pailThreshold;
   uint32_t minChargingTime;
@@ -91,7 +92,8 @@ const prom_settings defaultSettings = {
   33, // stepsPerMlResin
   33, // stepsPerMlHardener
   75, // autoReverseSteps
-  41520, // chargePressure
+  30448, // onPressure
+  44288, // offPressure
   150, // keepOpenVolume
   800, // pailThreshold
   5000, // minChargingTime

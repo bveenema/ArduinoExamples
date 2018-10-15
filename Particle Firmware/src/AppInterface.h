@@ -40,7 +40,8 @@ inline void printPailRaw(){ Serial.print(PailSensor.getCurrentReading()); }
 inline void updatePailThreshold(){ PailSensor.setDetectionThreshold(settings.pailThreshold); }
 inline void printIsPrimed(){ Serial.print(isPrimed); }
 inline void printIncrementer(){ Serial.print(debug_incrementer); }
-inline void updateChargePressure() { PressureManager.updateTargetPressure(settings.chargePressure); }
+inline void updateOnPressure() { PressureManager.updateTargetPressure(settings.onPressure,1); }
+inline void updateOffPressure() { PressureManager.updateTargetPressure(settings.offPressure,0); }
 
 // Command Declarations
 typedef struct {
@@ -64,7 +65,6 @@ const commandSet commandList[] = {
   {"action", NULL, NULL, printMixerState},
   {"autoReverseSteps", &settings.autoReverseSteps, false, NULL},
   {"cloudStatus", NULL, NULL, printCloudStatus},
-  {"chargePressure", &settings.chargePressure, false, updateChargePressure},
   {"currentPressure", NULL, NULL, printCurrentPressure},
   {"error", NULL, NULL, printCurrentError},
   {"eepromVersion", &settings.version, false, NULL},
@@ -79,6 +79,8 @@ const commandSet commandList[] = {
   {"minPrimes", &settings.minPrimes, false, NULL},
   {"name", NULL, NULL, getDeviceName},
   {"numSelectors", NULL, NULL, printNumSelectors},
+  {"onPressure", &settings.onPressure, false, updateOnPressure},
+  {"offPressure", &settings.offPressure, false, updateOffPressure},
   {"pailThreshold", &settings.pailThreshold, false, updatePailThreshold},
   {"pailState", NULL, NULL, printPailState},
   {"pailRaw", NULL, NULL, printPailRaw},

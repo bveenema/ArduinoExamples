@@ -4,8 +4,9 @@ pressureManager PressureManager;
 
 
 // Initialize air pump and pressure sensor
-void pressureManager::init(uint32_t targetPressure){
-  updateTargetPressure(targetPressure);
+void pressureManager::init(uint32_t onPressure, uint32_t offPressure){
+  updateTargetPressure(onPressure,1);
+  updateTargetPressure(offPressure,0);
   pinMode(AIR_PUMP_EN, OUTPUT);
   pinMode(PRESS_SNS_PIN, INPUT);
 
@@ -27,7 +28,7 @@ bool pressureManager::update(bool allowCharging){
     // Calculate average and convert to milli-inH2O
     if(pressure.isValid){
       uint32_t sumOfSamples = 0;
-      for(int i=0; i<pressure.length; i++){
+      for(unsigned int i=0; i<pressure.length; i++){
         sumOfSamples += pressure.samples[i];
       }
       uint32_t averageRaw = sumOfSamples/pressure.length;
@@ -38,18 +39,20 @@ bool pressureManager::update(bool allowCharging){
     }
 
     // Evaluate
-    if(this->isCharging) {
-      if(pressure.isValid && (pressure.current < this->targetPressure)){
-        requestCharging = true;
-        if(allowCharging){
-          pinSetFast(AIR_PUMP_EN);
-        }
-        pressure.accumulateUnderPressure += 1;
-        if(pressure.accumulateUnderPressure > 1000) {
-          this->charged = false;
-          pressure.accumulateUnderPressure = 1001;
-        }
-      }else{
+    if(this->isCharging && pressure.isValid) {
+      if(pressure.current < this->onPressure ||
+         ((pressure.current < this->offPressure) && (this->atPressure == false))){
+          this->atPressure = false;
+          requestCharging = true;
+          if(allowCharging) pinSetFast(AIR_PUMP_EN);
+
+          pressure.accumulateUnderPressure += 1;
+          if(pressure.accumulateUnderPressure > 1000000) {
+            this->charged = false;
+            pressure.accumulateUnderPressure = 1000001;
+          }
+      } else if(pressure.current > this->offPressure){
+        this->atPressure = true;
         pinResetFast(AIR_PUMP_EN);
         this->charged = true;
         pressure.accumulateUnderPressure = 0;
@@ -70,12 +73,15 @@ bool pressureManager::isCharged(){
   return this->charged;
 }
 
-int32_t pressureManager::updateTargetPressure(int32_t _targetPressure){
-  if(_targetPressure > MAX_CHARGE_PRESSURE){
-    _targetPressure = MAX_CHARGE_PRESSURE;
+int32_t pressureManager::updateTargetPressure(int32_t pressure, bool type){
+  if(pressure > MAX_CHARGE_PRESSURE){
+    pressure = MAX_CHARGE_PRESSURE;
   }
-  this->targetPressure = _targetPressure;
-  return this->targetPressure;
+
+  if(type == 1) this->onPressure = pressure; // on Pressure
+  else this->offPressure = pressure; // off Pressure
+
+  return pressure;
 }
 
 int32_t pressureManager::getPressure(){

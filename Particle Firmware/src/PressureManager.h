@@ -10,7 +10,8 @@ public:
   pressureManager(){}
 
   // Initialize air pump and pressure sensor
-  void init(uint32_t targetPressure = defaultSettings.chargePressure);
+  void init(uint32_t onPressure = defaultSettings.onPressure,
+            uint32_t offPressure = defaultSettings.offPressure);
 
   // Charge the Pails to the target pressure if isCharging is true
   //  returns true when the air pump needs to turn on
@@ -23,18 +24,21 @@ public:
   // Returns True if Pails are charged
   bool isCharged();
 
-  int32_t updateTargetPressure(int32_t _targetPressure);
+  int32_t updateTargetPressure(int32_t pressure, bool type = 0);
 
   int32_t getPressure();
 private:
   // True if Pails are charged
   bool charged = false;
 
+  bool atPressure = false;
+
   // True if pails should be charged
   bool isCharging = false;
 
   // Pressure to Maintain in the Pails
-  int32_t targetPressure = 0; // milli-inH20
+  int32_t onPressure = 0; // milli-inH20
+  int32_t offPressure = 0;
 
   // Pressure Container
   struct{
@@ -44,7 +48,7 @@ private:
     uint8_t length = 100;
     bool isValid = false;
     uint32_t lastRead = 0;
-    uint16_t accumulateUnderPressure = 0;
+    uint32_t accumulateUnderPressure = 0;
   } pressure;
 
   // Reads the pressure sensor and returns the value in milli-inH2O

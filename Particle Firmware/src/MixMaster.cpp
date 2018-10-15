@@ -32,7 +32,7 @@ mixMaster::mixMaster() :
   {}
 
 void mixMaster::init(){
-  PressureManager.init(settings.chargePressure);
+  PressureManager.init(settings.onPressure, settings.offPressure);
   pinMode(RESIN_PUMP_ENABLE_PIN, OUTPUT);
   pinMode(RESIN_PUMP_STEP_PIN, OUTPUT);
   pinMode(RESIN_PUMP_DIR_PIN, OUTPUT);
