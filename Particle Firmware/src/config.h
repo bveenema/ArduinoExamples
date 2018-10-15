@@ -91,15 +91,15 @@ const prom_settings defaultSettings = {
   THIS_EEPROM_VERSION,
   33, // stepsPerMlResin
   33, // stepsPerMlHardener
-  75, // autoReverseSteps
+  175, // autoReverseSteps
   30448, // onPressure
   44288, // offPressure
   150, // keepOpenVolume
-  800, // pailThreshold
-  5000, // minChargingTime
-  5000, // maxNoPressure
-  150, // primeVolume
-  4, // minPrimes
+  2000, // pailThreshold
+  200, // minChargingTime
+  1000, // maxNoPressure
+  750, // primeVolume
+  1, // minPrimes
   {3000,3000,3000,3000,3000}, // flowRate
   {0,200,100,224,189}, // ratioResin
   {0,100,400,100,100}, // ratioHardener
