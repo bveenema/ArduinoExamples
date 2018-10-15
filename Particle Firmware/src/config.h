@@ -38,10 +38,12 @@
 // Pressure Charge Settings
 #define PRESSURE_ALWAYS_ON
 #define PRESSURE_READ_RATE 10 // ms between reads of pressure sensor
-#define MAX_CHARGE_PRESSURE 25000
-#define PRESSURE_SENSOR_DELTA_P 55360 // Pmax-Pmin, 55.360 inH2O (2psi)
-#define PRESSURE_SENSOR_PMIN -27680 // Pmin 27.680 inH2O (1psi)
-#define PRESSURE_SENSOR_VSUPPLY 3300 // 3.3 volts
+#define MAX_CHARGE_PRESSURE 83000 // milli-inH20 ( 83000 = 3 PSI )
+#define PRESSURE_SENSOR_DELTA_P 138400 // Pmax-Pmin, 55.360 inH2O (2psi) 138.400 inH2O (5psi) 276.800 inH2O (10psi)
+#define PRESSURE_SENSOR_PMIN 0 // Pmin 27.680 inH2O (1psi) 138.400 inH2O (5psi)
+#define PRESSURE_SENSOR_VSUPPLY 3000 // 3.3 volts
+#define DELAY_FOR_PUMP_TO_CHARGING_TRANSITION 500
+#define DELAY_FOR_CHARGING_TO_PUMP_TRANSITION 500
 
 // Pail Sensor Settings
 #define DEFAULT_PAIL_DETECTION_THRESHOLD 600 // ADC Value (out of 4085)
@@ -88,8 +90,8 @@ const prom_settings defaultSettings = {
   THIS_EEPROM_VERSION,
   33, // stepsPerMlResin
   33, // stepsPerMlHardener
-  700, // autoReverseSteps
-  10000, // chargePressure
+  75, // autoReverseSteps
+  41520, // chargePressure
   150, // keepOpenVolume
   800, // pailThreshold
   5000, // minChargingTime

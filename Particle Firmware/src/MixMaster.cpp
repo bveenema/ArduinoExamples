@@ -57,13 +57,11 @@ void mixMaster::init(){
 }
 
 bool mixMaster::update(bool _changeState){
-
-  PressureManager.update();
-
   static uint32_t timeToMix = 0;
   static uint32_t timeStartedCharging = 0;
-  static uint32_t timeStartedMixing = 0;
+  static uint32_t mixingTimer = 0;
   static uint32_t timeStartedIdling = 0;
+  static uint32_t previousMillis = 0;
   static bool keepOpen = false;
   static bool prime = false;
 
@@ -73,6 +71,7 @@ bool mixMaster::update(bool _changeState){
     mixerState = IDLE;
   }else if(mixerState == IDLE){ // 1
     this->idlePumps();
+    PressureManager.update(true);
     if(_changeState || (millis() - timeStartedIdling > TIME_BETWEEN_KEEP_OPEN_CYCLES)) {
       #ifdef PAIL_SENSOR_ENABLED
       // If no Pail in position, prevent keep open or mixing
@@ -106,12 +105,15 @@ bool mixMaster::update(bool _changeState){
     }
   }else if(mixerState == CHARGING){ // 2
     PressureManager.setChargingState(true);
+    PressureManager.update(true);
     if(PressureManager.isCharged() && (millis()-timeStartedCharging > settings.minChargingTime)) {
       if(prime) timeToMix = this->prepForMixing(settings.primeVolume, settings.flowRate[selector]);
       else if(keepOpen) timeToMix = this->prepForMixing(settings.keepOpenVolume, settings.flowRate[selector]);
       else timeToMix = this->prepForMixing(settings.volume[selector], settings.flowRate[selector]);
 
-      timeStartedMixing = millis();
+      Serial.printlnf("Time to Mix:%d",timeToMix);
+      mixingTimer = 0;
+      previousMillis = millis();
       mixerState = MIXING;
     }
     if(_changeState == true){
@@ -120,8 +122,39 @@ bool mixMaster::update(bool _changeState){
       mixerState = START_IDLE;
     }
   }else if(mixerState == MIXING){ // 3
-    if(this->checkPumpErrors()) mixerState = START_IDLE;
-    if(_changeState == true || (millis() - timeStartedMixing > timeToMix)){
+    // PressureManager.update returns true when the pump needs to run
+    static bool allowCharging = false;
+    static bool wasCharging = false;
+    static uint32_t timeStartedChargingWhileMixing = 0;
+    static uint32_t timeEndedChargingWhileMixing = 0;
+
+    if(PressureManager.update(allowCharging)){
+      // pause pumping
+      pumpUpdater.end();
+      if(millis() - timeStartedChargingWhileMixing > DELAY_FOR_PUMP_TO_CHARGING_TRANSITION){
+        allowCharging = true; // allow charging
+        wasCharging = true;// set wasCharging
+        timeEndedChargingWhileMixing = millis();
+      }
+    } else if(wasCharging){
+      if(millis() - timeEndedChargingWhileMixing > DELAY_FOR_PUMP_TO_CHARGING_TRANSITION){
+        wasCharging = false;
+        pumpUpdater.begin(updatePumps, 10, uSec); // resume pumping
+        previousMillis = millis(); // resume timer
+        allowCharging = false;
+      }
+    } else {
+      timeStartedChargingWhileMixing = millis();
+    }
+
+    // if the Pressure Manager is not charging, check the pump for errors and increment mixing timer
+    if(!allowCharging && millis() - previousMillis > 0){
+      mixingTimer += (millis() - previousMillis);
+      previousMillis = millis();
+      if(this->checkPumpErrors()) mixerState = START_IDLE;
+    }
+
+    if(_changeState == true || (mixingTimer > timeToMix)){
       // don't reset _changeState when keep open so button won't be "ignored" while keep open
       if(!keepOpen) _changeState = false;
       if(settings.autoReverseSteps > 0) mixerState = START_AUTO_REVERSE;

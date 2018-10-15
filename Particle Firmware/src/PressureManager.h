@@ -13,7 +13,9 @@ public:
   void init(uint32_t targetPressure = defaultSettings.chargePressure);
 
   // Charge the Pails to the target pressure if isCharging is true
-  void update();
+  //  returns true when the air pump needs to turn on
+  //  Air pump is allowed to turn on if allowCharging is true
+  bool update(bool allowCharging = false);
 
   // Function to set whether pails should be charged (true) or not (false)
   void setChargingState(bool charge);

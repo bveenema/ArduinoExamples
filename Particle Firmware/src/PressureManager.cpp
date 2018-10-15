@@ -12,8 +12,8 @@ void pressureManager::init(uint32_t targetPressure){
   digitalWrite(AIR_PUMP_EN, LOW);
 }
 
-void pressureManager::update(){
-
+bool pressureManager::update(bool allowCharging){
+  bool requestCharging = false;
     // Take readings, reset index and make valid if pressure.samples is full
     if(millis()-pressure.lastRead > PRESSURE_READ_RATE){
       pressure.samples[pressure.index++] = this->readPressure();
@@ -40,7 +40,10 @@ void pressureManager::update(){
     // Evaluate
     if(this->isCharging) {
       if(pressure.isValid && (pressure.current < this->targetPressure)){
-        pinSetFast(AIR_PUMP_EN);
+        requestCharging = true;
+        if(allowCharging){
+          pinSetFast(AIR_PUMP_EN);
+        }
         pressure.accumulateUnderPressure += 1;
         if(pressure.accumulateUnderPressure > 1000) {
           this->charged = false;
@@ -55,6 +58,8 @@ void pressureManager::update(){
       pinResetFast(AIR_PUMP_EN);
       this->charged = false;
     }
+
+    return requestCharging;
 }
 
 void pressureManager::setChargingState(bool charging){
