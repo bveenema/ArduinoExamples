@@ -4439,4 +4439,6 @@ Wire Wire Line
 	15500 2900 15550 2900
 Text Notes 1200 5300 0    60   ~ 0
 KNOB: ML-75-1-6
+Text Notes 1550 8950 0    60   ~ 0
+Temporarily SSCDRRN005PGAA5\nwith 2.2K and 4.7K voltage divider
 $EndSCHEMATC
