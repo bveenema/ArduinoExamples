@@ -3,7 +3,7 @@ let timeouts = [];
 let haveVersion = false;
 let serialType = 0; // 0: {variableName}:{value} , 1: {variableName}:{selector}:{value}
 
-let frequentInterval = 100;
+let frequentInterval = 250;
 let infrequentInterval = 5000;
 
 onload = function(){
