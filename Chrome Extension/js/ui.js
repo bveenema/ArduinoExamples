@@ -213,7 +213,6 @@ function toggleVersionedElements(ver, show = true){
       if(element.classList[i].match(/^version:/)){
         element.version = element.classList[i].split(':')[1];
         returnVal = true;
-        break;
       }
     }
     return returnVal;
