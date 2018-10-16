@@ -39,6 +39,8 @@
 #define PRESSURE_ALWAYS_ON
 #define PRESSURE_READ_RATE 10 // ms between reads of pressure sensor
 #define MAX_CHARGE_PRESSURE 83000 // milli-inH20 ( 83000 = 3 PSI )
+#define MAX_CHARGE_TIMEOUT 30000 // ms
+#define MAX_CHARGE_COOL_DOWN 60000 // ms
 #define PRESSURE_SENSOR_DELTA_P 138400 // Pmax-Pmin, 55.360 inH2O (2psi) 138.400 inH2O (5psi) 276.800 inH2O (10psi)
 #define PRESSURE_SENSOR_PMIN 0 // Pmin 27.680 inH2O (1psi) 138.400 inH2O (5psi)
 #define PRESSURE_SENSOR_VSUPPLY 3000 // 3.3 volts
@@ -71,6 +73,8 @@ struct prom_settings {
   uint32_t stepsPerMlHardener;
   uint32_t autoReverseSteps;
   uint32_t chargePressure;
+  uint32_t chargeTimeout;
+  uint32_t chargeCoolDown;
   uint32_t keepOpenVolume;
   uint32_t pailThreshold;
   uint32_t minChargingTime;
@@ -92,6 +96,8 @@ const prom_settings defaultSettings = {
   33, // stepsPerMlHardener
   75, // autoReverseSteps
   41520, // chargePressure
+  15000, // chargeTimeout
+  15000, // chargeCoolDown
   150, // keepOpenVolume
   800, // pailThreshold
   5000, // minChargingTime

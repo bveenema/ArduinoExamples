@@ -41,6 +41,8 @@ inline void updatePailThreshold(){ PailSensor.setDetectionThreshold(settings.pai
 inline void printIsPrimed(){ Serial.print(isPrimed); }
 inline void printIncrementer(){ Serial.print(debug_incrementer); }
 inline void updateChargePressure() { PressureManager.updateTargetPressure(settings.chargePressure); }
+inline void updateChargeTimeout() { PressureManager.updateChargeTimeout(settings.chargeTimeout); }
+inline void updateChargeCoolDown() { PressureManager.updateChargeCoolDown(settings.chargeCoolDown); }
 
 // Command Declarations
 typedef struct {
@@ -65,6 +67,8 @@ const commandSet commandList[] = {
   {"autoReverseSteps", &settings.autoReverseSteps, false, NULL},
   {"cloudStatus", NULL, NULL, printCloudStatus},
   {"chargePressure", &settings.chargePressure, false, updateChargePressure},
+  {"chargeTimeout", &settings.chargeTimeout, false, updateChargeTimeout},
+  ("chargeCoolDown", &settings.chargeCoolDown, false, updateChargeCoolDown),
   {"currentPressure", NULL, NULL, printCurrentPressure},
   {"error", NULL, NULL, printCurrentError},
   {"eepromVersion", &settings.version, false, NULL},

@@ -26,6 +26,10 @@ public:
   int32_t updateTargetPressure(int32_t _targetPressure);
 
   int32_t getPressure();
+
+  uint32_t updateChargeTimeout(uint32_t timeout);
+
+  uint32_t updateChargeCoolDown(uint32_t coolDown);
 private:
   // True if Pails are charged
   bool charged = false;
