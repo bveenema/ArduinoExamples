@@ -42,6 +42,8 @@ inline void printIsPrimed(){ Serial.print(isPrimed); }
 inline void printIncrementer(){ Serial.print(debug_incrementer); }
 inline void updateOnPressure() { PressureManager.updateTargetPressure(settings.onPressure,1); }
 inline void updateOffPressure() { PressureManager.updateTargetPressure(settings.offPressure,0); }
+inline void updateChargeTimeout() { PressureManager.updateChargeTimeout(settings.chargeTimeout); }
+inline void updateChargeCoolDown() { PressureManager.updateChargeCoolDown(settings.chargeCoolDown); }
 
 // Command Declarations
 typedef struct {
@@ -65,6 +67,8 @@ const commandSet commandList[] = {
   {"action", NULL, NULL, printMixerState},
   {"autoReverseSteps", &settings.autoReverseSteps, false, NULL},
   {"cloudStatus", NULL, NULL, printCloudStatus},
+  {"chargeTimeout", &settings.chargeTimeout, false, updateChargeTimeout},
+  ("chargeCoolDown", &settings.chargeCoolDown, false, updateChargeCoolDown),
   {"currentPressure", NULL, NULL, printCurrentPressure},
   {"error", NULL, NULL, printCurrentError},
   {"eepromVersion", &settings.version, false, NULL},

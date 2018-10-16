@@ -105,6 +105,23 @@ int32_t pressureManager::updateTargetPressure(int32_t pressure, bool type){
   return pressure;
 }
 
+
+uint32_t pressureManager::updateChargeTimeout(uint32_t timeout){
+  if(timeout > MAX_CHARGE_TIMEOUT){
+    timeout = MAX_CHARGE_TIMEOUT;
+  }
+  this->chargingTimeout = timeout;
+  return this->chargingTimeout;
+}
+
+uint32_t pressureManager::updateChargeCoolDown(uint32_t coolDown){
+  if(coolDown > MAX_CHARGE_COOL_DOWN){
+    coolDown = MAX_CHARGE_COOL_DOWN;
+  }
+  this->chargingCoolDown = coolDown;
+  return this->chargingCoolDown;
+}
+
 int32_t pressureManager::getPressure(){
   if(pressure.isValid) return pressure.current;
   return 0;
