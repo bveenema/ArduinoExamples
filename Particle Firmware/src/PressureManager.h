@@ -40,6 +40,12 @@ private:
   int32_t onPressure = 0; // milli-inH20
   int32_t offPressure = 0;
 
+  // Timeout and cool-down
+  uint32_t chargingTimer = 0;
+  uint32_t coolDownTimer = 0;
+  uint32_t chargingTimeout = 15000;
+  uint32_t chargingCoolDown = 15000;
+
   // Pressure Container
   struct{
     int32_t current = 0;
