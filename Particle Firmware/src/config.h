@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define THIS_PRODUCT_ID 7951
-#define THIS_PRODUCT_VERSION 11
+#define THIS_PRODUCT_VERSION 12
 
 #define RESIN_PUMP_ENABLE_PIN D0
 #define RESIN_PUMP_DIR_PIN D1
@@ -36,7 +36,7 @@
 #define REGULAR_BLINK_RATE 750 // toggle every 750 ms
 
 // Pressure Charge Settings
-#define PRESSURE_ALWAYS_ON
+// #define PRESSURE_ALWAYS_ON
 #define PRESSURE_READ_RATE 10 // ms between reads of pressure sensor
 #define MAX_CHARGE_PRESSURE 83000 // milli-inH20 ( 83000 = 3 PSI )
 #define MAX_CHARGE_TIMEOUT 30000 // ms
