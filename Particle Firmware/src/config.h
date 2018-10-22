@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define THIS_PRODUCT_ID 7951
-#define THIS_PRODUCT_VERSION 12
+#define THIS_PRODUCT_VERSION 13
 
 #define RESIN_PUMP_ENABLE_PIN D0
 #define RESIN_PUMP_DIR_PIN D1
@@ -76,6 +76,7 @@ struct prom_settings {
   uint32_t offPressure;
   uint32_t chargeTimeout;
   uint32_t chargeCoolDown;
+  uint32_t chargeDelay;
   uint32_t keepOpenVolume;
   uint32_t pailThreshold;
   uint32_t minChargingTime;
@@ -100,6 +101,7 @@ const prom_settings defaultSettings = {
   44288, // offPressure
   15000, // chargeTimeout
   15000, // chargeCoolDown
+  1000, // chargeDelay
   150, // keepOpenVolume
   2000, // pailThreshold
   200, // minChargingTime

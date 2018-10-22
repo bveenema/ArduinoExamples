@@ -131,13 +131,13 @@ bool mixMaster::update(bool _changeState){
     if(PressureManager.update(allowCharging)){
       // pause pumping
       pumpUpdater.end();
-      if(millis() - timeStartedChargingWhileMixing > DELAY_FOR_PUMP_TO_CHARGING_TRANSITION){
+      if(millis() - timeStartedChargingWhileMixing > settings.chargeDelay){
         allowCharging = true; // allow charging
         wasCharging = true;// set wasCharging
         timeEndedChargingWhileMixing = millis();
       }
     } else if(wasCharging){
-      if(millis() - timeEndedChargingWhileMixing > DELAY_FOR_PUMP_TO_CHARGING_TRANSITION){
+      if(millis() - timeEndedChargingWhileMixing > settings.chargeDelay){
         wasCharging = false;
         pumpUpdater.begin(updatePumps, 10, uSec); // resume pumping
         previousMillis = millis(); // resume timer

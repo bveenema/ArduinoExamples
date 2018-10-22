@@ -69,6 +69,7 @@ const commandSet commandList[] = {
   {"cloudStatus", NULL, NULL, printCloudStatus},
   {"chargeTimeout", &settings.chargeTimeout, false, updateChargeTimeout},
   {"chargeCoolDown", &settings.chargeCoolDown, false, updateChargeCoolDown},
+  {"chargeDelay", &settings.chargeDelay, false, NULL},
   {"currentPressure", NULL, NULL, printCurrentPressure},
   {"error", NULL, NULL, printCurrentError},
   {"eepromVersion", &settings.version, false, NULL},
