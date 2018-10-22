@@ -127,8 +127,14 @@ bool mixMaster::update(bool _changeState){
     static bool wasCharging = false;
     static uint32_t timeStartedChargingWhileMixing = 0;
     static uint32_t timeEndedChargingWhileMixing = 0;
+    static uint32_t lastChargingTime = 0;
 
-    if(PressureManager.update(allowCharging)){
+    // TODO
+    // change cooldown to offtime
+    // change minimum pressure charging time to maximum charging time before mixing
+    // verify that this shit actually works
+
+    if(PressureManager.update(allowCharging) || millis() - lastChargingTime > 15000){
       // pause pumping
       pumpUpdater.end();
       if(millis() - timeStartedChargingWhileMixing > settings.chargeDelay){
@@ -142,6 +148,7 @@ bool mixMaster::update(bool _changeState){
         pumpUpdater.begin(updatePumps, 10, uSec); // resume pumping
         previousMillis = millis(); // resume timer
         allowCharging = false;
+        lastChargingTime = millis();
       }
     } else {
       timeStartedChargingWhileMixing = millis();
