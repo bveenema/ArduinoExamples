@@ -45,17 +45,16 @@ bool pressureManager::update(bool allowCharging){
           // Set state to under pressure state
           this->atPressure = false;
 
-          // request charging if cool-down timer is expired
-          if(millis() - coolDownTimer > chargingCoolDown) requestCharging = true;
+          // request charging
+          requestCharging = true;
 
           // Charge if allowed or reset chargingTimer
           if(allowCharging) pinSetFast(AIR_PUMP_EN);
           else chargingTimer = millis();
 
-          // if charging timeout, set requestCharging to false and reset cool-down timer
+          // if charging timeout, set requestCharging to false
           if(millis() - chargingTimer > chargingTimeout){
             requestCharging = false;
-            coolDownTimer = millis();
           }
 
           // Accumulate error while under target pressure
@@ -65,10 +64,6 @@ bool pressureManager::update(bool allowCharging){
             pressure.accumulateUnderPressure = 1000001;
           }
       } else if(pressure.current > this->offPressure){
-        // if state was just charging, reset cool-down timer
-        if(this->atPressure == false){
-          coolDownTimer = millis();
-        }
 
         // set state to over pressure and turn of pump
         this->atPressure = true;
@@ -112,14 +107,6 @@ uint32_t pressureManager::updateChargeTimeout(uint32_t timeout){
   }
   this->chargingTimeout = timeout;
   return this->chargingTimeout;
-}
-
-uint32_t pressureManager::updateChargeCoolDown(uint32_t coolDown){
-  if(coolDown > MAX_CHARGE_COOL_DOWN){
-    coolDown = MAX_CHARGE_COOL_DOWN;
-  }
-  this->chargingCoolDown = coolDown;
-  return this->chargingCoolDown;
 }
 
 int32_t pressureManager::getPressure(){

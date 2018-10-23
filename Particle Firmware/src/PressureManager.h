@@ -29,8 +29,6 @@ public:
   int32_t getPressure();
 
   uint32_t updateChargeTimeout(uint32_t timeout);
-
-  uint32_t updateChargeCoolDown(uint32_t coolDown);
 private:
   // True if Pails are charged
   bool charged = false;
@@ -44,11 +42,9 @@ private:
   int32_t onPressure = 0; // milli-inH20
   int32_t offPressure = 0;
 
-  // Timeout and cool-down
+  // Timeout
   uint32_t chargingTimer = 0;
-  uint32_t coolDownTimer = 0;
   uint32_t chargingTimeout = 15000;
-  uint32_t chargingCoolDown = 15000;
 
   // Pressure Container
   struct{
