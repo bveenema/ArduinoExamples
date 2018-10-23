@@ -75,7 +75,7 @@ struct prom_settings {
   uint32_t onPressure;
   uint32_t offPressure;
   uint32_t chargeTimeout;
-  uint32_t chargeCoolDown;
+  uint32_t chargeOffTime;
   uint32_t chargeDelay;
   uint32_t keepOpenVolume;
   uint32_t pailThreshold;
@@ -100,7 +100,7 @@ const prom_settings defaultSettings = {
   30448, // onPressure
   44288, // offPressure
   15000, // chargeTimeout
-  15000, // chargeCoolDown
+  15000, // chargeOffTime
   1000, // chargeDelay
   150, // keepOpenVolume
   2000, // pailThreshold
