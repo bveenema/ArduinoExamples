@@ -37,7 +37,7 @@
 
 // Pressure Charge Settings
 // #define PRESSURE_ALWAYS_ON
-#define PRESSURE_READ_RATE 10 // ms between reads of pressure sensor
+#define PRESSURE_READ_RATE 5 // ms between reads of pressure sensor
 #define MAX_CHARGE_PRESSURE 83000 // milli-inH20 ( 83000 = 3 PSI )
 #define MAX_CHARGE_TIMEOUT 60000 // ms
 #define PRESSURE_SENSOR_DELTA_P 138400 // Pmax-Pmin, 55.360 inH2O (2psi) 138.400 inH2O (5psi) 276.800 inH2O (10psi)
