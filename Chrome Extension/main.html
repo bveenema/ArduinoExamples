@@ -150,8 +150,13 @@
             <input class="textbox" type="number" min="0" max="60000" step="1000" value="0" disabled>
             Current: <span>0</span>
           </li>
-          <li id="command-minChargingTime" class="advanced version:min-7">
-            Minimum Pressure Charging Time (ms):
+          <li id="command-minChargingTime" class="advanced version:min-7 version:max-12">
+            Minimum Charging Time Before Mixing (ms):
+            <input class="textbox" type="number" min="0" max="30000" step="500" value="0" disabled>
+            Current: <span>0</span>
+          </li>
+          <li id="command-maxPreMixChargingTime" class="advanced version:min-13">
+            Max Charging Time Before Mixing (ms):
             <input class="textbox" type="number" min="0" max="30000" step="500" value="0" disabled>
             Current: <span>0</span>
           </li>

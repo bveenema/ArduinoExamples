@@ -106,7 +106,7 @@ bool mixMaster::update(bool _changeState){
   }else if(mixerState == CHARGING){ // 2
     PressureManager.setChargingState(true);
     PressureManager.update(true);
-    if(PressureManager.isCharged() && (millis()-timeStartedCharging > settings.minChargingTime)) {
+    if(PressureManager.isCharged() || (millis()-timeStartedCharging > settings.maxPreMixChargingTime)) {
       if(prime) timeToMix = this->prepForMixing(settings.primeVolume, settings.flowRate[selector]);
       else if(keepOpen) timeToMix = this->prepForMixing(settings.keepOpenVolume, settings.flowRate[selector]);
       else timeToMix = this->prepForMixing(settings.volume[selector], settings.flowRate[selector]);
@@ -130,8 +130,6 @@ bool mixMaster::update(bool _changeState){
     static uint32_t lastChargingTime = 0;
 
     // TODO
-    // change cooldown to offtime
-    // change minimum pressure charging time to maximum charging time before mixing
     // verify that this shit actually works
 
     if(PressureManager.update(allowCharging) || millis() - lastChargingTime > 15000){

@@ -79,7 +79,7 @@ const commandSet commandList[] = {
   {"resinPumpSpeed", NULL, NULL, printResinPumpSpeed},
   {"hardenerPumpSpeed", NULL, NULL, printHardenerPumpSpeed},
   {"maxNoPressure", &settings.maxNoPressure, false, NULL},
-  {"minChargingTime", &settings.minChargingTime, false, NULL},
+  {"maxPreMixChargingTime", &settings.maxPreMixChargingTime, false, NULL},
   {"minPrimes", &settings.minPrimes, false, NULL},
   {"name", NULL, NULL, getDeviceName},
   {"numSelectors", NULL, NULL, printNumSelectors},
