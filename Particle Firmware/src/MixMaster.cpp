@@ -62,6 +62,7 @@ bool mixMaster::update(bool _changeState){
   static uint32_t mixingTimer = 0;
   static uint32_t timeStartedIdling = 0;
   static uint32_t previousMillis = 0;
+  static uint32_t lastChargingTime = 0;
   static bool keepOpen = false;
   static bool prime = false;
 
@@ -114,6 +115,7 @@ bool mixMaster::update(bool _changeState){
       Serial.printlnf("Time to Mix:%d",timeToMix);
       mixingTimer = 0;
       previousMillis = millis();
+      lastChargingTime = millis();
       mixerState = MIXING;
     }
     if(_changeState == true){
@@ -127,18 +129,20 @@ bool mixMaster::update(bool _changeState){
     static bool wasCharging = false;
     static uint32_t timeStartedChargingWhileMixing = 0;
     static uint32_t timeEndedChargingWhileMixing = 0;
-    static uint32_t lastChargingTime = 0;
 
-    // TODO
-    // verify that this shit actually works
-
-    if(PressureManager.update(allowCharging) || millis() - lastChargingTime > 15000){
+    if(millis() - lastChargingTime > settings.chargeOffTime){
       // pause pumping
       pumpUpdater.end();
+
       if(millis() - timeStartedChargingWhileMixing > settings.chargeDelay){
         allowCharging = true; // allow charging
         wasCharging = true;// set wasCharging
         timeEndedChargingWhileMixing = millis();
+
+        // check for pressure manager to stop requesting charging
+        if(!PressureManager.update(allowCharging)){
+          lastChargingTime = millis();
+        }
       }
     } else if(wasCharging){
       if(millis() - timeEndedChargingWhileMixing > settings.chargeDelay){
@@ -151,6 +155,9 @@ bool mixMaster::update(bool _changeState){
     } else {
       timeStartedChargingWhileMixing = millis();
     }
+
+    // keep pressure manager updated
+    PressureManager.update(allowCharging);
 
     // if the Pressure Manager is not charging, check the pump for errors and increment mixing timer
     if(!allowCharging && millis() - previousMillis > 0){
