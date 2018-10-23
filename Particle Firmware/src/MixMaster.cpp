@@ -297,9 +297,7 @@ uint32_t mixMaster::prepForMixing(uint32_t volume, uint32_t flowRate, uint32_t r
 }
 
 void mixMaster::idlePumps(){
-  #ifndef PRESSURE_ALWAYS_ON
   PressureManager.setChargingState(false);
-  #endif
   // Update Pump Handler maybe running, so kill it
   pumpUpdater.end();
 
