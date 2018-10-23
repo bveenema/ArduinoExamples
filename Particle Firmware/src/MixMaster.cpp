@@ -72,7 +72,7 @@ bool mixMaster::update(bool _changeState){
     mixerState = IDLE;
   }else if(mixerState == IDLE){ // 1
     this->idlePumps();
-    PressureManager.update(true);
+    PressureManager.update(false);
     if(_changeState || (millis() - timeStartedIdling > TIME_BETWEEN_KEEP_OPEN_CYCLES)) {
       #ifdef PAIL_SENSOR_ENABLED
       // If no Pail in position, prevent keep open or mixing
