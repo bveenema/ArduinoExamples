@@ -50,7 +50,10 @@ bool pressureManager::update(bool allowCharging){
 
           // Charge if allowed or reset chargingTimer
           if(allowCharging) pinSetFast(AIR_PUMP_EN);
-          else chargingTimer = millis();
+          else {
+            pinResetFast(AIR_PUMP_EN);
+            chargingTimer = millis();
+          }
 
           // if charging timeout, set requestCharging to false
           if(millis() - chargingTimer > chargingTimeout){
