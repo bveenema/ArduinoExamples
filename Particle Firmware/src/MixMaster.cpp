@@ -145,11 +145,11 @@ bool mixMaster::update(bool _changeState){
         }
       }
     } else if(wasCharging){
+      allowCharging = false;
       if(millis() - timeEndedChargingWhileMixing > settings.chargeDelay){
         wasCharging = false;
         pumpUpdater.begin(updatePumps, 10, uSec); // resume pumping
         previousMillis = millis(); // resume timer
-        allowCharging = false;
         lastChargingTime = millis();
       }
     } else {
