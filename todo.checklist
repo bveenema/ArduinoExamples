@@ -1,4 +1,4 @@
-- Increase max charging time before mixing to 60 sec
-- Fix not charging before prime
-- Increase rolling average 10x
-- Investigate 15 second charge on first time regardless of settings
++ Increase max charging time before mixing to 60 sec
++ Fix not charging before prime
++ Increase rolling average 10x
++ Investigate 15 second charge on first time regardless of settings
