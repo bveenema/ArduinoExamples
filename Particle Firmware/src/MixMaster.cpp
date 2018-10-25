@@ -129,9 +129,11 @@ bool mixMaster::update(bool _changeState){
   }else if(mixerState == MIXING){ // 3
     // PressureManager.update returns true when the pump needs to run
     static bool allowCharging = false;
+    static bool allowIncrementMixTimer = false;
 
       // pause pumping
       pumpUpdater.end();
+      allowIncrementMixTimer = false;
 
       if(millis() - timeStartedChargingWhileMixing > settings.chargeDelay){
         allowCharging = true; // allow charging
@@ -148,6 +150,7 @@ bool mixMaster::update(bool _changeState){
       if(millis() - timeEndedChargingWhileMixing > settings.chargeDelay){
         wasCharging = false;
         pumpUpdater.begin(updatePumps, 10, uSec); // resume pumping
+        allowIncrementMixTimer = true;
         previousMillis = millis(); // resume timer
         lastChargingTime = millis();
       }
@@ -160,6 +163,7 @@ bool mixMaster::update(bool _changeState){
 
     // if the Pressure Manager is not charging, check the pump for errors and increment mixing timer
     if(!allowCharging && millis() - previousMillis > 0){
+    if(allowIncrementMixTimer && millis() - previousMillis > 0){
       mixingTimer += (millis() - previousMillis);
       previousMillis = millis();
       if(this->checkPumpErrors()) mixerState = START_IDLE;
@@ -249,6 +253,7 @@ void mixMaster::updateFlushing(){
       timeStateStarted = millis();
       digitalWrite(RESIN_PUMP_ENABLE_PIN, LOW); // Enable Resin Pump
       digitalWrite(HARDENER_PUMP_ENABLE_PIN, LOW); // Enable Hardener Pump
+      pumpUpdater.begin(updatePumps, 10, uSec);
 
       FlushingState = PULSE_ON;
 
