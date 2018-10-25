@@ -22,6 +22,7 @@ uint32_t calculateAutoReverseSteps(uint32_t thisPumpRatio, uint32_t otherPumpRat
 
 // Pump handler
 void updatePumps(){
+  debug_incrementer++;
   MixMaster.runPumps();
 }
 
@@ -131,6 +132,8 @@ bool mixMaster::update(bool _changeState){
     static bool allowCharging = false;
     static bool allowIncrementMixTimer = false;
 
+    // pause motor for charging if pressure drops, except when priming
+    if(PressureManager.update(allowCharging) && !prime){
       // pause pumping
       pumpUpdater.end();
       allowIncrementMixTimer = false;
@@ -138,21 +141,15 @@ bool mixMaster::update(bool _changeState){
       if(millis() - timeStartedChargingWhileMixing > settings.chargeDelay){
         allowCharging = true; // allow charging
         wasCharging = true;// set wasCharging
-        timeEndedChargingWhileMixing = millis();
-
-        // check for pressure manager to stop requesting charging
-        if(!PressureManager.update(allowCharging)){
-          lastChargingTime = millis();
-        }
+        timeEndedCharging = millis();
       }
     } else if(wasCharging){
       allowCharging = false;
-      if(millis() - timeEndedChargingWhileMixing > settings.chargeDelay){
+      if(millis() - timeEndedCharging > settings.chargeDelay){
         wasCharging = false;
         pumpUpdater.begin(updatePumps, 10, uSec); // resume pumping
         allowIncrementMixTimer = true;
         previousMillis = millis(); // resume timer
-        lastChargingTime = millis();
       }
     } else {
       timeStartedChargingWhileMixing = millis();
@@ -162,7 +159,6 @@ bool mixMaster::update(bool _changeState){
     PressureManager.update(allowCharging);
 
     // if the Pressure Manager is not charging, check the pump for errors and increment mixing timer
-    if(!allowCharging && millis() - previousMillis > 0){
     if(allowIncrementMixTimer && millis() - previousMillis > 0){
       mixingTimer += (millis() - previousMillis);
       previousMillis = millis();
@@ -317,6 +313,7 @@ bool mixMaster::runPumpsWithErrorCheck(){
   this->runPumps();
   return this->checkPumpErrors();
 }
+
 
 bool mixMaster::checkPumpErrors(){
   bool returnVal = false;
