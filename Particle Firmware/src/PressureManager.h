@@ -51,7 +51,7 @@ private:
     int32_t current = 0;
     uint16_t samples[100] = {0};
     uint8_t index = 0;
-    uint8_t length = 400;
+    uint8_t length = 100;
     bool isValid = false;
     uint32_t lastRead = 0;
     uint32_t accumulateUnderPressure = 0;
