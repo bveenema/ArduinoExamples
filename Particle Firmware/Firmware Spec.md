@@ -19,6 +19,29 @@ This document covers the intended operation of the DAF21 ECM software.
 
 ### Modules ###
 
+#### App ####
+The app for user updating of the ECM runs on top of the Chrome Browser. Details for installing the app can be found in the main readme.
+
+###### App Settings #######
+
+| Name                        | Description                                                                                                                                                                                        | Unit        |
+|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
+| Ratio - Resin               | The portion of the mixed output that will be Resin.                                                                                                                                                | N/A         |
+| Ratio - Hardener            | The portion of the mixed output that will be Hardener                                                                                                                                              | N/A         |
+| Flow Rate                   | The output speed of the mixed epoxy.                                                                                                                                                               | ml/min      |
+| Volume                      | The total volume of mixed epoxy per bolus (button press)                                                                                                                                           | ml          |
+| Low Pressure                | The pressure at which the air pump will be begin charging the supply reservoir                                                                                                                     | milli-inH2O |
+| High Pressure               | The pressure at which the air pump will cease charging the supply reservoir                                                                                                                        | milli-inH2O |
+| Max Charge Time             | The maximum amount of time the air pumps are allowed to attempt to charge the supply reservoir                                                                                                     | ms          |
+| Delay after/before Charging | The amount of time between the mixing pumps pausing and the air pump starting and the amount of time between the air pump stopping and the mixing pumps starting                                   | ms          |
+| Prime Volume                | The total volume of mixed epoxy during each prime cycle.  Use this number along with "Flow Rate" setting to calculate a time for priming.                                                          | ml          |
+| Number of Prime Cycles      | The number of times the ECM must be primed prior to mixing. Each prime cycle is initiated by a button press. Usually 1.                                                                            | N/A         |
+| Keep Open Volume            | The total volume of mixed epoxy for each "Keep Open" cycle. Keep Open cycles occur every 5 minutes if the ECM has not otherwise mixed. Keep Open will not run until after the ECM has been primed. | ml          |
+| Pail Threshold              | The unitless number representing the minimum value for which the pail sensor determines an output pail is in position.                                                                             | N/A         |
+| Auto Reverse Steps          | The number of steps the pumps will reverse travel after a prime, keep open or mix has occured. This number is divided between the Resin and Hardener pumps according to their ratio                | steps       |
+| Steps/ml - Resin            | The number of steps required to expel 1ml for the Resin pump.  Used for tuning the volume.                                                                                                         | steps       |
+| Steps/ml - Hardener         | The number of steps required to expel 1ml for the Hardener pump.  Used for tuning the volume.                                                                                                      | steps       |
+
 #### Manager ####
 The Manager is responsible for the overall state of the ECM.  It controls which state the machine is in according to the below chart.
 
