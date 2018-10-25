@@ -62,9 +62,11 @@ bool mixMaster::update(bool _changeState){
   static uint32_t mixingTimer = 0;
   static uint32_t timeStartedIdling = 0;
   static uint32_t previousMillis = 0;
-  static uint32_t lastChargingTime = 0;
   static bool keepOpen = false;
   static bool prime = false;
+  static bool wasCharging = false;
+  static uint32_t timeStartedChargingWhileMixing = 0;
+  static uint32_t timeEndedCharging = 0;
 
   if(mixerState == START_IDLE){ // 0
     if(numConsecutivePrimes >= settings.minPrimes) isPrimed = true;
@@ -107,7 +109,7 @@ bool mixMaster::update(bool _changeState){
   }else if(mixerState == CHARGING){ // 2
     PressureManager.setChargingState(true);
     PressureManager.update(true);
-    if(PressureManager.isCharged() || (millis()-timeStartedCharging > settings.maxPreMixChargingTime)) {
+    if(PressureManager.isCharged() || (millis()-timeStartedCharging > settings.chargeTimeout)) {
       if(prime) timeToMix = this->prepForMixing(settings.primeVolume, settings.flowRate[selector]);
       else if(keepOpen) timeToMix = this->prepForMixing(settings.keepOpenVolume, settings.flowRate[selector]);
       else timeToMix = this->prepForMixing(settings.volume[selector], settings.flowRate[selector]);
@@ -115,7 +117,8 @@ bool mixMaster::update(bool _changeState){
       Serial.printlnf("Time to Mix:%d",timeToMix);
       mixingTimer = 0;
       previousMillis = millis();
-      lastChargingTime = millis();
+      wasCharging = true;
+      timeEndedCharging = millis();
       mixerState = MIXING;
     }
     if(_changeState == true){
@@ -126,11 +129,7 @@ bool mixMaster::update(bool _changeState){
   }else if(mixerState == MIXING){ // 3
     // PressureManager.update returns true when the pump needs to run
     static bool allowCharging = false;
-    static bool wasCharging = false;
-    static uint32_t timeStartedChargingWhileMixing = 0;
-    static uint32_t timeEndedChargingWhileMixing = 0;
 
-    if(millis() - lastChargingTime > settings.chargeOffTime){
       // pause pumping
       pumpUpdater.end();
 
@@ -289,9 +288,6 @@ uint32_t mixMaster::prepForMixing(uint32_t volume, uint32_t flowRate, uint32_t r
   HardenerPump.setSpeed(hardenerPumpSpeed);
   digitalWrite(RESIN_PUMP_ENABLE_PIN, LOW); // Enable Resin Pump
   digitalWrite(HARDENER_PUMP_ENABLE_PIN, LOW); // Enable Hardener Pump
-
-  // start pump update handler
-  pumpUpdater.begin(updatePumps, 10, uSec);
 
   return calculateTimeForVolume(volume, flowRate);
 }
