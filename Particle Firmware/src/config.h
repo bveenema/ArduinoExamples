@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define THIS_PRODUCT_ID 7951
-#define THIS_PRODUCT_VERSION 13
+#define THIS_PRODUCT_VERSION 14
 
 #define RESIN_PUMP_ENABLE_PIN D0
 #define RESIN_PUMP_DIR_PIN D1
