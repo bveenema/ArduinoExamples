@@ -62,9 +62,9 @@ bool pressureManager::update(bool allowCharging){
 
           // Accumulate error while under target pressure
           if(requestCharging) pressure.accumulateUnderPressure += 1;
-          if(pressure.accumulateUnderPressure > 1000000) {
+          if(pressure.accumulateUnderPressure > 10000) {
             this->charged = false;
-            pressure.accumulateUnderPressure = 1000001;
+            pressure.accumulateUnderPressure = 10001;
           }
       } else if(pressure.current > this->offPressure){
 
