@@ -1,4 +1,2 @@
-+ Increase max charging time before mixing to 60 sec
-+ Fix not charging before prime
-+ Increase rolling average 10x
-+ Investigate 15 second charge on first time regardless of settings
+- Add bypass cap to photon Vin
+- Add input capacitors to ADC readings (https://community.particle.io/t/peak-on-adc-readings/44845)
