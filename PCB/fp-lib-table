@@ -1,4 +1,5 @@
 (fp_lib_table
   (lib (name Particle)(type Github)(uri https://github.com/bveenema/particle.pretty)(options "")(descr "Particle Footprints"))
   (lib (name Local)(type KiCad)(uri ${KIPRJMOD}/lib/local.pretty)(options "")(descr "Project Specific Footprints"))
+  (lib (name VDW-Modules)(type KiCad)(uri ${KIPRJMOD}/VDW-Kicad-Footprints/VDW-Modules.pretty)(options "")(descr ""))
 )
