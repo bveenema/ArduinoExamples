@@ -1,6 +1,8 @@
 [submodule "PCB/VDW-Kicad-Symbols"]
 	path = PCB/VDW-Kicad-Symbols
 	url = https://github.com/bveenema/VDW-Kicad-Symbols.git
+	branch = master
 [submodule "PCB/VDW-Kicad-Footprints"]
 	path = PCB/VDW-Kicad-Footprints
 	url = https://github.com/bveenema/VDW-Kicad-Footprints.git
+	branch = master
