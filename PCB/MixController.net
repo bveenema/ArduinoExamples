@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source C:\MixController\PCB\MixController.sch)
-    (date "10/30/2018 7:16:32 PM")
+    (date "10/31/2018 5:29:33 AM")
     (tool "Eeschema (5.0.0)")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -30,7 +30,7 @@
       (tstamp 5AD862D6))
     (comp (ref SW6)
       (value PV1F240SS)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet https://www.e-switch.com/system/asset/product_line/data_sheet/1/PV1.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -43,7 +43,7 @@
       (tstamp 5AD86C2C))
     (comp (ref J5)
       (value PG7)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://a.co/d/5Wgcdna)
       (fields
         (field (name "Alt Vendor") ~)
@@ -56,7 +56,7 @@
       (tstamp 5B069086))
     (comp (ref J6)
       (value PG7)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://a.co/d/5Wgcdna)
       (fields
         (field (name "Alt Vendor") ~)
@@ -82,7 +82,7 @@
       (tstamp 5B46DB46))
     (comp (ref J1)
       (value PG7)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://a.co/d/5Wgcdna)
       (fields
         (field (name "Alt Vendor") ~)
@@ -95,7 +95,7 @@
       (tstamp 5B7E7A55))
     (comp (ref SW5)
       (value GRB136A05BB2)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://switches-connectors-custom.cwind.com/Asset/GRB136A05BB2.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -108,7 +108,7 @@
       (tstamp 5B87AEFE))
     (comp (ref K1)
       (value "G2R-1A-T DC48")
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://omronfs.omron.com/en_US/ecb/products/pdf/en-g2r.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -160,7 +160,7 @@
       (tstamp 5BCA0824))
     (comp (ref SW1)
       (value Rotary_Selector_Switch)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet " http://a.co/d/7F7LLH1")
       (fields
         (field (name "Alt Vendor") ~)
@@ -225,7 +225,7 @@
       (tstamp 5BF057DE))
     (comp (ref SP1)
       (value LED_HOLDER_5MM)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet https://media.digikey.com/pdf/Data%20Sheets/Adafruit%20PDFs/2178_Web.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -238,7 +238,7 @@
       (tstamp 5BF2782C))
     (comp (ref J3)
       (value XHP-2)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://www.jst-mfg.com/product/pdf/eng/eXH.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -264,7 +264,7 @@
       (tstamp 5BF9B807))
     (comp (ref U5)
       (value GP2Y0A02YK0F)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet https://www.sparkfun.com/datasheets/Sensors/Infrared/gp2y0a02yk_e.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -277,7 +277,7 @@
       (tstamp 5BFBED5C))
     (comp (ref J4)
       (value XHP-3)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://www.jst-mfg.com/product/pdf/eng/eXH.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -303,7 +303,7 @@
       (tstamp 5C015301))
     (comp (ref J8)
       (value XHP-3)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://www.jst-mfg.com/product/pdf/eng/eXH.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -316,7 +316,7 @@
       (tstamp 5C029783))
     (comp (ref R5)
       (value 2.2K)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet ~)
       (fields
         (field (name "Alt Vendor") ~)
@@ -388,7 +388,7 @@
       (tstamp 5C0769F3))
     (comp (ref D1)
       (value LED_ARGB)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet ~)
       (fields
         (field (name "Alt Vendor") ~)
@@ -1166,7 +1166,7 @@
       (tstamp 5CC352AB))
     (comp (ref J12)
       (value XHP-5)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://www.jst-mfg.com/product/pdf/eng/eXH.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -1699,7 +1699,7 @@
       (tstamp 5D970E95))
     (comp (ref J92)
       (value XHP-4)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://www.jst-mfg.com/product/pdf/eng/eXH.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -1725,7 +1725,7 @@
       (tstamp 5DC7F6DC))
     (comp (ref J10)
       (value XHP-2)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://www.jst-mfg.com/product/pdf/eng/eXH.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -1738,7 +1738,7 @@
       (tstamp 5DC7F6E8))
     (comp (ref J93)
       (value 50-57-9402)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet https://www.molex.com/pdm_docs/sd/050579402_sd.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -1764,7 +1764,7 @@
       (tstamp 5BE5FDEC))
     (comp (ref J14)
       (value XHP-8)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://www.jst-mfg.com/product/pdf/eng/eXH.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -1777,7 +1777,7 @@
       (tstamp 5C88D00B))
     (comp (ref SP6)
       (value PG7)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://a.co/d/5Wgcdna)
       (fields
         (field (name MPN) a16101300ux0476)
@@ -1788,7 +1788,7 @@
       (tstamp 5C8F60C3))
     (comp (ref SP4)
       (value PG7)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://a.co/d/5Wgcdna)
       (fields
         (field (name MPN) a16101300ux0476)
@@ -1799,7 +1799,7 @@
       (tstamp 5C8F8B25))
     (comp (ref SP5)
       (value PG7)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://a.co/d/5Wgcdna)
       (fields
         (field (name MPN) a16101300ux0476)
@@ -1810,7 +1810,7 @@
       (tstamp 5C8F8EFD))
     (comp (ref SP2)
       (value PG7)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://a.co/d/5Wgcdna)
       (fields
         (field (name MPN) a16101300ux0476)
@@ -1821,7 +1821,7 @@
       (tstamp 5C8F902B))
     (comp (ref SP3)
       (value PG7)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://a.co/d/5Wgcdna)
       (fields
         (field (name MPN) a16101300ux0476)
@@ -1845,7 +1845,7 @@
       (tstamp 5CDE5277))
     (comp (ref J96)
       (value XHP-8)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://www.jst-mfg.com/product/pdf/eng/eXH.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -1858,7 +1858,7 @@
       (tstamp 5CDE5288))
     (comp (ref SP7)
       (value PG7)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://a.co/d/5Wgcdna)
       (fields
         (field (name MPN) a16101300ux0476)
@@ -1893,7 +1893,7 @@
       (tstamp 5BE14953))
     (comp (ref J98)
       (value PHR-4)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://www.jst-mfg.com/product/pdf/eng/ePH.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -1906,7 +1906,7 @@
       (tstamp 5BE14BD3))
     (comp (ref J99)
       (value USB_B)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet https://cdn.amphenol-icc.com/media/wysiwyg/files/drawing/musbd511xx.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -1919,7 +1919,7 @@
       (tstamp 5C71E69F))
     (comp (ref TH1)
       (value 10K)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet ~)
       (fields
         (field (name MPN) ~)
@@ -1930,7 +1930,7 @@
       (tstamp 5BDA24E4))
     (comp (ref J100)
       (value PHR-2)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://www.jst-mfg.com/product/pdf/eng/ePH.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -1943,7 +1943,7 @@
       (tstamp 5BDA2CA0))
     (comp (ref J102)
       (value PHR-3)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://www.jst-mfg.com/product/pdf/eng/ePH.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -2022,7 +2022,7 @@
       (tstamp 5D1CAC30))
     (comp (ref TH2)
       (value 10K)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet ~)
       (fields
         (field (name MPN) ~)
@@ -2138,7 +2138,7 @@
       (tstamp 5CB6F151))
     (comp (ref LS1)
       (value Speaker)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet ~)
       (libsource (lib Device) (part Speaker) (description speaker))
       (sheetpath (names /) (tstamps /))
@@ -2197,7 +2197,7 @@
       (tstamp 5CE6C4BF))
     (comp (ref J105)
       (value XHP-2)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://www.jst-mfg.com/product/pdf/eng/eXH.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -2223,7 +2223,7 @@
       (tstamp 5BDDB2AC))
     (comp (ref U9)
       (value FL50)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet https://www.smdsensors.com/wp-content/uploads/2018/09/FL50-Liquid-Level-Sensor.pdf)
       (fields
         (field (name MPN) FL50-XXXX)
@@ -2247,7 +2247,7 @@
       (tstamp 5C03C1D4))
     (comp (ref J55)
       (value PHR-5)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://www.jst-mfg.com/product/pdf/eng/ePH.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -2273,7 +2273,7 @@
       (tstamp 5C13C67C))
     (comp (ref J71)
       (value PHR-6)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet http://www.jst-mfg.com/product/pdf/eng/ePH.pdf)
       (fields
         (field (name "Alt Vendor") ~)
@@ -2293,7 +2293,7 @@
       (tstamp 5C9F85E8))
     (comp (ref U10)
       (value FL50)
-      (footprint ~)
+      (footprint NoFootprint:NoFootprint)
       (datasheet https://www.smdsensors.com/wp-content/uploads/2018/09/FL50-Liquid-Level-Sensor.pdf)
       (fields
         (field (name MPN) FL50-XXXX)
