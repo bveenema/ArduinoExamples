@@ -23,8 +23,8 @@ PRODUCT_VERSION(THIS_PRODUCT_VERSION);
 SYSTEM_THREAD(ENABLED);
 SYSTEM_MODE(SEMI_AUTOMATIC);
 
-ClickButton button(BUTTON_PIN, LOW, CLICKBTN_PULLUP);
-ClickButton remote(REMOTE_PIN, HIGH);
+ClickButton Button(BUTTON_PIN, LOW, CLICKBTN_PULLUP);
+ClickButton Remote(REMOTE_PIN, HIGH);
 
 statusLED StatusLED;
 
@@ -50,6 +50,9 @@ void setup() {
   #ifdef PRESSURE_ALWAYS_ON
   PressureManager.setChargingState(true);
   #endif
+  Remote.debounceTime = 10;
+  Button.longClickTime = LONG_PRESS_TIME;
+  Remote.longClickTime = LONG_PRESS_TIME;
 
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(REMOTE_PIN, INPUT_PULLDOWN);
@@ -58,11 +61,6 @@ void setup() {
   pinMode(SELECTOR_SWITCH_2, INPUT_PULLDOWN);
   pinMode(SELECTOR_SWITCH_3, INPUT_PULLDOWN);
   pinMode(SELECTOR_SWITCH_4, INPUT_PULLDOWN);
-
-
-  remote.debounceTime = 10;
-  button.longClickTime = LONG_PRESS_TIME;
-  remote.longClickTime = LONG_PRESS_TIME;
 
   delay(100);
 }
@@ -94,14 +92,14 @@ void loop() {
   // check buttons
   // positive value for clicks is number of short presses
   // negative value for click is number of long presses
-  button.Update();
-  remote.Update();
-  if(button.clicks > 0 || remote.clicks > 0) changeState = true; // short press
-  if(button.clicks < 0 || remote.clicks < 0) MixMaster.startFlush(); // long press
-  if(remote.clicks > 0) Serial.println("Remote SHORT Press");
-  if(button.clicks > 0) Serial.println("Button SHORT Press");
-  if(remote.clicks < 0) Serial.println("Remote LONG Press");
-  if(button.clicks < 0) Serial.println("Button LONG Press");
+  Button.Update();
+  Remote.Update();
+  if(Button.clicks > 0 || Remote.clicks > 0) changeState = true; // short press
+  if(Button.clicks < 0 || Remote.clicks < 0) MixMaster.startFlush(); // long press
+  if(Remote.clicks > 0) Serial.println("Remote SHORT Press");
+  if(Button.clicks > 0) Serial.println("Button SHORT Press");
+  if(Remote.clicks < 0) Serial.println("Remote LONG Press");
+  if(Button.clicks < 0) Serial.println("Button LONG Press");
 
 
   // Update the StatusLED
