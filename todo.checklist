@@ -2,6 +2,52 @@
 + Add input capacitors to ADC readings (https://community.particle.io/t/peak-on-adc-readings/44845)
 - Investigate mix time "We changed flow rate from 3785 to 5678 leaving the amount to mixed at 1 gal. We ran the system expecting the run time to be quicker and it was not"
 + Finish liquid sense circuit
+- Verify operation of MCP23017
 
 Long Range Remote (>100ft)
-  - Doorbell (http://a.co/d/dryuWKD)
+  - 2 on order from Amazon
+
+Status LED
+  - Switch to RGB Particle library
+  - Review profile per Maxx 5 ECN
+  - Add 2 Red LEDs for Liquid Presence Detection (1 ea channel) flashing when no liquid
+
+Chime
+  - Create Chime module
+  - Needs Slow, Medium and Fast Chime
+      - Slow = Temp out of Range
+      - Medium = Nothing for now
+      - Fast = Liquid not detected
+  - Needs to access temperature and liquid presence modules
+  - API
+    - Set Silence (silences chime until error resets (goes away and comes back))
+
+Button
+  - Add double short press function = silence chime
+
+Mix Master
+  - Re-write per new ECN
+  - Change to number of steps to move instead of time based
+  - Separate code into tidier blocks
+    - Main state machine
+    - Helper Functions
+    - Flush state machine
+
+Flush Cycle
+  - Update to 2 liters in settable time
+  - "Air Pumps run intermittent" awaiting confirmation
+
+Liquid Presence
+  - Create Liquid Presence module (will be 2)
+  - Read liquid presence sensors (digital hi/low)
+  - API
+    - Get Has Liquid
+
+Temperature Sensing
+  - Create Liquid Temp module (will be 2)
+  - Get thermistors and verify correct reading/operation
+  - Ensure temperature of the liquid is within hi and low settings
+  - API
+    - Set HI
+    - Set LOW
+    - Get In Range
