@@ -26,8 +26,6 @@ SYSTEM_MODE(SEMI_AUTOMATIC);
 ClickButton Button(BUTTON_PIN, LOW, CLICKBTN_PULLUP);
 ClickButton Remote(REMOTE_PIN, HIGH);
 
-statusLED StatusLED;
-
 void setup() {
   EEPROM.get(settingsAddr, settings);
   if(settings.version != THIS_EEPROM_VERSION) {
@@ -97,13 +95,9 @@ void loop() {
   if(Button.clicks < 0) Serial.println("Button LONG Press");
 
 
-  // Update the StatusLED
+  // Update modules
   StatusLED.update();
-
-  #ifdef PAIL_SENSOR_ENABLED
-  //Update the Pail Sensor
   PailSensor.update();
-  #endif
 
 }
 

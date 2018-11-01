@@ -38,4 +38,6 @@ private:
   void blink(uint32_t rate);
 };
 
+extern statusLED StatusLED;
+
 #endif

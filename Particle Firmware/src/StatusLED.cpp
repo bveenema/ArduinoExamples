@@ -1,5 +1,7 @@
 #include "StatusLED.h"
 
+statusLED StatusLED;
+
 statusLED::statusLED(){}
 
 void statusLED::init(){
