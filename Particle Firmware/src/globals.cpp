@@ -1,5 +1,8 @@
 #include "globals.h"
 
+// MCP23017
+Adafruit_MCP23017 IOExp;
+
 // Prime Info
 bool isPrimed = false;
 

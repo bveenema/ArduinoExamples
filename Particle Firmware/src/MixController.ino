@@ -39,6 +39,7 @@ void setup() {
 
   System.on(reset+firmware_update, fwUpdateAndResetHandler);
 
+  IOExp.begin(0); // Address 0
   MixMaster.init();
   StatusLED.init();
   #ifdef PAIL_SENSOR_ENABLED
