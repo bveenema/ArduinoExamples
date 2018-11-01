@@ -29,34 +29,29 @@ ClickButton Remote(REMOTE_PIN, HIGH);
 statusLED StatusLED;
 
 void setup() {
-  Serial.begin(57600);
-
   EEPROM.get(settingsAddr, settings);
   if(settings.version != THIS_EEPROM_VERSION) {
-    // Memory was not previously set, initialize
+    // Memory was not previously set or format updated, initialize
     settings = defaultSettings;
   }
 
+  // Create system even for reset and update (make sure motors stop);
   System.on(reset+firmware_update, fwUpdateAndResetHandler);
 
+
+  // Initializations
+  Serial.begin(57600);
   IOExp.begin(0); // Address 0
   MixMaster.init();
   StatusLED.init();
-  #ifdef PAIL_SENSOR_ENABLED
   PailSensor.init();
   PailSensor.setDetectionThreshold(settings.pailThreshold);
-  #endif
-
-  #ifdef PRESSURE_ALWAYS_ON
-  PressureManager.setChargingState(true);
-  #endif
   Remote.debounceTime = 10;
   Button.longClickTime = LONG_PRESS_TIME;
   Remote.longClickTime = LONG_PRESS_TIME;
 
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(REMOTE_PIN, INPUT_PULLDOWN);
-
   pinMode(SELECTOR_SWITCH_1, INPUT_PULLDOWN);
   pinMode(SELECTOR_SWITCH_2, INPUT_PULLDOWN);
   pinMode(SELECTOR_SWITCH_3, INPUT_PULLDOWN);
