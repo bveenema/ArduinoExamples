@@ -65,12 +65,12 @@ P 13400 8250
 F 0 "R1" V 13500 8250 50  0000 C CNN
 F 1 "470" V 13400 8250 50  0000 C CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 13330 8250 50  0001 C CNN
-F 3 "~" H 13400 8250 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C328.pdf" H 13400 8250 50  0001 C CNN
 F 4 "~" H 9050 3650 50  0001 C CNN "Alt Vendor"
 F 5 "~" H 9050 3650 50  0001 C CNN "Alt Vendor P/N"
-F 6 "~" H 9050 3650 50  0001 C CNN "MPN"
-F 7 "House" H 9050 3650 50  0001 C CNN "Vendor"
-F 8 "~" H 9050 3650 50  0001 C CNN "Vendor P/N"
+F 6 "ERJ-PB6B4700V" H 9050 3650 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 9050 3650 50  0001 C CNN "Vendor"
+F 8 "P20556CT-ND" H 9050 3650 50  0001 C CNN "Vendor P/N"
 	1    13400 8250
 	0    -1   -1   0   
 $EndComp
@@ -480,20 +480,20 @@ Text Notes 3300 2950 0    60   ~ 0
 Text Notes 3300 3650 0    60   ~ 0
 14" Long\n8" Remove Sheath\nCut RED wire to 2"
 $Comp
-L Switch:SW_SPST SW5
+L Switch:SW_SPST_LED SW5
 U 1 1 5B87AEFE
-P 1600 1750
-F 0 "SW5" H 1600 1875 50  0000 C CNN
-F 1 "GRB136A05BB2" H 1600 1650 50  0000 C CNN
-F 2 "NoFootprint:NoFootprint" H 1600 1750 50  0001 C CNN
-F 3 "http://switches-connectors-custom.cwind.com/Asset/GRB136A05BB2.pdf" H 1600 1750 50  0001 C CNN
-F 4 "~" H -350 -2000 50  0001 C CNN "Alt Vendor"
-F 5 "~" H -350 -2000 50  0001 C CNN "Alt Vendor P/N"
-F 6 "GRB136A05BB2" H -350 -2000 50  0001 C CNN "MPN"
-F 7 "DigiKey" H -350 -2000 50  0001 C CNN "Vendor"
-F 8 "SW652-ND" H -350 -2000 50  0001 C CNN "Vendor P/N"
-	1    1600 1750
-	1    0    0    -1  
+P 2350 1850
+F 0 "SW5" H 2350 2050 50  0000 C CNN
+F 1 "JWS11BAAF-A" H 2350 1700 50  0000 C CNN
+F 2 "NoFootprint:NoFootprint" H 2350 1850 50  0001 C CNN
+F 3 "http://www.nkkswitches.com/pdf/jws1.pdf" H 2350 1850 50  0001 C CNN
+F 4 "~" H 400 -1900 50  0001 C CNN "Alt Vendor"
+F 5 "~" H 400 -1900 50  0001 C CNN "Alt Vendor P/N"
+F 6 "JWS11BAAF-A" H 400 -1900 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 400 -1900 50  0001 C CNN "Vendor"
+F 8 "360-2727-ND" H 400 -1900 50  0001 C CNN "Vendor P/N"
+	1    2350 1850
+	-1   0    0    -1  
 $EndComp
 Wire Wire Line
 	1000 4700 1000 4800
@@ -523,17 +523,17 @@ $EndComp
 $Comp
 L Relay:DIPxx-1Axx-11x K1
 U 1 1 5BA6E921
-P 2200 1550
-F 0 "K1" V 2667 1550 50  0000 C CNN
-F 1 "G2R-1A-T DC48" V 2576 1550 50  0000 C CNN
-F 2 "NoFootprint:NoFootprint" H 2550 1500 50  0001 L CNN
-F 3 "http://omronfs.omron.com/en_US/ecb/products/pdf/en-g2r.pdf" H 2200 1550 50  0001 C CNN
-F 4 "~" H -200 250 50  0001 C CNN "Alt Vendor"
-F 5 "~" H -200 250 50  0001 C CNN "Alt Vendor P/N"
-F 6 "G2R-1A-T DC48" H -200 250 50  0001 C CNN "MPN"
-F 7 "DigiKey" H -200 250 50  0001 C CNN "Vendor"
-F 8 "Z6234-ND" H -200 250 50  0001 C CNN "Vendor P/N"
-	1    2200 1550
+P 1750 1550
+F 0 "K1" V 2217 1550 50  0000 C CNN
+F 1 "G2R-1A-T DC48" V 2126 1550 50  0000 C CNN
+F 2 "NoFootprint:NoFootprint" H 2100 1500 50  0001 L CNN
+F 3 "http://omronfs.omron.com/en_US/ecb/products/pdf/en-g2r.pdf" H 1750 1550 50  0001 C CNN
+F 4 "~" H -650 250 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -650 250 50  0001 C CNN "Alt Vendor P/N"
+F 6 "G2R-1A-T DC48" H -650 250 50  0001 C CNN "MPN"
+F 7 "DigiKey" H -650 250 50  0001 C CNN "Vendor"
+F 8 "Z6234-ND" H -650 250 50  0001 C CNN "Vendor P/N"
+	1    1750 1550
 	0    1    -1   0   
 $EndComp
 Wire Wire Line
@@ -542,14 +542,6 @@ Text Notes 550  850  0    60   ~ 0
 15" RED 12 AWG
 Text Notes 550  1000 0    60   ~ 0
 15" BLACK 12 AWG
-Wire Wire Line
-	1800 1750 1900 1750
-Wire Wire Line
-	1400 1750 1350 1750
-Wire Wire Line
-	2500 1750 2600 1750
-Wire Wire Line
-	2600 1750 2600 2100
 $Comp
 L power:GND #PWR05
 U 1 1 5BB5D8F3
@@ -642,7 +634,7 @@ U 1 1 5BC6FCBF
 P 13100 4300
 F 0 "U3" H 13100 4797 60  0000 C CNN
 F 1 "BOB-12009" H 13100 4691 60  0000 C CNN
-F 2 "VDW-Modules:DIP-12_W10.16mm" H 13800 4850 60  0001 C CNN
+F 2 "VDW-Modules:BOB-12_W10.16mm" H 13800 4850 60  0001 C CNN
 F 3 "https://www.sparkfun.com/products/12009" H 13800 4850 60  0001 C CNN
 F 4 "~" H 5000 500 50  0001 C CNN "Alt Vendor"
 F 5 "~" H 5000 500 50  0001 C CNN "Alt Vendor P/N"
@@ -682,7 +674,7 @@ U 1 1 5BCA0824
 P 13100 6650
 F 0 "U4" H 13100 7147 60  0000 C CNN
 F 1 "BOB-12009" H 13100 7041 60  0000 C CNN
-F 2 "VDW-Modules:DIP-12_W10.16mm" H 13800 7200 60  0001 C CNN
+F 2 "VDW-Modules:BOB-12_W10.16mm" H 13800 7200 60  0001 C CNN
 F 3 "https://www.sparkfun.com/products/12009" H 13800 7200 60  0001 C CNN
 F 4 "~" H 5000 2850 50  0001 C CNN "Alt Vendor"
 F 5 "~" H 5000 2850 50  0001 C CNN "Alt Vendor P/N"
@@ -693,8 +685,6 @@ F 8 "1568-1209-ND" H 5000 2850 50  0001 C CNN "Vendor P/N"
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1250 1450 1250 2100
-Wire Wire Line
 	3050 4600 2500 4600
 $Comp
 L VDW_Modules:Rotary_Selector_Switch SW1
@@ -703,12 +693,12 @@ P 1300 4600
 F 0 "SW1" H 1300 4865 50  0000 C CNN
 F 1 "Rotary_Selector_Switch" H 1300 4150 50  0000 C CNN
 F 2 "NoFootprint:NoFootprint" H 1300 4600 50  0001 C CNN
-F 3 " http://a.co/d/7F7LLH1" H 1300 4600 50  0001 C CNN
+F 3 "https://www.ckswitches.com/media/1353/m.pdf" H 1300 4600 50  0001 C CNN
 F 4 "~" H -2500 800 50  0001 C CNN "Alt Vendor"
 F 5 "~" H -2500 800 50  0001 C CNN "Alt Vendor P/N"
-F 6 "LW28-20/0123.3" H -2500 800 50  0001 C CNN "MPN"
-F 7 "Amazon" H -2500 800 50  0001 C CNN "Vendor"
-F 8 "B014KPR3D2" H -2500 800 50  0001 C CNN "Vendor P/N"
+F 6 "MA05L1NZGD" H -2500 800 50  0001 C CNN "MPN"
+F 7 "DigiKey" H -2500 800 50  0001 C CNN "Vendor"
+F 8 "CKN10654-ND" H -2500 800 50  0001 C CNN "Vendor P/N"
 	1    1300 4600
 	1    0    0    -1  
 $EndComp
@@ -832,14 +822,14 @@ L Device:R_Small R2
 U 1 1 5BF057DE
 P 14700 1600
 F 0 "R2" H 14759 1646 50  0000 L CNN
-F 1 "100K" H 14759 1555 50  0000 L CNN
+F 1 "100k" H 14759 1555 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 14700 1600 50  0001 C CNN
-F 3 "~" H 14700 1600 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C328.pdf" H 14700 1600 50  0001 C CNN
 F 4 "~" H 6050 -700 50  0001 C CNN "Alt Vendor"
 F 5 "~" H 6050 -700 50  0001 C CNN "Alt Vendor P/N"
-F 6 "~" H 6050 -700 50  0001 C CNN "MPN"
-F 7 "House" H 6050 -700 50  0001 C CNN "Vendor"
-F 8 "~" H 6050 -700 50  0001 C CNN "Vendor P/N"
+F 6 "ERJ-PB6D1004V" H 6050 -700 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 6050 -700 50  0001 C CNN "Vendor"
+F 8 "P21361CT-ND" H 6050 -700 50  0001 C CNN "Vendor P/N"
 	1    14700 1600
 	1    0    0    -1  
 $EndComp
@@ -1045,7 +1035,7 @@ L Device:R R5
 U 1 1 5BA74793
 P 1350 1550
 F 0 "R5" H 1250 1500 50  0000 C CNN
-F 1 "2.2K" V 1350 1550 50  0000 C CNN
+F 1 "2.2k" V 1350 1550 50  0000 C CNN
 F 2 "NoFootprint:NoFootprint" V 1280 1550 50  0001 C CNN
 F 3 "~" H 1350 1550 50  0001 C CNN
 F 4 "~" H -3000 -3050 50  0001 C CNN "Alt Vendor"
@@ -1062,10 +1052,10 @@ Wire Wire Line
 	1350 1400 1350 1350
 Connection ~ 1350 1350
 Wire Wire Line
-	1350 1350 1900 1350
+	1350 1350 1450 1350
 Wire Wire Line
 	1350 1750 1350 1700
-Text Notes 2000 2350 0    60   ~ 0
+Text Notes 1550 2350 0    60   ~ 0
 Coil \nR: 4170K\nC: 11.5mA\nV: 48VDC
 NoConn ~ 1800 9650
 NoConn ~ 1800 9750
@@ -1115,14 +1105,14 @@ L Device:R_Small R7
 U 1 1 5BB04E7F
 P 13600 7050
 F 0 "R7" H 13541 7004 50  0000 R CNN
-F 1 "1K" H 13541 7095 50  0000 R CNN
+F 1 "1k" H 13541 7095 50  0000 R CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 13600 7050 50  0001 C CNN
-F 3 "~" H 13600 7050 50  0001 C CNN
+F 3 "https://www.seielect.com/Catalog/SEI-rncp.pdf" H 13600 7050 50  0001 C CNN
 F 4 "~" H -450 1500 50  0001 C CNN "Alt Vendor"
 F 5 "~" H -450 1500 50  0001 C CNN "Alt Vendor P/N"
-F 6 "~" H -450 1500 50  0001 C CNN "MPN"
-F 7 "House" H -450 1500 50  0001 C CNN "Vendor"
-F 8 "~" H -450 1500 50  0001 C CNN "Vendor P/N"
+F 6 "RNCP0805FTD1K00" H -450 1500 50  0001 C CNN "MPN"
+F 7 "DigiKey" H -450 1500 50  0001 C CNN "Vendor"
+F 8 "RNCP0805FTD1K00CT-ND" H -450 1500 50  0001 C CNN "Vendor P/N"
 	1    13600 7050
 	-1   0    0    1   
 $EndComp
@@ -1144,14 +1134,14 @@ L Device:R_Small R6
 U 1 1 5BB1C9E8
 P 13600 4700
 F 0 "R6" H 13541 4654 50  0000 R CNN
-F 1 "1K" H 13541 4745 50  0000 R CNN
+F 1 "1k" H 13541 4745 50  0000 R CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 13600 4700 50  0001 C CNN
-F 3 "~" H 13600 4700 50  0001 C CNN
+F 3 "https://www.seielect.com/Catalog/SEI-rncp.pdf" H 13600 4700 50  0001 C CNN
 F 4 "~" H -450 950 50  0001 C CNN "Alt Vendor"
 F 5 "~" H -450 950 50  0001 C CNN "Alt Vendor P/N"
-F 6 "~" H -450 950 50  0001 C CNN "MPN"
-F 7 "House" H -450 950 50  0001 C CNN "Vendor"
-F 8 "~" H -450 950 50  0001 C CNN "Vendor P/N"
+F 6 "RNCP0805FTD1K00" H -450 950 50  0001 C CNN "MPN"
+F 7 "DigiKey" H -450 950 50  0001 C CNN "Vendor"
+F 8 "RNCP0805FTD1K00CT-ND" H -450 950 50  0001 C CNN "Vendor P/N"
 	1    13600 4700
 	-1   0    0    1   
 $EndComp
@@ -1242,6 +1232,11 @@ F 0 "U8" H 8850 8200 50  0000 C CNN
 F 1 "ADS7830" H 9500 8200 50  0000 C CNN
 F 2 "Package_SO:TSSOP-16_4.4x5mm_P0.65mm" H 9300 6950 50  0001 C CIN
 F 3 "http://www.ti.com/lit/ds/symlink/ads7830.pdf" H 9400 7200 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "ADS7830IPWR" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "296-25899-1-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    9200 7650
 	1    0    0    -1  
 $EndComp
@@ -1302,14 +1297,14 @@ L Device:R_Small R3
 U 1 1 5C04CAF1
 P 9100 9200
 F 0 "R3" H 9159 9246 50  0000 L CNN
-F 1 "4.7K" H 9159 9155 50  0000 L CNN
+F 1 "4.7k" H 9159 9155 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 9100 9200 50  0001 C CNN
-F 3 "~" H 9100 9200 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C328.pdf" H 9100 9200 50  0001 C CNN
 F 4 "~" H -100 1050 50  0001 C CNN "Alt Vendor"
 F 5 "~" H -100 1050 50  0001 C CNN "Alt Vendor P/N"
-F 6 "~" H -100 1050 50  0001 C CNN "MPN"
-F 7 "House" H -100 1050 50  0001 C CNN "Vendor"
-F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
+F 6 "ERJ-PB6D4701V" H -100 1050 50  0001 C CNN "MPN"
+F 7 "DigiKey" H -100 1050 50  0001 C CNN "Vendor"
+F 8 "P21095CT-ND" H -100 1050 50  0001 C CNN "Vendor P/N"
 	1    9100 9200
 	1    0    0    -1  
 $EndComp
@@ -1339,14 +1334,14 @@ L Device:R_Small R4
 U 1 1 5C0769F3
 P 9450 9200
 F 0 "R4" H 9509 9246 50  0000 L CNN
-F 1 "4.7K" H 9509 9155 50  0000 L CNN
+F 1 "4.7k" H 9509 9155 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 9450 9200 50  0001 C CNN
-F 3 "~" H 9450 9200 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C328.pdf" H 9450 9200 50  0001 C CNN
 F 4 "~" H -100 1050 50  0001 C CNN "Alt Vendor"
 F 5 "~" H -100 1050 50  0001 C CNN "Alt Vendor P/N"
-F 6 "~" H -100 1050 50  0001 C CNN "MPN"
-F 7 "House" H -100 1050 50  0001 C CNN "Vendor"
-F 8 "~" H -100 1050 50  0001 C CNN "Vendor P/N"
+F 6 "ERJ-PB6D4701V" H -100 1050 50  0001 C CNN "MPN"
+F 7 "DigiKey" H -100 1050 50  0001 C CNN "Vendor"
+F 8 "P21095CT-ND" H -100 1050 50  0001 C CNN "Vendor P/N"
 	1    9450 9200
 	1    0    0    -1  
 $EndComp
@@ -1376,10 +1371,12 @@ P 15200 8450
 F 0 "D1" H 15200 8850 50  0000 C CNN
 F 1 "LED_ARGB" H 15200 8100 50  0000 C CNN
 F 2 "NoFootprint:NoFootprint" H 15200 8400 50  0001 C CNN
-F 3 "~" H 15200 8400 50  0001 C CNN
+F 3 "https://media.digikey.com/pdf/Data%20Sheets/Kingbright%20PDFs/WP154A4SEJ3VBDZGW-CA_Ver.1A_Jul-24-13.pdf" H 15200 8400 50  0001 C CNN
 F 4 "~" H 200 1550 50  0001 C CNN "Alt Vendor"
 F 5 "~" H 200 1550 50  0001 C CNN "Alt Vendor P/N"
 F 6 "DigiKey" H 200 1550 50  0001 C CNN "Vendor"
+F 7 "WP154A4SEJ3VBDZGW/CA" H 0   0   50  0001 C CNN "MPN"
+F 8 "754-2029-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    15200 8450
 	1    0    0    -1  
 $EndComp
@@ -1390,12 +1387,12 @@ P 13400 8450
 F 0 "R8" V 13500 8450 50  0000 C CNN
 F 1 "470" V 13400 8450 50  0000 C CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 13330 8450 50  0001 C CNN
-F 3 "~" H 13400 8450 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C328.pdf" H 13400 8450 50  0001 C CNN
 F 4 "~" H 9050 3850 50  0001 C CNN "Alt Vendor"
 F 5 "~" H 9050 3850 50  0001 C CNN "Alt Vendor P/N"
-F 6 "~" H 9050 3850 50  0001 C CNN "MPN"
-F 7 "House" H 9050 3850 50  0001 C CNN "Vendor"
-F 8 "~" H 9050 3850 50  0001 C CNN "Vendor P/N"
+F 6 "ERJ-PB6B4700V" H 9050 3850 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 9050 3850 50  0001 C CNN "Vendor"
+F 8 "P20556CT-ND" H 9050 3850 50  0001 C CNN "Vendor P/N"
 	1    13400 8450
 	0    -1   -1   0   
 $EndComp
@@ -1406,12 +1403,12 @@ P 13400 8650
 F 0 "R9" V 13500 8650 50  0000 C CNN
 F 1 "470" V 13400 8650 50  0000 C CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 13330 8650 50  0001 C CNN
-F 3 "~" H 13400 8650 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C328.pdf" H 13400 8650 50  0001 C CNN
 F 4 "~" H 9050 4050 50  0001 C CNN "Alt Vendor"
 F 5 "~" H 9050 4050 50  0001 C CNN "Alt Vendor P/N"
-F 6 "~" H 9050 4050 50  0001 C CNN "MPN"
-F 7 "House" H 9050 4050 50  0001 C CNN "Vendor"
-F 8 "~" H 9050 4050 50  0001 C CNN "Vendor P/N"
+F 6 "ERJ-PB6B4700V" H 9050 4050 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 9050 4050 50  0001 C CNN "Vendor"
+F 8 "P20556CT-ND" H 9050 4050 50  0001 C CNN "Vendor P/N"
 	1    13400 8650
 	0    -1   -1   0   
 $EndComp
@@ -3690,7 +3687,7 @@ F 3 "" H 3500 1650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2500 1350 2750 1350
+	2050 1350 2100 1350
 Wire Wire Line
 	2750 1350 2750 2650
 Connection ~ 2750 2650
@@ -4146,7 +4143,7 @@ Wire Wire Line
 Wire Wire Line
 	15450 2550 15500 2550
 Text Notes 800  5200 0    60   ~ 0
-KNOB: ML-75-1-6
+KB1: ML-75-1-6
 $Comp
 L Device:Thermistor TH1
 U 1 1 5BDA24E4
@@ -4156,8 +4153,10 @@ F 1 "10K" H 4450 8850 50  0000 R CNN
 F 2 "NoFootprint:NoFootprint" H 4200 8800 50  0001 C CNN
 F 3 "~" H 4200 8800 50  0001 C CNN
 F 4 "~" H 4200 8800 50  0001 C CNN "MPN"
-F 5 "~" H 4200 8800 50  0001 C CNN "Vendor"
+F 5 "Omega" H 4200 8800 50  0001 C CNN "Vendor"
 F 6 "~" H 4200 8800 50  0001 C CNN "Vendor P/N"
+F 7 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 8 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
 	1    4200 8800
 	-1   0    0    1   
 $EndComp
@@ -4303,9 +4302,14 @@ L Device:R_Small R11
 U 1 1 5C2BE15D
 P 5200 10050
 F 0 "R11" H 5259 10096 50  0000 L CNN
-F 1 "5K .01%" H 5259 10005 50  0000 L CNN
+F 1 "4.99k .1%" H 5259 10005 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5200 10050 50  0001 C CNN
-F 3 "~" H 5200 10050 50  0001 C CNN
+F 3 "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1773272&DocType=DS&DocLang=English" H 5200 10050 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "7-2176092-8" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "A110610CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    5200 10050
 	1    0    0    -1  
 $EndComp
@@ -4424,9 +4428,14 @@ L Device:R_Small R10
 U 1 1 5D1CAC30
 P 5200 9000
 F 0 "R10" H 5259 9046 50  0000 L CNN
-F 1 "5K .01%" H 5259 8955 50  0000 L CNN
+F 1 "4.99k .1%" H 5259 8955 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5200 9000 50  0001 C CNN
-F 3 "~" H 5200 9000 50  0001 C CNN
+F 3 "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1773272&DocType=DS&DocLang=English" H 5200 9000 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "7-2176092-8" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "A110610CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    5200 9000
 	1    0    0    -1  
 $EndComp
@@ -4439,8 +4448,10 @@ F 1 "10K" H 4450 9900 50  0000 R CNN
 F 2 "NoFootprint:NoFootprint" H 4200 9850 50  0001 C CNN
 F 3 "~" H 4200 9850 50  0001 C CNN
 F 4 "~" H 4200 9850 50  0001 C CNN "MPN"
-F 5 "~" H 4200 9850 50  0001 C CNN "Vendor"
+F 5 "Omega" H 4200 9850 50  0001 C CNN "Vendor"
 F 6 "~" H 4200 9850 50  0001 C CNN "Vendor P/N"
+F 7 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 8 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
 	1    4200 9850
 	-1   0    0    1   
 $EndComp
@@ -4452,6 +4463,11 @@ F 0 "U7" H 9800 6150 50  0000 C CNN
 F 1 "MCP23017_SP" H 9050 6150 50  0000 C CNN
 F 2 "Package_DIP:DIP-28_W7.62mm" H 9600 4200 50  0001 L CNN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf" H 9600 4100 50  0001 L CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "MCP23017-E/SP" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "MCP23017-E/SP-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    9400 5200
 	-1   0    0    -1  
 $EndComp
@@ -4611,7 +4627,12 @@ P 5200 1950
 F 0 "R13" V 5100 1950 50  0000 C CNN
 F 1 "1k" V 5200 1950 50  0000 C CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5200 1950 50  0001 C CNN
-F 3 "~" H 5200 1950 50  0001 C CNN
+F 3 "https://www.seielect.com/Catalog/SEI-rncp.pdf" H 5200 1950 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "RNCP0805FTD1K00" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "RNCP0805FTD1K00CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    5200 1950
 	1    0    0    -1  
 $EndComp
@@ -4622,7 +4643,12 @@ P 5200 2300
 F 0 "D3" V 5238 2183 50  0000 R CNN
 F 1 "+5V" V 5147 2183 50  0000 R CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5200 2300 50  0001 C CNN
-F 3 "~" H 5200 2300 50  0001 C CNN
+F 3 "https://katalog.we-online.de/led/datasheet/150080GS75000.pdf" H 5200 2300 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "150080GS75000" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "732-4983-1-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    5200 2300
 	0    -1   -1   0   
 $EndComp
@@ -4643,9 +4669,14 @@ L Device:R_Small R14
 U 1 1 5BEED4EC
 P 5400 1150
 F 0 "R14" V 5300 1150 50  0000 C CNN
-F 1 "7k" V 5400 1150 50  0000 C CNN
+F 1 "7.5k" V 5400 1150 50  0000 C CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5400 1150 50  0001 C CNN
-F 3 "~" H 5400 1150 50  0001 C CNN
+F 3 "https://www.seielect.com/Catalog/SEI-rncp.pdf" H 5400 1150 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "RNCP0805FTD7K50" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "RNCP0805FTD7K50CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    5400 1150
 	-1   0    0    1   
 $EndComp
@@ -4656,7 +4687,12 @@ P 5400 1450
 F 0 "D4" V 5438 1333 50  0000 R CNN
 F 1 "+24V" V 5347 1333 50  0000 R CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5400 1450 50  0001 C CNN
-F 3 "~" H 5400 1450 50  0001 C CNN
+F 3 "https://katalog.we-online.de/led/datasheet/150080GS75000.pdf" H 5400 1450 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "150080GS75000" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "732-4983-1-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    5400 1450
 	0    -1   -1   0   
 $EndComp
@@ -4677,9 +4713,14 @@ L Device:R_Small R12
 U 1 1 5BFD7484
 P 3700 1550
 F 0 "R12" V 3600 1550 50  0000 C CNN
-F 1 "23k" V 3700 1550 50  0000 C CNN
+F 1 "22k" V 3700 1550 50  0000 C CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 3700 1550 50  0001 C CNN
-F 3 "~" H 3700 1550 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C328.pdf" H 3700 1550 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "ERJ-PB6D2202V" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "P21169CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    3700 1550
 	-1   0    0    1   
 $EndComp
@@ -4690,7 +4731,12 @@ P 3700 1900
 F 0 "D2" V 3738 1783 50  0000 R CNN
 F 1 "+72V" V 3650 1800 50  0000 R CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 3700 1900 50  0001 C CNN
-F 3 "~" H 3700 1900 50  0001 C CNN
+F 3 "https://katalog.we-online.de/led/datasheet/150080GS75000.pdf" H 3700 1900 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "150080GS75000" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "732-4983-1-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    3700 1900
 	0    -1   -1   0   
 $EndComp
@@ -4733,9 +4779,14 @@ L Device:R_Small R18
 U 1 1 5C6AB50A
 P 15050 1000
 F 0 "R18" V 14950 1000 50  0000 C CNN
-F 1 "7k" V 15050 1000 50  0000 C CNN
+F 1 "7.5k" V 15050 1000 50  0000 C CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 15050 1000 50  0001 C CNN
-F 3 "~" H 15050 1000 50  0001 C CNN
+F 3 "https://www.seielect.com/Catalog/SEI-rncp.pdf" H 15050 1000 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "RNCP0805FTD7K50" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "RNCP0805FTD7K50CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    15050 1000
 	0    -1   -1   0   
 $EndComp
@@ -4746,7 +4797,12 @@ P 14700 1000
 F 0 "D7" H 14691 1216 50  0000 C CNN
 F 1 "PUMP" H 14691 1125 50  0000 C CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 14700 1000 50  0001 C CNN
-F 3 "~" H 14700 1000 50  0001 C CNN
+F 3 "https://katalog.we-online.de/led/datasheet/150080GS75000.pdf" H 14700 1000 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "150080GS75000" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "732-4983-1-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    14700 1000
 	1    0    0    -1  
 $EndComp
@@ -4771,7 +4827,12 @@ P 14300 4600
 F 0 "R16" H 14400 4650 50  0000 C CNN
 F 1 "1k" H 14400 4550 50  0000 C CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 14300 4600 50  0001 C CNN
-F 3 "~" H 14300 4600 50  0001 C CNN
+F 3 "https://www.seielect.com/Catalog/SEI-rncp.pdf" H 14300 4600 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "RNCP0805FTD1K00" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "RNCP0805FTD1K00CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    14300 4600
 	1    0    0    -1  
 $EndComp
@@ -4782,7 +4843,12 @@ P 14300 4900
 F 0 "D5" H 14292 4645 50  0000 C CNN
 F 1 "EN_HARD" H 14150 4750 50  0000 C CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 14300 4900 50  0001 C CNN
-F 3 "~" H 14300 4900 50  0001 C CNN
+F 3 "https://katalog.we-online.de/led/datasheet/150080GS75000.pdf" H 14300 4900 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "150080GS75000" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "732-4983-1-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    14300 4900
 	0    -1   -1   0   
 $EndComp
@@ -4809,7 +4875,12 @@ P 14300 6950
 F 0 "R17" H 14400 7000 50  0000 C CNN
 F 1 "1k" H 14400 6900 50  0000 C CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 14300 6950 50  0001 C CNN
-F 3 "~" H 14300 6950 50  0001 C CNN
+F 3 "https://www.seielect.com/Catalog/SEI-rncp.pdf" H 14300 6950 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "RNCP0805FTD1K00" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "RNCP0805FTD1K00CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    14300 6950
 	1    0    0    -1  
 $EndComp
@@ -4820,7 +4891,12 @@ P 14300 7250
 F 0 "D6" H 14292 6995 50  0000 C CNN
 F 1 "EN_RESIN" H 14250 7100 50  0000 C CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 14300 7250 50  0001 C CNN
-F 3 "~" H 14300 7250 50  0001 C CNN
+F 3 "https://katalog.we-online.de/led/datasheet/150080GS75000.pdf" H 14300 7250 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "150080GS75000" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "732-4983-1-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    14300 7250
 	0    -1   -1   0   
 $EndComp
@@ -4848,6 +4924,11 @@ F 0 "TP2" V 11100 3450 50  0000 L CNN
 F 1 "SDA" V 11100 3600 50  0000 L CNN
 F 2 "TestPoint:TestPoint_THTPad_D1.5mm_Drill0.7mm" H 11300 3250 50  0001 C CNN
 F 3 "~" H 11300 3250 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "~" H 0   0   50  0001 C CNN "MPN"
+F 7 "~" H 0   0   50  0001 C CNN "Vendor"
+F 8 "~" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    11100 3250
 	0    1    1    0   
 $EndComp
@@ -4859,6 +4940,11 @@ F 0 "TP1" V 11100 3350 50  0000 L CNN
 F 1 "SCL" V 11100 3500 50  0000 L CNN
 F 2 "TestPoint:TestPoint_THTPad_D1.5mm_Drill0.7mm" H 11300 3150 50  0001 C CNN
 F 3 "~" H 11300 3150 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "~" H 0   0   50  0001 C CNN "MPN"
+F 7 "~" H 0   0   50  0001 C CNN "Vendor"
+F 8 "~" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    11100 3150
 	0    1    1    0   
 $EndComp
@@ -4869,7 +4955,12 @@ P 13750 1050
 F 0 "LS1" H 13920 1046 50  0000 L CNN
 F 1 "Speaker" H 13920 955 50  0000 L CNN
 F 2 "NoFootprint:NoFootprint" H 13750 850 50  0001 C CNN
-F 3 "~" H 13740 1000 50  0001 C CNN
+F 3 "https://www.mspindy.com/specifications/PT-3529WQ.PDF" H 13740 1000 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "PT-3529WQ" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "458-1385-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    13750 1050
 	1    0    0    -1  
 $EndComp
@@ -4948,14 +5039,14 @@ L Device:R_Small R15
 U 1 1 5CD15189
 P 12150 1600
 F 0 "R15" H 12209 1646 50  0000 L CNN
-F 1 "100K" H 12209 1555 50  0000 L CNN
+F 1 "100k" H 12209 1555 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 12150 1600 50  0001 C CNN
-F 3 "~" H 12150 1600 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C328.pdf" H 12150 1600 50  0001 C CNN
 F 4 "~" H 3500 -700 50  0001 C CNN "Alt Vendor"
 F 5 "~" H 3500 -700 50  0001 C CNN "Alt Vendor P/N"
-F 6 "~" H 3500 -700 50  0001 C CNN "MPN"
-F 7 "House" H 3500 -700 50  0001 C CNN "Vendor"
-F 8 "~" H 3500 -700 50  0001 C CNN "Vendor P/N"
+F 6 "ERJ-PB6D1004V" H 3500 -700 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 3500 -700 50  0001 C CNN "Vendor"
+F 8 "P21361CT-ND" H 3500 -700 50  0001 C CNN "Vendor P/N"
 	1    12150 1600
 	1    0    0    -1  
 $EndComp
@@ -5060,8 +5151,10 @@ F 1 "FL50" V 2900 6000 50  0000 C CNN
 F 2 "NoFootprint:NoFootprint" H 3800 5850 50  0001 L CNN
 F 3 "https://www.smdsensors.com/wp-content/uploads/2018/09/FL50-Liquid-Level-Sensor.pdf" H 3350 5900 50  0001 C CNN
 F 4 "FL50-XXXX" V 3350 5900 50  0001 C CNN "MPN"
-F 5 "~" V 3350 5900 50  0001 C CNN "Vendor"
+F 5 "SMD" V 3350 5900 50  0001 C CNN "Vendor"
 F 6 "~" V 3350 5900 50  0001 C CNN "Vendor P/N"
+F 7 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 8 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
 	1    3350 5900
 	0    1    1    0   
 $EndComp
@@ -5201,7 +5294,12 @@ P 4900 5800
 F 0 "R19" H 4959 5846 50  0000 L CNN
 F 1 "10k" H 4959 5755 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4900 5800 50  0001 C CNN
-F 3 "~" H 4900 5800 50  0001 C CNN
+F 3 "https://www.seielect.com/Catalog/SEI-rncp.pdf" H 4900 5800 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "RNCP0805FTD10K0" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "RNCP0805FTD10K0CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    4900 5800
 	1    0    0    -1  
 $EndComp
@@ -5256,8 +5354,10 @@ F 1 "FL50" V 2950 7400 50  0000 C CNN
 F 2 "NoFootprint:NoFootprint" H 3850 7250 50  0001 L CNN
 F 3 "https://www.smdsensors.com/wp-content/uploads/2018/09/FL50-Liquid-Level-Sensor.pdf" H 3400 7300 50  0001 C CNN
 F 4 "FL50-XXXX" V 3400 7300 50  0001 C CNN "MPN"
-F 5 "~" V 3400 7300 50  0001 C CNN "Vendor"
+F 5 "SMD" V 3400 7300 50  0001 C CNN "Vendor"
 F 6 "~" V 3400 7300 50  0001 C CNN "Vendor P/N"
+F 7 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 8 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
 	1    3400 7300
 	0    1    1    0   
 $EndComp
@@ -5333,7 +5433,12 @@ P 4950 7200
 F 0 "R20" H 5009 7246 50  0000 L CNN
 F 1 "10k" H 5009 7155 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4950 7200 50  0001 C CNN
-F 3 "~" H 4950 7200 50  0001 C CNN
+F 3 "https://www.seielect.com/Catalog/SEI-rncp.pdf" H 4950 7200 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "RNCP0805FTD10K0" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "RNCP0805FTD10K0CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    4950 7200
 	1    0    0    -1  
 $EndComp
@@ -5394,7 +5499,12 @@ P 5450 7750
 F 0 "D9" H 5450 7900 50  0000 C CNN
 F 1 "LIQ_HARD" H 5400 7600 50  0000 C CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5450 7750 50  0001 C CNN
-F 3 "~" H 5450 7750 50  0001 C CNN
+F 3 "https://katalog.we-online.de/led/datasheet/150080GS75000.pdf" H 5450 7750 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "150080GS75000" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "732-4983-1-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    5450 7750
 	1    0    0    -1  
 $EndComp
@@ -5405,7 +5515,12 @@ P 4950 7600
 F 0 "R22" H 5009 7646 50  0000 L CNN
 F 1 "470" H 5009 7555 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4950 7600 50  0001 C CNN
-F 3 "~" H 4950 7600 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C328.pdf" H 4950 7600 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "ERJ-PB6B4700V" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "P20556CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    4950 7600
 	1    0    0    -1  
 $EndComp
@@ -5437,7 +5552,12 @@ P 5400 6350
 F 0 "D8" H 5400 6500 50  0000 C CNN
 F 1 "LIQ_RESIN" H 5350 6200 50  0000 C CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5400 6350 50  0001 C CNN
-F 3 "~" H 5400 6350 50  0001 C CNN
+F 3 "https://katalog.we-online.de/led/datasheet/150080GS75000.pdf" H 5400 6350 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "150080GS75000" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "732-4983-1-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    5400 6350
 	1    0    0    -1  
 $EndComp
@@ -5448,7 +5568,12 @@ P 4900 6200
 F 0 "R21" H 4959 6246 50  0000 L CNN
 F 1 "470" H 4959 6155 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4900 6200 50  0001 C CNN
-F 3 "~" H 4900 6200 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C328.pdf" H 4900 6200 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "ERJ-PB6B4700V" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "P20556CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    4900 6200
 	1    0    0    -1  
 $EndComp
@@ -5489,7 +5614,12 @@ P 13900 6950
 F 0 "R24" H 14000 7000 50  0000 C CNN
 F 1 "1k" H 14000 6900 50  0000 C CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 13900 6950 50  0001 C CNN
-F 3 "~" H 13900 6950 50  0001 C CNN
+F 3 "https://www.seielect.com/Catalog/SEI-rncp.pdf" H 13900 6950 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "RNCP0805FTD1K00" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "RNCP0805FTD1K00CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    13900 6950
 	1    0    0    -1  
 $EndComp
@@ -5500,7 +5630,12 @@ P 13900 7250
 F 0 "D11" H 13900 7000 50  0000 C CNN
 F 1 "STEP_RESIN" H 13850 7100 50  0000 C CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 13900 7250 50  0001 C CNN
-F 3 "~" H 13900 7250 50  0001 C CNN
+F 3 "https://katalog.we-online.de/led/datasheet/150080GS75000.pdf" H 13900 7250 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "150080GS75000" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "732-4983-1-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    13900 7250
 	0    -1   -1   0   
 $EndComp
@@ -5554,7 +5689,12 @@ P 13900 4600
 F 0 "R23" H 14000 4650 50  0000 C CNN
 F 1 "1k" H 14000 4550 50  0000 C CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 13900 4600 50  0001 C CNN
-F 3 "~" H 13900 4600 50  0001 C CNN
+F 3 "https://www.seielect.com/Catalog/SEI-rncp.pdf" H 13900 4600 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "RNCP0805FTD1K00" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "RNCP0805FTD1K00CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    13900 4600
 	1    0    0    -1  
 $EndComp
@@ -5566,7 +5706,12 @@ P 13900 4900
 F 0 "D10" H 13892 4645 50  0000 C CNN
 F 1 "STEP_HARD" H 13850 4750 50  0000 C CNN
 F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 13900 4900 50  0001 C CNN
-F 3 "~" H 13900 4900 50  0001 C CNN
+F 3 "https://katalog.we-online.de/led/datasheet/150080GS75000.pdf" H 13900 4900 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "150080GS75000" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "732-4983-1-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    13900 4900
 	0    -1   -1   0   
 $EndComp
@@ -5592,9 +5737,14 @@ L Device:C_Small C5
 U 1 1 60122402
 P 8200 2050
 F 0 "C5" H 8400 2000 50  0000 R CNN
-F 1 "470u" H 8500 2100 50  0000 R CNN
+F 1 "47u" H 8500 2100 50  0000 R CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 8200 2050 50  0001 C CNN
-F 3 "~" H 8200 2050 50  0001 C CNN
+F 3 "http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM21BR61A476ME15-01.pdf" H 8200 2050 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "GRM21BR61A476ME15L" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "490-9961-1-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    8200 2050
 	-1   0    0    1   
 $EndComp
@@ -5619,7 +5769,12 @@ P 7450 3450
 F 0 "C4" H 7550 3400 50  0000 R CNN
 F 1 "0.1u" V 7350 3550 50  0000 R CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 7450 3450 50  0001 C CNN
-F 3 "~" H 7450 3450 50  0001 C CNN
+F 3 "https://katalog.we-online.de/pbs/datasheet/885012207016.pdf" H 7450 3450 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "885012207016" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "732-8026-1-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    7450 3450
 	-1   0    0    1   
 $EndComp
@@ -5630,7 +5785,12 @@ P 7200 3450
 F 0 "C3" H 7300 3400 50  0000 R CNN
 F 1 "0.1u" V 7100 3550 50  0000 R CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 7200 3450 50  0001 C CNN
-F 3 "~" H 7200 3450 50  0001 C CNN
+F 3 "https://katalog.we-online.de/pbs/datasheet/885012207016.pdf" H 7200 3450 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "885012207016" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "732-8026-1-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    7200 3450
 	-1   0    0    1   
 $EndComp
@@ -5641,7 +5801,12 @@ P 6950 3450
 F 0 "C2" H 7050 3400 50  0000 R CNN
 F 1 "0.1u" V 6850 3550 50  0000 R CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6950 3450 50  0001 C CNN
-F 3 "~" H 6950 3450 50  0001 C CNN
+F 3 "https://katalog.we-online.de/pbs/datasheet/885012207016.pdf" H 6950 3450 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "885012207016" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "732-8026-1-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    6950 3450
 	-1   0    0    1   
 $EndComp
@@ -5652,7 +5817,12 @@ P 6700 3450
 F 0 "C1" H 6800 3400 50  0000 R CNN
 F 1 "0.1u" V 6600 3550 50  0000 R CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6700 3450 50  0001 C CNN
-F 3 "~" H 6700 3450 50  0001 C CNN
+F 3 "https://katalog.we-online.de/pbs/datasheet/885012207016.pdf" H 6700 3450 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "885012207016" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "732-8026-1-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    6700 3450
 	-1   0    0    1   
 $EndComp
@@ -5748,7 +5918,12 @@ P 2150 8700
 F 0 "R25" H 2209 8746 50  0000 L CNN
 F 1 "2.2k" H 2209 8655 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2150 8700 50  0001 C CNN
-F 3 "~" H 2150 8700 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C328.pdf" H 2150 8700 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "ERJ-PB6D2201V" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "P21055CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    2150 8700
 	1    0    0    -1  
 $EndComp
@@ -5759,7 +5934,12 @@ P 2150 9000
 F 0 "R26" H 2209 9046 50  0000 L CNN
 F 1 "4.7k" H 2209 8955 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2150 9000 50  0001 C CNN
-F 3 "~" H 2150 9000 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDM0000/AOA0000C328.pdf" H 2150 9000 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "ERJ-PB6D4701V" H 0   0   50  0001 C CNN "MPN"
+F 7 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 8 "P21095CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
 	1    2150 9000
 	1    0    0    -1  
 $EndComp
@@ -5788,4 +5968,192 @@ F 3 "" H 2000 8150 50  0001 C CNN
 	1    2000 8150
 	1    0    0    -1  
 $EndComp
+Text Notes 8650 5800 2    60   ~ 0
+LED_HARD_LIQ
+Text Notes 8650 5900 2    60   ~ 0
+LED_RESIN_LIQ
+$Comp
+L Device:LED_ALT D13
+U 1 1 5BE1B4E3
+P 6500 5350
+F 0 "D13" H 6500 5100 50  0000 C CNN
+F 1 "LED_HARD_LIQ" H 6450 5200 50  0000 C CNN
+F 2 "NoFootprint:NoFootprint" H 6500 5350 50  0001 C CNN
+F 3 "https://www.cree.com/led-components/media/documents/C503B-RAS-RAN-AAS-AAN-RBS-RBN-ABS-ABN-RCS-RCN-ACS-ACN-1079.pdf" H 6500 5350 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
+F 7 "C503B-RAN-CZ0C0AA2" H 0   0   50  0001 C CNN "MPN"
+F 8 "C503B-RAN-CZ0C0AA2CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
+	1    6500 5350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R28
+U 1 1 5BE1BD0D
+P 6850 5350
+F 0 "R28" H 6909 5396 50  0000 L CNN
+F 1 "470" H 6909 5305 50  0000 L CNN
+F 2 "NoFootprint:NoFootprint" H 6850 5350 50  0001 C CNN
+F 3 "~" H 6850 5350 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "~" H 0   0   50  0001 C CNN "MPN"
+F 7 "House" H 0   0   50  0001 C CNN "Vendor"
+F 8 "~" H 0   0   50  0001 C CNN "Vendor P/N"
+	1    6850 5350
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6350 5350 5700 5350
+Wire Wire Line
+	6650 5350 6750 5350
+Wire Wire Line
+	6950 5350 7050 5350
+Wire Wire Line
+	7050 5350 7050 5150
+$Comp
+L power:+3V3 #PWR032
+U 1 1 5C0E547C
+P 7050 5150
+F 0 "#PWR032" H 7050 5000 50  0001 C CNN
+F 1 "+3V3" H 7050 5290 50  0000 C CNN
+F 2 "" H 7050 5150 50  0001 C CNN
+F 3 "" H 7050 5150 50  0001 C CNN
+	1    7050 5150
+	1    0    0    -1  
+$EndComp
+Text Notes 5700 5350 0    60   ~ 0
+LED_HARD_LIQ
+$Comp
+L Device:LED_ALT D12
+U 1 1 5C15DA80
+P 6500 4650
+F 0 "D12" H 6500 4400 50  0000 C CNN
+F 1 "LED_RESIN_LIQ" H 6450 4500 50  0000 C CNN
+F 2 "NoFootprint:NoFootprint" H 6500 4650 50  0001 C CNN
+F 3 "https://www.cree.com/led-components/media/documents/C503B-RAS-RAN-AAS-AAN-RBS-RBN-ABS-ABN-RCS-RCN-ACS-ACN-1079.pdf" H 6500 4650 50  0001 C CNN
+F 4 "~" H 0   -100 50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   -100 50  0001 C CNN "Alt Vendor P/N"
+F 6 "DigiKey" H 0   -100 50  0001 C CNN "Vendor"
+F 7 "C503B-RAN-CZ0C0AA2" H 0   0   50  0001 C CNN "MPN"
+F 8 "C503B-RAN-CZ0C0AA2CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
+	1    6500 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R27
+U 1 1 5C15DA86
+P 6850 4650
+F 0 "R27" H 6909 4696 50  0000 L CNN
+F 1 "470" H 6909 4605 50  0000 L CNN
+F 2 "NoFootprint:NoFootprint" H 6850 4650 50  0001 C CNN
+F 3 "~" H 6850 4650 50  0001 C CNN
+F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
+F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
+F 6 "~" H 0   0   50  0001 C CNN "MPN"
+F 7 "House" H 0   0   50  0001 C CNN "Vendor"
+F 8 "~" H 0   0   50  0001 C CNN "Vendor P/N"
+	1    6850 4650
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6350 4650 5700 4650
+Wire Wire Line
+	6650 4650 6750 4650
+Wire Wire Line
+	6950 4650 7050 4650
+Wire Wire Line
+	7050 4650 7050 4450
+$Comp
+L power:+3V3 #PWR022
+U 1 1 5C15DA90
+P 7050 4450
+F 0 "#PWR022" H 7050 4300 50  0001 C CNN
+F 1 "+3V3" H 7050 4590 50  0000 C CNN
+F 2 "" H 7050 4450 50  0001 C CNN
+F 3 "" H 7050 4450 50  0001 C CNN
+	1    7050 4450
+	1    0    0    -1  
+$EndComp
+Text Notes 5700 4650 0    60   ~ 0
+LED_RESIN_LIQ
+NoConn ~ 5700 4650
+NoConn ~ 5700 5350
+$Comp
+L VDW_Mechanical:LED_HOLDER_5MM SP9
+U 1 1 5C2CCCD2
+P 6450 5200
+F 0 "SP9" H 6300 5200 60  0000 R CNN
+F 1 "LED_HOLDER_5MM" H 7100 5350 60  0000 R CNN
+F 2 "NoFootprint:NoFootprint" H 6450 5200 60  0001 C CNN
+F 3 "https://media.digikey.com/pdf/Data%20Sheets/Adafruit%20PDFs/2178_Web.pdf" H 6450 5200 60  0001 C CNN
+F 4 "~" H 4500 750 50  0001 C CNN "Alt Vendor"
+F 5 "~" H 4500 750 50  0001 C CNN "Alt Vendor P/N"
+F 6 "2178" H 4500 750 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 4500 750 50  0001 C CNN "Vendor"
+F 8 "1528-1399-ND" H 4500 750 50  0001 C CNN "Vendor P/N"
+	1    6450 5200
+	-1   0    0    -1  
+$EndComp
+$Comp
+L VDW_Mechanical:LED_HOLDER_5MM SP8
+U 1 1 5C3471A0
+P 6450 4500
+F 0 "SP8" H 6300 4500 60  0000 R CNN
+F 1 "LED_HOLDER_5MM" H 7100 4650 60  0000 R CNN
+F 2 "NoFootprint:NoFootprint" H 6450 4500 60  0001 C CNN
+F 3 "https://media.digikey.com/pdf/Data%20Sheets/Adafruit%20PDFs/2178_Web.pdf" H 6450 4500 60  0001 C CNN
+F 4 "~" H 4500 50  50  0001 C CNN "Alt Vendor"
+F 5 "~" H 4500 50  50  0001 C CNN "Alt Vendor P/N"
+F 6 "2178" H 4500 50  50  0001 C CNN "MPN"
+F 7 "DigiKey" H 4500 50  50  0001 C CNN "Vendor"
+F 8 "1528-1399-ND" H 4500 50  50  0001 C CNN "Vendor P/N"
+	1    6450 4500
+	-1   0    0    -1  
+$EndComp
+Text Notes 1700 2600 0    60   ~ 0
+TODO
+Text Notes 1100 5350 0    60   ~ 0
+TODO
+$Comp
+L Device:R R?
+U 1 1 5C4475E0
+P 2100 1550
+F 0 "R?" H 2000 1500 50  0000 C CNN
+F 1 "22k" V 2100 1550 50  0000 C CNN
+F 2 "NoFootprint:NoFootprint" V 2030 1550 50  0001 C CNN
+F 3 "~" H 2100 1550 50  0001 C CNN
+F 4 "~" H -2250 -3050 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -2250 -3050 50  0001 C CNN "Alt Vendor P/N"
+F 6 "~" H -2250 -3050 50  0001 C CNN "MPN"
+F 7 "House" H -2250 -3050 50  0001 C CNN "Vendor"
+F 8 "~" H -2250 -3050 50  0001 C CNN "Vendor P/N"
+	1    2100 1550
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1250 1450 1250 2100
+Wire Wire Line
+	2600 1750 2600 1850
+Wire Wire Line
+	1350 1750 1450 1750
+Wire Wire Line
+	2550 1750 2600 1750
+Wire Wire Line
+	2550 1850 2600 1850
+Connection ~ 2600 1850
+Wire Wire Line
+	2600 1850 2600 2100
+Wire Wire Line
+	2050 1750 2150 1750
+Wire Wire Line
+	2100 1700 2100 1850
+Wire Wire Line
+	2100 1850 2150 1850
+Wire Wire Line
+	2100 1400 2100 1350
+Connection ~ 2100 1350
+Wire Wire Line
+	2100 1350 2750 1350
 $EndSCHEMATC
