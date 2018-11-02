@@ -36,9 +36,8 @@ void setup() {
   // Create system even for reset and update (make sure motors stop);
   System.on(reset+firmware_update, fwUpdateAndResetHandler);
 
-
-  // Initializations
-  Serial.begin(57600);
+  // Initializations (Serial and IOExp **MUST** be first)
+  Serial.begin(57600); // baud 57600
   IOExp.begin(0); // Address 0
   MixMaster.init();
   StatusLED.init();
