@@ -44,10 +44,30 @@ private:
   RGBColor currentColor = GREEN;
   uint32_t lastBlinkTime = 0;
 
+  // State holders for the Red Status LED's
+  struct RedLED{
+    bool state;
+    pin_t pin;
+    uint32_t lastBlinkTime;
+    void on(){
+      state = true;
+      IOExp.digitalWrite(pin, HIGH);
+    }
+    void blink(uint32_t rate){
+      if(millis()-lastBlinkTime > rate){
+        state = !state;
+        IOExp.digitalWrite(pin, state);
+        lastBlinkTime = millis();
+      }
+    }
+  };
+  RedLED RedLED_1 = {0, 5, 0};
+  RedLED RedLED_2 = {0, 6, 0};
+
   void set(RGBColor color, LEDState state);
 
   // toggles LED if time is expired
-  void blink(uint32_t rate);
+  void blinkRGB(uint32_t rate);
 };
 
 extern statusLED StatusLED;

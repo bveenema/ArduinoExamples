@@ -7,7 +7,13 @@ statusLED::statusLED(){}
 void statusLED::init(){
   // Take control of the system RGB LED and turn off
   RGB.control(true);
-  RGB.color(0,0,0)
+  RGB.color(0,0,0);
+
+  // Setup Red LEDs
+  IOExp.pinMode(RedLED_1.pin, OUTPUT);
+  IOExp.pinMode(RedLED_2.pin, OUTPUT);
+  RedLED_1.on();
+  RedLED_2.on();
 }
 
 void statusLED::update(){
@@ -18,8 +24,8 @@ void statusLED::update(){
   else                                        this->set(GREEN, ON);
 
   // call functions based on current state
-       if(currentState == FAST_BLINK)   this->blink(175);
-  else if(currentState == BLINK)        this->blink(750);
+       if(currentState == FAST_BLINK)   this->blinkRGB(FAST_BLINK_RATE);
+  else if(currentState == BLINK)        this->blinkRGB(REGULAR_BLINK_RATE);
   else if(currentState == ON)           RGB.brightness(255);
   else                                  RGB.brightness(0);
 
@@ -31,6 +37,13 @@ void statusLED::update(){
   else if(currentColor == CYAN)     RGB.color(0,255,255);
   else if(currentColor == MAGENTA)  RGB.color(255,0,255);
   else                              RGB.color(0,0,0);
+
+  // Check Liquid Sensors to decide Red LED states
+  if(/*!ResinLiquidSensor.hasLiquid()*/true) RedLED_1.blink(FAST_BLINK_RATE);
+  else RedLED_1.on();
+  if(/*!HardenerLiquidSensor.hasLiquid()*/false) RedLED_2.blink(FAST_BLINK_RATE);
+  else RedLED_2.on();
+
 }
 
 void statusLED::set(RGBColor color, LEDState state){
@@ -38,7 +51,7 @@ void statusLED::set(RGBColor color, LEDState state){
   currentColor = color;
 }
 
-void statusLED::blink(uint32_t rate){
+void statusLED::blinkRGB(uint32_t rate){
   if(millis() - lastBlinkTime > rate) {
     if(RGB.brightness() > 125) RGB.brightness(0);
     else RGB.brightness(255);
