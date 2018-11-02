@@ -5966,9 +5966,9 @@ F 3 "" H 2000 8150 50  0001 C CNN
 	1    2000 8150
 	1    0    0    -1  
 $EndComp
-Text Notes 8650 5800 2    60   ~ 0
+Text Notes 8400 6150 2    60   ~ 0
 LED_HARD_LIQ
-Text Notes 8650 5900 2    60   ~ 0
+Text Notes 8500 6250 2    60   ~ 0
 LED_RESIN_LIQ
 $Comp
 L Device:LED_ALT D13
@@ -6166,4 +6166,36 @@ F 8 "~" H 1300 5450 60  0000 C CNN "Alt Vendor P/N"
 	1    800  4750
 	1    0    0    -1  
 $EndComp
+Text Notes 8600 5400 0    60   ~ 0
+1
+Text Notes 8600 5500 0    60   ~ 0
+2
+Text Notes 8600 5600 0    60   ~ 0
+3
+Text Notes 8600 5700 0    60   ~ 0
+4
+Text Notes 8600 5800 0    60   ~ 0
+5
+Text Notes 8600 5900 0    60   ~ 0
+6
+Text Notes 8600 6000 0    60   ~ 0
+7
+Text Notes 8600 4400 0    60   ~ 0
+8
+Text Notes 8600 4500 0    60   ~ 0
+9
+Text Notes 8600 4600 0    60   ~ 0
+10
+Text Notes 8600 4700 0    60   ~ 0
+11
+Text Notes 8600 4800 0    60   ~ 0
+12
+Text Notes 8600 4900 0    60   ~ 0
+13
+Text Notes 8600 5000 0    60   ~ 0
+14
+Text Notes 8600 5100 0    60   ~ 0
+15
+Text Notes 8600 5300 0    60   ~ 0
+0
 $EndSCHEMATC
