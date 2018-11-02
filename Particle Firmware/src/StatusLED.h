@@ -16,6 +16,15 @@ typedef enum{
   FAST_BLINK,
 } LEDState;
 
+typedef enum{
+  RED,
+  GREEN,
+  BLUE,
+  YELLOW,
+  CYAN,
+  MAGENTA,
+} RGBColor;
+
 class statusLED{
 public:
   statusLED();
@@ -32,7 +41,10 @@ public:
 
 private:
   LEDState currentState = OFF;
+  RGBColor currentColor = GREEN;
   uint32_t lastBlinkTime = 0;
+
+  void set(RGBColor color, LEDState state);
 
   // toggles LED if time is expired
   void blink(uint32_t rate);

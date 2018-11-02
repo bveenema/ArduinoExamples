@@ -14,7 +14,7 @@ Pressure Manager Cleanup
 
 Status LED
   + Make self instantiating
-  - Switch to RGB Particle library
+  + Switch to RGB Particle library
   - Review profile per Maxx 5 ECN
   - Add 2 Red LEDs for Liquid Presence Detection (1 ea channel) flashing when no liquid
 

@@ -5,26 +5,43 @@ statusLED StatusLED;
 statusLED::statusLED(){}
 
 void statusLED::init(){
-  pinMode(STATUS_LED_PIN,OUTPUT);
-  digitalWrite(STATUS_LED_PIN, LOW);
+  // Take control of the system RGB LED and turn off
+  RGB.control(true);
+  RGB.color(0,0,0)
 }
 
 void statusLED::update(){
-  if(!PailSensor.getState()) currentState = FAST_BLINK;
-  else if(!isPrimed) currentState = BLINK;
-  else if(MixMaster.getState() == FLUSHING) currentState = BLINK;
-  else currentState = ON;
+  // Check externals to decide LED state
+       if(!PailSensor.getState())             this->set(GREEN, FAST_BLINK);
+  else if(!isPrimed)                          this->set(GREEN, BLINK);
+  else if(MixMaster.getState() == FLUSHING)   this->set(GREEN, BLINK);
+  else                                        this->set(GREEN, ON);
 
-  if(currentState == FAST_BLINK) this->blink(FAST_BLINK_RATE);
-  else if(currentState == BLINK) this->blink(REGULAR_BLINK_RATE);
-  else if(currentState == ON) pinSetFast(STATUS_LED_PIN);
-  else pinResetFast(STATUS_LED_PIN);
+  // call functions based on current state
+       if(currentState == FAST_BLINK)   this->blink(175);
+  else if(currentState == BLINK)        this->blink(750);
+  else if(currentState == ON)           RGB.brightness(255);
+  else                                  RGB.brightness(0);
+
+  // set color
+       if(currentColor == RED)      RGB.color(255,0,0);
+  else if(currentColor == GREEN)    RGB.color(0,255,0);
+  else if(currentColor == BLUE)     RGB.color(0,0,255);
+  else if(currentColor == YELLOW)   RGB.color(255,255,0);
+  else if(currentColor == CYAN)     RGB.color(0,255,255);
+  else if(currentColor == MAGENTA)  RGB.color(255,0,255);
+  else                              RGB.color(0,0,0);
 }
 
+void statusLED::set(RGBColor color, LEDState state){
+  currentState = state;
+  currentColor = color;
+}
 
 void statusLED::blink(uint32_t rate){
   if(millis() - lastBlinkTime > rate) {
-    digitalWriteFast(STATUS_LED_PIN, !pinReadFast(STATUS_LED_PIN));
+    if(RGB.brightness() > 125) RGB.brightness(0);
+    else RGB.brightness(255);
     lastBlinkTime = millis();
   }
 }
