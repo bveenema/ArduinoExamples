@@ -57,7 +57,7 @@ void setup() {
   IOExp.pinMode(ROTARY_3_IOEXP_PIN, INPUT);
   IOExp.pullUp(ROTARY_3_IOEXP_PIN, HIGH);
   IOExp.pinMode(ROTARY_4_IOEXP_PIN, INPUT);
-  IOExp.pullUp(ROTARY_5_IOEXP_PIN, HIGH);
+  IOExp.pullUp(ROTARY_4_IOEXP_PIN, HIGH);
 
   delay(100);
 }
