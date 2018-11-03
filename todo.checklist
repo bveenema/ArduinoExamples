@@ -5,6 +5,10 @@
 - Verify operation of MCP23017
 - Consider making isPrimed non-global
 
+Reconfigure Pins
+  - Change definitions
+  - Veriy Selector switch function
+
 Long Range Remote (>100ft)
   - 2 on order from Amazon
 
