@@ -2679,21 +2679,6 @@ F 8 "455-2268-ND" H -400 -100 50  0001 C CNN "Vendor P/N"
 	1    2300 4700
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:+3V3 #PWR08
-U 1 1 5CC35EB3
-P 2600 4350
-F 0 "#PWR08" H 2600 4200 50  0001 C CNN
-F 1 "+3V3" H 2600 4490 50  0000 C CNN
-F 2 "" H 2600 4350 50  0001 C CNN
-F 3 "" H 2600 4350 50  0001 C CNN
-	1    2600 4350
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2600 4350 2600 4500
-Wire Wire Line
-	2600 4500 2500 4500
 Wire Wire Line
 	2100 4500 1550 4500
 Wire Wire Line
@@ -6230,4 +6215,33 @@ Wire Notes Line
 	10300 5750 10100 5750
 Text Notes 10400 6350 1    60   ~ 0
 NOT ON PCB
+Wire Wire Line
+	2500 4500 2550 4500
+Wire Wire Line
+	2550 4500 2550 5050
+$Comp
+L power:GND #PWR?
+U 1 1 5C0D8DC9
+P 2550 5050
+F 0 "#PWR?" H 2550 4800 50  0001 C CNN
+F 1 "GND" H 2550 4900 50  0000 C CNN
+F 2 "" H 2550 5050 50  0001 C CNN
+F 3 "" H 2550 5050 50  0001 C CNN
+	1    2550 5050
+	1    0    0    -1  
+$EndComp
+Wire Notes Line
+	2450 5250 2650 5250
+Wire Notes Line
+	2650 5250 2650 4950
+Wire Notes Line
+	2650 4950 2600 4950
+Wire Notes Line
+	2600 4950 2600 4450
+Wire Notes Line
+	2600 4450 2450 4450
+Wire Notes Line
+	2450 4450 2450 5250
+Text Notes 1550 5350 0    60   ~ 0
+Tied to 3V3 on PCB. cut track and tie to GND
 $EndSCHEMATC
