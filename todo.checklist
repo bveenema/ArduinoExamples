@@ -17,7 +17,7 @@ Status LED
   + Switch to RGB Particle library
   + Review profile per Maxx 5 ECN
   + Add 2 Red LEDs for Liquid Presence Detection (1 ea channel) flashing when no liquid
-  - Verify function after Liquid Sensor module is ready
+  + Verify function after Liquid Sensor module is ready
 
 Chime
   - Create Chime module
@@ -46,10 +46,11 @@ Flush Cycle
   - "Air Pumps run intermittent" awaiting confirmation
 
 Liquid Presence
-  - Create Liquid Presence module (will be 2)
-  - Read liquid presence sensors (digital hi/low)
-  - API
-    - Get Has Liquid
+  - Verify function with real sensors
+  + Create Liquid Presence module (will be 2)
+  + Read liquid presence sensors (digital hi/low)
+  + API
+    + Get Has Liquid
 
 Temperature Sensing
   - Create Liquid Temp module (will be 2)

@@ -39,9 +39,9 @@ void statusLED::update(){
   else                              RGB.color(0,0,0);
 
   // Check Liquid Sensors to decide Red LED states
-  if(/*!ResinLiquidSensor.hasLiquid()*/true) RedLED_1.blink(FAST_BLINK_RATE);
+  if(!ResinLiquidSensor.hasLiquid()) RedLED_1.blink(FAST_BLINK_RATE);
   else RedLED_1.on();
-  if(/*!HardenerLiquidSensor.hasLiquid()*/false) RedLED_2.blink(FAST_BLINK_RATE);
+  if(!HardenerLiquidSensor.hasLiquid()) RedLED_2.blink(FAST_BLINK_RATE);
   else RedLED_2.on();
 
 }

@@ -6,6 +6,7 @@
 #include "globals.h"
 #include "MixMaster.h"
 #include "PailSensor.h"
+#include "LiquidSensor.h"
 
 extern mixMaster MixMaster;
 
@@ -61,8 +62,8 @@ private:
       }
     }
   };
-  RedLED RedLED_1 = {0, 5, 0};
-  RedLED RedLED_2 = {0, 6, 0};
+  RedLED RedLED_1 = {0, LED_RESIN_LIQ_IOEXP_PIN, 0};
+  RedLED RedLED_2 = {0, LED_HARD_LIQ_IOEXP_PIN, 0};
 
   void set(RGBColor color, LEDState state);
 

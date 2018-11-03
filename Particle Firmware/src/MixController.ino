@@ -12,10 +12,8 @@
 #include "AppInterface.h"
 #include "MixMaster.h"
 #include "StatusLED.h"
-
-#ifdef PAIL_SENSOR_ENABLED
+#include "LiquidSensor.h"
 #include "PailSensor.h"
-#endif
 
 PRODUCT_ID(THIS_PRODUCT_ID);
 PRODUCT_VERSION(THIS_PRODUCT_VERSION);
@@ -43,6 +41,9 @@ void setup() {
   StatusLED.init();
   PailSensor.init();
   PailSensor.setDetectionThreshold(settings.pailThreshold);
+  ResinLiquidSensor.init(LIQUID_SNS_RESIN_IOEXP_PIN);
+  HardenerLiquidSensor.init(LIQUID_SNS_HARDENER_IOEXP_PIN);
+
   Remote.debounceTime = 10;
   Button.longClickTime = LONG_PRESS_TIME;
   Remote.longClickTime = LONG_PRESS_TIME;
@@ -97,6 +98,8 @@ void loop() {
   // Update modules
   StatusLED.update();
   PailSensor.update();
+  ResinLiquidSensor.update();
+  HardenerLiquidSensor.update();
 
 }
 
