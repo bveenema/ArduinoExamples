@@ -50,10 +50,14 @@ void setup() {
 
   pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(REMOTE_PIN, INPUT_PULLDOWN);
-  pinMode(SELECTOR_SWITCH_1, INPUT_PULLDOWN);
-  pinMode(SELECTOR_SWITCH_2, INPUT_PULLDOWN);
-  pinMode(SELECTOR_SWITCH_3, INPUT_PULLDOWN);
-  pinMode(SELECTOR_SWITCH_4, INPUT_PULLDOWN);
+  IOExp.pinMode(ROTARY_1_IOEXP_PIN, INPUT);
+  IOExp.pullUp(ROTARY_1_IOEXP_PIN, HIGH);
+  IOExp.pinMode(ROTARY_2_IOEXP_PIN, INPUT);
+  IOExp.pullUp(ROTARY_2_IOEXP_PIN, HIGH);
+  IOExp.pinMode(ROTARY_3_IOEXP_PIN, INPUT);
+  IOExp.pullUp(ROTARY_3_IOEXP_PIN, HIGH);
+  IOExp.pinMode(ROTARY_4_IOEXP_PIN, INPUT);
+  IOExp.pullUp(ROTARY_5_IOEXP_PIN, HIGH);
 
   delay(100);
 }
@@ -107,13 +111,13 @@ int checkSelectorSwitch() {
   static unsigned int oldSelector = 0;
   unsigned int newSelector = 0;
 
-  if(pinReadFast(SELECTOR_SWITCH_1)){
+  if(!IOExp.digitalRead(ROTARY_1_IOEXP_PIN)){
     newSelector = 1;
-  } else if(pinReadFast(SELECTOR_SWITCH_2)){
+  } else if(!IOExp.digitalRead(ROTARY_2_IOEXP_PIN)){
     newSelector = 2;
-  } else if(pinReadFast(SELECTOR_SWITCH_3)){
+  } else if(!IOExp.digitalRead(ROTARY_2_IOEXP_PIN)){
     newSelector = 3;
-  } else if(pinReadFast(SELECTOR_SWITCH_4)){
+  } else if(!IOExp.digitalRead(ROTARY_2_IOEXP_PIN)){
     newSelector = 4;
   } else {
     newSelector = 0;
