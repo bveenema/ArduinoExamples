@@ -10,6 +10,7 @@
 #include "globals.h"
 #include "PailSensor.h"
 #include "PressureManager.h"
+#include "Chime.h"
 extern mixMaster MixMaster;
 
 // Command Functions
@@ -43,6 +44,7 @@ inline void printIncrementer(){ Serial.print(debug_incrementer); }
 inline void updateOnPressure() { PressureManager.updateTargetPressure(settings.onPressure,1); }
 inline void updateOffPressure() { PressureManager.updateTargetPressure(settings.offPressure,0); }
 inline void updateChargeTimeout() { PressureManager.updateChargeTimeout(settings.chargeTimeout); }
+inline void silenceChime() { Chime.silence(); }
 
 // Command Declarations
 typedef struct {
@@ -93,6 +95,7 @@ const commandSet commandList[] = {
   {"ratioResin", settings.ratioResin, true, NULL},
   {"ratioHardener", settings.ratioHardener, true, NULL},
   {"selector", NULL, NULL, printCurrentSelector},
+  {"silence", NULL, NULL, silenceChime},
   {"startFlush", NULL, NULL, startFlush},
   {"stepsPerMlResin", &settings.stepsPerMlResin, false, NULL},
   {"stepsPerMlHardener", &settings.stepsPerMlHardener, false, NULL},

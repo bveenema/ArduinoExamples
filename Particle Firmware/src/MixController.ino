@@ -14,6 +14,7 @@
 #include "StatusLED.h"
 #include "LiquidSensor.h"
 #include "PailSensor.h"
+#include "Chime.h"
 
 PRODUCT_ID(THIS_PRODUCT_ID);
 PRODUCT_VERSION(THIS_PRODUCT_VERSION);
@@ -43,6 +44,7 @@ void setup() {
   PailSensor.setDetectionThreshold(settings.pailThreshold);
   ResinLiquidSensor.init(LIQUID_SNS_RESIN_IOEXP_PIN);
   HardenerLiquidSensor.init(LIQUID_SNS_HARDENER_IOEXP_PIN);
+  Chime.init();
 
   Remote.debounceTime = 10;
   Button.longClickTime = LONG_PRESS_TIME;
@@ -91,7 +93,8 @@ void loop() {
   // negative value for click is number of long presses
   Button.Update();
   Remote.Update();
-  if(Button.clicks > 0 || Remote.clicks > 0) changeState = true; // short press
+  if(Button.clicks == 1 || Remote.clicks == 1) changeState = true; // single short press
+  if(Button.clicks == 2 || Remote.clicks == 2) Chime.silence(); // double short press
   if(Button.clicks < 0 || Remote.clicks < 0) MixMaster.startFlush(); // long press
   if(Remote.clicks > 0) Serial.println("Remote SHORT Press");
   if(Button.clicks > 0) Serial.println("Button SHORT Press");
@@ -104,6 +107,7 @@ void loop() {
   PailSensor.update();
   ResinLiquidSensor.update();
   HardenerLiquidSensor.update();
+  Chime.update();
 
 }
 

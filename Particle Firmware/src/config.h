@@ -22,6 +22,7 @@
 #define BUTTON_PIN A3
 #define STATUS_LED_PIN A4
 #define REMOTE_PIN A5
+#define CHIME_PIN RX
 
 // IOExp Pins
 #define USER_BUTTON_IOEXP_PIN 0
@@ -47,6 +48,13 @@
 // Status LED Settings
 #define FAST_BLINK_RATE 150 // toggle every 250 ms
 #define REGULAR_BLINK_RATE 750 // toggle every 750 ms
+
+// Chime Settings
+#define CHIME_FREQUENCY 1100 // 1100, 3100
+#define CHIME_PULSE_TIME 250
+#define CHIME_SLOW_RATE 3000
+#define CHIME_MEDIUM_RATE 1500
+#define CHIME_FAST_RATE 1000
 
 // Pressure Charge Settings
 // #define PRESSURE_ALWAYS_ON
