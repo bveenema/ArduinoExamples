@@ -23,8 +23,8 @@ PRODUCT_VERSION(THIS_PRODUCT_VERSION);
 SYSTEM_THREAD(ENABLED);
 SYSTEM_MODE(SEMI_AUTOMATIC);
 
-ClickButton Button(BUTTON_PIN, LOW, CLICKBTN_PULLUP);
-ClickButton Remote(REMOTE_PIN, HIGH);
+// ClickButton Button(BUTTON_PIN, LOW, CLICKBTN_PULLUP);
+// ClickButton Remote(REMOTE_PIN, HIGH);
 
 void setup() {
   EEPROM.get(settingsAddr, settings);
@@ -49,12 +49,12 @@ void setup() {
   ResinTemp.init(THERM_RESIN_PIN);
   HardenerTemp.init(THERM_HARDENER_PIN);
 
-  Remote.debounceTime = 10;
-  Button.longClickTime = LONG_PRESS_TIME;
-  Remote.longClickTime = LONG_PRESS_TIME;
+  // Remote.debounceTime = 10;
+  // Button.longClickTime = LONG_PRESS_TIME;
+  // Remote.longClickTime = LONG_PRESS_TIME;
 
-  pinMode(BUTTON_PIN, INPUT_PULLUP);
-  pinMode(REMOTE_PIN, INPUT_PULLDOWN);
+  // pinMode(BUTTON_PIN, INPUT_PULLUP);
+  // pinMode(REMOTE_PIN, INPUT_PULLDOWN);
   IOExp.pinMode(ROTARY_1_IOEXP_PIN, INPUT);
   IOExp.pullUp(ROTARY_1_IOEXP_PIN, HIGH);
   IOExp.pinMode(ROTARY_2_IOEXP_PIN, INPUT);
@@ -94,15 +94,15 @@ void loop() {
   // check buttons
   // positive value for clicks is number of short presses
   // negative value for click is number of long presses
-  Button.Update();
-  Remote.Update();
-  if(Button.clicks == 1 || Remote.clicks == 1) changeState = true; // single short press
-  if(Button.clicks == 2 || Remote.clicks == 2) Chime.silence(); // double short press
-  if(Button.clicks < 0 || Remote.clicks < 0) MixMaster.startFlush(); // long press
-  if(Remote.clicks > 0) Serial.println("Remote SHORT Press");
-  if(Button.clicks > 0) Serial.println("Button SHORT Press");
-  if(Remote.clicks < 0) Serial.println("Remote LONG Press");
-  if(Button.clicks < 0) Serial.println("Button LONG Press");
+  // Button.Update();
+  // Remote.Update();
+  // if(Button.clicks == 1 || Remote.clicks == 1) changeState = true; // single short press
+  // if(Button.clicks == 2 || Remote.clicks == 2) Chime.silence(); // double short press
+  // if(Button.clicks < 0 || Remote.clicks < 0) MixMaster.startFlush(); // long press
+  // if(Remote.clicks > 0) Serial.println("Remote SHORT Press");
+  // if(Button.clicks > 0) Serial.println("Button SHORT Press");
+  // if(Remote.clicks < 0) Serial.println("Remote LONG Press");
+  // if(Button.clicks < 0) Serial.println("Button LONG Press");
 
 
   // Update modules
@@ -115,25 +115,34 @@ void loop() {
   HardenerTemp.update();
 }
 
+// Read the selector switch. Must be same value twice before returns new value. Return -1 not same value or not time to read
 int checkSelectorSwitch() {
-  static unsigned int oldSelector = 0;
-  unsigned int newSelector = 0;
+  static uint32_t lastRead = 0;
+  if(millis() - lastRead > 1000){
+    lastRead = millis();
 
-  if(!IOExp.digitalRead(ROTARY_1_IOEXP_PIN)){
-    newSelector = 1;
-  } else if(!IOExp.digitalRead(ROTARY_2_IOEXP_PIN)){
-    newSelector = 2;
-  } else if(!IOExp.digitalRead(ROTARY_2_IOEXP_PIN)){
-    newSelector = 3;
-  } else if(!IOExp.digitalRead(ROTARY_2_IOEXP_PIN)){
-    newSelector = 4;
-  } else {
-    newSelector = 0;
-  }
+    static unsigned int oldSelector = 0;
+    unsigned int newSelector = 0;
 
-  if(newSelector == oldSelector) return newSelector;
-  else {
-    oldSelector = newSelector;
+    if(!IOExp.digitalRead(ROTARY_1_IOEXP_PIN)){
+      newSelector = 1;
+    } else if(!IOExp.digitalRead(ROTARY_2_IOEXP_PIN)){
+      newSelector = 2;
+    } else if(!IOExp.digitalRead(ROTARY_2_IOEXP_PIN)){
+      newSelector = 3;
+    } else if(!IOExp.digitalRead(ROTARY_2_IOEXP_PIN)){
+      newSelector = 4;
+    } else {
+      newSelector = 0;
+    }
+
+    if(newSelector == oldSelector) return newSelector;
+    else {
+      oldSelector = newSelector;
+      lastRead = millis() - 980; // make next read happen faster
+      return -1;
+    }
+  }else {
     return -1;
   }
 }

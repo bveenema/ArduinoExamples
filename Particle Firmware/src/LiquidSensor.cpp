@@ -13,7 +13,10 @@ void liquidSensor::init(uint8_t pin){
 
 void liquidSensor::update(){
   // If signal is low, there is no liquid
-  _hasLiquid = IOExp.digitalRead(_pin);
+  if(millis() - _lastRead > 1000){
+    _lastRead = millis();
+    _hasLiquid = IOExp.digitalRead(_pin);
+  }
 }
 
 bool liquidSensor::hasLiquid(){

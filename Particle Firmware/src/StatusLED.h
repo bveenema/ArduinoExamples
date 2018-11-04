@@ -52,7 +52,7 @@ private:
     uint32_t lastBlinkTime;
     void on(){
       state = true;
-      IOExp.digitalWrite(pin, HIGH);
+      if(state != true) IOExp.digitalWrite(pin, HIGH);
     }
     void blink(uint32_t rate){
       if(millis()-lastBlinkTime > rate){

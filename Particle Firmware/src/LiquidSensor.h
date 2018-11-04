@@ -19,8 +19,9 @@ public:
   bool hasLiquid();
 
 private:
-  bool _hasLiquid = false;
+  bool _hasLiquid = true;
   uint8_t _pin = 0;
+  uint32_t _lastRead = 0;
 };
 
 extern liquidSensor ResinLiquidSensor;
