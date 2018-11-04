@@ -10,3 +10,7 @@
 	path = Particle Firmware/lib/thermistor-beta-vdw
 	url = https://github.com/bveenema/thermistor-beta-vdw.git
 	branch = master
+[submodule "Particle Firmware/lib/clickButton"]
+	path = Particle Firmware/lib/clickButton
+	url = https://github.com/bveenema/clickButton.git
+	branch = master

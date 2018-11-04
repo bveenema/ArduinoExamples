@@ -8,7 +8,7 @@
 #include "Particle.h"
 #include "config.h"
 #include "globals.h"
-#include <clickButton.h>
+#include "clickButton.h"
 #include "AppInterface.h"
 #include "MixMaster.h"
 #include "StatusLED.h"
@@ -23,8 +23,11 @@ PRODUCT_VERSION(THIS_PRODUCT_VERSION);
 SYSTEM_THREAD(ENABLED);
 SYSTEM_MODE(SEMI_AUTOMATIC);
 
-// ClickButton Button(BUTTON_PIN, LOW, CLICKBTN_PULLUP);
-// ClickButton Remote(REMOTE_PIN, HIGH);
+bool readButton(uint8_t pin){
+  return IOExp.digitalRead(pin);
+}
+ClickButton Button(readButton, USER_BUTTON_IOEXP_PIN, LOW, 2);
+ClickButton Remote(readButton, USER_REMOTE_IOEXP_PIN, LOW, 2);
 
 void setup() {
   EEPROM.get(settingsAddr, settings);
@@ -49,12 +52,15 @@ void setup() {
   ResinTemp.init(THERM_RESIN_PIN);
   HardenerTemp.init(THERM_HARDENER_PIN);
 
-  // Remote.debounceTime = 10;
-  // Button.longClickTime = LONG_PRESS_TIME;
-  // Remote.longClickTime = LONG_PRESS_TIME;
+  Remote.debounceTime = 20;
+  Button.longClickTime = LONG_PRESS_TIME;
+  Remote.longClickTime = LONG_PRESS_TIME;
 
-  // pinMode(BUTTON_PIN, INPUT_PULLUP);
-  // pinMode(REMOTE_PIN, INPUT_PULLDOWN);
+  IOExp.pinMode(USER_BUTTON_IOEXP_PIN, INPUT);
+  IOExp.pullUp(USER_BUTTON_IOEXP_PIN, HIGH);
+  IOExp.pinMode(USER_REMOTE_IOEXP_PIN, INPUT);
+  IOExp.pullUp(USER_REMOTE_IOEXP_PIN, HIGH);
+
   IOExp.pinMode(ROTARY_1_IOEXP_PIN, INPUT);
   IOExp.pullUp(ROTARY_1_IOEXP_PIN, HIGH);
   IOExp.pinMode(ROTARY_2_IOEXP_PIN, INPUT);
@@ -94,16 +100,19 @@ void loop() {
   // check buttons
   // positive value for clicks is number of short presses
   // negative value for click is number of long presses
-  // Button.Update();
-  // Remote.Update();
-  // if(Button.clicks == 1 || Remote.clicks == 1) changeState = true; // single short press
-  // if(Button.clicks == 2 || Remote.clicks == 2) Chime.silence(); // double short press
-  // if(Button.clicks < 0 || Remote.clicks < 0) MixMaster.startFlush(); // long press
-  // if(Remote.clicks > 0) Serial.println("Remote SHORT Press");
-  // if(Button.clicks > 0) Serial.println("Button SHORT Press");
-  // if(Remote.clicks < 0) Serial.println("Remote LONG Press");
-  // if(Button.clicks < 0) Serial.println("Button LONG Press");
+  Button.Update();
+  Remote.Update();
+  if(Button.clicks != 0 || Remote.clicks != 0){
+    if(Button.clicks == 1 || Remote.clicks == 1) changeState = true; // single short press
+    if(Button.clicks == 2 || Remote.clicks == 2) Chime.silence(); // double short press
+    if(Button.clicks  < 0 || Remote.clicks  < 0) MixMaster.startFlush(); // long press
+    if(Button.clicks == 1 || Remote.clicks == 1) Serial.println("Button SHORT Press");
+    if(Button.clicks == 2 || Remote.clicks == 2) Serial.println("Button double SHORT Press");
+    if(Button.clicks  < 0 || Remote.clicks  < 0) Serial.println("Button LONG Press");
 
+    if(Button.clicks != 0) Button.clicks = 0;
+    if(Remote.clicks != 0) Remote.clicks = 0;
+  }
 
   // Update modules
   StatusLED.update();

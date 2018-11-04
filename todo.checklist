@@ -32,12 +32,12 @@ Chime
   + Needs to access temperature and liquid presence modules
   + API
     + Set Silence (silences chime until error resets (goes away and comes back))
-  - Test silence with button
+  + Test silence with button
   - Test slow with temperature
 
 Button
   + Add double short press function = silence chime
-  - Test double short press, verify single short press still working
+  + Test double short press, verify single short press still working
 
 Mix Master
   - Make self instantiating
@@ -60,10 +60,10 @@ Liquid Presence
     + Get Has Liquid
 
 Temperature Sensing
-  - Create Liquid Temp module (will be 2)
+  + Create Liquid Temp module (will be 2)
   - Get thermistors and verify correct reading/operation
-  - Ensure temperature of the liquid is within hi and low settings
-  - API
-    - Set HI
-    - Set LOW
-    - Get In Range
+  + Ensure temperature of the liquid is within hi and low settings
+  + API
+    + Set HI
+    + Set LOW
+    + Get In Range
