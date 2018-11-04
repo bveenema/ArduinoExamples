@@ -11,6 +11,7 @@
 #include "PailSensor.h"
 #include "PressureManager.h"
 #include "Chime.h"
+#include "TemperatureMonitor.h"
 extern mixMaster MixMaster;
 
 // Command Functions
@@ -45,6 +46,9 @@ inline void updateOnPressure() { PressureManager.updateTargetPressure(settings.o
 inline void updateOffPressure() { PressureManager.updateTargetPressure(settings.offPressure,0); }
 inline void updateChargeTimeout() { PressureManager.updateChargeTimeout(settings.chargeTimeout); }
 inline void silenceChime() { Chime.silence(); }
+inline void setTemperatureRange() { ResinTemp.setRange(settings.minTemperature,settings.maxTemperature); HardenerTemp.setRange(settings.minTemperature,settings.maxTemperature); }
+inline void getResinTemperature() { Serial.print(ResinTemp.getTemp()); }
+inline void getHardenerTemperature() { Serial.print(HardenerTemp.getTemp()); }
 
 // Command Declarations
 typedef struct {
@@ -83,6 +87,8 @@ const commandSet commandList[] = {
   {"maxNoPressure", &settings.maxNoPressure, false, NULL},
   {"maxPreMixChargingTime", &settings.maxPreMixChargingTime, false, NULL},
   {"minPrimes", &settings.minPrimes, false, NULL},
+  {"maxTemperature", &settings.minTemperature, false, setTemperatureRange},
+  {"minTemperature", &settings.minTemperature, false, setTemperatureRange},
   {"name", NULL, NULL, getDeviceName},
   {"numSelectors", NULL, NULL, printNumSelectors},
   {"onPressure", &settings.onPressure, false, updateOnPressure},
@@ -99,6 +105,8 @@ const commandSet commandList[] = {
   {"startFlush", NULL, NULL, startFlush},
   {"stepsPerMlResin", &settings.stepsPerMlResin, false, NULL},
   {"stepsPerMlHardener", &settings.stepsPerMlHardener, false, NULL},
+  {"temperatureHardener", NULL, NULL, getHardenerTemperature},
+  {"temperatureResin", NULL, NULL, getResinTemperature},
   {"togglePump", NULL, NULL, togglePump},
   {"version", NULL, NULL, printProductVersion},
   {"volume", settings.volume, true, NULL},

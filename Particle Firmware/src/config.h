@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define THIS_PRODUCT_ID 7951
-#define THIS_PRODUCT_VERSION 14
+#define THIS_PRODUCT_VERSION 15
 
 // Photon Pins
 #define RESIN_PUMP_ENABLE_PIN D0
@@ -18,8 +18,10 @@
 
 #define PRESS_SNS_PIN A0
 #define PAIL_SNS_PIN A1
-#define AIR_PUMP_EN A2
-#define BUTTON_PIN A3
+#define THERM_RESIN_PIN A2
+#define THERM_HARDENER_PIN A3
+// #define AIR_PUMP_EN A2
+// #define BUTTON_PIN A3
 #define STATUS_LED_PIN A4
 #define REMOTE_PIN A5
 #define CHIME_PIN RX
@@ -56,6 +58,15 @@
 #define CHIME_MEDIUM_RATE 1500
 #define CHIME_FAST_RATE 1000
 
+// Temperature Monitor Settings
+#define TEMPERATURE_CHECK_RATE 5000 // ms - temperature checking is slow, avoid calling frequently
+#define TEMPERATURE_BETA_VALUE 3950
+#define TEMPERATURE_FIXED_RESISTOR 4700 // ohms
+#define TEMPERATURE_NOM_RESISTANCE 5000 // ohms
+#define TEMPERATURE_NOM_CELCIUS 25.0 // degrees c
+#define TEMPERATURE_NUM_SAMPLES 100 // number of adc samples in rolling average
+#define TEMPERATURE_SAMPLE_RATE 10 // time between adc samples
+
 // Pressure Charge Settings
 // #define PRESSURE_ALWAYS_ON
 #define PRESSURE_READ_RATE 10 // ms between reads of pressure sensor
@@ -69,7 +80,6 @@
 
 // Pail Sensor Settings
 #define DEFAULT_PAIL_DETECTION_THRESHOLD 600 // ADC Value (out of 4085)
-#define PAIL_SENSOR_ENABLED // Remove to Disable the Pail Sensor
 
 // Mix Master Settings
 #define TIME_BETWEEN_KEEP_OPEN_CYCLES 300000 // 5 minutes
@@ -80,12 +90,12 @@
 
 // Button and Remote Settings
 // time must be held down to be a long press to initiate a "Flush" cycle
-#define LONG_PRESS_TIME 5000
+#define LONG_PRESS_TIME 3000
 
 //  EEPROM Structure Definition
 //    When changing the structure of EEPROM, increase THIS_EEPROM_VERSION, this
 //    will cause EEPROM of previous versions to reset to default.
-#define THIS_EEPROM_VERSION 8
+#define THIS_EEPROM_VERSION 9
 
 struct prom_settings {
   uint32_t version;
@@ -103,6 +113,8 @@ struct prom_settings {
   uint32_t maxNoPressure;
   uint32_t primeVolume;
   uint32_t minPrimes;
+  uint32_t minTemperature;
+  uint32_t maxTemperature;
   // Selector Based Settings
   uint32_t flowRate[NUM_SELECTORS];
   uint32_t ratioResin[NUM_SELECTORS];
@@ -128,6 +140,8 @@ const prom_settings defaultSettings = {
   1000, // maxNoPressure
   750, // primeVolume
   1, // minPrimes
+  50, // minTemperature
+  70, // maxTemperature
   {3000,3000,3000,3000,3000}, // flowRate
   {0,200,100,224,189}, // ratioResin
   {0,100,400,100,100}, // ratioHardener

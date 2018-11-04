@@ -6,3 +6,7 @@
 	path = PCB/VDW-Kicad-Footprints
 	url = https://github.com/bveenema/VDW-Kicad-Footprints.git
 	branch = master
+[submodule "Particle Firmware/lib/thermistor-beta-vdw"]
+	path = Particle Firmware/lib/thermistor-beta-vdw
+	url = https://github.com/bveenema/thermistor-beta-vdw.git
+	branch = master

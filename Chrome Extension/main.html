@@ -180,6 +180,16 @@
             <input class="textbox" type="number" min="0" max="4085" step="10" value="0" disabled>
             Current: <span>0</span>
           </li>
+          <li id="command-minTemperature" class="advanced version:min-15">
+            Minimum Temperature (F):
+            <input class="textbox" type="number" min="-50" max="200" step="1" value="0" disabled>
+            Current: <span>0</span>
+          </li>
+          <li id="command-maxTemperature" class="advanced version:min-15">
+            Maximum Temperature (F):
+            <input class="textbox" type="number" min="-50" max="200" step="1" value="0" disabled>
+            Current: <span>0</span>
+          </li>
           <li id="command-autoReverseA" class="advanced version:max-6">
             Auto Reverse A:
             <input class="textbox" type="number" min="0" max="10000" step="1000" value="0" disabled>
@@ -260,6 +270,12 @@
         </li>
         <li id="command-primeState" class="controller-state-infrequent version:min-7">
           Primed: <span>0</span>
+        </li>
+        <li id="command-temperatureResin" class="controller-state-infrequent version:min-15">
+          Resin Temp: <span>0</span>
+        </li>
+        <li id="command-temperatureHardener" class="controller-state-infrequent version:min-15">
+          Hardener Temp: <span>0</span>
         </li>
         <li id="command-incrementer" class="controller-state-frequent version:min-9">
           Incrementer: <span>0</span>

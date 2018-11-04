@@ -15,6 +15,7 @@
 #include "LiquidSensor.h"
 #include "PailSensor.h"
 #include "Chime.h"
+#include "TemperatureMonitor.h"
 
 PRODUCT_ID(THIS_PRODUCT_ID);
 PRODUCT_VERSION(THIS_PRODUCT_VERSION);
@@ -45,6 +46,8 @@ void setup() {
   ResinLiquidSensor.init(LIQUID_SNS_RESIN_IOEXP_PIN);
   HardenerLiquidSensor.init(LIQUID_SNS_HARDENER_IOEXP_PIN);
   Chime.init();
+  ResinTemp.init(THERM_RESIN_PIN);
+  HardenerTemp.init(THERM_HARDENER_PIN);
 
   Remote.debounceTime = 10;
   Button.longClickTime = LONG_PRESS_TIME;
@@ -108,7 +111,8 @@ void loop() {
   ResinLiquidSensor.update();
   HardenerLiquidSensor.update();
   Chime.update();
-
+  ResinTemp.update();
+  HardenerTemp.update();
 }
 
 int checkSelectorSwitch() {
