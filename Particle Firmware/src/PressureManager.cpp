@@ -7,10 +7,10 @@ pressureManager PressureManager;
 void pressureManager::init(uint32_t onPressure, uint32_t offPressure){
   updateTargetPressure(onPressure,1);
   updateTargetPressure(offPressure,0);
-  pinMode(AIR_PUMP_EN, OUTPUT);
+  IOExp.pinMode(PUMP_EN_IOEXP_PIN, OUTPUT);
   pinMode(PRESS_SNS_PIN, INPUT);
 
-  digitalWrite(AIR_PUMP_EN, LOW);
+  IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, LOW);
 }
 
 bool pressureManager::update(bool allowCharging){
@@ -49,9 +49,9 @@ bool pressureManager::update(bool allowCharging){
           requestCharging = true;
 
           // Charge if allowed or reset chargingTimer
-          if(allowCharging) pinSetFast(AIR_PUMP_EN);
+          if(allowCharging) IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, HIGH);
           else {
-            pinResetFast(AIR_PUMP_EN);
+            IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, LOW);
             chargingTimer = millis();
           }
 
@@ -70,14 +70,14 @@ bool pressureManager::update(bool allowCharging){
 
         // set state to over pressure and turn of pump
         this->atPressure = true;
-        pinResetFast(AIR_PUMP_EN);
+        IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, LOW);
 
         // set state to charged, reset under pressure error
         this->charged = true;
         pressure.accumulateUnderPressure = 0;
       }
     } else {
-      pinResetFast(AIR_PUMP_EN);
+      IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, LOW);
       this->charged = false;
     }
 
