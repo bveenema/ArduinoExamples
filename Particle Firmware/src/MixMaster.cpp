@@ -77,14 +77,12 @@ bool mixMaster::update(bool _changeState){
     this->idlePumps();
     PressureManager.update(false);
     if(_changeState || (millis() - timeStartedIdling > TIME_BETWEEN_KEEP_OPEN_CYCLES)) {
-      #ifdef PAIL_SENSOR_ENABLED
       // If no Pail in position, prevent keep open or mixing
       if(!PailSensor.getState()){
         mixerState = START_IDLE;
         _changeState = false;
         return _changeState;
       }
-      #endif
       if(_changeState){
         if(!isPrimed){
           Serial.printlnf("Priming:%d",numConsecutivePrimes);
@@ -194,13 +192,11 @@ bool mixMaster::update(bool _changeState){
     }
   }else if(mixerState == FLUSHING){ // 6
     // kill Flusing if pail no pail
-    #ifdef PAIL_SENSOR_ENABLED
     if(!PailSensor.getState()){
       mixerState = START_IDLE;
       _changeState = false;
       return _changeState;
     }
-    #endif
     this->updateFlushing();
     if(_changeState == true || (millis()-timeStartedFlushing > FLUSH_CYCLE_DURATION)){
       mixerState = START_IDLE;
