@@ -5,7 +5,6 @@
 #include "Particle.h"
 #include "config.h"
 #include <Adafruit_MCP23017.h>
-#include "PressureManager.h"
 
 // MCP23017
 extern Adafruit_MCP23017 IOExp;

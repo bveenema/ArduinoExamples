@@ -3,6 +3,7 @@
 
 #include "Particle.h"
 #include "config.h"
+#include "globals.h"
 
 class pressureManager{
 public:
