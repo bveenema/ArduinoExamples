@@ -28,24 +28,25 @@ void updatePumps(){
 
 // Class Functions
 mixMaster::mixMaster() :
-  ResinPump(AccelStepper::DRIVER, RESIN_PUMP_STEP_PIN, RESIN_PUMP_DIR_PIN),
-  HardenerPump(AccelStepper::DRIVER, HARDENER_PUMP_STEP_PIN, HARDENER_PUMP_DIR_PIN)
+  ResinPump(AccelStepper::DRIVER, RESIN_INPUT_STEP_PIN, RESIN_INPUT_DIR_PIN),
+  HardenerPump(AccelStepper::DRIVER, HARDENER_INPUT_STEP_PIN, HARDENER_INPUT_DIR_PIN)
   {}
 
 void mixMaster::init(){
   PressureManager.init(settings.onPressure, settings.offPressure);
-  pinMode(RESIN_PUMP_ENABLE_PIN, OUTPUT);
-  pinMode(RESIN_PUMP_STEP_PIN, OUTPUT);
-  pinMode(RESIN_PUMP_DIR_PIN, OUTPUT);
-  pinMode(RESIN_PUMP_ASSERT_PIN, INPUT_PULLDOWN);
+  IOExp.pinMode(RESIN_ENABLE_IOEXP_PIN, OUTPUT);
+  pinMode(RESIN_INPUT_STEP_PIN, OUTPUT);
+  pinMode(RESIN_INPUT_DIR_PIN, OUTPUT);
+  IOExp.pinMode(RESIN_HLFB_IOEXP_PIN, INPUT);
 
-  pinMode(HARDENER_PUMP_ENABLE_PIN, OUTPUT);
-  pinMode(HARDENER_PUMP_STEP_PIN, OUTPUT);
-  pinMode(HARDENER_PUMP_DIR_PIN, OUTPUT);
-  pinMode(HARDENER_PUMP_ASSERT_PIN, INPUT_PULLDOWN);
+  IOExp.pinMode(HARDENER_ENABLE_IOEXP_PIN, OUTPUT);
+  pinMode(HARDENER_INPUT_STEP_PIN, OUTPUT);
+  pinMode(HARDENER_INPUT_DIR_PIN, OUTPUT);
+  IOExp.pinMode(HARDENER_HLFB_IOEXP_PIN, INPUT);
 
-  digitalWrite(RESIN_PUMP_ENABLE_PIN, LOW); // Enable Resin Pump
-  digitalWrite(HARDENER_PUMP_ENABLE_PIN, LOW); // Enable Hardener Pump
+
+  IOExp.digitalWrite(RESIN_ENABLE_IOEXP_PIN, LOW); // Enable Resin Pump
+  IOExp.digitalWrite(HARDENER_ENABLE_IOEXP_PIN, LOW); // Enable Hardener Pump
 
   ResinPump.setAcceleration(100000);
   HardenerPump.setAcceleration(100000);
@@ -243,8 +244,8 @@ void mixMaster::updateFlushing(){
       }
 
       timeStateStarted = millis();
-      digitalWrite(RESIN_PUMP_ENABLE_PIN, LOW); // Enable Resin Pump
-      digitalWrite(HARDENER_PUMP_ENABLE_PIN, LOW); // Enable Hardener Pump
+      IOExp.digitalWrite(RESIN_ENABLE_IOEXP_PIN, LOW); // Enable Resin Pump
+      IOExp.digitalWrite(HARDENER_ENABLE_IOEXP_PIN, LOW); // Enable Hardener Pump
       pumpUpdater.begin(updatePumps, 10, uSec);
 
       FlushingState = PULSE_ON;
@@ -283,8 +284,8 @@ uint32_t mixMaster::prepForMixing(uint32_t volume, uint32_t flowRate, uint32_t r
   HardenerPump.setMaxSpeed(ultimateMaxSpeed);
   ResinPump.setSpeed(resinPumpSpeed);
   HardenerPump.setSpeed(hardenerPumpSpeed);
-  digitalWrite(RESIN_PUMP_ENABLE_PIN, LOW); // Enable Resin Pump
-  digitalWrite(HARDENER_PUMP_ENABLE_PIN, LOW); // Enable Hardener Pump
+  IOExp.digitalWrite(RESIN_ENABLE_IOEXP_PIN, LOW); // Enable Resin Pump
+  IOExp.digitalWrite(HARDENER_ENABLE_IOEXP_PIN, LOW); // Enable Hardener Pump
 
   return calculateTimeForVolume(volume, flowRate);
 }
@@ -296,8 +297,8 @@ void mixMaster::idlePumps(){
 
   ResinPump.setSpeed(0);
   HardenerPump.setSpeed(0);
-  digitalWrite(RESIN_PUMP_ENABLE_PIN, HIGH); // Disable Resin Pump
-  digitalWrite(HARDENER_PUMP_ENABLE_PIN, HIGH); // Disable Hardener Pump
+  IOExp.digitalWrite(RESIN_ENABLE_IOEXP_PIN, HIGH); // Enable Resin Pump
+  IOExp.digitalWrite(HARDENER_ENABLE_IOEXP_PIN, HIGH); // Enable Hardener Pump
 }
 
 void mixMaster::runPumps(){
@@ -317,18 +318,20 @@ bool mixMaster::checkPumpErrors(){
   static uint32_t accumulatePumpError = 0;
   static uint32_t accumulateChargeError = 0;
   static uint32_t accumulatePailError = 0;
-  // Check pumps for error, return true if more than 100 checks in a row are error
-  if(!digitalRead(RESIN_PUMP_ASSERT_PIN) || !digitalRead(HARDENER_PUMP_ASSERT_PIN)){
-    if(!digitalRead(RESIN_PUMP_ASSERT_PIN)) Serial.println("Error Resin Pump");
-    if(!digitalRead(HARDENER_PUMP_ASSERT_PIN)) Serial.println("Error Hardener Pump");
-    accumulatePumpError += 1;
-    if(accumulatePumpError > 100){
-      strncpy(currentError, "Pump Error",30);
-      returnVal = true;
+  // Check pumps for error, return true if error for more than 50 ms
+  static uint32_t lastPumpErrorRead = 0;
+  if(millis() - lastPumpErrorRead > 10){
+    if(!IOExp.digitalRead(RESIN_HLFB_IOEXP_PIN) || !IOExp.digitalRead(HARDENER_HLFB_IOEXP_PIN)){
+      accumulatePumpError += 1;
+      if(accumulatePumpError > 5){
+        strncpy(currentError, "Pump Error",30);
+        returnVal = true;
+      }
+    } else {
+      accumulatePumpError = 0;
     }
-  } else {
-    accumulatePumpError = 0;
   }
+
 
   // Check Charging for error, return true if longer than settings.maxNoPressure are error
   // Don't check for charging error when flushing

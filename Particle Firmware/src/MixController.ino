@@ -167,6 +167,8 @@ void nameHandler(const char *topic, const char *data) {
 }
 
 void fwUpdateAndResetHandler(){
-  pinSetFast(RESIN_PUMP_ENABLE_PIN);
-  pinSetFast(HARDENER_PUMP_ENABLE_PIN);
+  // Disable Motor enable pins
+  IOExp.digitalWrite(RESIN_ENABLE_IOEXP_PIN, LOW);
+  IOExp.digitalWrite(HARDENER_ENABLE_IOEXP_PIN, LOW);
+
 }

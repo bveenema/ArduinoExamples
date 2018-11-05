@@ -8,8 +8,6 @@
 #include "SparkIntervalTimer.h"
 #include "PailSensor.h"
 
-
-
 typedef enum{
   START_IDLE, // 0
   IDLE, // 1
