@@ -43,7 +43,7 @@ Mix Master
   + Make self instantiating
   + Re-write per new ECN
   - Change to number of steps to move instead of time based
-  - Add liquid sense error
+  + Add liquid sense error
   + Separate code into tidier blocks
     + Main state machine
     + Helper Functions

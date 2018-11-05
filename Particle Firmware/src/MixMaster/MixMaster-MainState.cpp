@@ -21,8 +21,8 @@ bool mixMaster::update(bool _changeState){
   }else if(mixerState == IDLE){ // 1
     this->idlePumps();
     if(_changeState || (millis() - timeStartedIdling > TIME_BETWEEN_KEEP_OPEN_CYCLES)) {
-      // If no Pail in position, prevent keep open or mixing
-      if(!PailSensor.getState()){
+      // If no Pail in position or liquid, prevent prime, keep open or mixing
+      if(!PailSensor.getState() || !ResinLiquidSensor.hasLiquid() || !HardenerLiquidSensor.hasLiquid()){
         mixerState = START_IDLE;
         _changeState = false;
         return _changeState;
@@ -84,13 +84,21 @@ bool mixMaster::update(bool _changeState){
       }
     }
 
-    if(_changeState || (accumulatedMixingTime > timeToMix)){
-      // kill pump interrupt handler
-      pumpUpdater.end();
+    if(_changeState || !PailSensor.getState() || !ResinLiquidSensor.hasLiquid() || !HardenerLiquidSensor.hasLiquid()){
+      pumpUpdater.end(); // kill pump interrupt handler
       // don't reset _changeState when keep open so button won't be "ignored" while keep open
       if(!keepOpen) _changeState = false;
+      mixerState = START_IDLE;
+    }
+
+    if(accumulatedMixingTime > timeToMix){
+      pumpUpdater.end(); // kill pump interrupt handler
       if(settings.autoReverseSteps > 0) mixerState = START_AUTO_REVERSE;
       else mixerState = START_IDLE;
+      // if the cycle was a prime and it got here, increment numConsecutivePrimes
+      if(prime){
+        numConsecutivePrimes += 1;
+      }
     }
 
   }else if(mixerState == START_AUTO_REVERSE){ // 4
@@ -105,10 +113,6 @@ bool mixMaster::update(bool _changeState){
     ResinPump.run();
     HardenerPump.run();
     if(!ResinPump.isRunning() && !HardenerPump.isRunning()){
-      // if the cycle was a prime and it got here, increment numConsecutivePrimes
-      if(prime){
-        numConsecutivePrimes += 1;
-      }
       mixerState = START_IDLE;
     }
   }else if(mixerState == FLUSHING){ // 6

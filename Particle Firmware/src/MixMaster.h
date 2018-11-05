@@ -7,6 +7,7 @@
 #include "globals.h"
 #include "SparkIntervalTimer.h"
 #include "PailSensor.h"
+#include "LiquidSensor.h"
 
 typedef enum{
   START_IDLE, // 0
