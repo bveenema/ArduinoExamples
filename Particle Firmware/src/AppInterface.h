@@ -4,7 +4,6 @@
 
 #include "Particle.h"
 #include "config.h"
-#include "MixMaster.h"
 
 // Link to external variables
 #include "globals.h"
@@ -12,7 +11,7 @@
 #include "PressureManager.h"
 #include "Chime.h"
 #include "TemperatureMonitor.h"
-extern mixMaster MixMaster;
+#include "MixMaster.h"
 
 // Command Functions
 //      ** must take no arguments and return 'void'

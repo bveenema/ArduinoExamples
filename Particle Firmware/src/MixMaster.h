@@ -11,7 +11,7 @@
 typedef enum{
   START_IDLE, // 0
   IDLE, // 1
-  CHARGING, // 2
+  MIXING_CALCULATIONS, // 2
   MIXING, // 3
   START_AUTO_REVERSE, // 4
   AUTO_REVERSING, // 5
@@ -49,7 +49,6 @@ public:
   //      if "FLUSHING" has been running for longer than FLUSH_CYCLE_DURATION
   void startFlush();
 
-
   void runPumps();
 
 private:
@@ -65,7 +64,7 @@ private:
 
   // Pump Control functions
   // Calculate the resinPumpSpeed and hardenerPumpSpeed, enable the pumps, return the time to pump
-  uint32_t prepForMixing(uint32_t volume, uint32_t flowRate, uint32_t ratioResin=settings.ratioResin[selector], uint32_t ratioHardener=settings.ratioHardener[selector]);
+  uint32_t prepForMixing(uint32_t volume, uint32_t flowRate, uint32_t ratioResin, uint32_t ratioHardener);
   void idlePumps();
   bool runPumpsWithErrorCheck();
   bool checkPumpErrors();
@@ -88,11 +87,23 @@ private:
     IDLE_FLUSHING
   } FlushingState;
 
+  // MIXING States
+  enum MixingState{
+    CHARGING,
+    DELAY,
+    MIX,
+  } MixingState;
+
   // Flushing State Machine Handler
   void updateFlushing();
 
   // Flushing Timer
   uint32_t timeStartedFlushing;
+
+  // Utility Functions
+  uint32_t calculatePumpSpeed(uint32_t flowRate, uint32_t thisPumpRatio, uint32_t otherPumpRatio, uint32_t stepsPerMl);
+  uint32_t calculateTimeForVolume(uint32_t volume, uint16_t flowRate);
+  uint32_t calculateAutoReverseSteps(uint32_t thisPumpRatio, uint32_t otherPumpRatio);
 };
 
 extern mixMaster MixMaster;

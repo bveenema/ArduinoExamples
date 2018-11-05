@@ -40,13 +40,14 @@ Button
   + Test double short press, verify single short press still working
 
 Mix Master
-  - Make self instantiating
-  - Re-write per new ECN
+  + Make self instantiating
+  + Re-write per new ECN
   - Change to number of steps to move instead of time based
-  - Separate code into tidier blocks
-    - Main state machine
-    - Helper Functions
-    - Flush state machine
+  - Add liquid sense error
+  + Separate code into tidier blocks
+    + Main state machine
+    + Helper Functions
+    + Flush state machine
 
 Flush Cycle
   - Update to 2 liters in settable time
