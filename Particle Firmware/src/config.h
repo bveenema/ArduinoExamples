@@ -92,7 +92,7 @@
 //  EEPROM Structure Definition
 //    When changing the structure of EEPROM, increase THIS_EEPROM_VERSION, this
 //    will cause EEPROM of previous versions to reset to default.
-#define THIS_EEPROM_VERSION 9
+#define THIS_EEPROM_VERSION 10
 
 struct prom_settings {
   uint32_t version;
@@ -102,7 +102,6 @@ struct prom_settings {
   uint32_t onPressure;
   uint32_t offPressure;
   uint32_t chargeTimeout;
-  uint32_t chargeOffTime;
   uint32_t chargeDelay;
   uint32_t keepOpenVolume;
   uint32_t pailThreshold;
@@ -129,7 +128,6 @@ const prom_settings defaultSettings = {
   30448, // onPressure
   44288, // offPressure
   15000, // chargeTimeout
-  15000, // chargeOffTime
   1000, // chargeDelay
   150, // keepOpenVolume
   2000, // pailThreshold

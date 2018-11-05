@@ -44,7 +44,6 @@ inline void printIsPrimed(){ Serial.print(isPrimed); }
 inline void printIncrementer(){ Serial.print(debug_incrementer); }
 inline void updateOnPressure() { PressureManager.updateTargetPressure(settings.onPressure,1); }
 inline void updateOffPressure() { PressureManager.updateTargetPressure(settings.offPressure,0); }
-inline void updateChargeTimeout() { PressureManager.updateChargeTimeout(settings.chargeTimeout); }
 inline void silenceChime() { Chime.silence(); }
 inline void setTemperatureRange() { ResinTemp.setRange(settings.minTemperature,settings.maxTemperature); HardenerTemp.setRange(settings.minTemperature,settings.maxTemperature); }
 inline void getResinTemperature() { Serial.print(ResinTemp.getTemp()); }
@@ -72,8 +71,7 @@ const commandSet commandList[] = {
   {"action", NULL, NULL, printMixerState},
   {"autoReverseSteps", &settings.autoReverseSteps, false, NULL},
   {"chargeDelay", &settings.chargeDelay, false, NULL},
-  {"chargeOffTime", &settings.chargeOffTime, false, NULL},
-  {"chargeTimeout", &settings.chargeTimeout, false, updateChargeTimeout},
+  {"chargeTimeout", &settings.chargeTimeout, false, NULL},
   {"cloudStatus", NULL, NULL, printCloudStatus},
   {"currentPressure", NULL, NULL, printCurrentPressure},
   {"error", NULL, NULL, printCurrentError},

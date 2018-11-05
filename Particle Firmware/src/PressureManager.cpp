@@ -13,83 +13,83 @@ void pressureManager::init(uint32_t onPressure, uint32_t offPressure){
   IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, LOW);
 }
 
-bool pressureManager::update(bool allowCharging){
-  bool requestCharging = false;
-    // Take readings, reset index and make valid if pressure.samples is full
-    if(millis()-pressure.lastRead > PRESSURE_READ_RATE){
-      pressure.samples[pressure.index++] = this->readPressure();
-      pressure.lastRead = millis();
+void pressureManager::update(){
+  // Take readings, reset index and make valid if _pressure.samples is full
+  if(millis()-_pressure.lastRead > PRESSURE_READ_RATE){
+    _pressure.samples[_pressure.index++] = this->readPressure();
+    _pressure.lastRead = millis();
+  }
+  if(_pressure.index > _pressure.length){
+    _pressure.index = 0;
+    _pressure.isValid = true;
+  }
+
+  // Calculate average and convert to milli-inH2O
+  if(_pressure.isValid){
+    uint32_t sumOfSamples = 0;
+    for(unsigned int i=0; i<_pressure.length; i++){
+      sumOfSamples += _pressure.samples[i];
     }
-    if(pressure.index > pressure.length){
-      pressure.index = 0;
-      pressure.isValid = true;
-    }
+    uint32_t averageRaw = sumOfSamples/_pressure.length;
+    averageRaw = averageRaw*3300/4095; // convert to milli-volts
 
-    // Calculate average and convert to milli-inH2O
-    if(pressure.isValid){
-      uint32_t sumOfSamples = 0;
-      for(unsigned int i=0; i<pressure.length; i++){
-        sumOfSamples += pressure.samples[i];
-      }
-      uint32_t averageRaw = sumOfSamples/pressure.length;
-      averageRaw = averageRaw*3300/4095; // convert to milli-volts
+    // Convert to milli-inH2O
+    _pressure.current = PRESSURE_SENSOR_PMIN + ((PRESSURE_SENSOR_DELTA_P*(averageRaw - (0.1*PRESSURE_SENSOR_VSUPPLY)))/(0.8*PRESSURE_SENSOR_VSUPPLY));
+  }
 
-      // Convert to milli-inH2O
-      pressure.current = PRESSURE_SENSOR_PMIN + ((PRESSURE_SENSOR_DELTA_P*(averageRaw - (0.1*PRESSURE_SENSOR_VSUPPLY)))/(0.8*PRESSURE_SENSOR_VSUPPLY));
-    }
+  if(_pressure.isValid){
+    if(_pressure.current < _onPressure ||
+      (_pressure.current < _offPressure && _atPressure == false)){
+        // Set state to under pressure state and request charging
+        _atPressure = false;
+        _requestCharging = true;
 
-    // Evaluate
-    if(this->isCharging && pressure.isValid) {
-      if(pressure.current < this->onPressure ||
-         ((pressure.current < this->offPressure) && (this->atPressure == false))){
-          // Set state to under pressure state
-          this->atPressure = false;
+        // Charge if allowed
+        if(_allowCharging && !_currentChargingState){
+          IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, HIGH);
+          _currentChargingState = true;
+        } else if(!_allowCharging && _currentChargingState){
+          IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, LOW);
+          _currentChargingState = false;
+        }
+    } else if(_pressure.current > _offPressure){
+      // set atPressure and stop requesting charging
+      _atPressure = true;
+      _requestCharging = false;
 
-          // request charging
-          requestCharging = true;
-
-          // Charge if allowed or reset chargingTimer
-          if(allowCharging) IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, HIGH);
-          else {
-            IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, LOW);
-            chargingTimer = millis();
-          }
-
-          // if charging timeout, set requestCharging to false
-          if(millis() - chargingTimer > chargingTimeout){
-            requestCharging = false;
-          }
-
-          // Accumulate error while under target pressure
-          if(requestCharging) pressure.accumulateUnderPressure += 1;
-          if(pressure.accumulateUnderPressure > 10000) {
-            this->charged = false;
-            pressure.accumulateUnderPressure = 10001;
-          }
-      } else if(pressure.current > this->offPressure){
-
-        // set state to over pressure and turn of pump
-        this->atPressure = true;
+      // disable air pump
+      if(_currentChargingState == true){
         IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, LOW);
-
-        // set state to charged, reset under pressure error
-        this->charged = true;
-        pressure.accumulateUnderPressure = 0;
+        _currentChargingState = false;
       }
-    } else {
-      IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, LOW);
-      this->charged = false;
     }
+  }
 
-    return requestCharging;
+  // Check to make sure Allow Charging was called in last 10ms, reset if not
+  if(millis() - _lastAllowChargingCall > 10){
+    _allowCharging = false;
+  }
 }
 
-void pressureManager::setChargingState(bool charging){
-  this->isCharging = charging;
+void pressureManager::allowCharging(){
+  _allowCharging = true;
+  _lastAllowChargingCall = millis();
+}
+
+bool pressureManager::requestCharging(){
+  return _requestCharging;
 }
 
 bool pressureManager::isCharged(){
-  return this->charged;
+  return !_requestCharging;
+}
+
+void pressureManager::forceAtPressure(){
+  _atPressure = true;
+}
+
+void pressureManager::forceUnderPressure(){
+  _atPressure = false;
 }
 
 int32_t pressureManager::updateTargetPressure(int32_t pressure, bool type){
@@ -97,23 +97,14 @@ int32_t pressureManager::updateTargetPressure(int32_t pressure, bool type){
     pressure = MAX_CHARGE_PRESSURE;
   }
 
-  if(type == 1) this->onPressure = pressure; // on Pressure
-  else this->offPressure = pressure; // off Pressure
+  if(type == 1) this->_onPressure = pressure; // on Pressure
+  else _offPressure = pressure; // off Pressure
 
   return pressure;
 }
 
-
-uint32_t pressureManager::updateChargeTimeout(uint32_t timeout){
-  if(timeout > MAX_CHARGE_TIMEOUT){
-    timeout = MAX_CHARGE_TIMEOUT;
-  }
-  this->chargingTimeout = timeout;
-  return this->chargingTimeout;
-}
-
 int32_t pressureManager::getPressure(){
-  if(pressure.isValid) return pressure.current;
+  if(_pressure.isValid) return _pressure.current;
   return 0;
 }
 

@@ -16,6 +16,7 @@
 #include "PailSensor.h"
 #include "Chime.h"
 #include "TemperatureMonitor.h"
+#include "PressureManager.h"
 
 PRODUCT_ID(THIS_PRODUCT_ID);
 PRODUCT_VERSION(THIS_PRODUCT_VERSION);
@@ -51,6 +52,7 @@ void setup() {
   Chime.init();
   ResinTemp.init(THERM_RESIN_PIN);
   HardenerTemp.init(THERM_HARDENER_PIN);
+  PressureManager.init(settings.onPressure, settings.offPressure);
 
   Remote.debounceTime = 20;
   Button.longClickTime = LONG_PRESS_TIME;
@@ -122,6 +124,7 @@ void loop() {
   Chime.update();
   ResinTemp.update();
   HardenerTemp.update();
+  PressureManager.update();
 }
 
 // Read the selector switch. Must be same value twice before returns new value. Return -1 not same value or not time to read

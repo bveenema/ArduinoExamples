@@ -15,33 +15,46 @@ public:
             uint32_t offPressure = defaultSettings.offPressure);
 
   // Charge the Pails to the target pressure if isCharging is true
-  //  returns true when the air pump needs to turn on
-  //  Air pump is allowed to turn on if allowCharging is true
-  bool update(bool allowCharging = false);
+  void update();
+
+  // returns true when the air pump needs to turn on
+  bool requestCharging();
+
+  // Air pump is allowed to turn on if allowCharging has been called in last 10ms
+  void allowCharging();
+
+  // Force Pressure Manager into "At Pressure" state
+  void forceAtPressure();
+
+  // Force Pressure Manager into "Under Pressure" state
+  void forceUnderPressure();
+
+  // Returns true when at or above offPressure
+  bool isCharged();
 
   // Function to set whether pails should be charged (true) or not (false)
   void setChargingState(bool charge);
 
-  // Returns True if Pails are charged
-  bool isCharged();
-
   int32_t updateTargetPressure(int32_t pressure, bool type = 0);
 
   int32_t getPressure();
-
-  uint32_t updateChargeTimeout(uint32_t timeout);
 private:
   // True if Pails are charged
   bool charged = false;
 
-  bool atPressure = false;
+  bool _atPressure = false;
+
+  bool _requestCharging = false;
+  uint32_t _lastAllowChargingCall = 0;
+  bool _allowCharging = false;
+  bool _currentChargingState = false;
 
   // True if pails should be charged
   bool isCharging = false;
 
   // Pressure to Maintain in the Pails
-  int32_t onPressure = 0; // milli-inH20
-  int32_t offPressure = 0;
+  int32_t _onPressure = 0; // milli-inH20
+  int32_t _offPressure = 0;
 
   // Timeout
   uint32_t chargingTimer = 0;
@@ -56,7 +69,7 @@ private:
     bool isValid = false;
     uint32_t lastRead = 0;
     uint32_t accumulateUnderPressure = 0;
-  } pressure;
+  } _pressure;
 
   // Reads the pressure sensor and returns the value in milli-inH2O
   uint16_t readPressure();
