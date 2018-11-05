@@ -13,7 +13,7 @@ Long Range Remote (>100ft)
   - 2 on order from Amazon
 
 Pressure Manager Cleanup
-  - Make self instantiating (remove from globals)
+  + Make self instantiating (remove from globals)
   - move update() to ino file
 
 Status LED
@@ -33,7 +33,7 @@ Chime
   + API
     + Set Silence (silences chime until error resets (goes away and comes back))
   + Test silence with button
-  - Test slow with temperature
+  + Test slow with temperature
 
 Button
   + Add double short press function = silence chime

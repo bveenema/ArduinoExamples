@@ -4,6 +4,7 @@
 #include "Particle.h"
 #include "config.h"
 #include "LiquidSensor.h"
+#include "TemperatureMonitor.h"
 
 class chime{
 public:

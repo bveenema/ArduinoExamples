@@ -14,7 +14,7 @@ void chime::init(){
 void chime::update(){
   // Check for errors
        if(!ResinLiquidSensor.hasLiquid() || !HardenerLiquidSensor.hasLiquid())  _chimeState = FAST;
-  else if(/*!ResinTemp.inRange() || !HardenerTemp.inRange()*/ false)            _chimeState = SLOW;
+  else if(!ResinTemp.isInRange() || !HardenerTemp.isInRange())                  _chimeState = SLOW;
   else _chimeState = OFF;
 
   // Create chime if not silenced
