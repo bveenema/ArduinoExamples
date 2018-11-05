@@ -87,7 +87,7 @@ const commandSet commandList[] = {
   {"maxNoPressure", &settings.maxNoPressure, false, NULL},
   {"maxPreMixChargingTime", &settings.maxPreMixChargingTime, false, NULL},
   {"minPrimes", &settings.minPrimes, false, NULL},
-  {"maxTemperature", &settings.minTemperature, false, setTemperatureRange},
+  {"maxTemperature", &settings.maxTemperature, false, setTemperatureRange},
   {"minTemperature", &settings.minTemperature, false, setTemperatureRange},
   {"name", NULL, NULL, getDeviceName},
   {"numSelectors", NULL, NULL, printNumSelectors},
