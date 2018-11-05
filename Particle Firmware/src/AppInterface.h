@@ -77,6 +77,7 @@ const commandSet commandList[] = {
   {"eepromVersion", &settings.version, false, NULL},
   {"firmwareID", NULL, NULL, printFirmwareID},
   {"flowRate", settings.flowRate, true, NULL},
+  {"flushTime", &settings.flushTime, false, NULL},
   {"incrementer", NULL, NULL, printIncrementer},
   {"keepOpenVolume", &settings.keepOpenVolume, false, NULL},
   {"resinPumpSpeed", NULL, NULL, printResinPumpSpeed},

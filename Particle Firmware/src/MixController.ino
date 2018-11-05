@@ -107,7 +107,7 @@ void loop() {
   if(Button.clicks != 0 || Remote.clicks != 0){
     if(Button.clicks == 1 || Remote.clicks == 1) changeState = true; // single short press
     if(Button.clicks == 2 || Remote.clicks == 2) Chime.silence(); // double short press
-    if(Button.clicks  < 0 || Remote.clicks  < 0) MixMaster.startFlush(); // long press
+    if((Button.clicks  < 0 || Remote.clicks  < 0) && selector == 0) MixMaster.startFlush(); // long press
     if(Button.clicks == 1 || Remote.clicks == 1) Serial.println("Button SHORT Press");
     if(Button.clicks == 2 || Remote.clicks == 2) Serial.println("Button double SHORT Press");
     if(Button.clicks  < 0 || Remote.clicks  < 0) Serial.println("Button LONG Press");

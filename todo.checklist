@@ -6,15 +6,15 @@
 - Consider making isPrimed non-global
 
 Reconfigure Pins
-  - Change definitions
-  - Veriy Selector switch function
+  + Change definitions
+  - Verify Selector switch function
 
 Long Range Remote (>100ft)
   - 2 on order from Amazon
 
 Pressure Manager Cleanup
   + Make self instantiating (remove from globals)
-  - move update() to ino file
+  + move update() to ino file
 
 Status LED
   + Make self instantiating
@@ -50,8 +50,9 @@ Mix Master
     + Flush state machine
 
 Flush Cycle
-  - Update to 2 liters in settable time
-  - "Air Pumps run intermittent" awaiting confirmation
+  + Update to 2 liters in settable time
+  + "Air Pumps run intermittent" awaiting confirmation
+  + Must be selector 0 to initiate
 
 Liquid Presence
   - Verify function with real sensors

@@ -56,7 +56,6 @@ bool mixMaster::checkPumpErrors(){
   bool returnVal = false;
 
   static uint32_t accumulatePumpError = 0;
-  static uint32_t accumulateChargeError = 0;
   static uint32_t accumulatePailError = 0;
   // Check pumps for error, return true if error for more than 50 ms
   static uint32_t lastPumpErrorRead = 0;

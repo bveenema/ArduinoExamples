@@ -112,14 +112,14 @@ bool mixMaster::update(bool _changeState){
       mixerState = START_IDLE;
     }
   }else if(mixerState == FLUSHING){ // 6
-    // kill Flusing if pail no pail
+    // kill Flusing if no pail
     if(!PailSensor.getState()){
       mixerState = START_IDLE;
       _changeState = false;
       return _changeState;
     }
     this->updateFlushing();
-    if(_changeState == true || (millis()-timeStartedFlushing > FLUSH_CYCLE_DURATION)){
+    if(_changeState == true){
       mixerState = START_IDLE;
       _changeState = false;
     }

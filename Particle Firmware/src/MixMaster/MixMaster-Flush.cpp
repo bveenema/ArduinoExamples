@@ -12,8 +12,7 @@ void mixMaster::startFlush(){
 }
 
 void mixMaster::updateFlushing(){
-  static uint32_t flushPulseTime;
-  static uint32_t flushIdleTime;
+  static uint32_t flushTime;
   static uint32_t timeStateStarted;
 
   switch(FlushingState){
@@ -21,37 +20,25 @@ void mixMaster::updateFlushing(){
       // We don't know current pump state, so assume it's running and stop it
       this->idlePumps();
 
-      // Calculate Flush Pulse and Idle times, prep for mixing, Ratio Resin to Hardener = 100:100
-      flushPulseTime = prepForMixing(FLUSH_VOLUME_PER_PULSE, FLUSH_FLOW_RATE, 100, 100);
-      if(flushPulseTime < FLUSH_PULSE_INTERVAL){
-        flushIdleTime = FLUSH_PULSE_INTERVAL - flushPulseTime;
-      } else {
-        flushIdleTime = 0;
-      }
+      // prep for mixing, Ratio Resin to Hardener = 100:100, first param, volume per pulse is not needed
+      prepForMixing(1000, FLUSH_FLOW_RATE, 100, 100);
+
+      flushTime = constrain(settings.flushTime, FLUSH_MIN_TIME-1, FLUSH_MAX_TIME+1);
 
       timeStateStarted = millis();
       IOExp.digitalWrite(RESIN_ENABLE_IOEXP_PIN, LOW); // Enable Resin Pump
       IOExp.digitalWrite(HARDENER_ENABLE_IOEXP_PIN, LOW); // Enable Hardener Pump
       pumpUpdater.begin(updatePumps, 10, uSec);
 
-      FlushingState = PULSE_ON;
+      FlushingState = FLUSH;
 
       break;
 
-    case PULSE_ON:
+    case FLUSH:
       if(this->checkPumpErrors()) mixerState = START_IDLE;
-      if(millis()-timeStateStarted > flushPulseTime){
-        timeStateStarted = millis();
-        FlushingState = IDLE_FLUSHING;
-      }
-
-      break;
-
-    case IDLE_FLUSHING:
-      this->idlePumps();
-      if(millis()-timeStateStarted > flushIdleTime){
-        timeStateStarted = millis();
-        FlushingState = INITFLUSH;
+      if(millis()-timeStateStarted > flushTime){
+        mixerState = START_IDLE;
+        pumpUpdater.end();
       }
 
       break;

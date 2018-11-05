@@ -80,10 +80,9 @@
 
 // Mix Master Settings
 #define TIME_BETWEEN_KEEP_OPEN_CYCLES 300000 // 5 minutes
-#define FLUSH_FLOW_RATE 3000 // ml/min
-#define FLUSH_VOLUME_PER_PULSE 200 //ml
-#define FLUSH_PULSE_INTERVAL 60000 // time bewteen start of pulses (1 min)
-#define FLUSH_CYCLE_DURATION 600000 // duration of flush cycle (10 min)
+#define FLUSH_FLOW_RATE 2000 // ml/min
+#define FLUSH_MIN_TIME 30000 // ms
+#define FLUSH_MAX_TIME 60000 // ms
 
 // Button and Remote Settings
 // time must be held down to be a long press to initiate a "Flush" cycle
@@ -92,7 +91,7 @@
 //  EEPROM Structure Definition
 //    When changing the structure of EEPROM, increase THIS_EEPROM_VERSION, this
 //    will cause EEPROM of previous versions to reset to default.
-#define THIS_EEPROM_VERSION 10
+#define THIS_EEPROM_VERSION 11
 
 struct prom_settings {
   uint32_t version;
@@ -111,6 +110,7 @@ struct prom_settings {
   uint32_t minPrimes;
   uint32_t minTemperature;
   uint32_t maxTemperature;
+  uint32_t flushTime;
   // Selector Based Settings
   uint32_t flowRate[NUM_SELECTORS];
   uint32_t ratioResin[NUM_SELECTORS];
@@ -137,6 +137,7 @@ const prom_settings defaultSettings = {
   1, // minPrimes
   50, // minTemperature
   70, // maxTemperature
+  60000, // flushTime
   {3000,3000,3000,3000,3000}, // flowRate
   {0,200,100,224,189}, // ratioResin
   {0,100,400,100,100}, // ratioHardener

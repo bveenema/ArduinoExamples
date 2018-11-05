@@ -83,8 +83,7 @@ private:
   // FLUSHING States
   enum FlushingState{
     INITFLUSH,
-    PULSE_ON,
-    IDLE_FLUSHING
+    FLUSH,
   } FlushingState;
 
   // MIXING States
