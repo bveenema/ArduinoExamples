@@ -140,9 +140,9 @@ int checkSelectorSwitch() {
       newSelector = 1;
     } else if(!IOExp.digitalRead(ROTARY_2_IOEXP_PIN)){
       newSelector = 2;
-    } else if(!IOExp.digitalRead(ROTARY_2_IOEXP_PIN)){
+    } else if(!IOExp.digitalRead(ROTARY_3_IOEXP_PIN)){
       newSelector = 3;
-    } else if(!IOExp.digitalRead(ROTARY_2_IOEXP_PIN)){
+    } else if(!IOExp.digitalRead(ROTARY_4_IOEXP_PIN)){
       newSelector = 4;
     } else {
       newSelector = 0;

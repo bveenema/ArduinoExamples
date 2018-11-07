@@ -51,7 +51,7 @@ bool mixMaster::update(bool _changeState){
     mixerState = MIXING;
     MixingState = CHARGING;
     PressureManager.forceUnderPressure();
-  }else if(mixerState == MIXING){
+  }else if(mixerState == MIXING){ // 3
     // 1) Turn on air charge and run for a settable time (0-60) or until you reach upper pressure set point programmable 0-2 psi
     // 2) Turn off Air
     // 3) Pause for time settable in program 1-3 seconds

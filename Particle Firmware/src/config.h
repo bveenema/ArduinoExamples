@@ -58,7 +58,7 @@
 // Temperature Monitor Settings
 #define TEMPERATURE_CHECK_RATE 5000 // ms - temperature checking is slow, avoid calling frequently
 #define TEMPERATURE_BETA_VALUE 3950
-#define TEMPERATURE_FIXED_RESISTOR 4700 // ohms
+#define TEMPERATURE_FIXED_RESISTOR 4990 // ohms
 #define TEMPERATURE_NOM_RESISTANCE 5000 // ohms
 #define TEMPERATURE_NOM_CELCIUS 25.0 // degrees c
 #define TEMPERATURE_NUM_SAMPLES 100 // number of adc samples in rolling average
