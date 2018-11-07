@@ -210,7 +210,7 @@ F 3 "" H 12600 6100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text Notes 15000 7050 0    60   ~ 0
-22.5" Long\n12" Remove Sheath
+22.5" Long\n4" Remove Sheath
 Text Notes 16050 6650 1    60   ~ 0
 RESIN PUMP
 Text Notes 16150 6500 1    60   ~ 0
@@ -321,7 +321,7 @@ F 3 "" H 12600 3750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text Notes 14900 4700 0    60   ~ 0
-18.5" Long\n12" Remove Sheath
+18.5" Long\n4" Remove Sheath
 $Comp
 L Connector:Conn_01x08_Male J13
 U 1 1 5B46DB46
@@ -691,7 +691,7 @@ L VDW_Modules:Rotary_Selector_Switch SW1
 U 1 1 5BDA98E8
 P 1300 4600
 F 0 "SW1" H 1300 4865 50  0000 C CNN
-F 1 "Rotary_Selector_Switch" H 1300 4150 50  0000 C CNN
+F 1 "Rotary_Selector_Switch" H 950 4150 50  0000 C CNN
 F 2 "NoFootprint:NoFootprint" H 1300 4600 50  0001 C CNN
 F 3 "https://www.ckswitches.com/media/1353/m.pdf" H 1300 4600 50  0001 C CNN
 F 4 "~" H -2500 800 50  0001 C CNN "Alt Vendor"
@@ -897,7 +897,7 @@ F 6 "480-6588-ND" H 1450 8550 50  0001 C CNN "Vendor P/N"
 F 7 "Mouser" H -2250 2200 50  0001 C CNN "Alt Vendor"
 F 8 "785-HSCDANN005PGAA5" H -2250 2200 50  0001 C CNN "Alt Vendor P/N"
 	1    1450 8550
-	-1   0    0    -1  
+	0    1    -1   0   
 $EndComp
 Wire Wire Line
 	1850 8700 2000 8700
@@ -2679,21 +2679,6 @@ F 8 "455-2268-ND" H -400 -100 50  0001 C CNN "Vendor P/N"
 	1    2300 4700
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:+3V3 #PWR08
-U 1 1 5CC35EB3
-P 2600 4350
-F 0 "#PWR08" H 2600 4200 50  0001 C CNN
-F 1 "+3V3" H 2600 4490 50  0000 C CNN
-F 2 "" H 2600 4350 50  0001 C CNN
-F 3 "" H 2600 4350 50  0001 C CNN
-	1    2600 4350
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2600 4350 2600 4500
-Wire Wire Line
-	2600 4500 2500 4500
 Wire Wire Line
 	2100 4500 1550 4500
 Wire Wire Line
@@ -3712,18 +3697,18 @@ $EndComp
 $Comp
 L Connector:Conn_01x08_Female J14
 U 1 1 5C88D00B
-P 14550 4150
-F 0 "J14" H 14450 3600 50  0000 C CNN
-F 1 "XHP-8" H 14444 3616 50  0001 C CNN
-F 2 "NoFootprint:NoFootprint" H 14550 4150 50  0001 C CNN
-F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 14550 4150 50  0001 C CNN
-F 4 "XHP-8" H 14550 4150 50  0001 C CNN "MPN"
-F 5 "DigiKey" H 14550 4150 50  0001 C CNN "Vendor"
-F 6 "455-1902-ND" H 14550 4150 50  0001 C CNN "Vendor P/N"
-F 7 "~" H 0   900 50  0001 C CNN "Alt Vendor"
-F 8 "~" H 0   900 50  0001 C CNN "Alt Vendor P/N"
-	1    14550 4150
-	-1   0    0    1   
+P 14550 4050
+F 0 "J14" H 14450 4500 50  0000 C CNN
+F 1 "XHP-8" H 14444 3516 50  0001 C CNN
+F 2 "NoFootprint:NoFootprint" H 14550 4050 50  0001 C CNN
+F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 14550 4050 50  0001 C CNN
+F 4 "XHP-8" H 14550 4050 50  0001 C CNN "MPN"
+F 5 "DigiKey" H 14550 4050 50  0001 C CNN "Vendor"
+F 6 "455-1902-ND" H 14550 4050 50  0001 C CNN "Vendor P/N"
+F 7 "~" H 0   800 50  0001 C CNN "Alt Vendor"
+F 8 "~" H 0   800 50  0001 C CNN "Alt Vendor P/N"
+	1    14550 4050
+	-1   0    0    -1  
 $EndComp
 $Comp
 L VDW_Mechanical:PG7 SP6
@@ -3885,18 +3870,18 @@ ORANGE
 $Comp
 L Connector:Conn_01x08_Female J96
 U 1 1 5CDE5288
-P 14550 6500
-F 0 "J96" H 14450 5950 50  0000 C CNN
-F 1 "XHP-8" H 14444 5966 50  0001 C CNN
-F 2 "NoFootprint:NoFootprint" H 14550 6500 50  0001 C CNN
-F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 14550 6500 50  0001 C CNN
-F 4 "XHP-8" H 14550 6500 50  0001 C CNN "MPN"
-F 5 "DigiKey" H 14550 6500 50  0001 C CNN "Vendor"
-F 6 "455-1902-ND" H 14550 6500 50  0001 C CNN "Vendor P/N"
-F 7 "~" H 0   1450 50  0001 C CNN "Alt Vendor"
-F 8 "~" H 0   1450 50  0001 C CNN "Alt Vendor P/N"
-	1    14550 6500
-	-1   0    0    1   
+P 14550 6400
+F 0 "J96" H 14450 6850 50  0000 C CNN
+F 1 "XHP-8" H 14444 5866 50  0001 C CNN
+F 2 "NoFootprint:NoFootprint" H 14550 6400 50  0001 C CNN
+F 3 "http://www.jst-mfg.com/product/pdf/eng/eXH.pdf" H 14550 6400 50  0001 C CNN
+F 4 "XHP-8" H 14550 6400 50  0001 C CNN "MPN"
+F 5 "DigiKey" H 14550 6400 50  0001 C CNN "Vendor"
+F 6 "455-1902-ND" H 14550 6400 50  0001 C CNN "Vendor P/N"
+F 7 "~" H 0   1350 50  0001 C CNN "Alt Vendor"
+F 8 "~" H 0   1350 50  0001 C CNN "Alt Vendor P/N"
+	1    14550 6400
+	-1   0    0    -1  
 $EndComp
 $Comp
 L VDW_Mechanical:PG7 SP7
@@ -4122,26 +4107,10 @@ Text Notes 14950 2450 0    60   ~ 0
 RED
 Text Notes 14950 2750 0    60   ~ 0
 BLACK
-Text Notes 14950 2550 0    60   ~ 0
-WHITE
 Text Notes 14950 2650 0    60   ~ 0
+WHITE
+Text Notes 14950 2550 0    60   ~ 0
 YELLOW
-Wire Wire Line
-	15400 2550 15400 2650
-Wire Wire Line
-	15400 2650 15500 2650
-Wire Wire Line
-	14900 2550 15400 2550
-Wire Wire Line
-	14900 2650 15350 2650
-Wire Wire Line
-	15350 2650 15350 2600
-Wire Wire Line
-	15350 2600 15450 2600
-Wire Wire Line
-	15450 2600 15450 2550
-Wire Wire Line
-	15450 2550 15500 2550
 $Comp
 L Device:Thermistor TH1
 U 1 1 5BDA24E4
@@ -5098,9 +5067,9 @@ Wire Wire Line
 Wire Wire Line
 	13550 1150 13150 1150
 Text Notes 13200 1050 0    60   ~ 0
-White
+Red
 Text Notes 13200 1150 0    60   ~ 0
-White
+Black
 Wire Notes Line
 	13000 950  13000 1250
 Wire Notes Line
@@ -5970,142 +5939,90 @@ LED_RESIN_LIQ
 $Comp
 L Device:LED_ALT D13
 U 1 1 5BE1B4E3
-P 6500 5350
-F 0 "D13" H 6500 5100 50  0000 C CNN
-F 1 "LED_HARD_LIQ" H 6450 5200 50  0000 C CNN
-F 2 "NoFootprint:NoFootprint" H 6500 5350 50  0001 C CNN
-F 3 "https://www.cree.com/led-components/media/documents/C503B-RAS-RAN-AAS-AAN-RBS-RBN-ABS-ABN-RCS-RCN-ACS-ACN-1079.pdf" H 6500 5350 50  0001 C CNN
-F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
-F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
-F 6 "DigiKey" H 0   0   50  0001 C CNN "Vendor"
-F 7 "C503B-RAN-CZ0C0AA2" H 0   0   50  0001 C CNN "MPN"
-F 8 "C503B-RAN-CZ0C0AA2CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
-	1    6500 5350
-	1    0    0    -1  
+P 6400 4800
+F 0 "D13" H 6400 4700 50  0000 C CNN
+F 1 "LED_HARD_LIQ" H 6200 4600 50  0000 C CNN
+F 2 "NoFootprint:NoFootprint" H 6400 4800 50  0001 C CNN
+F 3 "https://www.cree.com/led-components/media/documents/C503B-RAS-RAN-AAS-AAN-RBS-RBN-ABS-ABN-RCS-RCN-ACS-ACN-1079.pdf" H 6400 4800 50  0001 C CNN
+F 4 "~" H -100 -550 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -100 -550 50  0001 C CNN "Alt Vendor P/N"
+F 6 "DigiKey" H -100 -550 50  0001 C CNN "Vendor"
+F 7 "C503B-RAN-CZ0C0AA2" H -100 -550 50  0001 C CNN "MPN"
+F 8 "C503B-RAN-CZ0C0AA2CT-ND" H -100 -550 50  0001 C CNN "Vendor P/N"
+	1    6400 4800
+	-1   0    0    1   
 $EndComp
-$Comp
-L Device:R_Small R28
-U 1 1 5BE1BD0D
-P 6850 5350
-F 0 "R28" H 6909 5396 50  0000 L CNN
-F 1 "470" H 6909 5305 50  0000 L CNN
-F 2 "NoFootprint:NoFootprint" H 6850 5350 50  0001 C CNN
-F 3 "~" H 6850 5350 50  0001 C CNN
-F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
-F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
-F 6 "~" H 0   0   50  0001 C CNN "MPN"
-F 7 "House" H 0   0   50  0001 C CNN "Vendor"
-F 8 "~" H 0   0   50  0001 C CNN "Vendor P/N"
-	1    6850 5350
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	6350 5350 5700 5350
-Wire Wire Line
-	6650 5350 6750 5350
-Wire Wire Line
-	6950 5350 7050 5350
-Wire Wire Line
-	7050 5350 7050 5150
-$Comp
-L power:+3V3 #PWR032
-U 1 1 5C0E547C
-P 7050 5150
-F 0 "#PWR032" H 7050 5000 50  0001 C CNN
-F 1 "+3V3" H 7050 5290 50  0000 C CNN
-F 2 "" H 7050 5150 50  0001 C CNN
-F 3 "" H 7050 5150 50  0001 C CNN
-	1    7050 5150
-	1    0    0    -1  
-$EndComp
-Text Notes 5700 5350 0    60   ~ 0
+Text Notes 4500 4800 0    60   ~ 0
 LED_HARD_LIQ
 $Comp
 L Device:LED_ALT D12
 U 1 1 5C15DA80
-P 6500 4650
-F 0 "D12" H 6500 4400 50  0000 C CNN
-F 1 "LED_RESIN_LIQ" H 6450 4500 50  0000 C CNN
-F 2 "NoFootprint:NoFootprint" H 6500 4650 50  0001 C CNN
-F 3 "https://www.cree.com/led-components/media/documents/C503B-RAS-RAN-AAS-AAN-RBS-RBN-ABS-ABN-RCS-RCN-ACS-ACN-1079.pdf" H 6500 4650 50  0001 C CNN
-F 4 "~" H 0   -100 50  0001 C CNN "Alt Vendor"
-F 5 "~" H 0   -100 50  0001 C CNN "Alt Vendor P/N"
-F 6 "DigiKey" H 0   -100 50  0001 C CNN "Vendor"
-F 7 "C503B-RAN-CZ0C0AA2" H 0   0   50  0001 C CNN "MPN"
-F 8 "C503B-RAN-CZ0C0AA2CT-ND" H 0   0   50  0001 C CNN "Vendor P/N"
-	1    6500 4650
-	1    0    0    -1  
+P 6400 4150
+F 0 "D12" H 6400 4050 50  0000 C CNN
+F 1 "LED_RESIN_LIQ" H 6200 3950 50  0000 C CNN
+F 2 "NoFootprint:NoFootprint" H 6400 4150 50  0001 C CNN
+F 3 "https://www.cree.com/led-components/media/documents/C503B-RAS-RAN-AAS-AAN-RBS-RBN-ABS-ABN-RCS-RCN-ACS-ACN-1079.pdf" H 6400 4150 50  0001 C CNN
+F 4 "~" H -100 -600 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -100 -600 50  0001 C CNN "Alt Vendor P/N"
+F 6 "DigiKey" H -100 -600 50  0001 C CNN "Vendor"
+F 7 "C503B-RAN-CZ0C0AA2" H -100 -500 50  0001 C CNN "MPN"
+F 8 "C503B-RAN-CZ0C0AA2CT-ND" H -100 -500 50  0001 C CNN "Vendor P/N"
+	1    6400 4150
+	-1   0    0    1   
 $EndComp
 $Comp
 L Device:R_Small R27
 U 1 1 5C15DA86
-P 6850 4650
-F 0 "R27" H 6909 4696 50  0000 L CNN
-F 1 "470" H 6909 4605 50  0000 L CNN
-F 2 "NoFootprint:NoFootprint" H 6850 4650 50  0001 C CNN
-F 3 "~" H 6850 4650 50  0001 C CNN
-F 4 "~" H 0   0   50  0001 C CNN "Alt Vendor"
-F 5 "~" H 0   0   50  0001 C CNN "Alt Vendor P/N"
-F 6 "~" H 0   0   50  0001 C CNN "MPN"
-F 7 "House" H 0   0   50  0001 C CNN "Vendor"
-F 8 "~" H 0   0   50  0001 C CNN "Vendor P/N"
-	1    6850 4650
+P 5000 4250
+F 0 "R27" H 5059 4296 50  0000 L CNN
+F 1 "470" H 5059 4205 50  0000 L CNN
+F 2 "NoFootprint:NoFootprint" H 5000 4250 50  0001 C CNN
+F 3 "~" H 5000 4250 50  0001 C CNN
+F 4 "~" H -1850 -400 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -1850 -400 50  0001 C CNN "Alt Vendor P/N"
+F 6 "~" H -1850 -400 50  0001 C CNN "MPN"
+F 7 "House" H -1850 -400 50  0001 C CNN "Vendor"
+F 8 "~" H -1850 -400 50  0001 C CNN "Vendor P/N"
+	1    5000 4250
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	6350 4650 5700 4650
+	6250 4150 5600 4150
 Wire Wire Line
-	6650 4650 6750 4650
-Wire Wire Line
-	6950 4650 7050 4650
-Wire Wire Line
-	7050 4650 7050 4450
-$Comp
-L power:+3V3 #PWR022
-U 1 1 5C15DA90
-P 7050 4450
-F 0 "#PWR022" H 7050 4300 50  0001 C CNN
-F 1 "+3V3" H 7050 4590 50  0000 C CNN
-F 2 "" H 7050 4450 50  0001 C CNN
-F 3 "" H 7050 4450 50  0001 C CNN
-	1    7050 4450
-	1    0    0    -1  
-$EndComp
-Text Notes 5700 4650 0    60   ~ 0
+	6550 4150 6650 4150
+Text Notes 4500 4150 0    60   ~ 0
 LED_RESIN_LIQ
-NoConn ~ 5700 4650
-NoConn ~ 5700 5350
 $Comp
 L VDW_Mechanical:LED_HOLDER_5MM SP9
 U 1 1 5C2CCCD2
-P 6450 5200
-F 0 "SP9" H 6300 5200 60  0000 R CNN
-F 1 "LED_HOLDER_5MM" H 7100 5350 60  0000 R CNN
-F 2 "NoFootprint:NoFootprint" H 6450 5200 60  0001 C CNN
-F 3 "https://media.digikey.com/pdf/Data%20Sheets/Adafruit%20PDFs/2178_Web.pdf" H 6450 5200 60  0001 C CNN
-F 4 "~" H 4500 750 50  0001 C CNN "Alt Vendor"
-F 5 "~" H 4500 750 50  0001 C CNN "Alt Vendor P/N"
-F 6 "2178" H 4500 750 50  0001 C CNN "MPN"
-F 7 "DigiKey" H 4500 750 50  0001 C CNN "Vendor"
-F 8 "1528-1399-ND" H 4500 750 50  0001 C CNN "Vendor P/N"
-	1    6450 5200
-	-1   0    0    -1  
+P 6200 4800
+F 0 "SP9" H 6250 4700 60  0000 R CNN
+F 1 "LED_HOLDER_5MM" H 6250 4550 60  0001 R CNN
+F 2 "NoFootprint:NoFootprint" H 6200 4800 60  0001 C CNN
+F 3 "https://media.digikey.com/pdf/Data%20Sheets/Adafruit%20PDFs/2178_Web.pdf" H 6200 4800 60  0001 C CNN
+F 4 "~" H 4250 350 50  0001 C CNN "Alt Vendor"
+F 5 "~" H 4250 350 50  0001 C CNN "Alt Vendor P/N"
+F 6 "2178" H 4250 350 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 4250 350 50  0001 C CNN "Vendor"
+F 8 "1528-1399-ND" H 4250 350 50  0001 C CNN "Vendor P/N"
+	1    6200 4800
+	1    0    0    1   
 $EndComp
 $Comp
 L VDW_Mechanical:LED_HOLDER_5MM SP8
 U 1 1 5C3471A0
-P 6450 4500
-F 0 "SP8" H 6300 4500 60  0000 R CNN
-F 1 "LED_HOLDER_5MM" H 7100 4650 60  0000 R CNN
-F 2 "NoFootprint:NoFootprint" H 6450 4500 60  0001 C CNN
-F 3 "https://media.digikey.com/pdf/Data%20Sheets/Adafruit%20PDFs/2178_Web.pdf" H 6450 4500 60  0001 C CNN
-F 4 "~" H 4500 50  50  0001 C CNN "Alt Vendor"
-F 5 "~" H 4500 50  50  0001 C CNN "Alt Vendor P/N"
-F 6 "2178" H 4500 50  50  0001 C CNN "MPN"
-F 7 "DigiKey" H 4500 50  50  0001 C CNN "Vendor"
-F 8 "1528-1399-ND" H 4500 50  50  0001 C CNN "Vendor P/N"
-	1    6450 4500
-	-1   0    0    -1  
+P 6200 4150
+F 0 "SP8" H 6250 4050 60  0000 R CNN
+F 1 "LED_HOLDER_5MM" H 6250 3900 60  0001 R CNN
+F 2 "NoFootprint:NoFootprint" H 6200 4150 60  0001 C CNN
+F 3 "https://media.digikey.com/pdf/Data%20Sheets/Adafruit%20PDFs/2178_Web.pdf" H 6200 4150 60  0001 C CNN
+F 4 "~" H 4250 -300 50  0001 C CNN "Alt Vendor"
+F 5 "~" H 4250 -300 50  0001 C CNN "Alt Vendor P/N"
+F 6 "2178" H 4250 -300 50  0001 C CNN "MPN"
+F 7 "DigiKey" H 4250 -300 50  0001 C CNN "Vendor"
+F 8 "1528-1399-ND" H 4250 -300 50  0001 C CNN "Vendor P/N"
+	1    6200 4150
+	1    0    0    1   
 $EndComp
 $Comp
 L Device:R R29
@@ -6230,4 +6147,253 @@ Wire Notes Line
 	10300 5750 10100 5750
 Text Notes 10400 6350 1    60   ~ 0
 NOT ON PCB
+Wire Wire Line
+	2500 4500 2550 4500
+Wire Wire Line
+	2550 4500 2550 5050
+$Comp
+L power:GND #PWR?
+U 1 1 5C0D8DC9
+P 2550 5050
+F 0 "#PWR?" H 2550 4800 50  0001 C CNN
+F 1 "GND" H 2550 4900 50  0000 C CNN
+F 2 "" H 2550 5050 50  0001 C CNN
+F 3 "" H 2550 5050 50  0001 C CNN
+	1    2550 5050
+	1    0    0    -1  
+$EndComp
+Wire Notes Line
+	2450 5250 2650 5250
+Wire Notes Line
+	2650 5250 2650 4950
+Wire Notes Line
+	2650 4950 2600 4950
+Wire Notes Line
+	2600 4950 2600 4450
+Wire Notes Line
+	2600 4450 2450 4450
+Wire Notes Line
+	2450 4450 2450 5250
+Text Notes 1550 5350 0    60   ~ 0
+Tied to 3V3 on PCB. cut track and tie to GND
+Text Notes 1050 7950 0    60   ~ 0
+24 AWG\n3in  Solder to Button \nw/ heatshrink
+Text Notes 13000 1350 0    60   ~ 0
+Trim to 5.5"
+Text Notes 14800 3350 0    60   ~ 0
+13"\nSolder to Connector\nwith heatshrink
+Text Notes 1000 4550 0    60   ~ 0
+A
+Text Notes 1400 4600 0    60   ~ 0
+1
+Text Notes 1400 4700 0    60   ~ 0
+2
+Text Notes 1400 4800 0    60   ~ 0
+3
+Text Notes 1400 4900 0    60   ~ 0
+4
+Text Notes 1500 5250 0    60   ~ 0
+2"\nSolder to switch\nwith heatshrink
+Text Notes 4300 9200 0    60   ~ 0
+Trim to 13"
+Text Notes 4250 10250 0    60   ~ 0
+Extend to 20"
+Text Notes 3600 6500 0    60   ~ 0
+extend wires to 35"\nprotrude from box 18"
+Text Notes 3550 8050 0    60   ~ 0
+extend wires to 29"\nprotrude from box 18"
+Text Notes 2050 10000 0    60   ~ 0
+3"
+Wire Wire Line
+	14900 2550 15500 2550
+Wire Wire Line
+	14900 2650 15500 2650
+$Comp
+L power:GND #PWR?
+U 1 1 5C0A569B
+P 4800 4350
+F 0 "#PWR?" H 4800 4100 50  0001 C CNN
+F 1 "GND" H 4800 4200 50  0000 C CNN
+F 2 "" H 4800 4350 50  0001 C CNN
+F 3 "" H 4800 4350 50  0001 C CNN
+	1    4800 4350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x02_Male J?
+U 1 1 5C123DB3
+P 5400 4150
+F 0 "J?" H 5550 4350 50  0000 R CNN
+F 1 "JST SM Male" V 5600 3950 50  0001 R CNN
+F 2 "NoFootprint:NoFootprint" H 5400 4150 50  0001 C CNN
+F 3 "" H 5400 4150 50  0001 C CNN
+F 4 "~" H -4150 2350 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -4150 2350 50  0001 C CNN "Alt Vendor P/N"
+F 6 "~" H -4150 2350 50  0001 C CNN "MPN"
+F 7 "DigiKey" H -4150 2350 50  0001 C CNN "Vendor"
+F 8 "~" H -4150 2350 50  0001 C CNN "Vendor P/N"
+	1    5400 4150
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x02_Female J?
+U 1 1 5C124C05
+P 5400 4150
+F 0 "J?" H 5300 4350 50  0000 C CNN
+F 1 "JST SM Female" H 4950 3950 50  0001 C CNN
+F 2 "NoFootprint:NoFootprint" H 5400 4150 50  0001 C CNN
+F 3 "" H 5400 4150 50  0001 C CNN
+F 4 "~" H -4050 2450 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -4050 2450 50  0001 C CNN "Alt Vendor P/N"
+F 6 "~" H -4050 2450 50  0001 C CNN "MPN"
+F 7 "DigiKey" H -4050 2450 50  0001 C CNN "Vendor"
+F 8 "~" H -4050 2450 50  0001 C CNN "Vendor P/N"
+	1    5400 4150
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	4800 4350 4800 4250
+Wire Wire Line
+	4800 4250 4900 4250
+Wire Wire Line
+	5100 4250 5200 4250
+Wire Wire Line
+	5600 4250 6650 4250
+Wire Wire Line
+	6650 4250 6650 4150
+Wire Wire Line
+	5200 4150 4500 4150
+NoConn ~ 4500 4150
+$Comp
+L Device:R_Small R?
+U 1 1 5C625922
+P 5000 4900
+F 0 "R?" H 5059 4946 50  0000 L CNN
+F 1 "470" H 5059 4855 50  0000 L CNN
+F 2 "NoFootprint:NoFootprint" H 5000 4900 50  0001 C CNN
+F 3 "~" H 5000 4900 50  0001 C CNN
+F 4 "~" H -1850 250 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -1850 250 50  0001 C CNN "Alt Vendor P/N"
+F 6 "~" H -1850 250 50  0001 C CNN "MPN"
+F 7 "House" H -1850 250 50  0001 C CNN "Vendor"
+F 8 "~" H -1850 250 50  0001 C CNN "Vendor P/N"
+	1    5000 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5C625929
+P 4800 5000
+F 0 "#PWR?" H 4800 4750 50  0001 C CNN
+F 1 "GND" H 4800 4850 50  0000 C CNN
+F 2 "" H 4800 5000 50  0001 C CNN
+F 3 "" H 4800 5000 50  0001 C CNN
+	1    4800 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x02_Male J?
+U 1 1 5C625934
+P 5400 4800
+F 0 "J?" H 5550 5000 50  0000 R CNN
+F 1 "JST SM Male" V 5600 4600 50  0001 R CNN
+F 2 "NoFootprint:NoFootprint" H 5400 4800 50  0001 C CNN
+F 3 "" H 5400 4800 50  0001 C CNN
+F 4 "~" H -4150 3000 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -4150 3000 50  0001 C CNN "Alt Vendor P/N"
+F 6 "~" H -4150 3000 50  0001 C CNN "MPN"
+F 7 "DigiKey" H -4150 3000 50  0001 C CNN "Vendor"
+F 8 "~" H -4150 3000 50  0001 C CNN "Vendor P/N"
+	1    5400 4800
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x02_Female J?
+U 1 1 5C62593F
+P 5400 4800
+F 0 "J?" H 5300 5000 50  0000 C CNN
+F 1 "JST SM Female" H 4950 4600 50  0001 C CNN
+F 2 "NoFootprint:NoFootprint" H 5400 4800 50  0001 C CNN
+F 3 "" H 5400 4800 50  0001 C CNN
+F 4 "~" H -4050 3100 50  0001 C CNN "Alt Vendor"
+F 5 "~" H -4050 3100 50  0001 C CNN "Alt Vendor P/N"
+F 6 "~" H -4050 3100 50  0001 C CNN "MPN"
+F 7 "DigiKey" H -4050 3100 50  0001 C CNN "Vendor"
+F 8 "~" H -4050 3100 50  0001 C CNN "Vendor P/N"
+	1    5400 4800
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	4800 5000 4800 4900
+Wire Wire Line
+	4800 4900 4900 4900
+Wire Wire Line
+	5100 4900 5200 4900
+Wire Wire Line
+	5200 4800 4500 4800
+NoConn ~ 4500 4800
+Wire Wire Line
+	5600 4800 6250 4800
+Wire Wire Line
+	5600 4900 6650 4900
+Wire Wire Line
+	6650 4900 6650 4800
+Wire Wire Line
+	6650 4800 6550 4800
+Wire Notes Line
+	5100 4350 5350 4350
+Wire Notes Line
+	5350 4350 5350 4000
+Wire Notes Line
+	5350 4000 5100 4000
+Wire Notes Line
+	5100 4000 5100 4350
+Wire Notes Line
+	5450 4300 6750 4300
+Wire Notes Line
+	6750 4300 6750 4000
+Wire Notes Line
+	6750 4000 5450 4000
+Wire Notes Line
+	5450 4000 5450 4300
+Wire Notes Line
+	5450 4950 6750 4950
+Wire Notes Line
+	6750 4950 6750 4650
+Wire Notes Line
+	6750 4650 5450 4650
+Wire Notes Line
+	5450 4650 5450 4950
+Wire Notes Line
+	5350 4650 5350 4950
+Wire Notes Line
+	5350 4950 5100 4950
+Wire Notes Line
+	5100 4950 5100 4650
+Wire Notes Line
+	5100 4650 5350 4650
+Text Notes 5850 4600 0    60   ~ 0
+CABLE
+Text Notes 5850 3950 0    60   ~ 0
+CABLE
+Text Notes 5100 3900 0    60   ~ 0
+CABLE
+Text Notes 5100 4550 0    60   ~ 0
+CABLE
+Text Notes 5150 4800 0    60   ~ 0
+Red
+Text Notes 5150 4900 0    60   ~ 0
+Black
+Text Notes 5700 4800 0    60   ~ 0
+Red
+Text Notes 5700 4900 0    60   ~ 0
+Black
+Text Notes 5700 4150 0    60   ~ 0
+Red
+Text Notes 5700 4250 0    60   ~ 0
+Black
+Text Notes 5150 4150 0    60   ~ 0
+Red
+Text Notes 5150 4250 0    60   ~ 0
+Black
 $EndSCHEMATC
