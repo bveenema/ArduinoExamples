@@ -49,7 +49,7 @@
 #define REGULAR_BLINK_RATE 750 // toggle every 750 ms
 
 // Chime Settings
-#define CHIME_FREQUENCY 1100 // 1100, 3100
+#define CHIME_FREQUENCY 3100 // 1100, 3100
 #define CHIME_PULSE_TIME 250
 #define CHIME_SLOW_RATE 3000
 #define CHIME_MEDIUM_RATE 1500
