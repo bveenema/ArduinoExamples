@@ -54,6 +54,10 @@ private:
       if(state != true) IOExp.digitalWrite(pin, HIGH);
       state = true;
     }
+    void off(){
+      if(state != false) IOExp.digitalWrite(pin, LOW);
+      state = false;
+    }
     void blink(uint32_t rate){
       if(millis()-lastBlinkTime > rate){
         state = !state;
