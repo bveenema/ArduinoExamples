@@ -52,6 +52,8 @@ void setup() {
   Chime.init();
   ResinTemp.init(THERM_RESIN_PIN);
   HardenerTemp.init(THERM_HARDENER_PIN);
+  ResinTemp.setRange(settings.minTemperature, settings.maxTemperature);
+  HardenerTemp.setRange(settings.minTemperature, settings.maxTemperature);
   PressureManager.init(settings.onPressure, settings.offPressure);
 
   Remote.debounceTime = 20;
