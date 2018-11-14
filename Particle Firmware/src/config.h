@@ -91,7 +91,7 @@
 //  EEPROM Structure Definition
 //    When changing the structure of EEPROM, increase THIS_EEPROM_VERSION, this
 //    will cause EEPROM of previous versions to reset to default.
-#define THIS_EEPROM_VERSION 11
+#define THIS_EEPROM_VERSION 12
 
 struct prom_settings {
   uint32_t version;
@@ -111,6 +111,7 @@ struct prom_settings {
   uint32_t minTemperature;
   uint32_t maxTemperature;
   uint32_t flushTime;
+  uint32_t maxTimeNoLiquid;
   // Selector Based Settings
   uint32_t flowRate[NUM_SELECTORS];
   uint32_t ratioResin[NUM_SELECTORS];
@@ -136,8 +137,9 @@ const prom_settings defaultSettings = {
   750, // primeVolume
   1, // minPrimes
   50, // minTemperature
-  70, // maxTemperature
+  90, // maxTemperature
   60000, // flushTime
+  3000, // maxTimeNoLiquid
   {3000,3000,3000,3000,3000}, // flowRate
   {0,200,100,224,189}, // ratioResin
   {0,100,400,100,100}, // ratioHardener

@@ -47,6 +47,7 @@ inline void silenceChime() { Chime.silence(); }
 inline void setTemperatureRange() { ResinTemp.setRange(settings.minTemperature,settings.maxTemperature); HardenerTemp.setRange(settings.minTemperature,settings.maxTemperature); }
 inline void getResinTemperature() { Serial.print(ResinTemp.getTemp()); }
 inline void getHardenerTemperature() { Serial.print(HardenerTemp.getTemp()); }
+inline void setMaxTimeNoLiquid() { ResinLiquidSensor.setMaxTimeNoLiquid(settings.maxTimeNoLiquid); HardenerLiquidSensor.setMaxTimeNoLiquid(settings.maxTimeNoLiquid); }
 
 // Command Declarations
 typedef struct {
@@ -84,8 +85,9 @@ const commandSet commandList[] = {
   {"hardenerPumpSpeed", NULL, NULL, printHardenerPumpSpeed},
   {"maxNoPressure", &settings.maxNoPressure, false, NULL},
   {"maxPreMixChargingTime", &settings.maxPreMixChargingTime, false, NULL},
-  {"minPrimes", &settings.minPrimes, false, NULL},
   {"maxTemperature", &settings.maxTemperature, false, setTemperatureRange},
+  {"maxTimeNoLiquid", &settings.maxTimeNoLiquid, false, setMaxTimeNoLiquid},
+  {"minPrimes", &settings.minPrimes, false, NULL},
   {"minTemperature", &settings.minTemperature, false, setTemperatureRange},
   {"name", NULL, NULL, getDeviceName},
   {"numSelectors", NULL, NULL, printNumSelectors},

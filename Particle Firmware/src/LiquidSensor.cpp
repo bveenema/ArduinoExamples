@@ -13,10 +13,21 @@ void liquidSensor::init(uint8_t pin){
 
 void liquidSensor::update(){
   // If signal is low, there is no liquid
-  if(millis() - _lastRead > 1000){
+  if(millis() - _lastRead > 250){
     _lastRead = millis();
-    _hasLiquid = !IOExp.digitalRead(_pin);
+    bool hasLiquid = !IOExp.digitalRead(_pin);
+    if(!hasLiquid){
+      if(millis() - _firstTimeNoLiquid > _maxTimeNoLiquid) _hasLiquid = false;
+    } else {
+      _hasLiquid = true;
+      _firstTimeNoLiquid = millis();
+    }
   }
+}
+
+void liquidSensor::setMaxTimeNoLiquid(uint32_t time){
+  time = constrain(time, 250, 240000);
+  _maxTimeNoLiquid = time;
 }
 
 bool liquidSensor::hasLiquid(){

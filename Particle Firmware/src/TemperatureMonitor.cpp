@@ -26,6 +26,8 @@ uint32_t TemperatureMonitor::getTemp(){
 }
 
 bool TemperatureMonitor::isInRange(){
+  // if readings are not yet valid, assume in range
+  if(!thermistor.isValid()) return true;
   return (_currentTemp >= _minTemp && _currentTemp <= _maxTemp);
 }
 

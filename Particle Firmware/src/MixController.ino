@@ -49,6 +49,8 @@ void setup() {
   PailSensor.setDetectionThreshold(settings.pailThreshold);
   ResinLiquidSensor.init(LIQUID_SNS_RESIN_IOEXP_PIN);
   HardenerLiquidSensor.init(LIQUID_SNS_HARDENER_IOEXP_PIN);
+  ResinLiquidSensor.setMaxTimeNoLiquid(settings.maxTimeNoLiquid);
+  HardenerLiquidSensor.setMaxTimeNoLiquid(settings.maxTimeNoLiquid);
   Chime.init();
   ResinTemp.init(THERM_RESIN_PIN);
   HardenerTemp.init(THERM_HARDENER_PIN);
