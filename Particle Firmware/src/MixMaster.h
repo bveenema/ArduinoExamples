@@ -83,8 +83,11 @@ private:
 
   // FLUSHING States
   enum FlushingState{
-    INITFLUSH,
-    FLUSH,
+    FLUSH_INIT,
+    FLUSH_FORWARD,
+    FLUSH_PAUSE_1,
+    FLUSH_REVERSE,
+    FLUSH_PAUSE_2
   } FlushingState;
 
   // MIXING States
