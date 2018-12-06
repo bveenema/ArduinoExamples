@@ -91,7 +91,7 @@
 //  EEPROM Structure Definition
 //    When changing the structure of EEPROM, increase THIS_EEPROM_VERSION, this
 //    will cause EEPROM of previous versions to reset to default.
-#define THIS_EEPROM_VERSION 13
+#define THIS_EEPROM_VERSION 14
 
 struct prom_settings {
   uint32_t version;
@@ -116,6 +116,8 @@ struct prom_settings {
   uint32_t flushReverseSteps;
   uint32_t flushForwardPause;
   uint32_t flushReversePause;
+  uint32_t zeroDripSteps;
+  uint32_t zeroDripInterval;
   uint32_t maxTimeNoLiquid;
   // Selector Based Settings
   uint32_t flowRate[NUM_SELECTORS];
@@ -149,6 +151,8 @@ const prom_settings defaultSettings = {
   200, // flushReverseSteps
   1000, // flushForwardPause
   1000, // flushReversePause
+  1, // zeroDripSteps
+  5000, // zeroDripInterval
   3000, // maxTimeNoLiquid
   {3000,3000,3000,3000,3000}, // flowRate
   {0,200,100,224,189}, // ratioResin

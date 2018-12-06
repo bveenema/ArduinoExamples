@@ -11,16 +11,49 @@ bool mixMaster::update(bool _changeState){
   static uint32_t timeStartedCharging = 0;
   static uint32_t timeStartedIdling = 0;
   static uint32_t accumulatedMixingTime = 0;
+  static uint32_t lastZeroDripTime = 0;
   static bool keepOpen = false;
   static bool prime = false;
 
   if(mixerState == START_IDLE){ // 0
     if(numConsecutivePrimes >= settings.minPrimes) isPrimed = true;
     timeStartedIdling = millis();
+    lastZeroDripTime = millis();
     mixerState = IDLE;
   }else if(mixerState == IDLE){ // 1
-    this->idlePumps();
-    if(_changeState || (millis() - timeStartedIdling > TIME_BETWEEN_KEEP_OPEN_CYCLES)) {
+    static bool ZeroDripState;
+    if(!ZeroDripState) this->idlePumps();
+
+    uint32_t timeNow = millis();
+    if(isPrimed && timeNow - lastZeroDripTime > settings.zeroDripInterval){
+      
+      if(!ZeroDripState){
+
+        IOExp.digitalWrite(RESIN_ENABLE_IOEXP_PIN, LOW); // Enable Resin Pump
+        IOExp.digitalWrite(HARDENER_ENABLE_IOEXP_PIN, LOW); // Enable Hardener Pump
+
+        ResinPump.setMaxSpeed(600);
+        HardenerPump.setMaxSpeed(600);
+        ResinPump.setCurrentPosition(0);
+        HardenerPump.setCurrentPosition(0);
+        ResinPump.moveTo(-settings.zeroDripSteps);
+        HardenerPump.moveTo(-settings.zeroDripSteps);
+
+        ZeroDripState = true;
+
+      } else {
+        ResinPump.run();
+        HardenerPump.run();
+        if(!ResinPump.isRunning() && !HardenerPump.isRunning()){
+          IOExp.digitalWrite(RESIN_ENABLE_IOEXP_PIN, HIGH); // Disable Resin Pump
+          IOExp.digitalWrite(HARDENER_ENABLE_IOEXP_PIN, HIGH); // Disable Hardener Pump
+          ZeroDripState = false;
+          lastZeroDripTime = timeNow;
+        }
+      }      
+    }
+
+    if(_changeState || (timeNow - timeStartedIdling > TIME_BETWEEN_KEEP_OPEN_CYCLES)) {
       // If no Pail in position or liquid, prevent prime, keep open or mixing
       if(!PailSensor.getState() || !ResinLiquidSensor.hasLiquid() || !HardenerLiquidSensor.hasLiquid()){
         mixerState = START_IDLE;

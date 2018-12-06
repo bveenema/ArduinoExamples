@@ -116,6 +116,8 @@ const commandSet commandList[] = {
   {"version", NULL, NULL, printProductVersion},
   {"volume", settings.volume, true, NULL},
   {"wifiStatus", &wifiStatus, false, NULL },
+  {"zeroDripInterval", &settings.zeroDripInterval, false, NULL},
+  {"zeroDripSteps", &settings.zeroDripSteps, false, NULL},
   {NULL, NULL, NULL, NULL}
   };
 
