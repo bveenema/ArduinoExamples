@@ -29,8 +29,8 @@ uint32_t mixMaster::prepForMixing(uint32_t volume, uint32_t flowRate, uint32_t r
   HardenerPump.setMaxSpeed(ultimateMaxSpeed);
   ResinPump.setSpeed(resinPumpSpeed);
   HardenerPump.setSpeed(hardenerPumpSpeed);
-  IOExp.digitalWrite(RESIN_ENABLE_IOEXP_PIN, LOW); // Enable Resin Pump
-  IOExp.digitalWrite(HARDENER_ENABLE_IOEXP_PIN, LOW); // Enable Hardener Pump
+  enablePumps();
+
 
   return calculateTimeForVolume(volume, flowRate);
 }
@@ -41,8 +41,24 @@ void mixMaster::idlePumps(){
 
   ResinPump.setSpeed(0);
   HardenerPump.setSpeed(0);
-  IOExp.digitalWrite(RESIN_ENABLE_IOEXP_PIN, HIGH); // Enable Resin Pump
-  IOExp.digitalWrite(HARDENER_ENABLE_IOEXP_PIN, HIGH); // Enable Hardener Pump
+
+  disablePumps();
+}
+
+void mixMaster::enablePumps(){
+  if(_pumpsEnabledState == false){
+    IOExp.digitalWrite(RESIN_ENABLE_IOEXP_PIN, LOW); // Enable Resin Pump
+    IOExp.digitalWrite(HARDENER_ENABLE_IOEXP_PIN, LOW); // Enable Hardener Pump
+    _pumpsEnabledState = true;
+  }
+}
+
+void mixMaster::disablePumps(){
+  if(_pumpsEnabledState == true){
+    IOExp.digitalWrite(RESIN_ENABLE_IOEXP_PIN, HIGH); // Disable Resin Pump
+    IOExp.digitalWrite(HARDENER_ENABLE_IOEXP_PIN, HIGH); // Disable Hardener Pump
+    _pumpsEnabledState = false;
+  }
 }
 
 void mixMaster::runPumps(){

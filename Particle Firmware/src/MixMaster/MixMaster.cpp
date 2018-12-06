@@ -18,8 +18,7 @@ void mixMaster::init(){
   pinMode(HARDENER_INPUT_DIR_PIN, OUTPUT);
   IOExp.pinMode(HARDENER_HLFB_IOEXP_PIN, INPUT);
 
-  IOExp.digitalWrite(RESIN_ENABLE_IOEXP_PIN, LOW); // Enable Resin Pump
-  IOExp.digitalWrite(HARDENER_ENABLE_IOEXP_PIN, LOW); // Enable Hardener Pump
+  enablePumps();
 
   ResinPump.setAcceleration(100000);
   HardenerPump.setAcceleration(100000);

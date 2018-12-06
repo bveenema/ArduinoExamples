@@ -29,8 +29,7 @@ bool mixMaster::update(bool _changeState){
       
       if(!ZeroDripState){
 
-        IOExp.digitalWrite(RESIN_ENABLE_IOEXP_PIN, LOW); // Enable Resin Pump
-        IOExp.digitalWrite(HARDENER_ENABLE_IOEXP_PIN, LOW); // Enable Hardener Pump
+        enablePumps();
 
         ResinPump.setMaxSpeed(600);
         HardenerPump.setMaxSpeed(600);
@@ -45,8 +44,7 @@ bool mixMaster::update(bool _changeState){
         ResinPump.run();
         HardenerPump.run();
         if(!ResinPump.isRunning() && !HardenerPump.isRunning()){
-          IOExp.digitalWrite(RESIN_ENABLE_IOEXP_PIN, HIGH); // Disable Resin Pump
-          IOExp.digitalWrite(HARDENER_ENABLE_IOEXP_PIN, HIGH); // Disable Hardener Pump
+          disablePumps();
           ZeroDripState = false;
           lastZeroDripTime = timeNow;
         }

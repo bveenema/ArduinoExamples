@@ -69,6 +69,9 @@ private:
   void idlePumps();
   bool runPumpsWithErrorCheck();
   bool checkPumpErrors();
+  void enablePumps();
+  void disablePumps();
+  bool _pumpsEnabledState = false;
 
   // Current State of Mix Master
   MixerState mixerState = START_IDLE;

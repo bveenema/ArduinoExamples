@@ -38,8 +38,7 @@ void mixMaster::updateFlushing(){
       // prep for mixing, Ratio Resin to Hardener = 100:100, first param, volume per pulse is not needed
       prepForMixing(1000, FLUSH_FLOW_RATE, 100, 100);
 
-      IOExp.digitalWrite(RESIN_ENABLE_IOEXP_PIN, LOW); // Enable Resin Pump
-      IOExp.digitalWrite(HARDENER_ENABLE_IOEXP_PIN, LOW); // Enable Hardener Pump
+      enablePumps();
 
       uint32_t flushSpeed = RPMtoStepsPerSecond(settings.flushRPM);
       ResinPump.setMaxSpeed(flushSpeed);
