@@ -1,6 +1,10 @@
 #include "MixMaster.h"
 
 // Utility Functions
+uint32_t mixMaster::RPMtoStepsPerSecond(uint32_t RPM){
+  return RPM*200/60;
+}
+
 uint32_t mixMaster::calculatePumpSpeed(uint32_t flowRate, uint32_t thisPumpRatio, uint32_t otherPumpRatio, uint32_t stepsPerMl){
   if(thisPumpRatio == 0 && otherPumpRatio == 0) return 0; // prevent divide by 0 error
   return flowRate*stepsPerMl*thisPumpRatio/(thisPumpRatio+otherPumpRatio)/60;

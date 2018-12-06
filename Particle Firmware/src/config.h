@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define THIS_PRODUCT_ID 7951
-#define THIS_PRODUCT_VERSION 16
+#define THIS_PRODUCT_VERSION 17
 
 // Photon Pins
 #define SDA_PIN D0
@@ -91,7 +91,7 @@
 //  EEPROM Structure Definition
 //    When changing the structure of EEPROM, increase THIS_EEPROM_VERSION, this
 //    will cause EEPROM of previous versions to reset to default.
-#define THIS_EEPROM_VERSION 12
+#define THIS_EEPROM_VERSION 13
 
 struct prom_settings {
   uint32_t version;
@@ -111,6 +111,11 @@ struct prom_settings {
   uint32_t minTemperature;
   uint32_t maxTemperature;
   uint32_t flushTime;
+  uint32_t flushRPM;
+  uint32_t flushForwardSteps;
+  uint32_t flushReverseSteps;
+  uint32_t flushForwardPause;
+  uint32_t flushReversePause;
   uint32_t maxTimeNoLiquid;
   // Selector Based Settings
   uint32_t flowRate[NUM_SELECTORS];
@@ -138,7 +143,12 @@ const prom_settings defaultSettings = {
   1, // minPrimes
   50, // minTemperature
   90, // maxTemperature
-  60000, // flushTime
+  30, // flushTime
+  200, // flushRPM
+  200, // flushForwardSteps
+  200, // flushReverseSteps
+  1000, // flushForwardPause
+  1000, // flushReversePause
   3000, // maxTimeNoLiquid
   {3000,3000,3000,3000,3000}, // flowRate
   {0,200,100,224,189}, // ratioResin

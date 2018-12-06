@@ -85,9 +85,9 @@ private:
   enum FlushingState{
     FLUSH_INIT,
     FLUSH_FORWARD,
-    FLUSH_PAUSE_1,
+    FLUSH_FORWARD_PAUSE,
     FLUSH_REVERSE,
-    FLUSH_PAUSE_2
+    FLUSH_REVERSE_PAUSE,
   } FlushingState;
 
   // MIXING States
@@ -104,6 +104,7 @@ private:
   uint32_t timeStartedFlushing;
 
   // Utility Functions
+  uint32_t RPMtoStepsPerSecond(uint32_t RPM);
   uint32_t calculatePumpSpeed(uint32_t flowRate, uint32_t thisPumpRatio, uint32_t otherPumpRatio, uint32_t stepsPerMl);
   uint32_t calculateTimeForVolume(uint32_t volume, uint16_t flowRate);
   uint32_t calculateAutoReverseSteps(uint32_t thisPumpRatio, uint32_t otherPumpRatio);
