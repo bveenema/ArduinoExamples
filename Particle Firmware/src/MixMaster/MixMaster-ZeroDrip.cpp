@@ -12,7 +12,7 @@ bool mixMaster::ZeroDrip() {
 			if(!ZeroDripState){
 
 				enablePumps();
-				delayMicroseconds(500);
+				delay(5);
 
 				ResinPump.setMaxSpeed(600);
 				HardenerPump.setMaxSpeed(600);
