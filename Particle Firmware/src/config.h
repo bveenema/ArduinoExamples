@@ -91,7 +91,7 @@
 //  EEPROM Structure Definition
 //    When changing the structure of EEPROM, increase THIS_EEPROM_VERSION, this
 //    will cause EEPROM of previous versions to reset to default.
-#define THIS_EEPROM_VERSION 14
+#define THIS_EEPROM_VERSION 15
 
 struct prom_settings {
   uint32_t version;
@@ -148,7 +148,7 @@ const prom_settings defaultSettings = {
   30, // flushTime
   200, // flushRPM
   200, // flushForwardSteps
-  200, // flushReverseSteps
+  180, // flushReverseSteps
   1000, // flushForwardPause
   1000, // flushReversePause
   1, // zeroDripSteps
