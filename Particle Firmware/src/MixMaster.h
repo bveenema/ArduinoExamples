@@ -106,6 +106,9 @@ private:
   // Flushing Timer
   uint32_t timeStartedFlushing;
 
+  // ZeroDrip
+  bool ZeroDrip();
+
   // Utility Functions
   uint32_t RPMtoStepsPerSecond(uint32_t RPM);
   uint32_t calculatePumpSpeed(uint32_t flowRate, uint32_t thisPumpRatio, uint32_t otherPumpRatio, uint32_t stepsPerMl);
