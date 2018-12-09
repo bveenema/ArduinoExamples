@@ -48,6 +48,7 @@ inline void setTemperatureRange() { ResinTemp.setRange(settings.minTemperature,s
 inline void getResinTemperature() { Serial.print(ResinTemp.getTemp()); }
 inline void getHardenerTemperature() { Serial.print(HardenerTemp.getTemp()); }
 inline void setMaxTimeNoLiquid() { ResinLiquidSensor.setMaxTimeNoLiquid(settings.maxTimeNoLiquid); HardenerLiquidSensor.setMaxTimeNoLiquid(settings.maxTimeNoLiquid); }
+inline void enableDFUMode() { System.dfu(); }
 
 // Command Declarations
 typedef struct {
@@ -74,6 +75,7 @@ const commandSet commandList[] = {
   {"chargeTimeout", &settings.chargeTimeout, false, NULL},
   {"cloudStatus", NULL, NULL, printCloudStatus},
   {"currentPressure", NULL, NULL, printCurrentPressure},
+  {"DFUMode", NULL, NULL, enableDFUMode},
   {"error", NULL, NULL, printCurrentError},
   {"eepromVersion", &settings.version, false, NULL},
   {"firmwareID", NULL, NULL, printFirmwareID},
