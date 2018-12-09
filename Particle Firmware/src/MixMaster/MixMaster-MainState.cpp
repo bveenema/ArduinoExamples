@@ -25,7 +25,7 @@ bool mixMaster::update(bool _changeState){
     if(!ZeroDripState) this->idlePumps();
 
     uint32_t timeNow = millis();
-    if(isPrimed && timeNow - lastZeroDripTime > settings.zeroDripInterval){
+    if(isPrimed && selector != 0 && timeNow - lastZeroDripTime > settings.zeroDripInterval){
       
       if(!ZeroDripState){
 
