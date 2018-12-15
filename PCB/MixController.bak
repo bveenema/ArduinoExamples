@@ -6475,4 +6475,6 @@ Text Notes 1600 6100 0    60   ~ 0
 Swap for \nhttp://a.co/d/9ubzAsf\nRed wire = +5V\nBlack wire = GND\nYellow wire = GND\nBlue wire = USER_REMOTE
 Wire Notes Line
 	500  500  16500 500 
+Wire Notes Line
+	14450 500  14450 2100
 $EndSCHEMATC
