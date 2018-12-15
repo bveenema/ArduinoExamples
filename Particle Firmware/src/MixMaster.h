@@ -108,7 +108,7 @@ private:
   uint32_t flushVolumeCounter;
 
   // ZeroDrip
-  bool ZeroDrip();
+  bool ZeroDrip(bool runZeroDrip);
 
   // Utility Functions
   uint32_t RPMtoStepsPerSecond(uint32_t RPM);
