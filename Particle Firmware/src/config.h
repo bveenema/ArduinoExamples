@@ -156,8 +156,8 @@ const prom_settings defaultSettings = {
   180, // flushReverseSteps
   1000, // flushForwardPause
   1000, // flushReversePause
-  1, // zeroDripSteps
-  5000, // zeroDripInterval
+  5, // zeroDripSteps
+  1000, // zeroDripInterval
   3000, // maxTimeNoLiquid
   {3000,3000,3000,3000,3000}, // flowRate
   {0,200,100,224,189}, // ratioResin
