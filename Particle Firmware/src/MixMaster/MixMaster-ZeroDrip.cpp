@@ -1,12 +1,12 @@
 #include "MixMaster.h"
 
-bool mixMaster::ZeroDrip() {
+bool mixMaster::ZeroDrip(bool runZeroDrip) {
 	static bool ZeroDripState;
 	static uint32_t lastZeroDripTime = 0;
 
 	if( isPrimed && 
-		selector != 0 && 
-		!PailSensor.getState() && 
+		selector != 0 &&
+		runZeroDrip &&
 		millis() - lastZeroDripTime > settings.zeroDripInterval) {
 	  
 			if(!ZeroDripState){
@@ -33,6 +33,8 @@ bool mixMaster::ZeroDrip() {
 					lastZeroDripTime = millis();
 				}
 			}
+	} else {
+		ZeroDripState = false;
 	}
 
 	return ZeroDripState;

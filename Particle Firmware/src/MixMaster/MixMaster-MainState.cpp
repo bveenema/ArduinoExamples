@@ -13,17 +13,20 @@ bool mixMaster::update(bool _changeState){
   static uint32_t accumulatedMixingTime = 0;
   static bool keepOpen = false;
   static bool prime = false;
+  static bool runZeroDrip = false;
 
   if(mixerState == START_IDLE){ // 0
     if(numConsecutivePrimes >= settings.minPrimes) isPrimed = true;
     timeStartedIdling = millis();
     mixerState = IDLE;
   }else if(mixerState == IDLE){ // 1
-    if(!this->ZeroDrip()) this->idlePumps();    
+    if(!this->ZeroDrip(runZeroDrip)) this->idlePumps();
+    if(!runZeroDrip && PailSensor.getState()) runZeroDrip = true;
 
     if(_changeState || (millis()- timeStartedIdling > TIME_BETWEEN_KEEP_OPEN_CYCLES)) {
       // If no Pail in position or liquid, prevent prime, keep open or mixing
       if(!PailSensor.getState() || !ResinLiquidSensor.hasLiquid() || !HardenerLiquidSensor.hasLiquid()){
+        if(!_changeState && !PailSensor.getState()) runZeroDrip = false;
         mixerState = START_IDLE;
         _changeState = false;
         return _changeState;
