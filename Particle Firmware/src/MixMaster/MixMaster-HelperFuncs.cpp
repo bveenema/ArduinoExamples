@@ -2,7 +2,24 @@
 
 // Utility Functions
 uint32_t mixMaster::RPMtoStepsPerSecond(uint32_t RPM){
-  return RPM*200/60;
+  return RPM*STEPS_PER_REV/60;
+}
+
+uint32_t mixMaster::totalVolumeToSteps(uint32_t volume, uint32_t stepsPerMl, uint32_t thisRatio, uint32_t otherRatio){
+  uint32_t totalRatio = thisRatio + otherRatio;
+  if(totalRatio == 0) return 0; // prevent divide by 0 error
+  return volume*stepsPerMl*thisRatio/totalRatio; // # of steps
+}
+
+uint32_t mixMaster::getSpeedFromRPM(uint32_t RPM, uint32_t thisStepsPerMl, uint32_t otherStepsPerMl, uint32_t thisRatio, uint32_t otherRatio){
+  uint32_t totalRatio = thisRatio + otherRatio;
+  uint32_t totalStepsPerMl = thisStepsPerMl + otherStepsPerMl;
+  if(totalRatio == 0 || totalStepsPerMl == 0) return 0; // prevent divide by 0 error
+  return RPM*STEPS_PER_REV*thisStepsPerMl*thisRatio/60/totalStepsPerMl/totalRatio; //steps/ml
+}
+
+uint32_t mixMaster::stepsToMl(uint32_t steps, uint32_t stepsPerMl){
+  return steps/stepsPerMl;
 }
 
 uint32_t mixMaster::calculatePumpSpeed(uint32_t flowRate, uint32_t thisPumpRatio, uint32_t otherPumpRatio, uint32_t stepsPerMl){

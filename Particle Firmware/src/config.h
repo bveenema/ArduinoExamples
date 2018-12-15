@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define THIS_PRODUCT_ID 7951
-#define THIS_PRODUCT_VERSION 18
+#define THIS_PRODUCT_VERSION 19
 
 // Photon Pins
 #define SDA_PIN D0
@@ -84,6 +84,9 @@
 #define FLUSH_MIN_TIME 30000 // ms
 #define FLUSH_MAX_TIME 60000 // ms
 
+// Pump Configuration
+#define STEPS_PER_REV 200 
+
 // Button and Remote Settings
 // time must be held down to be a long press to initiate a "Flush" cycle
 #define LONG_PRESS_TIME 3000
@@ -91,7 +94,7 @@
 //  EEPROM Structure Definition
 //    When changing the structure of EEPROM, increase THIS_EEPROM_VERSION, this
 //    will cause EEPROM of previous versions to reset to default.
-#define THIS_EEPROM_VERSION 15
+#define THIS_EEPROM_VERSION 16
 
 struct prom_settings {
   uint32_t version;
@@ -110,7 +113,8 @@ struct prom_settings {
   uint32_t minPrimes;
   uint32_t minTemperature;
   uint32_t maxTemperature;
-  uint32_t flushTime;
+  uint32_t flushInitialBolusVolume;
+  uint32_t flushVolume;
   uint32_t flushRPM;
   uint32_t flushForwardSteps;
   uint32_t flushReverseSteps;
@@ -145,7 +149,8 @@ const prom_settings defaultSettings = {
   1, // minPrimes
   50, // minTemperature
   90, // maxTemperature
-  30, // flushTime
+  400, // flushInitialBolusVolume
+  2000, // flushVolume
   200, // flushRPM
   200, // flushForwardSteps
   180, // flushReverseSteps

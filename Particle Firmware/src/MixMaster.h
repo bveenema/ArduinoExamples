@@ -87,6 +87,7 @@ private:
   // FLUSHING States
   enum FlushingState{
     FLUSH_INIT,
+    FLUSH_INITIAL_BOLUS,
     FLUSH_FORWARD,
     FLUSH_FORWARD_PAUSE,
     FLUSH_REVERSE,
@@ -103,8 +104,8 @@ private:
   // Flushing State Machine Handler
   void updateFlushing();
 
-  // Flushing Timer
-  uint32_t timeStartedFlushing;
+  // Flushing Counter
+  uint32_t flushVolumeCounter;
 
   // ZeroDrip
   bool ZeroDrip();
@@ -114,6 +115,9 @@ private:
   uint32_t calculatePumpSpeed(uint32_t flowRate, uint32_t thisPumpRatio, uint32_t otherPumpRatio, uint32_t stepsPerMl);
   uint32_t calculateTimeForVolume(uint32_t volume, uint16_t flowRate);
   uint32_t calculateAutoReverseSteps(uint32_t thisPumpRatio, uint32_t otherPumpRatio);
+  uint32_t totalVolumeToSteps(uint32_t volume, uint32_t stepsPerMl, uint32_t thisRatio, uint32_t otherRatio);
+  uint32_t getSpeedFromRPM(uint32_t RPM, uint32_t thisStepsPerMl, uint32_t otherStepsPerMl, uint32_t thisRatio, uint32_t otherRatio);
+  uint32_t stepsToMl(uint32_t steps, uint32_t stepsPerMl);
 };
 
 extern mixMaster MixMaster;

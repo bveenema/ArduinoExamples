@@ -21,15 +21,16 @@ void updatePumps(){
 void mixMaster::startFlush(){
   mixerState = FLUSHING;
   FlushingState = FLUSH_INIT;
-  timeStartedFlushing = millis();
+  flushVolumeCounter = 0;
 }
 
 void mixMaster::updateFlushing(){
-  if(millis() - timeStartedFlushing > settings.flushTime*60*1000){
+  if(flushVolumeCounter >= settings.flushVolume){
     mixerState = START_IDLE;
   }
   
   static uint32_t timeStartedPause = 0;
+  static bool initialBolus = false;
   switch(FlushingState){
     case FLUSH_INIT:{
       // We don't know current pump state, so assume it's running and stop it
@@ -40,13 +41,16 @@ void mixMaster::updateFlushing(){
 
       enablePumps();
 
-      uint32_t flushSpeed = RPMtoStepsPerSecond(settings.flushRPM);
-      ResinPump.setMaxSpeed(flushSpeed);
-      HardenerPump.setMaxSpeed(flushSpeed);
+      // Set the flush speed for each channel
+      ResinPump.setMaxSpeed(getSpeedFromRPM(settings.flushRPM, settings.stepsPerMlResin, settings.stepsPerMlHardener, 1, 1));
+      HardenerPump.setMaxSpeed(getSpeedFromRPM(settings.flushRPM, settings.stepsPerMlResin, settings.stepsPerMlHardener, 1, 1));
+
+      // First FLUSH_FORWARD moves special 'InitialBolusVolume'
+      initialBolus = true;
       ResinPump.setCurrentPosition(0);
       HardenerPump.setCurrentPosition(0);
-      ResinPump.moveTo(settings.flushForwardSteps);
-      HardenerPump.moveTo(settings.flushForwardSteps);
+      ResinPump.moveTo(totalVolumeToSteps(settings.flushInitialBolusVolume, settings.stepsPerMlResin, 1,1));
+      HardenerPump.moveTo(totalVolumeToSteps(settings.flushInitialBolusVolume, settings.stepsPerMlHardener, 1,1));
 
       FlushingState = FLUSH_FORWARD;
       break;
@@ -56,6 +60,8 @@ void mixMaster::updateFlushing(){
       ResinPump.run();
       HardenerPump.run();
       if(!ResinPump.isRunning() && !HardenerPump.isRunning()){
+        if(initialBolus) flushVolumeCounter += settings.flushInitialBolusVolume;
+        else flushVolumeCounter += stepsToMl(settings.flushForwardSteps, settings.stepsPerMlResin) + stepsToMl(settings.flushForwardSteps, settings.stepsPerMlHardener);
         FlushingState = FLUSH_FORWARD_PAUSE;
         timeStartedPause = millis();
       }
