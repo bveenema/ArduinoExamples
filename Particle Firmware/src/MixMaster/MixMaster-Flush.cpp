@@ -62,6 +62,8 @@ void mixMaster::updateFlushing(){
       if(!ResinPump.isRunning() && !HardenerPump.isRunning()){
         if(initialBolus) flushVolumeCounter += settings.flushInitialBolusVolume;
         else flushVolumeCounter += stepsToMl(settings.flushForwardSteps, settings.stepsPerMlResin) + stepsToMl(settings.flushForwardSteps, settings.stepsPerMlHardener);
+        Serial.printlnf("Message:Flush Volume - %d",flushVolumeCounter);
+        initialBolus = false;
         FlushingState = FLUSH_FORWARD_PAUSE;
         timeStartedPause = millis();
       }
