@@ -94,7 +94,7 @@
 //  EEPROM Structure Definition
 //    When changing the structure of EEPROM, increase THIS_EEPROM_VERSION, this
 //    will cause EEPROM of previous versions to reset to default.
-#define THIS_EEPROM_VERSION 16
+#define THIS_EEPROM_VERSION 17
 
 struct prom_settings {
   uint32_t version;
