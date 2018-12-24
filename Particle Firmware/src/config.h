@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define THIS_PRODUCT_ID 7951
-#define THIS_PRODUCT_VERSION 19
+#define THIS_PRODUCT_VERSION 20
 
 // Photon Pins
 #define SDA_PIN D0
@@ -159,8 +159,8 @@ const prom_settings defaultSettings = {
   5, // zeroDripSteps
   1000, // zeroDripInterval
   3000, // maxTimeNoLiquid
-  {3000,3000,3000,3000,3000}, // flowRate
-  {0,200,100,224,189}, // ratioResin
+  {3785,3785,3785,3785,3785}, // flowRate
+  {0,200,100,231,204}, // ratioResin
   {0,100,400,100,100}, // ratioHardener
   {3785,3785,3785,3785,3785} // volume
 };
