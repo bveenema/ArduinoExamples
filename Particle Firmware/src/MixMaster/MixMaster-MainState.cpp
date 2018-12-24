@@ -21,7 +21,7 @@ bool mixMaster::update(bool _changeState){
     mixerState = IDLE;
   }else if(mixerState == IDLE){ // 1
     if(!this->ZeroDrip(runZeroDrip)) this->idlePumps();
-    if(!runZeroDrip && PailSensor.getState()) runZeroDrip = true;
+    if(!runZeroDrip && PailSensor.getState() && selector != 0) runZeroDrip = true;
 
     if(_changeState || (millis()- timeStartedIdling > TIME_BETWEEN_KEEP_OPEN_CYCLES)) {
       // If no Pail in position or liquid, prevent prime, keep open or mixing
@@ -36,8 +36,8 @@ bool mixMaster::update(bool _changeState){
         keepOpen = false;
         _changeState = false;
       } else { // keep open
-        // prevent keepOpen if not primed
-        if(!isPrimed) {
+        // prevent keepOpen if not primed or selector is in flush position
+        if(!isPrimed || selector == 0){
           mixerState = START_IDLE;
           return _changeState;
         }
