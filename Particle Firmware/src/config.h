@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define THIS_PRODUCT_ID 7951
-#define THIS_PRODUCT_VERSION 20
+#define THIS_PRODUCT_VERSION 21
 
 // Photon Pins
 #define SDA_PIN D0
@@ -94,7 +94,7 @@
 //  EEPROM Structure Definition
 //    When changing the structure of EEPROM, increase THIS_EEPROM_VERSION, this
 //    will cause EEPROM of previous versions to reset to default.
-#define THIS_EEPROM_VERSION 17
+#define THIS_EEPROM_VERSION 18
 
 struct prom_settings {
   uint32_t version;
@@ -113,13 +113,12 @@ struct prom_settings {
   uint32_t minPrimes;
   uint32_t minTemperature;
   uint32_t maxTemperature;
-  uint32_t flushInitialBolusVolume;
-  uint32_t flushVolume;
   uint32_t flushRPM;
-  uint32_t flushForwardSteps;
-  uint32_t flushReverseSteps;
-  uint32_t flushForwardPause;
-  uint32_t flushReversePause;
+  uint32_t flushCycles;
+  uint32_t washCycles;
+  uint32_t washCounts;
+  uint32_t purgeCounts;
+  uint32_t flushPause;
   uint32_t zeroDripSteps;
   uint32_t zeroDripInterval;
   uint32_t maxTimeNoLiquid;
@@ -149,13 +148,12 @@ const prom_settings defaultSettings = {
   1, // minPrimes
   50, // minTemperature
   90, // maxTemperature
-  400, // flushInitialBolusVolume
-  2000, // flushVolume
   200, // flushRPM
-  200, // flushForwardSteps
-  180, // flushReverseSteps
-  1000, // flushForwardPause
-  1000, // flushReversePause
+  1, // flushCycles;
+  50, // washCycles;
+  200, // washCounts;
+  3000, // purgeCounts;
+  0, // flushPause;
   5, // zeroDripSteps
   1000, // zeroDripInterval
   3000, // maxTimeNoLiquid

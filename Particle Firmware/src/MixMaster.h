@@ -87,12 +87,19 @@ private:
   // FLUSHING States
   enum FlushingState{
     FLUSH_INIT,
-    FLUSH_INITIAL_BOLUS,
-    FLUSH_FORWARD,
-    FLUSH_FORWARD_PAUSE,
-    FLUSH_REVERSE,
-    FLUSH_REVERSE_PAUSE,
+    FLUSH_CHECK,
+    FLUSH_SETUP_PURGE,
+    FLUSH_SETUP_WASH_FORWARD,
+    FLUSH_SETUP_WASH_REVERSE,
+    FLUSH_RUN_PUMPS,
+    FLUSH_PAUSE,
   } FlushingState;
+
+  enum lastMove {
+    FLUSH_PURGE,
+    FLUSH_WASH_FORWARD,
+    FLUSH_WASH_REVERSE,
+  } lastMove;
 
   // MIXING States
   enum MixingState{
@@ -105,7 +112,9 @@ private:
   void updateFlushing();
 
   // Flushing Counter
-  uint32_t flushVolumeCounter;
+  uint32_t flushCount = 0;
+  uint32_t washCount = 0;
+  bool initialPurge = false;
 
   // ZeroDrip
   bool ZeroDrip(bool runZeroDrip);

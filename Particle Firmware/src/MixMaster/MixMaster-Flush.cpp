@@ -1,18 +1,5 @@
 #include "MixMaster.h"
 
-/*
-selector set to zero
-Both pump will run exact same flow rate
-Pump Motors will run forward for a setable amount of counts (0-2000) initial setting 200 counts
-Pumps will pause for a setable amount of time (0-5) seconds set for 1 second initially
-Pump Motors will run reverse for a setable amount of counts (0-2000) initial setting 180 counts
-Pumps will pause for a settable amount of time (0-5) seconds set for 1 second initially
-This will continue for a setable amount of cleaning time (0-30) min set initially for 30 min
-RPM will be a setable value (0-400) set initially for 200
-*/
-
-
-
 // Pump handler
 void updatePumps(){
   MixMaster.runPumps();
@@ -21,16 +8,15 @@ void updatePumps(){
 void mixMaster::startFlush(){
   mixerState = FLUSHING;
   FlushingState = FLUSH_INIT;
-  flushVolumeCounter = 0;
+  washCount = 0;
+  flushCount = 0;
 }
 
 void mixMaster::updateFlushing(){
-  if(flushVolumeCounter >= settings.flushVolume){
-    mixerState = START_IDLE;
-  }
+  // Check flushCount for done-ness
+  if(flushCount >= settings.flushCycles) mixerState = START_IDLE;
   
   static uint32_t timeStartedPause = 0;
-  static bool initialBolus = false;
   switch(FlushingState){
     case FLUSH_INIT:{
       // We don't know current pump state, so assume it's running and stop it
@@ -45,57 +31,88 @@ void mixMaster::updateFlushing(){
       ResinPump.setMaxSpeed(getSpeedFromRPM(settings.flushRPM, settings.stepsPerMlResin, settings.stepsPerMlHardener, 1, 1));
       HardenerPump.setMaxSpeed(getSpeedFromRPM(settings.flushRPM, settings.stepsPerMlResin, settings.stepsPerMlHardener, 1, 1));
 
-      // First FLUSH_FORWARD moves special 'InitialBolusVolume'
-      initialBolus = true;
-      ResinPump.setCurrentPosition(0);
-      HardenerPump.setCurrentPosition(0);
-      ResinPump.moveTo(totalVolumeToSteps(settings.flushInitialBolusVolume, settings.stepsPerMlResin, 1,1));
-      HardenerPump.moveTo(totalVolumeToSteps(settings.flushInitialBolusVolume, settings.stepsPerMlHardener, 1,1));
-
-      FlushingState = FLUSH_FORWARD;
+      FlushingState = FLUSH_SETUP_PURGE;
+      initialPurge = true;
       break;
     }
 
-    case FLUSH_FORWARD:
+    case FLUSH_CHECK:
+      if(lastMove == FLUSH_PURGE){
+        // increment the flush count if not the inital purge
+        if(initialPurge) initialPurge = false;
+        else flushCount += 1;
+
+        // if all flush cycles complete, end flushing, otherwise start washing again
+        if(flushCount >= settings.flushCycles) mixerState = START_IDLE;
+        else FlushingState = FLUSH_SETUP_WASH_FORWARD;
+
+      }else if(lastMove == FLUSH_WASH_FORWARD){
+        // Wash forward is always followed by Wash Reverse
+        FlushingState = FLUSH_SETUP_WASH_REVERSE;
+
+      }else if(lastMove == FLUSH_WASH_REVERSE){
+        //increment the wash count
+        washCount += 1;
+
+        // if all wash cycles complete, purge, otherwise start a new wash cycle
+        if(washCount >= settings.washCycles) FlushingState = FLUSH_SETUP_PURGE;
+        else FlushingState = FLUSH_SETUP_WASH_FORWARD;
+      }
+
+      break;
+
+    case FLUSH_SETUP_PURGE:
+      Serial.println("message:Start Purge");
+
+      ResinPump.setCurrentPosition(0);
+      HardenerPump.setCurrentPosition(0);
+      ResinPump.moveTo(settings.purgeCounts);
+      HardenerPump.moveTo(settings.purgeCounts);
+
+      FlushingState = FLUSH_RUN_PUMPS;
+      lastMove = FLUSH_PURGE;
+
+      break;
+
+    case FLUSH_SETUP_WASH_FORWARD:
+      Serial.println("message:Start Wash Forward");
+      
+      ResinPump.setCurrentPosition(0);
+      HardenerPump.setCurrentPosition(0);
+      ResinPump.moveTo(settings.washCounts);
+      HardenerPump.moveTo(settings.washCounts);
+
+      FlushingState = FLUSH_RUN_PUMPS;
+      lastMove = FLUSH_WASH_FORWARD;
+
+      break;
+
+    case FLUSH_SETUP_WASH_REVERSE:
+      Serial.println("message:Start Wash Reverse");
+      
+      ResinPump.setCurrentPosition(0);
+      HardenerPump.setCurrentPosition(0);
+      ResinPump.moveTo(-settings.washCounts);
+      HardenerPump.moveTo(-settings.washCounts);
+
+      FlushingState = FLUSH_RUN_PUMPS;
+      lastMove = FLUSH_WASH_REVERSE;
+
+      break;
+
+    case FLUSH_RUN_PUMPS:
       ResinPump.run();
       HardenerPump.run();
       if(!ResinPump.isRunning() && !HardenerPump.isRunning()){
-        if(initialBolus) flushVolumeCounter += settings.flushInitialBolusVolume;
-        else flushVolumeCounter += stepsToMl(settings.flushForwardSteps, settings.stepsPerMlResin) + stepsToMl(settings.flushForwardSteps, settings.stepsPerMlHardener);
-        Serial.printlnf("Message:Flush Volume - %d",flushVolumeCounter);
-        initialBolus = false;
-        FlushingState = FLUSH_FORWARD_PAUSE;
+        FlushingState = FLUSH_PAUSE;
         timeStartedPause = millis();
       }
 
       break;
     
-    case FLUSH_FORWARD_PAUSE:
-      if(millis() - timeStartedPause > settings.flushForwardPause){
-        FlushingState = FLUSH_REVERSE;
-        ResinPump.setCurrentPosition(0);
-        HardenerPump.setCurrentPosition(0);
-        ResinPump.moveTo(-settings.flushReverseSteps);
-        HardenerPump.moveTo(-settings.flushReverseSteps);
-      }
-      break;
-
-    case FLUSH_REVERSE:
-      ResinPump.run();
-      HardenerPump.run();
-      if(!ResinPump.isRunning() && !HardenerPump.isRunning()){
-        FlushingState = FLUSH_REVERSE_PAUSE;
-        timeStartedPause = millis();
-      }
-      break;
-
-    case FLUSH_REVERSE_PAUSE:
-      if(millis() - timeStartedPause > settings.flushReversePause){
-        FlushingState = FLUSH_FORWARD;
-        ResinPump.setCurrentPosition(0);
-        HardenerPump.setCurrentPosition(0);
-        ResinPump.moveTo(settings.flushForwardSteps);
-        HardenerPump.moveTo(settings.flushForwardSteps);
+    case FLUSH_PAUSE:
+      if(millis() - timeStartedPause > settings.flushPause){
+        FlushingState = FLUSH_CHECK;
       }
       break;
 

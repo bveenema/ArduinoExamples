@@ -165,7 +165,27 @@
             <input class="textbox" type="number" min="0" max="30000" step="500" value="0" disabled>
             Current: <span>0</span>
           </li>
-          <li id="command-flushInitialBolusVolume" class="advanced version:min-19">
+          <li id="command-flushCycles" class="advanced version:min-15  version:min-21">
+            Flush Cycles:
+            <input class="textbox" type="number" min="0" max="20" step="1" value="0" disabled>
+            Current: <span>0</span>
+          </li>
+          <li id="command-washCycles" class="advanced version:min-15  version:min-21">
+            Wash Cycles:
+            <input class="textbox" type="number" min="0" max="5000" step="10" value="0" disabled>
+            Current: <span>0</span>
+          </li>
+          <li id="command-purgeCounts" class="advanced version:min-15  version:min-21">
+            Purge Counts:
+            <input class="textbox" type="number" min="0" max="6000" step="500" value="0" disabled>
+            Current: <span>0</span>
+          </li>
+          <li id="command-washCounts" class="advanced version:min-15  version:min-21">
+            Wash Counts:
+            <input class="textbox" type="number" min="0" max="6000" step="100" value="0" disabled>
+            Current: <span>0</span>
+          </li>
+          <li id="command-flushInitialBolusVolume" class="advanced version:min-19 version:max-20">
             Flush Initial Bolus Volume (ml):
             <input class="textbox" type="number" min="0" max="5000" step="100" value="0" disabled>
             Current: <span>0</span>
@@ -175,32 +195,37 @@
             <input class="textbox" type="number" min="0" max="30" step="1" value="0" disabled>
             Current: <span>0</span>
           </li>
-          <li id="command-flushVolume" class="advanced version:min-19">
+          <li id="command-flushVolume" class="advanced version:min-19 version:max-20">
             Flush Volume (ml):
             <input class="textbox" type="number" min="0" max="20000" step="100" value="0" disabled>
             Current: <span>0</span>
           </li>
           <li id="command-flushRPM" class="advanced version:min-17">
             Flush RPM:
-            <input class="textbox" type="number" min="0" max="400" step="10" value="0" disabled>
+            <input class="textbox" type="number" min="0" max="400" step="50" value="0" disabled>
             Current: <span>0</span>
           </li>
-          <li id="command-flushForwardSteps" class="advanced version:min-17">
+          <li id="command-flushPause" class="advanced version:min-17">
+            Flush Pause:
+            <input class="textbox" type="number" min="0" max="5000" step="500" value="0" disabled>
+            Current: <span>0</span>
+          </li>
+          <li id="command-flushForwardSteps" class="advanced version:min-17 version:max-20">
             Flush Forward Steps:
             <input class="textbox" type="number" min="0" max="2000" step="100" value="0" disabled>
             Current: <span>0</span>
           </li>
-          <li id="command-flushReverseSteps" class="advanced version:min-17">
+          <li id="command-flushReverseSteps" class="advanced version:min-17 version:max-20">
             Flush Reverse Steps:
             <input class="textbox" type="number" min="0" max="2000" step="100" value="0" disabled>
             Current: <span>0</span>
           </li>
-          <li id="command-flushForwardPause" class="advanced version:min-17">
+          <li id="command-flushForwardPause" class="advanced version:min-17 version:max-20">
             Flush Forward Pause (milli-seconds):
             <input class="textbox" type="number" min="0" max="5000" step="100" value="0" disabled>
             Current: <span>0</span>
           </li>
-          <li id="command-flushReversePause" class="advanced version:min-17">
+          <li id="command-flushReversePause" class="advanced version:min-17 version:max-20">
             Flush Reverse Pause (milli-seconds):
             <input class="textbox" type="number" min="0" max="5000" step="100" value="0" disabled>
             Current: <span>0</span>
