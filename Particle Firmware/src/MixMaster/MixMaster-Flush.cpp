@@ -15,6 +15,9 @@ void mixMaster::startFlush(){
 void mixMaster::updateFlushing(){
   // Check flushCount for done-ness
   if(flushCount >= settings.flushCycles) mixerState = START_IDLE;
+
+  // Burp Air as needed
+  burpAir();
   
   static uint32_t timeStartedPause = 0;
   switch(FlushingState){
@@ -38,6 +41,9 @@ void mixMaster::updateFlushing(){
 
     case FLUSH_CHECK:
       if(lastMove == FLUSH_PURGE){
+        // Reset the wash count
+        washCount = 0;
+
         // increment the flush count if not the inital purge
         if(initialPurge) initialPurge = false;
         else flushCount += 1;
@@ -121,3 +127,26 @@ void mixMaster::updateFlushing(){
       break;
   }
 }
+
+void mixMaster::burpAir(){
+  // Only burp during wash portion of flush (not purge)
+  if(lastMove == FLUSH_WASH_FORWARD || lastMove == FLUSH_WASH_REVERSE){
+    if(BurpState == BURP_AIR_ON){
+      PressureManager.forcePumpOn();
+      if(millis() - timeBurpStarted > settings.burpTime){
+        BurpState = BURP_AIR_PAUSE;
+        timeBurpStarted = millis();
+      }
+    } else if(BurpState == BURP_AIR_PAUSE){
+      PressureManager.forcePumpOff();
+      if(millis() - timeBurpStarted > settings.burpPause){
+        BurpState = BURP_AIR_ON;
+        timeBurpStarted = millis();
+      }
+    }
+  } else {
+    PressureManager.forcePumpOff();
+    timeBurpStarted = millis();
+  }
+}
+

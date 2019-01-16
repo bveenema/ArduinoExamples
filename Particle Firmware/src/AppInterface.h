@@ -71,6 +71,8 @@ typedef struct {
 const commandSet commandList[] = {
   {"action", NULL, NULL, printMixerState},
   {"autoReverseSteps", &settings.autoReverseSteps, false, NULL},
+  {"burpTime", &settings.burpTime, false, NULL},
+  {"burpPause", &settings.burpPause, false, NULL},
   {"chargeDelay", &settings.chargeDelay, false, NULL},
   {"chargeTimeout", &settings.chargeTimeout, false, NULL},
   {"cloudStatus", NULL, NULL, printCloudStatus},

@@ -111,6 +111,14 @@ private:
   // Flushing State Machine Handler
   void updateFlushing();
 
+  // Flushing Burp Handler
+  void burpAir();
+  enum BurpState {
+    BURP_AIR_ON,
+    BURP_AIR_PAUSE,
+  } BurpState;
+  uint32_t timeBurpStarted = 0;
+
   // Flushing Counter
   uint32_t flushCount = 0;
   uint32_t washCount = 0;
