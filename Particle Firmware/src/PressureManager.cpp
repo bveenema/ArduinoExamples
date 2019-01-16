@@ -37,43 +37,75 @@ void pressureManager::update(){
     _pressure.current = PRESSURE_SENSOR_PMIN + ((PRESSURE_SENSOR_DELTA_P*(averageRaw - (0.1*PRESSURE_SENSOR_VSUPPLY)))/(0.8*PRESSURE_SENSOR_VSUPPLY));
   }
 
-  if(_pressure.isValid){
-    if(_pressure.current < _onPressure ||
-      (_pressure.current < _offPressure && _atPressure == false)){
-        // Set state to under pressure state and request charging
-        _atPressure = false;
-        _requestCharging = true;
+  if(_forcePumpOn){
+    // Turn on Pump
+    IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, HIGH);
+  } else if (_forcePumpOff){
+    // Turn off Pump
+    IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, LOW);
+  } else{
+    // Run "normal" (to a pressure)
+    if(_pressure.isValid){
+      if(_pressure.current < _onPressure ||
+        (_pressure.current < _offPressure && _atPressure == false)){
+          // Set state to under pressure state and request charging
+          _atPressure = false;
+          _requestCharging = true;
 
-        // Charge if allowed
-        if(_allowCharging && !_currentChargingState){
-          IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, HIGH);
-          _currentChargingState = true;
-        } else if(!_allowCharging && _currentChargingState){
+          // Charge if allowed
+          if(_allowCharging && !_currentChargingState){
+            IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, HIGH);
+            _currentChargingState = true;
+          } else if(!_allowCharging && _currentChargingState){
+            IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, LOW);
+            _currentChargingState = false;
+          }
+      } else if(_pressure.current > _offPressure){
+        // set atPressure and stop requesting charging
+        _atPressure = true;
+        _requestCharging = false;
+
+        // disable air pump
+        if(_currentChargingState == true){
           IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, LOW);
           _currentChargingState = false;
         }
-    } else if(_pressure.current > _offPressure){
-      // set atPressure and stop requesting charging
-      _atPressure = true;
-      _requestCharging = false;
-
-      // disable air pump
-      if(_currentChargingState == true){
-        IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, LOW);
-        _currentChargingState = false;
       }
     }
   }
+  
 
   // Check to make sure Allow Charging was called in last 10ms, reset if not
   if(millis() - _lastAllowChargingCall > 10){
     _allowCharging = false;
+  }
+
+  // Check to make sure Force Pump On was called in last 10ms, reset if not
+  if(millis() - _lastForcePumpOnCall > 10){
+    _forcePumpOn = false;
+  }
+
+  // Check to make sure Force Pump On was called in last 10ms, reset if not
+  if(millis() - _lastForcePumpOffCall > 10){
+    _forcePumpOff = false;
   }
 }
 
 void pressureManager::allowCharging(){
   _allowCharging = true;
   _lastAllowChargingCall = millis();
+}
+
+void pressureManager::forcePumpOn(){
+  _forcePumpOn = true;
+  _forcePumpOff = false;
+  _lastForcePumpOnCall = millis();
+}
+
+void pressureManager::forcePumpOff(){
+  _forcePumpOff = true;
+  _forcePumpOn = false;
+  _lastForcePumpOffCall = millis();
 }
 
 bool pressureManager::requestCharging(){

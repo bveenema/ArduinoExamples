@@ -38,6 +38,11 @@ public:
   int32_t updateTargetPressure(int32_t pressure, bool type = 0);
 
   int32_t getPressure();
+
+  // Functions to force the air pump to turn on/off regardless of pressure. Must be called every 10ms to continue
+  void forcePumpOn();
+  void forcePumpOff();
+
 private:
   // True if Pails are charged
   bool charged = false;
@@ -48,6 +53,12 @@ private:
   uint32_t _lastAllowChargingCall = 0;
   bool _allowCharging = false;
   bool _currentChargingState = false;
+
+  // force pump on
+  uint32_t _lastForcePumpOnCall = 0;
+  uint32_t _lastForcePumpOffCall = 0;
+  bool _forcePumpOn = false;
+  bool _forcePumpOff = false;
 
   // True if pails should be charged
   bool isCharging = false;
