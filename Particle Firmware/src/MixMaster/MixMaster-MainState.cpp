@@ -51,7 +51,6 @@ bool mixMaster::update(bool _changeState){
     else if(keepOpen) timeToMix = this->prepForMixing(settings.keepOpenVolume, settings.flowRate[selector], settings.ratioResin[selector], settings.ratioHardener[selector]);
     else timeToMix = this->prepForMixing(settings.volume[selector], settings.flowRate[selector], settings.ratioResin[selector], settings.ratioHardener[selector]);
     timeStartedCharging = millis();
-    accumulatedMixingTime = 0;
     mixerState = MIXING;
     MixingState = CHARGING;
     PressureManager.forceUnderPressure();
@@ -96,6 +95,7 @@ bool mixMaster::update(bool _changeState){
     }
 
     if(accumulatedMixingTime > timeToMix){
+      accumulatedMixingTime = 0;
       pumpUpdater.end(); // kill pump interrupt handler
       if(settings.autoReverseSteps > 0) mixerState = START_AUTO_REVERSE;
       else mixerState = START_IDLE;

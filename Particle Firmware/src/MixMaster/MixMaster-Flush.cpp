@@ -72,9 +72,14 @@ void mixMaster::updateFlushing(){
 
       ResinPump.setCurrentPosition(0);
       HardenerPump.setCurrentPosition(0);
-      ResinPump.moveTo(settings.purgeCounts);
-      HardenerPump.moveTo(settings.purgeCounts);
 
+      if(initialPurge){
+        ResinPump.moveTo(settings.initialPurgeCounts);
+        HardenerPump.moveTo(settings.initialPurgeCounts);
+      } else {
+        ResinPump.moveTo(settings.purgeCounts);
+        HardenerPump.moveTo(settings.purgeCounts);
+      }
       FlushingState = FLUSH_RUN_PUMPS;
       lastMove = FLUSH_PURGE;
 

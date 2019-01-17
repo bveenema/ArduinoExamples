@@ -86,6 +86,7 @@ const commandSet commandList[] = {
   {"flushPause", &settings.flushPause, false, NULL},
   {"flushRPM", &settings.flushRPM, false, NULL},
   {"incrementer", NULL, NULL, printIncrementer},
+  {"initialPurgeCounts", &settings.initialPurgeCounts, false, NULL},
   {"keepOpenVolume", &settings.keepOpenVolume, false, NULL},
   {"resinPumpSpeed", NULL, NULL, printResinPumpSpeed},
   {"hardenerPumpSpeed", NULL, NULL, printHardenerPumpSpeed},
