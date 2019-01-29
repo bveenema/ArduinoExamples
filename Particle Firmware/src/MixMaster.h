@@ -93,6 +93,7 @@ private:
     FLUSH_SETUP_WASH_REVERSE,
     FLUSH_RUN_PUMPS,
     FLUSH_PAUSE,
+    FLUSH_AIR_CHARGE,
   } FlushingState;
 
   enum lastMove {
@@ -110,14 +111,6 @@ private:
 
   // Flushing State Machine Handler
   void updateFlushing();
-
-  // Flushing Burp Handler
-  void burpAir();
-  enum BurpState {
-    BURP_AIR_ON,
-    BURP_AIR_PAUSE,
-  } BurpState;
-  uint32_t timeBurpStarted = 0;
 
   // Flushing Counter
   uint32_t flushCount = 0;

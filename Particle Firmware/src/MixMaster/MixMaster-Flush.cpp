@@ -15,11 +15,9 @@ void mixMaster::startFlush(){
 void mixMaster::updateFlushing(){
   // Check flushCount for done-ness
   if(flushCount >= settings.flushCycles) mixerState = START_IDLE;
-
-  // Burp Air as needed
-  burpAir();
   
   static uint32_t timeStartedPause = 0;
+  static uint32_t timeStartedCharge = 0;
   switch(FlushingState){
     case FLUSH_INIT:{
       // We don't know current pump state, so assume it's running and stop it
@@ -50,19 +48,20 @@ void mixMaster::updateFlushing(){
 
         // if all flush cycles complete, end flushing, otherwise start washing again
         if(flushCount >= settings.flushCycles) mixerState = START_IDLE;
-        else FlushingState = FLUSH_SETUP_WASH_FORWARD;
+        else FlushingState = FLUSH_SETUP_WASH_REVERSE;
 
       }else if(lastMove == FLUSH_WASH_FORWARD){
-        // Wash forward is always followed by Wash Reverse
-        FlushingState = FLUSH_SETUP_WASH_REVERSE;
-
-      }else if(lastMove == FLUSH_WASH_REVERSE){
         //increment the wash count
         washCount += 1;
 
         // if all wash cycles complete, purge, otherwise start a new wash cycle
         if(washCount >= settings.washCycles) FlushingState = FLUSH_SETUP_PURGE;
-        else FlushingState = FLUSH_SETUP_WASH_FORWARD;
+        else FlushingState = FLUSH_SETUP_WASH_REVERSE;
+
+      }else if(lastMove == FLUSH_WASH_REVERSE){
+        // Wash Reverse is always followed by Wash Forward
+        FlushingState = FLUSH_SETUP_WASH_FORWARD;
+
       }
 
       break;
@@ -80,21 +79,25 @@ void mixMaster::updateFlushing(){
         ResinPump.moveTo(settings.purgeCounts);
         HardenerPump.moveTo(settings.purgeCounts);
       }
-      FlushingState = FLUSH_RUN_PUMPS;
+
       lastMove = FLUSH_PURGE;
+
+      FlushingState = FLUSH_AIR_CHARGE;
+      timeStartedCharge = millis();
 
       break;
 
     case FLUSH_SETUP_WASH_FORWARD:
-      Serial.println("message:Start Wash Forward");
+      Serial.printlnf("message:Start Wash Forward %d", washCount);
       
       ResinPump.setCurrentPosition(0);
       HardenerPump.setCurrentPosition(0);
       ResinPump.moveTo(settings.washCounts);
       HardenerPump.moveTo(settings.washCounts);
 
-      FlushingState = FLUSH_RUN_PUMPS;
       lastMove = FLUSH_WASH_FORWARD;
+
+      FlushingState = FLUSH_RUN_PUMPS;
 
       break;
 
@@ -105,10 +108,21 @@ void mixMaster::updateFlushing(){
       HardenerPump.setCurrentPosition(0);
       ResinPump.moveTo(-settings.washCounts);
       HardenerPump.moveTo(-settings.washCounts);
-
-      FlushingState = FLUSH_RUN_PUMPS;
+      
       lastMove = FLUSH_WASH_REVERSE;
 
+      FlushingState = FLUSH_AIR_CHARGE;
+      timeStartedCharge = millis();
+
+      break;
+
+    case FLUSH_AIR_CHARGE:
+      PressureManager.forcePumpOn();
+      if(millis() - timeStartedCharge > settings.chargeTime){
+        Serial.printlnf("message:Did Charge %d", millis() - timeStartedCharge);
+        PressureManager.forcePumpOff();
+        FlushingState = FLUSH_RUN_PUMPS;
+      }
       break;
 
     case FLUSH_RUN_PUMPS:
@@ -132,26 +146,3 @@ void mixMaster::updateFlushing(){
       break;
   }
 }
-
-void mixMaster::burpAir(){
-  // Only burp during wash portion of flush (not purge)
-  if(lastMove == FLUSH_WASH_FORWARD || lastMove == FLUSH_WASH_REVERSE){
-    if(BurpState == BURP_AIR_ON){
-      PressureManager.forcePumpOn();
-      if(millis() - timeBurpStarted > settings.burpTime){
-        BurpState = BURP_AIR_PAUSE;
-        timeBurpStarted = millis();
-      }
-    } else if(BurpState == BURP_AIR_PAUSE){
-      PressureManager.forcePumpOff();
-      if(millis() - timeBurpStarted > settings.burpPause){
-        BurpState = BURP_AIR_ON;
-        timeBurpStarted = millis();
-      }
-    }
-  } else {
-    PressureManager.forcePumpOff();
-    timeBurpStarted = millis();
-  }
-}
-
