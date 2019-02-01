@@ -32,6 +32,10 @@ void mixMaster::startFlush(){
 void mixMaster::updateFlushing(){  
   static uint32_t timeStartedPause = 0;
   static uint32_t timeStartedCharge = 0;
+
+  // Interval Charge as needed
+  intervalCharge();
+
   switch(FlushingState){
     case FLUSH_INIT:{
       // We don't know current pump state, so assume it's running and stop it
@@ -74,7 +78,7 @@ void mixMaster::updateFlushing(){
       break;
 
     case FLUSH_SETUP_PURGE:
-      Serial.println("message:Start Purge");
+      Serial.println("Start Purge");
 
       ResinPump.setCurrentPosition(0);
       HardenerPump.setCurrentPosition(0);
@@ -90,7 +94,7 @@ void mixMaster::updateFlushing(){
       break;
 
     case FLUSH_SETUP_WASH_FORWARD:
-      Serial.printlnf("message:Start Wash Forward");
+      Serial.printlnf("Start Wash Forward");
       
       ResinPump.setCurrentPosition(0);
       HardenerPump.setCurrentPosition(0);
@@ -104,7 +108,7 @@ void mixMaster::updateFlushing(){
       break;
 
     case FLUSH_SETUP_WASH_REVERSE:
-      Serial.println("message:Start Wash Reverse");
+      Serial.println("Start Wash Reverse");
       
       ResinPump.setCurrentPosition(0);
       HardenerPump.setCurrentPosition(0);
@@ -123,8 +127,9 @@ void mixMaster::updateFlushing(){
       PressureManager.updateTargetPressure(settings.flushChargePressure, 1);
       PressureManager.allowCharging();
       if(millis() - timeStartedCharge > settings.chargeTime){
-        Serial.printlnf("message:Did Charge %d", millis() - timeStartedCharge);
+        Serial.printlnf("Did Charge %d", millis() - timeStartedCharge);
         FlushingState = FLUSH_RUN_PUMPS;
+        enableIntervalCharge = true;
       }
       break;
 
@@ -148,6 +153,11 @@ void mixMaster::updateFlushing(){
       static uint32_t chimeCount = 0;
       static uint32_t chimeTimer = 0;
 
+      // Set Charging pressures back to mixing
+      enableIntervalCharge = false;
+      PressureManager.updateTargetPressure(settings.offPressure, 0);
+      PressureManager.updateTargetPressure(settings.onPressure, 1);
+
       // Chime 4 times with 1 second between, then reset chime count and exit flushing
       if(chimeCount < 4){
         if(millis() - chimeTimer > 1000+750){
@@ -165,5 +175,26 @@ void mixMaster::updateFlushing(){
     default:
       FlushingState = FLUSH_INIT;
       break;
+  }
+}
+
+void mixMaster::intervalCharge(){
+  if(enableIntervalCharge){
+    if(IntervalChargeState == INTERVAL_CHARGE_AIR_ON){
+      PressureManager.allowCharging();
+      if(millis() - timeIntervalChargeStarted > settings.chargeTime){
+        Serial.printlnf("Did Interval Charge: %d", millis() - timeIntervalChargeStarted);
+        IntervalChargeState = INTERVAL_CHARGE_AIR_PAUSE;
+        timeIntervalChargeStarted = millis();
+      }
+    }else if(IntervalChargeState == INTERVAL_CHARGE_AIR_PAUSE){
+      if(millis() - timeIntervalChargeStarted > settings.flushChargeInterval){
+        Serial.printlnf("Did Interval Pause: %d", millis() - timeIntervalChargeStarted);
+        IntervalChargeState = INTERVAL_CHARGE_AIR_ON;
+        timeIntervalChargeStarted = millis();
+      }
+    }
+  } else {
+    timeIntervalChargeStarted = millis();
   }
 }

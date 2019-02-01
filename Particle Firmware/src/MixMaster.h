@@ -110,6 +110,15 @@ private:
     MIX,
   } MixingState;
 
+  // Flushing Interval Charge Handler
+  void intervalCharge();
+  enum IntervalChargeState {
+    INTERVAL_CHARGE_AIR_ON,
+    INTERVAL_CHARGE_AIR_PAUSE,
+  } IntervalChargeState;
+  uint32_t timeIntervalChargeStarted = 0;
+  bool enableIntervalCharge = false;
+
   // Flushing State Machine Handler
   void updateFlushing();
 

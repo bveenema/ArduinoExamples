@@ -82,6 +82,7 @@ const commandSet commandList[] = {
   {"firmwareID", NULL, NULL, printFirmwareID},
   {"flowRate", settings.flowRate, true, NULL},
   {"flushChargePressure", &settings.flushChargePressure, false, NULL},
+  {"flushChargeInterval", &settings.flushChargeInterval, false, NULL},
   {"flushPause", &settings.flushPause, false, NULL},
   {"flushRPM", &settings.flushRPM, false, NULL},
   {"incrementer", NULL, NULL, printIncrementer},
