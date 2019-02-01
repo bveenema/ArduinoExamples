@@ -8,14 +8,27 @@ void updatePumps(){
 void mixMaster::startFlush(){
   mixerState = FLUSHING;
   FlushingState = FLUSH_INIT;
-  washCount = 0;
-  flushCount = 0;
 }
 
-void mixMaster::updateFlushing(){
-  // Check flushCount for done-ness
-  if(flushCount >= settings.flushCycles) mixerState = START_IDLE;
-  
+
+
+// 3 Charge with air for a settable amount of time (0-5 sec allow millisec settings) set initially to 500 millisec stop when you reach
+//   time or settable pressure 0-5 psi set initially to .5 psi which ever comes first - do this every 0-30 sec settable (set initially to 2
+//   sec ( runs for entire cycle)
+
+// 4 Pump Motors will run forward for a setable amount of counts (0-6000) initial setting 3000 counts
+// 5 Pumps will pause for a setable amount of time (0-5) seconds set for 0 second initially
+// 7 Pump Motors will run reverse for a setable amount of counts (0-6000) initial setting 200 counts
+// 8 Pumps will pause for a setable amount of time (0-5) seconds set for 0 seconds initially
+// 9 Pump Motors will run forward for for a setable amount of counts (0-6000) initial setting 200 counts
+
+// 10 Steps 5-9 will repeat until both liquid presence sensor read empty
+
+// 11 Once complete system will beep 4 times with 1 sec delay between each beep and cycle will stop
+
+
+
+void mixMaster::updateFlushing(){  
   static uint32_t timeStartedPause = 0;
   static uint32_t timeStartedCharge = 0;
   switch(FlushingState){
@@ -33,35 +46,27 @@ void mixMaster::updateFlushing(){
       HardenerPump.setMaxSpeed(getSpeedFromRPM(settings.flushRPM, settings.stepsPerMlResin, settings.stepsPerMlHardener, 1, 1));
 
       FlushingState = FLUSH_SETUP_PURGE;
-      initialPurge = true;
       break;
     }
 
     case FLUSH_CHECK:
+
+      if(!ResinLiquidSensor.hasLiquid() && !HardenerLiquidSensor.hasLiquid()){
+        timeStartedPause = millis();
+        FlushingState = FLUSH_SIGNAL_COMPLETE;
+      }
+
       if(lastMove == FLUSH_PURGE){
-        // Reset the wash count
-        washCount = 0;
-
-        // increment the flush count if not the inital purge
-        if(initialPurge) initialPurge = false;
-        else flushCount += 1;
-
-        // if all flush cycles complete, end flushing, otherwise start washing again
-        if(flushCount >= settings.flushCycles) mixerState = START_IDLE;
-        else FlushingState = FLUSH_SETUP_WASH_REVERSE;
+        // After Purge is complete, enter wash cycles
+        FlushingState = FLUSH_SETUP_WASH_REVERSE;
 
       }else if(lastMove == FLUSH_WASH_FORWARD){
-        //increment the wash count
-        washCount += 1;
-
-        // if all wash cycles complete, purge, otherwise start a new wash cycle
-        if(washCount >= settings.washCycles) FlushingState = FLUSH_SETUP_PURGE;
-        else FlushingState = FLUSH_SETUP_WASH_REVERSE;
-
+        // Wash forward is always followed by Wash Reverser
+        FlushingState = FLUSH_SETUP_WASH_REVERSE;
+        
       }else if(lastMove == FLUSH_WASH_REVERSE){
-        // Wash Reverse is always followed by Wash Forward
+        // Wash reverse is always followed by Wash Forward
         FlushingState = FLUSH_SETUP_WASH_FORWARD;
-
       }
 
       break;
@@ -138,6 +143,23 @@ void mixMaster::updateFlushing(){
     case FLUSH_PAUSE:
       if(millis() - timeStartedPause > settings.flushPause){
         FlushingState = FLUSH_CHECK;
+      }
+      break;
+
+    case FLUSH_SIGNAL_COMPLETE:
+      static uint32_t chimeCount = 0;
+      static uint32_t chimeTimer = 0;
+
+      // Chime 4 times with 1 second between, then reset chime count and exit flushing
+      if(chimeCount < 4){
+        if(millis() - chimeTimer > 1000){
+          chimeTimer = millis();
+          tone(CHIME_PIN, CHIME_FREQUENCY, 750);
+          chimeCount++;
+        }
+      } else {
+        chimeCount = 0;
+        mixerState = START_IDLE;
       }
       break;
 
