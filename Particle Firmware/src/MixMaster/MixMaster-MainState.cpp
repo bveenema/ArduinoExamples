@@ -120,8 +120,8 @@ bool mixMaster::update(bool _changeState){
       mixerState = START_IDLE;
     }
   }else if(mixerState == FLUSHING){ // 6
-    // kill Flusing if no pail or liquid
-    if(!PailSensor.getState() || !ResinLiquidSensor.hasLiquid() || !HardenerLiquidSensor.hasLiquid()){
+    // kill Flusing if no pail
+    if(!PailSensor.getState()){
       mixerState = START_IDLE;
       _changeState = false;
       return _changeState;
