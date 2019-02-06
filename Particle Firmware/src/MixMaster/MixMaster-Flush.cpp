@@ -46,6 +46,9 @@ void mixMaster::updateFlushing(){
         if(flushCount >= settings.flushCycles) mixerState = START_IDLE;
         else FlushingState = FLUSH_SETUP_WASH_FORWARD;
 
+        // reset Wash Count
+        washCount = 0;
+
       }else if(lastMove == FLUSH_WASH_FORWARD){
         // Wash forward is always followed by Wash Reverse
         FlushingState = FLUSH_SETUP_WASH_REVERSE;
