@@ -52,6 +52,9 @@ public:
 
   void runPumps();
 
+  // Current State of Mix Master
+  MixerState mixerState = START_IDLE;
+
 private:
   // Pump objects
   AccelStepper ResinPump;
@@ -73,9 +76,6 @@ private:
   void disablePumps();
   bool _pumpsEnabledState = false;
 
-  // Current State of Mix Master
-  MixerState mixerState = START_IDLE;
-
   // Pump configuration
   const unsigned int ultimateMaxSpeed = 15000;
   const unsigned int autoReverseSpeed = 4000;
@@ -93,6 +93,8 @@ private:
     FLUSH_SETUP_WASH_REVERSE,
     FLUSH_RUN_PUMPS,
     FLUSH_PAUSE,
+    FLUSH_AIR_CHARGE,
+    FLUSH_SIGNAL_COMPLETE,
   } FlushingState;
 
   enum lastMove {
@@ -108,13 +110,17 @@ private:
     MIX,
   } MixingState;
 
+  // Flushing Interval Charge Handler
+  void intervalCharge();
+  enum IntervalChargeState {
+    INTERVAL_CHARGE_AIR_ON,
+    INTERVAL_CHARGE_AIR_PAUSE,
+  } IntervalChargeState;
+  uint32_t timeIntervalChargeStarted = 0;
+  bool enableIntervalCharge = false;
+
   // Flushing State Machine Handler
   void updateFlushing();
-
-  // Flushing Counter
-  uint32_t flushCount = 0;
-  uint32_t washCount = 0;
-  bool initialPurge = false;
 
   // ZeroDrip
   bool ZeroDrip(bool runZeroDrip);

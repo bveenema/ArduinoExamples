@@ -13,9 +13,11 @@ void chime::init(){
 
 void chime::update(){
   // Check for errors
-       if(!ResinLiquidSensor.hasLiquid() || !HardenerLiquidSensor.hasLiquid())  _chimeState = FAST;
-  else if(!ResinTemp.isInRange() || !HardenerTemp.isInRange())                  _chimeState = SLOW;
-  else _chimeState = OFF;
+  if(!_chiming){
+      if((!ResinLiquidSensor.hasLiquid() || !HardenerLiquidSensor.hasLiquid()) && MixMaster.mixerState != FLUSHING)  _chimeState = FAST;
+    else if(!ResinTemp.isInRange() || !HardenerTemp.isInRange())  _chimeState = SLOW;
+    else _chimeState = OFF;
+  }
 
   // Create chime if not silenced
   if(!_silenced && _chimeState != OFF){
