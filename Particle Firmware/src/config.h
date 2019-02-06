@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define THIS_PRODUCT_ID 7951
-#define THIS_PRODUCT_VERSION 25
+#define THIS_PRODUCT_VERSION 26
 
 // Photon Pins
 #define SDA_PIN D0

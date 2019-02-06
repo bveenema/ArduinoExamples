@@ -61,6 +61,7 @@ bool mixMaster::update(bool _changeState){
     // 4) Start cycle (mix) and run until you reach lower pressure set point 0-2 psi and repeat 1-3 until mix volume is complete
     static uint32_t timeEndedCharging = 0;
     static uint32_t timeStartedMixing = 0;
+    bool pumpError = false;
     uint32_t now = millis();
     if(MixingState == CHARGING){
       PressureManager.allowCharging();
@@ -79,6 +80,23 @@ bool mixMaster::update(bool _changeState){
       if((now - timeStartedMixing + accumulatedMixingTime) > timeToMix){
         accumulatedMixingTime += now - timeStartedMixing;
       }
+
+      // Check pumps for error, return true if error for more than 50 ms
+      static uint32_t accumulatePumpError = 0;
+      static uint32_t lastPumpErrorRead = 0;
+      if(now - lastPumpErrorRead > 10){
+        lastPumpErrorRead = now;
+        if(!IOExp.digitalRead(RESIN_HLFB_IOEXP_PIN) || !IOExp.digitalRead(HARDENER_HLFB_IOEXP_PIN)){
+          accumulatePumpError += 1;
+          if(accumulatePumpError > 5){
+            strncpy(currentError, "Pump Error",30);
+            pumpError = true;
+          }
+        } else {
+          accumulatePumpError = 0;
+        }
+      }
+
       if(PressureManager.requestCharging()){
         accumulatedMixingTime += now - timeStartedMixing;
         timeStartedCharging = now;
@@ -87,11 +105,19 @@ bool mixMaster::update(bool _changeState){
       }
     }
 
-    if(_changeState || !PailSensor.getState() || !ResinLiquidSensor.hasLiquid() || !HardenerLiquidSensor.hasLiquid()){
+    if(pumpError || _changeState || !PailSensor.getState() || !ResinLiquidSensor.hasLiquid() || !HardenerLiquidSensor.hasLiquid()){
       pumpUpdater.end(); // kill pump interrupt handler
       // don't reset _changeState when keep open so button won't be "ignored" while keep open
       if(!keepOpen) _changeState = false;
       mixerState = START_IDLE;
+      // if pump error, shut down critical systems and kill the program
+      if(pumpError){
+        RGB.color(255,0,0); // Turn LED red
+        disablePumps(); // disable motors
+        IOExp.digitalWrite(PUMP_EN_IOEXP_PIN, LOW); // Turn off Air pump
+        Serial.print("Pump Motor Error!");
+        while(1); // kill the program
+      }
     }
 
     if(accumulatedMixingTime > timeToMix){
