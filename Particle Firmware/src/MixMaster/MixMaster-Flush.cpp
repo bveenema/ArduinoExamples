@@ -51,24 +51,37 @@ void mixMaster::updateFlushing(){
       HardenerPump.setMaxSpeed(getSpeedFromRPM(settings.flushRPM, settings.stepsPerMlResin, settings.stepsPerMlHardener, 1, 1));
 
       FlushingState = FLUSH_SETUP_PURGE;
+      initialPurge = true;
+      washCount = 0;
+      flushCount = 0;
       break;
     }
 
     case FLUSH_CHECK:
 
-      if(!ResinLiquidSensor.hasLiquid() && !HardenerLiquidSensor.hasLiquid()){
-        timeStartedPause = millis();
-        FlushingState = FLUSH_SIGNAL_COMPLETE;
-        break;
-      }
-
       if(lastMove == FLUSH_PURGE){
-        // After Purge is complete, enter wash cycles
-        FlushingState = FLUSH_SETUP_WASH_REVERSE;
+        // Reset the wash count
+        washCount = 0;
+
+        // increment the flush count if not the inital purge
+        if(initialPurge) initialPurge = false;
+        else flushCount += 1;
+
+        // if all flush cycles complete, end flushing, otherwise start washing again
+        if(flushCount >= settings.flushCycles){
+          FlushingState = FLUSH_FINISH_DELAY;
+          timeStartedPause = millis();
+        }else{
+          FlushingState = FLUSH_SETUP_WASH_REVERSE;
+        }
+        
 
       }else if(lastMove == FLUSH_WASH_FORWARD){
-        // Wash forward is always followed by Wash Reverser
-        FlushingState = FLUSH_SETUP_WASH_REVERSE;
+        washCount++;
+
+        // if all wash cycles complete, purge, otherwise start a new wash cycle
+        if(washCount >= settings.washCycles) FlushingState = FLUSH_SETUP_PURGE;
+        else FlushingState = FLUSH_SETUP_WASH_REVERSE;
         
       }else if(lastMove == FLUSH_WASH_REVERSE){
         // Wash reverse is always followed by Wash Forward
@@ -78,23 +91,27 @@ void mixMaster::updateFlushing(){
       break;
 
     case FLUSH_SETUP_PURGE:
-      Serial.println("Start Purge");
+      Serial.printlnf("Start Purge: %d", flushCount);
 
       ResinPump.setCurrentPosition(0);
       HardenerPump.setCurrentPosition(0);
 
-      ResinPump.moveTo(settings.purgeCounts);
-      HardenerPump.moveTo(settings.purgeCounts);
+      if(initialPurge){
+        ResinPump.moveTo(settings.initialPurgeCounts);
+        HardenerPump.moveTo(settings.initialPurgeCounts);
+        FlushingState = FLUSH_AIR_CHARGE;
+        timeStartedCharge = millis();
+      }else{
+        ResinPump.moveTo(settings.purgeCounts);
+        HardenerPump.moveTo(settings.purgeCounts);
+        FlushingState = FLUSH_RUN_PUMPS;
+      }
       
       lastMove = FLUSH_PURGE;
-
-      FlushingState = FLUSH_AIR_CHARGE;
-      timeStartedCharge = millis();
-
       break;
 
     case FLUSH_SETUP_WASH_FORWARD:
-      Serial.printlnf("Start Wash Forward");
+      Serial.printlnf("Start Wash Forward: %d", washCount);
       
       ResinPump.setCurrentPosition(0);
       HardenerPump.setCurrentPosition(0);
@@ -148,6 +165,13 @@ void mixMaster::updateFlushing(){
         FlushingState = FLUSH_CHECK;
       }
       break;
+    
+    case FLUSH_FINISH_DELAY:
+      if(millis() - timeStartedPause > settings.flushFinishDelay){
+        Serial.printlnf("Did Flush Finish Delay: %d", millis() - timeStartedPause);
+        FlushingState = FLUSH_SIGNAL_COMPLETE;
+      }
+      break;
 
     case FLUSH_SIGNAL_COMPLETE:
       static uint32_t chimeCount = 0;
@@ -183,13 +207,13 @@ void mixMaster::intervalCharge(){
     if(IntervalChargeState == INTERVAL_CHARGE_AIR_ON){
       PressureManager.allowCharging();
       if(millis() - timeIntervalChargeStarted > settings.chargeTime){
-        Serial.printlnf("Did Interval Charge: %d", millis() - timeIntervalChargeStarted);
+        // Serial.printlnf("Did Interval Charge: %d", millis() - timeIntervalChargeStarted);
         IntervalChargeState = INTERVAL_CHARGE_AIR_PAUSE;
         timeIntervalChargeStarted = millis();
       }
     }else if(IntervalChargeState == INTERVAL_CHARGE_AIR_PAUSE){
       if(millis() - timeIntervalChargeStarted > settings.flushChargeInterval){
-        Serial.printlnf("Did Interval Pause: %d", millis() - timeIntervalChargeStarted);
+        // Serial.printlnf("Did Interval Pause: %d", millis() - timeIntervalChargeStarted);
         IntervalChargeState = INTERVAL_CHARGE_AIR_ON;
         timeIntervalChargeStarted = millis();
       }

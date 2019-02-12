@@ -94,6 +94,7 @@ private:
     FLUSH_RUN_PUMPS,
     FLUSH_PAUSE,
     FLUSH_AIR_CHARGE,
+    FLUSH_FINISH_DELAY,
     FLUSH_SIGNAL_COMPLETE,
   } FlushingState;
 
@@ -118,6 +119,9 @@ private:
   } IntervalChargeState;
   uint32_t timeIntervalChargeStarted = 0;
   bool enableIntervalCharge = false;
+  uint32_t washCount = 0;
+  uint32_t flushCount = 0;
+  bool initialPurge = false;
 
   // Flushing State Machine Handler
   void updateFlushing();
